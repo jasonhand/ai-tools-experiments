@@ -31,6 +31,7 @@
   },
   "devDependencies": {
     "@astrojs/mdx": "^4.2.6",
+    "@playwright/test": "^1.52.0",
     "astro": "^5.7.10"
   }
 }

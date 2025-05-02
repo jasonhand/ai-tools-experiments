@@ -2,190 +2,219 @@
 // No server-side logic needed for this static header yet
 const navItems = [
   { href: '/', text: 'Home' },
-  { href: '/transcripts', text: 'Transcripts' }, // Assuming a future index page for transcripts
-  { href: '/resources', text: 'Resources' }, // Assuming a future index page for resources
-  { href: '/about', text: 'About' }, // Assuming an About page
+  { href: '/resources', text: 'Resources' },
+  { href: '/transcripts', text: 'Transcripts' },
+  { href: '/about', text: 'About' },
 ];
 ---
 <header class="site-header">
-  <div class="container">
+  <div class="container header-content">
     <div class="logo">
-      <a href="/">AI Tools & Experiments</a>
+      <a href="/">
+        <img src="/images/ai-tools-lab-logo.png" alt="AI Tools Lab Logo" class="logo-img">
+        <span class="logo-text">AI Tools Lab</span>
+      </a>
     </div>
-    <nav class="nav-links">
+    <nav class="main-nav">
       <ul>
         {navItems.map(item => (
           <li><a href={item.href}>{item.text}</a></li>
         ))}
       </ul>
     </nav>
-    <div class="hamburger-menu" aria-label="Toggle Menu" role="button" aria-expanded="false" aria-controls="mobile-nav-list">
-      <span class="bar"></span>
-      <span class="bar"></span>
-      <span class="bar"></span>
-    </div>
+
+    {/* Mobile Menu Toggle - Keep this structure */} 
+    <label for="menu-toggle" class="menu-toggle-label">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hamburger-icon lucide lucide-menu">
+        <line x1="4" x2="20" y1="12" y2="12"/>
+        <line x1="4" x2="20" y1="6" y2="6"/>
+        <line x1="4" x2="20" y1="18" y2="18"/>
+      </svg>
+    </label>
+
+    {/* Temporarily commented out overlay */}
+    {/* <label for="menu-toggle" class="overlay"></label> */}
+ 
+    {/* Mobile Navigation - Keep this structure */} 
+    <nav class="mobile-nav">
+      {/* <label for="menu-toggle" class="close-menu-label">✕</label> */}
+      <ul>
+        {navItems.map(item => (
+          <li><a href={item.href}>{item.text}</a></li>
+        ))}
+      </ul>
+    </nav>
+
   </div>
 </header>
 
-<!-- Mobile Navigation Panel -->
-<div class="mobile-nav" id="mobile-nav-list">
-  <button class="close-btn" aria-label="Close Menu">&times;</button>
-  <ul>
-    {navItems.map(item => (
-      <li><a href={item.href}>{item.text}</a></li>
-    ))}
-  </ul>
-</div>
-<div class="overlay"></div>
+<style>
+  .site-header {
+    background-color: var(--secondary-color, #93ACB5); /* Use CSS variable with fallback */
+    padding: 15px 0;
+    border-bottom: 1px solid color-mix(in srgb, var(--secondary-color, #93ACB5) 80%, black);
+  }
 
-<script>
-// Initialize mobile menu with direct links approach
-function initializeMobileMenuDirectLinks() {
-    console.log('Initializing mobile menu with direct links approach');
-    
-    // Query DOM elements
-    const siteHeader = document.querySelector('.site-header');
-    const headerContainer = document.querySelector('.site-header .container');
-    const existingMenu = document.querySelector('.hamburger-menu');
-    if (existingMenu) existingMenu.remove();
-    
-    const existingOverlay = document.querySelector('.menu-overlay');
-    if (existingOverlay) existingOverlay.remove();
-    
-    const nav = document.querySelector('.site-header nav');
-    
-    if (!siteHeader || !headerContainer || !nav) {
-        console.error('Required elements not found for mobile menu');
-        return;
-    }
-    
-    // Create hamburger menu button
-    const hamburgerMenu = document.createElement('div');
-    hamburgerMenu.className = 'hamburger-menu';
-    hamburgerMenu.setAttribute('role', 'button');
-    hamburgerMenu.setAttribute('tabindex', '0');
-    hamburgerMenu.setAttribute('aria-label', 'Toggle navigation menu');
-    
-    // Create hamburger icon
-    const logoImg = document.createElement('img');
-    // Use root-relative path for Astro
-    logoImg.src = '/images/ai-tools-lab-logo.png'; 
-    logoImg.width = 24;
-    logoImg.height = 24;
-    logoImg.alt = "Menu";
-    
-    // Add icon to hamburger menu
-    hamburgerMenu.appendChild(logoImg);
-    
-    // Add hamburger menu to header
-    headerContainer.appendChild(hamburgerMenu);
-    
-    // Create overlay
-    const menuOverlay = document.createElement('div');
-    menuOverlay.className = 'menu-overlay';
-    document.body.appendChild(menuOverlay);
-    
-    // Get all navigation items and convert to direct links
-    const navItems = nav.querySelectorAll('a');
-    const navLinks = [];
-    
-    navItems.forEach(item => {
-        navLinks.push({
-            href: item.getAttribute('href'),
-            text: item.textContent,
-            isActive: item.classList.contains('active')
-        });
-    });
-    
-    // Create mobile navigation container that will replace the nav element when open
-    const mobileNavContainer = document.createElement('div');
-    mobileNavContainer.className = 'mobile-nav-container';
-    mobileNavContainer.style.display = 'none';
-    mobileNavContainer.style.position = 'fixed';
-    mobileNavContainer.style.top = '0';
-    mobileNavContainer.style.right = '0';
-    mobileNavContainer.style.width = '80%';
-    mobileNavContainer.style.maxWidth = '300px';
-    mobileNavContainer.style.height = '100vh';
-    mobileNavContainer.style.backgroundColor = '#3E2D73'; // Match existing CSS variable if possible
-    mobileNavContainer.style.zIndex = '2001';
-    mobileNavContainer.style.paddingTop = '80px';
-    mobileNavContainer.style.boxShadow = '-2px 0 5px rgba(0, 0, 0, 0.2)';
-    mobileNavContainer.style.overflowY = 'auto';
-    
-    // Build mobile nav HTML directly
-    let mobileNavHTML = '<ul style="list-style: none; padding: 20px;">';
-    navLinks.forEach(link => {
-        mobileNavHTML += `
-        <li style="margin-bottom: 15px;">
-            <a href="${link.href}" 
-               style="
-                  color: white; 
-                  text-decoration: none; 
-                  font-size: 18px; 
-                  display: block; 
-                  padding: 10px;
-                  ${link.isActive ? 'font-weight: bold; background-color: rgba(255,255,255,0.1); border-radius: 5px;' : ''}
-               "
-            >${link.text}</a>
-        </li>`;
-    });
-    mobileNavHTML += '</ul>';
-    
-    mobileNavContainer.innerHTML = mobileNavHTML;
-    document.body.appendChild(mobileNavContainer);
-    
-    // Toggle function that doesn't reference the original nav
-    function toggleMenu() {
-        if (mobileNavContainer.style.display === 'none') {
-            // Open menu
-            mobileNavContainer.style.display = 'block';
-            hamburgerMenu.classList.add('active');
-            menuOverlay.classList.add('active');
-        } else {
-            // Close menu
-            mobileNavContainer.style.display = 'none';
-            hamburgerMenu.classList.remove('active');
-            menuOverlay.classList.remove('active');
-        }
-        document.body.classList.toggle('menu-open');
-    }
-    
-    // Toggle menu on hamburger click
-    hamburgerMenu.addEventListener('click', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        toggleMenu();
-    });
-    
-    // Close menu when clicking overlay
-    menuOverlay.addEventListener('click', function() {
-        toggleMenu();
-    });
-    
-    // Show hamburger on smaller screens, hide on larger
-    function checkScreenSize() {
-        if (window.innerWidth <= 768) {
-            hamburgerMenu.style.display = 'flex';
-        } else {
-            hamburgerMenu.style.display = 'none';
-            // Ensure menu is closed if screen becomes large while open
-            if (mobileNavContainer.style.display !== 'none') {
-                 toggleMenu();
-            }
-        }
+  .header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: white; /* Ensure text is visible */
+  }
+
+  .logo-img {
+    height: 40px; /* Adjust size as needed */
+    margin-right: 10px;
+    vertical-align: middle; /* Helps alignment */
+  }
+
+  .logo-text {
+    font-size: 1.4em; /* Adjust size */
+    font-weight: bold;
+    color: white;
+    line-height: 1; /* Adjust line height if needed */
+  }
+
+  .main-nav {
+    display: none; /* Hidden by default, shown on larger screens */
+  }
+
+  .main-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 25px; /* Spacing between nav items */
+  }
+
+  .main-nav a {
+    text-decoration: none;
+    color: white;
+    font-size: 1.1em;
+    padding: 8px 15px;
+    border-radius: 20px; /* Pill shape */
+    transition: background-color 0.3s ease;
+  }
+
+  .main-nav a:hover,
+  .main-nav a.active { /* Add active class styling if needed later */
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+
+  /* --- Mobile Menu Styles --- */
+  .menu-toggle-label {
+    display: block; /* Display hamburger on mobile */
+    cursor: pointer;
+  }
+
+  .hamburger-icon {
+    height: 30px; /* Adjust size if needed, SVG viewBox handles scaling */ 
+    width: 30px;
+    display: block;
+    stroke: white; /* Set icon color */
+  }
+
+  .mobile-nav {
+    display: none; /* Hidden by default */
+    position: fixed; /* Or absolute depending on desired effect */
+    top: 0;
+    right: 0;
+    width: 250px; /* Example width */
+    height: 100%;
+    background-color: var(--primary-color, #6C756B); /* Use primary color */
+    padding: 20px; /* Simplified padding */
+    box-shadow: -2px 0 5px rgba(0,0,0,0.2);
+    z-index: 1000;
+  }
+
+  .mobile-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .mobile-nav li {
+    margin-bottom: 15px;
+  }
+
+  .mobile-nav a {
+    text-decoration: none;
+    color: white;
+    font-size: 1.2em;
+    display: block; /* Make links take full width */
+    padding: 10px;
+    border-radius: 5px;
+    transition: background-color 0.2s ease;
+  }
+
+   .mobile-nav a:hover {
+     background-color: rgba(255, 255, 255, 0.1);
+   }
+
+   /* Show mobile nav when header has .is-open class */ 
+   body .site-header.is-open .mobile-nav {
+     display: block !important; /* Increased specificity and !important for testing */
+   }
+
+   /* --- Desktop Styles (using a common breakpoint) --- */
+   @media (min-width: 769px) { 
+     .main-nav {
+       display: block; /* Show main nav on desktop */
+     }
+     .menu-toggle-label,
+     .mobile-nav {  
+       display: none; /* Hide mobile elements on desktop */
+     }
+   }
+
+</style>
+
+<script is:inline>
+  // Use is:inline to ensure script runs in the browser
+  // Attempt to run directly, assuming script runs after elements are parsed
+
+    const header = document.querySelector('.site-header');
+    const toggleButton = document.querySelector('.menu-toggle-label');
+    const mobileNav = document.querySelector('.mobile-nav'); // Get the nav itself
+    const mobileNavLinks = mobileNav ? mobileNav.querySelectorAll('a') : []; // Get links inside
+
+    console.log('Mobile Menu Script Loaded (Simplified)');
+    console.log('Header found:', header);
+    console.log('Toggle button found:', toggleButton);
+    console.log('Mobile nav found:', mobileNav);
+
+    if (!header || !toggleButton || !mobileNav) {
+      console.error('Mobile menu elements not found! (Simplified)');
+      return;
     }
 
-    // Initial check
-    checkScreenSize();
+    const toggleMenu = () => {
+      console.log('Toggling menu. Current classes:', header.classList);
+      header.classList.toggle('is-open');
+      console.log('Menu toggled. New classes:', header.classList);
+    };
 
-    // Check on resize
-    window.addEventListener('resize', checkScreenSize);
-    
-    console.log('Mobile menu initialized with direct links approach');
-}
+    const closeMenu = () => {
+      console.log('Closing menu via link. (Simplified)');
+      header.classList.remove('is-open');
+    };
 
-document.addEventListener('DOMContentLoaded', function() {
-  initializeMobileMenuDirectLinks();
-});
-</script>
+    toggleButton.addEventListener('click', (e) => {
+      console.log('Toggle button clicked! (Simplified)');
+      e.stopPropagation(); // Prevent potential bubbling issues
+      toggleMenu();
+    });
+
+    // Add listeners to nav links to close menu on click
+    mobileNavLinks.forEach(link => {
+      link.addEventListener('click', closeMenu);
+    });
+
+    // Removed overlay and escape key listeners for simplification
+  </script>

@@ -1,0 +1,85 @@
+---
+// src/pages/transcripts/[slug].astro
+import MainLayout from '../../layouts/MainLayout.astro';
+
+// Required for dynamic routes
+export async function getStaticPaths() {
+  // Use Astro.glob to import raw HTML content at build time
+  const transcriptModules = await Astro.glob('../content/transcripts/*.html', { query: 'raw' });
+
+  const paths = Object.entries(transcriptModules).map(([filePath, rawHtmlContent]) => {
+    // Extract slug from filename (e.g., '../content/transcripts/ep01.html' -> 'ep01')
+    const slug = filePath.split('/').pop().replace('.html', '');
+    return {
+      params: { slug },
+      props: { rawHtmlContent } // Pass the raw HTML string directly
+    };
+  });
+  return paths;
+}
+
+// Get the raw HTML content passed via props
+const { slug } = Astro.params;
+const { rawHtmlContent } = Astro.props;
+
+let title = slug; // Default title
+let bodyContent = ''; // Variable for extracted body content
+
+try {
+  // Attempt to extract title from <title> tag if present in the HTML
+  const titleMatch = rawHtmlContent.match(/<title>(.*?)<\/title>/i);
+  if (titleMatch && titleMatch[1]) {
+    title = titleMatch[1].trim();
+  }
+
+  // Attempt to extract content between <body> tags
+  const bodyMatch = rawHtmlContent.match(/<body[^>]*>([\s\S]*?)<\/body>/i);
+  if (bodyMatch && bodyMatch[1]) {
+    bodyContent = bodyMatch[1].trim();
+    // Basic fix for relative paths within the injected HTML:
+    // Replace ../ with / for root-relative paths assuming assets are in public/
+    bodyContent = bodyContent.replace(/\.\.\//g, '/');
+  } else {
+    // If body is missing, the raw content might be the body itself
+    bodyContent = rawHtmlContent;
+    title = `${slug?.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase()) ?? 'Transcript'}`;
+  }
+} catch (error) {
+  console.error(`Error processing transcript content for slug ${slug}:`, error);
+  bodyContent = `<p style="color: red;">Error processing transcript content for ${slug}.</p>`;
+  title = `Error: ${slug}`;
+}
+
+---
+
+<MainLayout title={`${title} - Transcript`}>
+  <div class="transcript-content">
+    <h1>{title}</h1>
+    <hr />
+    {/* Inject only the extracted & path-adjusted body content */}
+    <div set:html={bodyContent} />
+  </div>
+</MainLayout>
+
+<style is:global>
+  /* Styles from previous simplification, can be adjusted */
+  .transcript-content {
+    padding-bottom: 4rem;
+    max-width: 80ch;
+    margin: 2rem auto;
+  }
+  .transcript-content h1 {
+      margin-bottom: 1em;
+  }
+  .transcript-content p {
+      margin-bottom: 1em;
+      line-height: 1.6;
+  }
+  .transcript-content a {
+      color: #007bff;
+      text-decoration: none;
+  }
+  .transcript-content a:hover {
+      text-decoration: underline;
+  }
+</style>

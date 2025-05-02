@@ -1,0 +1,57 @@
+---
+// src/pages/transcripts/index.astro
+import MainLayout from '../../layouts/MainLayout.astro';
+
+// Use modern import.meta.glob to find transcript files
+const transcriptFilesMeta = import.meta.glob('./*.mdx');
+
+const transcripts = Object.keys(transcriptFilesMeta).map(path => {
+  const filename = path.split('/').pop() ?? '';
+  const slug = filename.replace('.mdx', '');
+  // Create a user-friendly title from the slug
+  const title = slug.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+  // Could potentially load frontmatter here if needed by awaiting transcriptFilesMeta[path]()
+  return {
+    slug,
+    title: title 
+  };
+}).filter(t => t.slug !== 'index' && t.slug); // Filter out 'index' and empty slugs
+
+const pageTitle = "Transcripts";
+---
+
+<MainLayout title={pageTitle}>
+  <div class="container">
+    <h1>All Transcripts</h1>
+    <p>Browse through our episode transcripts.</p>
+    <ul>
+      {transcripts.map(ep => (
+        <li>
+          <a href={`/transcripts/${ep.slug}/`}>{ep.title}</a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</MainLayout>
+
+<style>
+  .container {
+    padding: 2rem 1rem;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  li {
+    margin-bottom: 1rem;
+  }
+  a {
+    text-decoration: none;
+    color: var(--primary-color);
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+</style>

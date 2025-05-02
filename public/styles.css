@@ -33,6 +33,11 @@ a {
     text-decoration: none;
 }
 
+.tag-filter:active {
+    transform: scale(0.95) !important;
+    transition: transform 0.1s;
+}
+
 a:hover {
     text-decoration: underline;
 }
@@ -1936,12 +1941,16 @@ code {
     
     /* Adjust header on mobile */
     .site-header {
-        padding: 1rem 0 0 0;
+        padding: 1rem 0;
     }
     
-    .site-header .container {
-        padding-top: 20px;
-        padding-bottom: 20px;
+    .site-header .logo .site-logo {
+        width: 60px;
+        height: 60px;
+    }
+    
+    h2 {
+        font-size: 1.5rem;
     }
 }
 
@@ -1958,13 +1967,13 @@ code {
         font-size: 32px;
         z-index: 1001;
         position: absolute;
-        right: calc(25% - 50px);
+        right: calc(25% - 40px);
         top: 50%;
         transform: translateY(-50%);
         background-color: rgba(255, 255, 255, 0.3);
         border-radius: 50%; /* Make it circular */
-        width: 100px;   /* Fixed width */
-        height: 100px;  /* Fixed height */
+        width: 80px;   /* Fixed width */
+        height: 80px;  /* Fixed height */
         display: flex !important;
         align-items: center;
         justify-content: center;
@@ -1998,179 +2007,10 @@ code {
     display: block;
 }
 
-/* Mobile First - Small screens */
-@media (max-width: 480px) {
-    .recording-grid, .resource-grid, .tools-list {
-        grid-template-columns: 1fr;
-    }
-    
-    .site-footer .footer-content {
-        flex-direction: column;
-        gap: 15px;
-        text-align: center;
-    }
-    
-    .site-footer .footer-links {
-        justify-content: center;
-    }
-    
-    .filter-group .filter-label {
-        display: none;
-    }
-    
-    /* Fix alignment */
-    .tag-buttons {
-        margin-left: 0;
-        justify-content: flex-start;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-    }
-    
-    .tag-buttons::-webkit-scrollbar {
-        height: 4px;
-    }
-    
-    .tag-buttons::-webkit-scrollbar-track {
-        background: #f0f0f0;
-        border-radius: 10px;
-    }
-    
-    .tag-buttons::-webkit-scrollbar-thumb {
-        background: var(--primary-color);
-        border-radius: 10px;
-        opacity: 0.5;
-    }
-    
-    .tag-filter {
-        flex: 0 0 auto;
-        min-width: 80px;
-        margin: 3px 5px;
-    }
-    
-    /* Make category dropdown full width */
-    .filter-group select {
-        width: 100%;
-        min-width: 100%;
-    }
-    
-    /* Additional spacing for filters */
-    .episodes-filters, .resources-filters {
-        gap: 10px;
-        padding: 0 12px 8px 12px;
-    }
-    
-    .filter-container {
-        border-radius: 6px 6px 0 0;
-    }
-    
-    /* Header adjustments for smaller screens */
-    .logo a {
-        font-size: 2.8rem !important;
-        text-align: left;
-        margin-left: 0;
-    }
-    
-    .hamburger-menu {
-        right: calc(25% - 40px);
-        width: 80px;
-        height: 80px;
-    }
-    
-    .hamburger-menu img {
-        width: 90%;
-        height: 90%;
-    }
-    
-    /* Left align filter groups on smaller screens */
-    .index-filter-group,
-    .resources-filter-group,
-    .episodes-filters {
-        justify-content: flex-start;
-    }
-    
-    /* Adjust header padding for smaller screens */
-    .site-header .container {
-        padding-top: 15px;
-        padding-bottom: 15px;
-    }
-    
-    .logo {
-        padding-right: 50%;
-    }
-}
-
-/* Mobile-friendly Tag Styles */
-@media (hover: hover) {
-    /* Only apply hover effects on devices that support hover */
-    .tag-filter:hover {
-        background-color: #8a70b5; /* Purple hover color */
-        color: white;
-        transform: translateY(-2px);
-        border-radius: 25px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-    }
-    
-    .tag-filter:hover::before {
-        height: 12px;
-        bottom: -12px;
-        opacity: 0.6;
-    }
-    
-    .tag-filter:hover::after {
-        opacity: 0.8;
-        animation: bubble 1.5s infinite;
-    }
-}
-
-/* Add tap state for mobile */
+/* General active state for interactive elements - Bubble Effect */
 .tag-filter:active {
     transform: scale(0.95) !important;
     transition: transform 0.1s;
-}
-
-/* Fix container padding on mobile */
-@media (max-width: 768px) {
-    .container {
-        padding: 0 15px;
-    }
-    
-    /* Adjust card styles for mobile */
-    .recording-card, .resource-card {
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    }
-    
-    .recording-card:hover, .resource-card:hover {
-        transform: none;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    }
-    
-    /* Fix mobile filter container wrapping */
-    .episodes-filters, .resources-filters {
-        margin-left: -15px;
-        margin-right: -15px;
-        border-radius: 0;
-        padding: 0 15px 8px 15px;
-    }
-    
-    .filter-container {
-        padding: 0 15px 8px 15px;
-        margin-top: -15px;
-    }
-    
-    /* Adjust header on mobile */
-    .site-header {
-        padding: 1rem 0;
-    }
-    
-    .site-header .logo .site-logo {
-        width: 60px;
-        height: 60px;
-    }
-    
-    h2 {
-        font-size: 1.5rem;
-    }
 }
 
 /* Filter Container Styles */
@@ -2573,5 +2413,174 @@ main.container {
         font-size: 20px;
         top: 5px;
         right: 5px;
+    }
+}
+
+/* Mobile First - Small screens */
+@media (max-width: 480px) {
+    .recording-grid, .resource-grid, .tools-list {
+        grid-template-columns: 1fr;
+    }
+    
+    .site-footer .footer-content {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+    
+    .site-footer .footer-links {
+        justify-content: center;
+    }
+    
+    .filter-group .filter-label {
+        display: none;
+    }
+    
+    /* Fix alignment */
+    .tag-buttons {
+        margin-left: 0;
+        justify-content: flex-start;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    
+    .tag-buttons::-webkit-scrollbar {
+        height: 4px;
+    }
+    
+    .tag-buttons::-webkit-scrollbar-track {
+        background: #f0f0f0;
+        border-radius: 10px;
+    }
+    
+    .tag-buttons::-webkit-scrollbar-thumb {
+        background: var(--primary-color);
+        border-radius: 10px;
+        opacity: 0.5;
+    }
+    
+    .tag-filter {
+        flex: 0 0 auto;
+        min-width: 80px;
+        margin: 3px 5px;
+    }
+    
+    /* Make category dropdown full width */
+    .filter-group select {
+        width: 100%;
+        min-width: 100%;
+    }
+    
+    /* Additional spacing for filters */
+    .episodes-filters, .resources-filters {
+        gap: 10px;
+        padding: 0 12px 8px 12px;
+    }
+    
+    .filter-container {
+        border-radius: 6px 6px 0 0;
+    }
+    
+    /* Header adjustments for smaller screens */
+    .logo a {
+        font-size: 2.8rem !important;
+        text-align: left;
+        margin-left: 0;
+    }
+    
+    .hamburger-menu {
+        right: calc(25% - 40px);
+        width: 80px;
+        height: 80px;
+    }
+    
+    .hamburger-menu img {
+        width: 90%;
+        height: 90%;
+    }
+    
+    /* Left align filter groups on smaller screens */
+    .index-filter-group,
+    .resources-filter-group,
+    .episodes-filters {
+        justify-content: flex-start;
+    }
+    
+    /* Adjust header padding for smaller screens */
+    .site-header .container {
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
+    
+    .logo {
+        padding-right: 50%;
+    }
+}
+
+/* Mobile-friendly Tag Styles */
+@media (hover: hover) {
+    /* Only apply hover effects on devices that support hover */
+    .tag-filter:hover {
+        background-color: #8a70b5; /* Purple hover color */
+        color: white;
+        transform: translateY(-2px);
+        border-radius: 25px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    }
+    
+    .tag-filter:hover::before {
+        height: 12px;
+        bottom: -12px;
+        opacity: 0.6;
+    }
+    
+    .tag-filter:hover::after {
+        opacity: 0.8;
+        animation: bubble 1.5s infinite;
+    }
+}
+
+/* Fix container padding on mobile */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 15px;
+    }
+    
+    /* Adjust card styles for mobile */
+    .recording-card, .resource-card {
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .recording-card:hover, .resource-card:hover {
+        transform: none;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Fix mobile filter container wrapping */
+    .episodes-filters, .resources-filters {
+        margin-left: -15px;
+        margin-right: -15px;
+        border-radius: 0;
+        padding: 0 15px 8px 15px;
+    }
+    
+    .filter-container {
+        padding: 0 15px 8px 15px;
+        margin-top: -15px;
+    }
+    
+    /* Adjust header on mobile */
+    .site-header {
+        padding: 1rem 0;
+    }
+    
+    .site-header .logo .site-logo {
+        width: 60px;
+        height: 60px;
+    }
+    
+    h2 {
+        font-size: 1.5rem;
     }
 }
