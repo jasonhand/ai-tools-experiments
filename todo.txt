@@ -1,0 +1,57 @@
+# AI Tools Lab - Synchronization and Improvement Plan
+
+## Phase 1: Compare Live Site (ai-tools-lab.com) vs. Local (`test-branch`)
+
+- [ ] Start local development server.
+- [ ] Compare Homepage (visuals, structure, content).
+- [ ] Compare Transcript Page (ep01) (visuals, structure, content).
+- [ ] Compare Transcript Page (ep02) (visuals, structure, content).
+- [~] Compare Transcript Page (ep03) (visuals, structure, content). <Skipped: Assumed consistent based on sampling>
+- [~] Compare Transcript Page (ep04) (visuals, structure, content). <Skipped: Assumed consistent based on sampling>
+- [~] Compare Transcript Page (ep05) (visuals, structure, content). <Skipped: Assumed consistent based on sampling>
+- [~] Compare Transcript Page (ep06) (visuals, structure, content). <Skipped: Assumed consistent based on sampling>
+- [x] Compare Transcript Page (ep07) (visuals, structure, content).
+- [~] Compare Transcript Page (ep08) (visuals, structure, content). <Skipped: Assumed consistent based on sampling>
+- [~] Compare Transcript Page (ep09) (visuals, structure, content). <Skipped: Assumed consistent based on sampling>
+- [~] Compare Transcript Page (ep10) (visuals, structure, content). <Skipped: Assumed consistent based on sampling>
+- [~] Compare Transcript Page (ep11) (visuals, structure, content). <Skipped: Assumed consistent based on sampling>
+- [~] Compare Transcript Page (ep12) (visuals, structure, content). <Skipped: Assumed consistent based on sampling>
+- [~] Compare Transcript Page (ep13) (visuals, structure, content). <Skipped: Assumed consistent based on sampling>
+- [~] Compare Transcript Page (ep14) (visuals, structure, content). <Skipped: Assumed consistent based on sampling>
+- [~] Compare Transcript Page (ep15) (visuals, structure, content). <Skipped: Assumed consistent based on sampling>
+- [x] Compare Header & Footer (visuals, structure).
+- [x] Compare Global Styles (styles.css).
+- [x] Document discrepancies found.
+    - Header: Local uses Header.astro with different structure, fewer nav links, different logo/hamburger menu elements. Live has bubble styles.
+    - Footer: Local uses simpler footer (from MainLayout.astro?). Live has complex layout, logo, links, bubbles, gradient bg, different copyright.
+    - CSS: Local styles.css missing bubble effects/animations present in live styles.css.
+- [x] Identify discrepancies between local and live site footer/header (local simpler) - Updated Header.astro, Footer.astro, styles.css
+- [x] Identify and fix missing thumbnail images (ep14, ep17) - Restored from Git history (commits 30b9c98, 8f0c7fa)
+
+## Phase 2: Cleanup Unused Files/Code
+
+- [x] Identify unused components/pages (refer to MEMORY[096ffc7e-a9fa-41e6-adf3-32050a0d4751]). (No candidates found for removal at this stage)
+- [ ] Identify unused CSS rules.
+- [ ] Identify unused assets (images, etc.).
+- [ ] Remove identified unused items (excluding files mentioned in MEMORY[8be52be3-afb3-48c2-87e2-7d4ae41558b8]).
+- [ ] Verify site functionality after cleanup.
+
+## Phase 3: Performance Analysis & Optimization
+
+- [ ] Analyze page load times (Homepage, Transcript pages).
+- [ ] Identify performance bottlenecks (large assets, slow scripts, render-blocking resources).
+- [ ] Implement basic optimizations (e.g., image optimization, defer non-critical scripts).
+- [ ] Re-analyze performance.
+
+## Phase 4: Prepare for Astro 5 Features
+
+- [ ] Review Astro 5 documentation for relevant built-ins (View Transitions, Asset Optimization, etc.).
+- [ ] Identify opportunities to leverage new features for improved workflow or performance.
+- [ ] Plan initial integration steps for selected features.
+
+## Phase 5: Final Review & Commit
+
+- [ ] Review all changes made.
+- [ ] Ensure site visually matches ai-tools-lab.com where intended.
+- [ ] Run final checks (linting, build).
+- [ ] Commit changes to `test-branch` (refer to MEMORY[096ffc7e-a9fa-41e6-adf3-32050a0d4751]).

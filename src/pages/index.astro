@@ -173,6 +173,9 @@ const description = "Collection of AI tools experiments and resources.";
             <div class="filter-group index-filter-group">
                 <div class="tag-buttons">
                     <button class="tag-filter active" data-tag="all">All Tags</button>
+                    <button class="tag-filter" data-tag="stateofai">State of AI</button>
+                    <button class="tag-filter" data-tag="notebooklm">Notebook LM</button>
+                    <button class="tag-filter" data-tag="chatgpt">ChatGPT</button>
                     <button class="tag-filter" data-tag="web-dev">Web Development</button>
                     <button class="tag-filter" data-tag="ml-models">ML Models</button>
                     <button class="tag-filter" data-tag="productivity">Productivity</button>
@@ -184,7 +187,11 @@ const description = "Collection of AI tools experiments and resources.";
                     <button class="tag-filter" data-tag="bolt">Bolt</button>
                     <button class="tag-filter" data-tag="lovable">Lovable</button>
                     <button class="tag-filter" data-tag="sora">Sora</button>
-                    <button class="tag-filter" data-tag="perplexity">Perplexity</button>
+                    <button class="tag-filter" data-tag="ai-development">AI Development</button>
+                    <button class="tag-filter" data-tag="puppeteer">Puppeteer</button>
+                    <button class="tag-filter" data-tag="mcp">MCP</button>
+                    <button class="tag-filter" data-tag="gemini">Gemini</button>
+                    <button class="tag-filter" data-tag="css">CSS</button>
                 </div>
             </div>
         </div>
@@ -197,25 +204,26 @@ const description = "Collection of AI tools experiments and resources.";
           <h2>Newest Episode</h2>
           <div class="featured-episode-container">
               <div class="featured-episode-video">
-                  <a href="/ep15/">
-                      <img src="/images/thumbnails/ep15.png" alt="AI Tools in Action: Exploring Sora Image Generation and Lovable App Builder">
+                  <a href="/ep17/">
+                      <img src="/images/thumbnails/ep17.png" alt="Episode 17 Thumbnail: State of AI 2025">
                       <div class="play-button-overlay">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="#ffffff">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="white" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                               <path d="M8 5v14l11-7z"/>
                           </svg>
                       </div>
                   </a>
               </div>
               <div class="featured-episode-content">
-                  <h3>Latest Episode: AI Tools in Action</h3>
-                  <h4>Exploring Sora Image Generation and Lovable App Builder</h4>
+                  <h3>Latest Episode: The State of AI 2025</h3>
+                  <h4>Exploring Developer Tools, Models, and Industry Trends</h4>
                   <p>In this episode, Jason Hand and Ryan MacLean explore recent developments in AI tools, focusing on image generation with Sora and app building with Lovable. They discuss the significant improvement in AI's ability to generate images with text and test Lovable's capabilities by building applications together.</p>
                   <div class="featured-episode-meta">
                       <span class="recording-date">April 29, 2025</span>
                       <div class="featured-episode-tags">
-                          <span class="tag">Sora</span>
-                          <span class="tag">Lovable</span>
-                          <span class="tag">Image Generation</span>
+                          <span class="tag">State of AI</span>
+                          <span class="tag">Notebook LM</span>
+                          <span class="tag">ChatGPT</span>
+                          <span class="tag">Claude</span>
                       </div>
                   </div>
               </div>
@@ -229,21 +237,69 @@ const description = "Collection of AI tools experiments and resources.";
           </div>
 
           <div class="recording-grid">
-              <div class="recording-card" data-category="exploration" data-tags="lovable,sora,image-gen,ai-development">
-                  <a href="/ep15/">
+              <!-- Episode 17 Card -->
+              <div class="recording-card" data-category="exploration" data-tags="stateofai,notebooklm,claude,chatgpt">
+                  <a href="/ep17/">
                       <div class="video-container">
-                          <img src="/images/thumbnails/ep15.png" alt="Recording 15 Thumbnail">
-                          <span class="featured-badge">Newest</span>
+                          <img src="/images/thumbnails/ep17.png" alt="Recording 17 Thumbnail">
                       </div>
                       <div class="recording-card-content">
-                          <h3>AI Tools in Action: Exploring Sora Image Generation and Lovable App Builder</h3>
-                          <p>Explore the latest developments in AI tools with Jason Hand and Ryan MacLean as they test image generation with Sora and app building with Lovable.</p>
+                          <h3>Episode 17: State of AI 2025 (Placeholder Title)</h3>
+                          <p>Placeholder description for episode 17.</p>
                           <div class="recording-meta">
                               <span class="recording-date">April 29, 2025</span>
                           </div>
                       </div>
                   </a>
               </div>
+
+              <!-- Episode 16 Card -->
+              <div class="recording-card" data-category="exploration" data-tags="puppeteer,mcp,gemini,css">
+                  <a href="/ep16/">
+                      <div class="video-container">
+                          <img src="/images/thumbnails/ep16.png" alt="Recording 16 Thumbnail">
+                      </div>
+                      <div class="recording-card-content">
+                          <h3>Episode 16: Puppeteer & MCP (Placeholder Title)</h3>
+                          <p>Placeholder description for episode 16.</p>
+                          <div class="recording-meta">
+                              <span class="recording-date">April 29, 2025</span>
+                          </div>
+                      </div>
+                  </a>
+              </div>
+
+              <div class="recording-card" data-category="exploration" data-tags="lovable,sora,image-gen,ai-development">
+                  <a href="/ep15/">
+                      <div class="video-container">
+                          <img src="/images/thumbnails/ep15.png" alt="Recording 15 Thumbnail">
+                      </div>
+                      <div class="recording-card-content">
+                          <h3>AI Tools in Action: Exploring Sora Image Generation and Lovable App Builder</h3>
+                          <p>Explore the latest developments in AI tools with Jason Hand and Ryan MacLean as they test image generation with Sora and app building with Lovable.</p>
+                          <div class="recording-meta">
+                              <span class="recording-date">April 28, 2025</span>
+                          </div>
+                      </div>
+                  </a>
+              </div>
+
+              <!-- Episode 14 Card -->
+              <div class="recording-card" data-category="exploration" data-tags="claude,plugins,productivity">
+                  <a href="/ep14/">
+                      <div class="video-container">
+                          <img src="/images/thumbnails/ep14.png" alt="Recording 14 Thumbnail">
+                      </div>
+                      <div class="recording-card-content">
+                          <h3>Episode 14: Claude Plugins (Placeholder Title)</h3>
+                          <p>Placeholder description for episode 14.</p>
+                          <div class="recording-meta">
+                              <span class="recording-date">April 25, 2025</span>
+                          </div>
+                      </div>
+                  </a>
+              </div>
+
               <div class="recording-card" data-category="exploration" data-tags="bolt,ai-development">
                   <a href="/ep13/">
                       <div class="video-container">

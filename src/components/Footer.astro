@@ -2,16 +2,103 @@
 const currentYear = new Date().getFullYear();
 ---
 <footer class="site-footer">
+  <!-- Bubble elements for footer -->
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+
   <div class="container">
-    <p>&copy; {currentYear} AI Tools & Experiments. All rights reserved.</p>
-    <!-- Add any additional footer links or info here -->
-    <!-- Example:
-    <nav>
-      <ul>
-        <li><a href="/privacy">Privacy Policy</a></li>
-        <li><a href="/terms">Terms of Service</a></li>
-      </ul>
-    </nav>
-    -->
+    <div class="footer-content">
+      
+      <div class="footer-logo">
+        <!-- Add logo image if available on live site, or just text -->
+         <!-- <img src="/images/ai-tools-lab-logo-footer.png" alt="AI Tools Lab" class="footer-logo-img"> -->
+        <div>
+            <h2>AI Tools Lab</h2>
+            <p>Exploring the intersection of AI and creativity.</p>
+        </div>
+      </div>
+
+      <div class="footer-links">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/about">About</a></li>
+          <!-- Add other relevant links -->
+        </ul>
+      </div>
+
+      <div class="footer-links">
+        <h3>Resources</h3>
+        <ul>
+          <li><a href="/resources">All Resources</a></li>
+          <li><a href="/observations">Observations</a></li> 
+          <!-- Add more links -->
+        </ul>
+      </div>
+
+      <div class="footer-links">
+        <h3>Connect</h3>
+        <ul>
+          <li><a href="#">Contact</a></li> 
+          <li><a href="https://github.com/jasonhand/ai-tools-experiments" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+          <!-- Add social links -->
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; {currentYear} AI Tools Lab. All rights reserved.</p> 
+      <!-- Maybe add privacy/terms links -->
+      <!-- <p><a href="/privacy">Privacy Policy</a> | <a href="/terms">Terms of Service</a></p> -->
+    </div>
+
   </div>
 </footer>
+
+<style>
+  /* Minimal component-specific styles if needed */
+  /* Most styles should come from global styles.css */
+  .site-footer {
+    /* Gradient background is in global styles.css */
+  }
+  .footer-content {
+     /* Layout styles (flex, grid) should be in global styles.css */
+     /* Example: */
+     /* display: flex; 
+     flex-wrap: wrap;
+     justify-content: space-between; 
+     margin-bottom: 2rem; 
+     position: relative; 
+     z-index: 3; */
+  }
+  .footer-links h3 {
+     /* Color: var(--accent-color); from global */
+     margin-bottom: 1rem; 
+  }
+  .footer-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .footer-links li {
+    margin-bottom: 0.75rem;
+  }
+  .footer-links a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .footer-links a:hover {
+    color: var(--accent-color); 
+    text-decoration: none;
+  }
+  .footer-bottom {
+    /* Styles from global styles.css */
+  }
+</style>

@@ -1,47 +1,45 @@
 ---
-// No server-side logic needed for this static header yet
-const navItems = [
-  { href: '/', text: 'Home' },
-  { href: '/resources', text: 'Resources' },
-  { href: '/transcripts', text: 'Transcripts' },
-  { href: '/about', text: 'About' },
-];
+// Header component adapted to match live site structure
 ---
 <header class="site-header">
-  <div class="container header-content">
+  <!-- Bubble elements from live site -->
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+
+  <div class="container header-content-container"> {/* Renamed class to avoid conflict */} 
     <div class="logo">
-      <a href="/pages/">
-        <img src="/images/ai-tools-lab-logo.png" alt="AI Tools Lab Logo" class="logo-img">
-        <span class="logo-text">AI Tools Lab</span>
-      </a>
+      <!-- Structure matching live site -->
+      <img src="/images/ai-tools-lab-logo.png" alt="AI Tools Lab Logo" class="site-logo"> 
+      <a href="/">AI Tools Lab</a> 
     </div>
-    <nav class="main-nav">
+    
+    <!-- Desktop Navigation -->
+    <nav class="main-nav"> {/* Keep class for desktop visibility control */} 
       <ul>
-        {navItems.map(item => (
-          <li><a href={item.href}>{item.text}</a></li>
-        ))}
+        <li><a href="/" class:list={{ active: Astro.url.pathname === '/' }}>Home</a></li>
+        <li><a href="/resources" class:list={{ active: Astro.url.pathname === '/resources' || Astro.url.pathname.startsWith('/resources/') }}>Resources</a></li>
+        <li><a href="/observations" class:list={{ active: Astro.url.pathname === '/observations' || Astro.url.pathname.startsWith('/observations/') }}>Observations</a></li>
+        <li><a href="/about" class:list={{ active: Astro.url.pathname === '/about' }}>About</a></li>
       </ul>
     </nav>
 
-    {/* Mobile Menu Toggle - Keep this structure */} 
-    <label for="menu-toggle" class="menu-toggle-label">
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hamburger-icon lucide lucide-menu">
-        <line x1="4" x2="20" y1="12" y2="12"/>
-        <line x1="4" x2="20" y1="6" y2="6"/>
-        <line x1="4" x2="20" y1="18" y2="18"/>
-      </svg>
-    </label>
+    <!-- Mobile Menu Toggle (using structure from live site) -->
+    <div class="hamburger-menu" role="button" tabindex="0" aria-label="Toggle navigation menu">
+      <img src="/images/ai-tools-lab-logo.png" width="24" height="24" alt="Menu">
+    </div>
 
-    {/* Temporarily commented out overlay */}
-    {/* <label for="menu-toggle" class="overlay"></label> */}
- 
-    {/* Mobile Navigation - Keep this structure */} 
-    <nav class="mobile-nav">
-      {/* <label for="menu-toggle" class="close-menu-label">✕</label> */}
+    <!-- Mobile Navigation (adapting structure from previous local version) --> 
+    <nav class="mobile-nav"> 
       <ul>
-        {navItems.map(item => (
-          <li><a href={item.href}>{item.text}</a></li>
-        ))}
+        <li><a href="/">Home</a></li>
+        <li><a href="/resources">Resources</a></li>
+        <li><a href="/observations">Observations</a></li>
+        <li><a href="/about">About</a></li>
       </ul>
     </nav>
 
@@ -49,173 +47,154 @@ const navItems = [
 </header>
 
 <style>
+  /* Simplified styles for the Astro component scope */
+  /* Basic layout and desktop/mobile visibility */
   .site-header {
-    background-color: var(--secondary-color, #93ACB5); /* Use CSS variable with fallback */
-    padding: 15px 0;
-    border-bottom: 1px solid color-mix(in srgb, var(--secondary-color, #93ACB5) 80%, black);
+    position: relative; /* Needed for bubble absolute positioning */
+    /* Background color, padding etc. should come from global styles.css */
   }
 
-  .header-content {
+  .header-content-container { /* Updated class name */
     display: flex;
     justify-content: space-between;
     align-items: center;
+    /* Padding etc. from global styles.css */
+    position: relative; /* Ensure content is above bubbles */
+    z-index: 2;
   }
 
-  .logo a {
+  /* Logo styles matching live site classes */
+  .logo {
     display: flex;
     align-items: center;
-    text-decoration: none;
-    color: white; /* Ensure text is visible */
+  }
+  .logo .site-logo {
+    /* Dimensions should come from global */
+    margin-right: 1rem;
+    vertical-align: middle;
+  }
+  .logo a {
+    /* Styling from global */
+    text-decoration: none; /* Ensure no underline */
   }
 
-  .logo-img {
-    height: 40px; /* Adjust size as needed */
-    margin-right: 10px;
-    vertical-align: middle; /* Helps alignment */
-  }
-
-  .logo-text {
-    font-size: 1.4em; /* Adjust size */
-    font-weight: bold;
-    color: white;
-    line-height: 1; /* Adjust line height if needed */
-  }
-
+  /* Desktop Nav visibility */
   .main-nav {
-    display: none; /* Hidden by default, shown on larger screens */
+    display: none; /* Hidden by default */
   }
-
   .main-nav ul {
+    display: flex;
     list-style: none;
     padding: 0;
     margin: 0;
-    display: flex;
-    gap: 25px; /* Spacing between nav items */
+    gap: 1.5rem; /* Adjust gap as needed, matching live site visually */
   }
-
   .main-nav a {
+    /* Styling from global */
     text-decoration: none;
-    color: white;
-    font-size: 1.1em;
-    padding: 8px 15px;
-    border-radius: 20px; /* Pill shape */
-    transition: background-color 0.3s ease;
+  }
+  .main-nav a.active {
+    /* Active state styling from global */
+    font-weight: bold; /* Example, adjust in global */
   }
 
-  .main-nav a:hover,
-  .main-nav a.active { /* Add active class styling if needed later */
-    background-color: rgba(255, 255, 255, 0.2);
-  }
-
-  /* --- Mobile Menu Styles --- */
-  .menu-toggle-label {
-    display: block; /* Display hamburger on mobile */
+  /* Mobile Menu Toggle visibility */
+  .hamburger-menu {
+    display: block; /* Visible by default */
     cursor: pointer;
+    /* Needs width/height/styling from global */
+  }
+  .hamburger-menu img {
+    display: block; /* Prevent extra space below image */
   }
 
-  .hamburger-icon {
-    height: 30px; /* Adjust size if needed, SVG viewBox handles scaling */ 
-    width: 30px;
-    display: block;
-    stroke: white; /* Set icon color */
-  }
-
+  /* Mobile Nav styles */
   .mobile-nav {
     display: none; /* Hidden by default */
-    position: fixed; /* Or absolute depending on desired effect */
+    position: fixed; 
     top: 0;
     right: 0;
-    width: 250px; /* Example width */
+    width: 250px; 
     height: 100%;
-    background-color: var(--primary-color, #6C756B); /* Use primary color */
-    padding: 20px; /* Simplified padding */
+    background-color: var(--primary-color, #6C756B); 
+    padding: 20px; 
     box-shadow: -2px 0 5px rgba(0,0,0,0.2);
     z-index: 1000;
   }
-
   .mobile-nav ul {
     list-style: none;
-    padding: 0;
+    padding: 40px 0 0 0; /* Add padding to clear header */
     margin: 0;
   }
-
   .mobile-nav li {
     margin-bottom: 15px;
   }
-
   .mobile-nav a {
     text-decoration: none;
     color: white;
     font-size: 1.2em;
-    display: block; /* Make links take full width */
+    display: block; 
     padding: 10px;
     border-radius: 5px;
     transition: background-color 0.2s ease;
   }
-
    .mobile-nav a:hover {
      background-color: rgba(255, 255, 255, 0.1);
    }
 
    /* Show mobile nav when header has .is-open class */ 
    .site-header.is-open .mobile-nav {
-     display: block !important;
+     display: block !important; 
    }
 
-   /* --- Desktop Styles (using a common breakpoint) --- */
+   /* --- Desktop Styles --- */
    @media (min-width: 769px) { 
      .main-nav {
        display: block; /* Show main nav on desktop */
      }
-     .menu-toggle-label,
+     .hamburger-menu,
      .mobile-nav {  
        display: none; /* Hide mobile elements on desktop */
      }
    }
 
+  /* Bubble styles should be defined in global styles.css */
+  .bubble {
+    /* Placeholder - Define in global styles.css */
+    /* Example: position: absolute; background: white; border-radius: 50%; */ 
+  }
+
 </style>
 
 <script is:inline>
-  // Wrap in DOMContentLoaded to ensure elements exist
   document.addEventListener('DOMContentLoaded', () => {
- 
      const header = document.querySelector('.site-header');
-     const toggleButton = document.querySelector('.menu-toggle-label');
-     const mobileNav = document.querySelector('.mobile-nav'); // Get the nav itself
-     const mobileNavLinks = mobileNav ? mobileNav.querySelectorAll('a') : []; // Get links inside
- 
-     console.log('Mobile Menu Script Loaded (DOMContentLoaded)');
-     console.log('Header found:', header);
-     console.log('Toggle button found:', toggleButton);
-     console.log('Mobile nav found:', mobileNav);
+     // Target the new hamburger menu element
+     const toggleButton = document.querySelector('.hamburger-menu'); 
+     const mobileNav = document.querySelector('.mobile-nav'); 
+     const mobileNavLinks = mobileNav ? mobileNav.querySelectorAll('a') : []; 
  
      if (!header || !toggleButton || !mobileNav) {
-       console.error('Mobile menu elements not found!');
+       console.error('Header toggle elements not found!');
        return;
      }
  
      const toggleMenu = () => {
-       header.classList.toggle('is-open');
-       console.log('Menu toggled. Header classes:', header.classList);
+       // Toggle class on the main header element
+       header.classList.toggle('is-open'); 
      };
  
      const closeMenu = () => {
-       console.log('Menu closed via link.');
        header.classList.remove('is-open');
      };
  
      toggleButton.addEventListener('click', (e) => {
-       console.log('Toggle button clicked!');
-       e.stopPropagation(); // Prevent potential bubbling issues
+       e.stopPropagation(); 
        toggleMenu();
      });
  
-     // Add listeners to nav links to close menu on click
      mobileNavLinks.forEach(link => {
        link.addEventListener('click', closeMenu);
      });
-+
-+    // Removed overlay and escape key listeners for simplification
-+  });
-+
+  });
  </script>

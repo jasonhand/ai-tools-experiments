@@ -56,33 +56,66 @@ try {
 ---
 
 <MainLayout title={`${title} - Transcript`}>
-  <div class="transcript-content">
-    <h1>{title}</h1>
-    <hr />
-    {/* Inject only the extracted & path-adjusted body content */}
-    <div set:html={bodyContent} />
-  </div>
+  <main class="container">
+    <a href="javascript:history.back()" class="back-link">← Back</a>
+
+    <div class="episode-content">
+      <div class="video-container" role="button" aria-label="Watch video" style="cursor: pointer;">
+        <a href="#" target="_blank">
+          <img src={`/images/thumbnails/${slug}.png`} alt={`${title} Thumbnail`}>
+        </a>
+      </div>
+
+      <h1>{title}</h1>
+
+      <div class="transcript-body-content">
+        <div set:html={bodyContent} />
+      </div>
+    </div>
+  </main>
 </MainLayout>
 
 <style is:global>
-  /* Styles from previous simplification, can be adjusted */
-  .transcript-content {
-    padding-bottom: 4rem;
-    max-width: 80ch;
-    margin: 2rem auto;
+  .container {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0 15px;
   }
-  .transcript-content h1 {
-      margin-bottom: 1em;
+  .back-link {
+    display: inline-block;
+    margin: 1rem 0;
+    color: #007bff;
+    text-decoration: none;
   }
-  .transcript-content p {
-      margin-bottom: 1em;
-      line-height: 1.6;
+  .back-link:hover {
+    text-decoration: underline;
   }
-  .transcript-content a {
-      color: #007bff;
-      text-decoration: none;
+  .episode-content {
+    margin-bottom: 2rem;
   }
-  .transcript-content a:hover {
-      text-decoration: underline;
+  .video-container {
+    position: relative;
+    margin-bottom: 1.5rem;
+  }
+  .video-container img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  }
+  .episode-content h1 {
+    margin-bottom: 1em;
+  }
+  .transcript-body-content p {
+    margin-bottom: 1em;
+    line-height: 1.6;
+  }
+  .transcript-body-content a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  .transcript-body-content a:hover {
+    text-decoration: underline;
   }
 </style>
