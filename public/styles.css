@@ -21,6 +21,25 @@ body {
     color: #333;
     background-color: var(--light-color);
 }
+/* Base styles for recording grid to match live site */
+.recording-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    padding: 40px 0;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.recording-card {
+    background-color: #fff; /* Matches live site */
+    border-radius: 12px; /* Matches live site */
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 2px 4px 0px; /* Matches live site */
+    padding: 20px; /* Matches live site */
+    overflow: hidden; /* Matches live site */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Matches live site hover preparation */
+    /* Note: Width is likely handled by the grid/content, so omitting explicit width */
+}
 
 .container {
     max-width: 1200px;
@@ -521,7 +540,6 @@ footer::before {
 .footer-links a {
     color: white;
     text-decoration: none;
-    transition: color 0.3s;
 }
 
 .footer-links a:hover {
@@ -624,336 +642,12 @@ footer::before {
     border-color: #aaa;
 }
 
-.sort-control {
-    display: flex;
-    align-items: center;
-    font-size: 14px;
-    margin-left: auto;
-    order: 3;
-}
-
-.sort-control span {
-    margin-right: 6px;
-    color: #555;
-}
-
-.sort-toggle {
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: var(--primary-color);
-    font-size: 18px;
-    padding: 4px 8px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background-color 0.2s, transform 0.2s;
-}
-
-.sort-toggle:hover {
-    background-color: rgba(108, 117, 107, 0.1);
-}
-
-.sort-toggle[data-sort="oldest"] .sort-arrow {
-    transform: rotate(180deg);
-}
-
-.recording-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-}
-
-.recording-card {
-    background-color: #fff;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    transition: transform 0.3s, box-shadow 0.3s;
-    position: relative;
-    --mouse-x: 50%;
-    --mouse-y: 50%;
-}
-
-.recording-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
-}
-
-.recording-card a {
-    display: block;
-    color: inherit;
-    text-decoration: none;
-}
-
-.recording-card h3 {
-    padding: 1.5rem;
-    background-color: var(--primary-color);
-    color: white;
-    font-size: 1.1rem;
-    line-height: 1.4;
-}
-
-/* Video container styling */
-.video-container {
-    position: relative;
-    cursor: pointer;
-    overflow: hidden;
-    border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.video-container:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-}
-
-/* Background overlay */
-.video-container::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.3);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    z-index: 1;
-}
-
-/* Play button circle */
-.video-container::after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 60px;
-    height: 60px;
-    background-color: rgba(255, 255, 255, 0.9);
-    border-radius: 50%;
-    opacity: 0.8;
-    transition: all 0.3s ease;
-    z-index: 3;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
-}
-
-/* The actual play triangle icon */
-.video-container .play-icon {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 0;
-    height: 0;
-    border-style: solid;
-    border-width: 15px 0 15px 25px;
-    border-color: transparent transparent transparent var(--primary-color);
-    z-index: 4;
-    opacity: 0.9;
-    transition: opacity 0.3s ease, transform 0.3s ease;
-    pointer-events: none;
-    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
-}
-
-.video-container:hover::before {
-    opacity: 1;
-}
-
-.video-container:hover::after {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1.1);
-    background-color: rgba(255, 255, 255, 1);
-}
-
-.video-container:hover .play-icon {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1.1);
-}
-
-.video-container img {
-    width: 100%;
-    height: auto;
-    display: block;
-    transition: transform 0.5s;
-    border-radius: 0;
-    object-fit: contain;
-    max-height: none;
-}
-
-.recording-card:hover .video-container img {
-    transform: scale(1.05);
-}
-
-.recording-card-content {
-    padding: 20px;
-}
-
-.recording-card-content h3 {
-    font-size: 20px;
-    margin-bottom: 12px;
-    line-height: 1.4;
-    background-color: transparent;
-    color: var(--dark-color);
-    padding: 0;
-}
-
-.recording-card-content p {
-    color: #555;
-    margin-bottom: 15px;
-    font-size: 15px;
-    line-height: 1.5;
-}
-
-.recording-meta {
-    display: flex;
-    justify-content: space-between;
-    font-size: 14px;
-    color: #777;
-}
-
-.recording-date {
-    font-size: 14px;
-    color: #777;
-}
-
-.recording-card-content .btn {
-    margin-top: 5px;
-}
-
-.btn {
-    display: block;
-    text-align: center;
-    background-color: var(--primary-color);
-    color: white;
-    padding: 0.8rem;
-    font-weight: bold;
-    transition: background-color 0.3s;
-    border: none;
-    cursor: pointer;
-}
-
-.btn:hover {
-    background-color: var(--accent-color);
-    color: white;
-    text-decoration: none;
-}
-
-/* Tools Section */
-.tools {
-    margin-bottom: 3rem;
-}
-
-.tools h2 {
-    font-size: 2rem;
-    margin-bottom: 1.5rem;
-    color: var(--primary-color);
-    text-align: center;
-}
-
-.category {
-    background-color: white;
-    border-radius: 8px;
-    padding: 1.5rem;
-    margin-bottom: 1.5rem;
-    box-shadow: var(--shadow);
-}
-
-.category h3 {
-    color: var(--primary-color);
-    margin-bottom: 1rem;
-    border-bottom: 2px solid var(--light-color);
-    padding-bottom: 0.5rem;
-}
-
-.category ul {
-    list-style-type: none;
-}
-
-.category li {
-    margin-bottom: 0.5rem;
-    padding: 0.5rem;
-    border-radius: 4px;
-    transition: background-color 0.3s;
-}
-
-.category li:hover {
-    background-color: var(--light-color);
-}
-
-/* Feedback Form */
-.feedback-form {
-    background-color: white;
-    border-radius: 8px;
-    padding: 2rem;
-    box-shadow: var(--shadow);
-    margin-bottom: 3rem;
-}
-
-.feedback-form h2 {
-    font-size: 2rem;
-    margin-bottom: 1.5rem;
-    color: var(--primary-color);
-    text-align: center;
-}
-
-.form-group {
-    margin-bottom: 1.5rem;
-}
-
-.form-group label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 0.5rem;
-}
-
-.form-group input,
-.form-group select,
-.form-group textarea {
-    width: 100%;
-    padding: 0.8rem;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-family: inherit;
-    font-size: 1rem;
-}
-
-.form-group textarea {
-    resize: vertical;
-    min-height: 100px;
-}
-
-/* Resources Section */
-.resources-section {
-    margin-top: 40px;
-    margin-bottom: 60px;
-}
-
-.resources-header {
-    text-align: center;
-    margin-bottom: 40px;
-}
-
-.resources-header h1 {
-    font-size: 36px;
-    margin-bottom: 20px;
-}
-
-.resources-intro {
-    font-size: 18px;
-    max-width: 800px;
-    margin: 0 auto;
-    color: #555;
-}
-
 .tag-buttons {
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
     margin-top: 5px;
+    justify-content: center;
 }
 
 .tag-filter {
@@ -2171,7 +1865,7 @@ code {
         margin-top: -15px;
     }
     
-    /* Adjust header on mobile */
+    /* Header adjustments for smaller screens */
     .site-header {
         padding: 1rem 0;
     }
@@ -2544,6 +2238,22 @@ code {
     display: block !important;
 }
 
+/* Add base styles for the video container in the grid */
+.recording-grid .recording-card .video-container {
+    position: relative; /* Added: Matches live site implicit structure */
+    overflow: hidden; /* Added: Matches live site */
+    border-radius: 8px; /* Added: Matches live site */
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 15px 0px; /* Added: Matches live site */
+}
+
+/* Add base styles for the image within the video container */
+.recording-grid .recording-card .video-container img {
+    display: block; /* Added: Matches live site */
+    width: 364px; /* Added: Matches live site */
+    height: 242.656px; /* Added: Matches live site */
+    object-fit: contain; /* Added: Matches live site */
+}
+
 /* Easter Egg */
 .easter-egg {
     opacity: 0.15;
@@ -2744,4 +2454,14 @@ code {
     .logo {
         padding-right: 50%;
     }
+}
+
+/* Added: Base styles for recording grid to match live site */
+.recording-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    padding: 40px 0;
+    max-width: 1200px;
+    margin: 0 auto;
 }

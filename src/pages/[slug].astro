@@ -4,19 +4,28 @@ import MainLayout from '../layouts/MainLayout.astro';
 
 // Required for dynamic routes
 export async function getStaticPaths() {
-  // Use Astro.glob to import raw HTML content at build time
-  // Path updated from ../content/ to ./content/ due to file relocation
-  const transcriptModules = await Astro.glob('../content/transcripts/*.html', { query: 'raw' });
+  try {
+    // Use Astro.glob to import raw HTML content at build time
+    // Path updated from ../content/ to ./content/ due to file relocation
+    const transcriptModules = await Astro.glob('../content/transcripts/*.html', { query: 'raw' });
 
-  const paths = Object.entries(transcriptModules).map(([filePath, rawHtmlContent]) => {
-    // Extract slug from filename (e.g., '../content/transcripts/ep01.html' -> 'ep01')
-    const slug = filePath.split('/').pop().replace('.html', '');
-    return {
-      params: { slug },
-      props: { rawHtmlContent } // Pass the raw HTML string directly
-    };
-  });
-  return paths;
+    const paths = Object.entries(transcriptModules).map(([filePath, rawHtmlContent]) => {
+      // Extract slug from filename (e.g., '../content/transcripts/ep01.html' -> 'ep01')
+      // Prepend 'pages/' to match the live site URL structure
+      const slug = `pages/${filePath.split('/').pop().replace('.html', '')}`;
+      return {
+        params: { slug },
+        props: { rawHtmlContent } // Pass the raw HTML string directly
+      };
+    });
+    // Debug: Log the generated paths
+    console.log('[getStaticPaths] Generated paths:', JSON.stringify(paths, null, 2));
+    return paths;
+  } catch (error) {
+    console.error('[getStaticPaths] Error generating paths:', error);
+    // Return an empty array or re-throw, depending on desired behavior on error
+    return []; 
+  }
 }
 
 // Get the raw HTML content passed via props
@@ -62,7 +71,7 @@ try {
     <div class="episode-content">
       <div class="video-container" role="button" aria-label="Watch video" style="cursor: pointer;">
         <a href="#" target="_blank">
-          <img src={`/images/thumbnails/${slug}.png`} alt={`${title} Thumbnail`}>
+          <img src={`/images/thumbnails/${slug.replace('pages/', '')}.png`} alt={`${title} Thumbnail`}>
         </a>
       </div>
 

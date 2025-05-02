@@ -66,4 +66,3 @@ To add new resources to the resource library:
 ## Contributing
 
 Contributions to improve the site are welcome! Please submit a pull request with your proposed changes.
-

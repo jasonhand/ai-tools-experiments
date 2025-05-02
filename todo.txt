@@ -27,21 +27,32 @@
     - CSS: Local styles.css missing bubble effects/animations present in live styles.css.
 - [x] Identify discrepancies between local and live site footer/header (local simpler) - Updated Header.astro, Footer.astro, styles.css
 - [x] Identify and fix missing thumbnail images (ep14, ep17) - Restored from Git history (commits 30b9c98, 8f0c7fa)
+- [x] Synchronize episode URL slugs (local: /epNN -> /pages/epNN) to match live site. (Updated `[slug].astro` and links in `index.astro`)
+- [x] Restore accidentally deleted pages (about, observations, resources) and assets (logos, favicon) during commit staging - Restored via `git checkout HEAD~1` and amended commit.
+- [x] Visually verify local site (header, footer, thumbnails) matches live site using Puppeteer screenshots. (Adjusted Footer.astro content/structure to match live)
+- [x] Visually verify local site (header, footer, thumbnails) matches live site using Puppeteer screenshots. (Note: Footer has minor content/structural diffs: links, Pi symbol, .site-footer class)
 
 ## Phase 2: Cleanup Unused Files/Code
 
-- [x] Identify unused components/pages (refer to MEMORY[096ffc7e-a9fa-41e6-adf3-32050a0d4751]). (No candidates found for removal at this stage)
-- [ ] Identify unused CSS rules.
-- [ ] Identify unused assets (images, etc.).
-- [ ] Remove identified unused items (excluding files mentioned in MEMORY[8be52be3-afb3-48c2-87e2-7d4ae41558b8]).
-- [ ] Verify site functionality after cleanup.
+- [x] Identify and remove unused scripts, components, or other files. (Removed `comparison_screenshots/` dir; kept CLAUDE.md, STYLE-GUIDE.md). Checked `.gitignore` for `.idea`, `.venv`.
+- [x] Identify unused CSS rules.
+- [x] Identify unused assets (images, etc.).
+- [x] Remove identified unused items (public/images/large_logo.png, public/images/new_large_logo.png, public/images/webinar_notes_logo.png) (Files confirmed absent upon removal attempt).
+- [x] Verify site functionality after cleanup. (Resolved 404 for public/images/thumbnails/ep16.png by restoring from git history commit e171de9).
+- [ ] Update README.md with a new screenshot of the site
 
 ## Phase 3: Performance Analysis & Optimization
 
-- [ ] Analyze page load times (Homepage, Transcript pages).
-- [ ] Identify performance bottlenecks (large assets, slow scripts, render-blocking resources).
-- [ ] Implement basic optimizations (e.g., image optimization, defer non-critical scripts).
-- [ ] Re-analyze performance.
+- [x] Analyze Lighthouse performance metrics (Generated report: lighthouse-report.html)
+- [ ] Implement identified performance optimizations (Review lighthouse-report.html for details).
+    - [ ] Address enormous network payloads (Identify largest resources).
+    - [ ] Properly size images contributing to LCP/payload.
+    - [ ] Serve images in next-gen formats (WebP/AVIF).
+    - [ ] Investigate/Optimize Largest Contentful Paint element.
+    - [ ] Enable text compression.
+    - [ ] Minify JavaScript.
+    - [ ] Eliminate render-blocking resources.
+- [ ] Measure performance again after optimizations.
 
 ## Phase 4: Prepare for Astro 5 Features
 

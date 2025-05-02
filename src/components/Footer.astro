@@ -1,7 +1,7 @@
 ---
 const currentYear = new Date().getFullYear();
 ---
-<footer class="site-footer">
+<footer>
   <!-- Bubble elements for footer -->
   <div class="bubble"></div>
   <div class="bubble"></div>
@@ -15,45 +15,32 @@ const currentYear = new Date().getFullYear();
     <div class="footer-content">
       
       <div class="footer-logo">
-        <!-- Add logo image if available on live site, or just text -->
-         <!-- <img src="/images/ai-tools-lab-logo-footer.png" alt="AI Tools Lab" class="footer-logo-img"> -->
+        <!-- Using live site logo path - assuming it exists locally -->
+         <img src="/images/ai-tools-lab-logo.png" alt="AI Tools Lab Logo" class="footer-logo-img">
         <div>
             <h2>AI Tools Lab</h2>
-            <p>Exploring the intersection of AI and creativity.</p>
+            <!-- Updated tagline -->
+            <p>Exploring the landscape of AI tools and technologies</p>
         </div>
       </div>
 
+      <!-- Consolidated links under one heading -->
       <div class="footer-links">
         <h3>Quick Links</h3>
         <ul>
+          <!-- Using local paths -->
           <li><a href="/">Home</a></li>
+          <li><a href="/resources">Resources</a></li>
+          <li><a href="/observations">Observations</a></li>
           <li><a href="/about">About</a></li>
-          <!-- Add other relevant links -->
-        </ul>
-      </div>
-
-      <div class="footer-links">
-        <h3>Resources</h3>
-        <ul>
-          <li><a href="/resources">All Resources</a></li>
-          <li><a href="/observations">Observations</a></li> 
-          <!-- Add more links -->
-        </ul>
-      </div>
-
-      <div class="footer-links">
-        <h3>Connect</h3>
-        <ul>
-          <li><a href="#">Contact</a></li> 
-          <li><a href="https://github.com/jasonhand/ai-tools-experiments" target="_blank" rel="noopener noreferrer">GitHub</a></li>
-          <!-- Add social links -->
         </ul>
       </div>
 
     </div>
 
     <div class="footer-bottom">
-      <p>&copy; {currentYear} AI Tools Lab. All rights reserved.</p> 
+      <!-- Added Pi symbol span, kept dynamic year -->
+      <p>&copy; {currentYear} AI Tools Lab. All rights reserved. <span id="easter-egg" class="easter-egg">π</span></p> 
       <!-- Maybe add privacy/terms links -->
       <!-- <p><a href="/privacy">Privacy Policy</a> | <a href="/terms">Terms of Service</a></p> -->
     </div>
@@ -64,7 +51,7 @@ const currentYear = new Date().getFullYear();
 <style>
   /* Minimal component-specific styles if needed */
   /* Most styles should come from global styles.css */
-  .site-footer {
+  footer { /* Updated selector */
     /* Gradient background is in global styles.css */
   }
   .footer-content {
@@ -100,5 +87,11 @@ const currentYear = new Date().getFullYear();
   }
   .footer-bottom {
     /* Styles from global styles.css */
+  }
+  /* Added basic style for easter egg */
+  .easter-egg {
+      cursor: pointer;
+      margin-left: 5px; 
+      display: inline-block; 
   }
 </style>
