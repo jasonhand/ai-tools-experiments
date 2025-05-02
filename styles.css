@@ -57,54 +57,7 @@ img {
     overflow: visible;
     border-bottom: none;
     z-index: 2; /* Change back to original z-index */
-    /* Remove width, top and left properties */
-}
-
-/* Header bubble effects */
-.site-header::before {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-}
-
-@keyframes headerBubble {
-    0% { transform: translateY(100%) translateX(0); opacity: 0; }
-    10% { opacity: 0.8; }
-    90% { opacity: 0.7; transform: translateY(-90%) translateX(var(--x-travel)); }
-    100% { transform: translateY(-100%) translateX(var(--x-travel)); opacity: 0; }
-}
-
-@keyframes headerBubble2 {
-    0% { transform: translateY(100%) translateX(0); opacity: 0; }
-    15% { opacity: 0.7; }
-    90% { opacity: 0.6; transform: translateY(-90%) translateX(calc(var(--x-travel) * -1)); }
-    100% { transform: translateY(-100%) translateX(calc(var(--x-travel) * -1)); opacity: 0; }
-}
-
-@keyframes headerBubble3 {
-    0% { transform: translateY(100%) translateX(0); opacity: 0; }
-    20% { opacity: 0.9; }
-    90% { opacity: 0.8; transform: translateY(-90%) translateX(calc(var(--x-travel) * 0.5)); }
-    100% { transform: translateY(-100%) translateX(calc(var(--x-travel) * 0.5)); opacity: 0; }
-}
-
-.site-header::after {
-    content: '';
-    position: absolute;
-    bottom: -10px;
-    left: 10%;
-    width: 15px;
-    height: 15px;
-    background-color: rgba(255, 255, 255, 0.7);
-    border-radius: 50%;
-    animation: headerBubble 8s infinite 1s;
-    --x-travel: 30px;
-    opacity: 0;
-    pointer-events: none;
+    /* Removed bubble effects and related pseudo-elements/animations */
 }
 
 .site-header .container {
@@ -114,87 +67,6 @@ img {
     position: relative;
     z-index: 2;
     padding-bottom: 1rem;
-}
-
-/* Create multiple bubble elements with different animations */
-.site-header .bubble {
-    position: absolute;
-    background-color: rgba(255, 255, 255, 0.5); /* Default color */
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 1;
-    bottom: 0;
-}
-
-.site-header .bubble:nth-child(1) {
-    width: 25px;
-    height: 25px;
-    bottom: -25px;
-    left: 15%;
-    animation: headerBubble 9s infinite 0.5s ease-in-out;
-    --x-travel: 50px;
-    background-color: hsla(240, 70%, 70%, 0.6); /* Blue */
-}
-
-.site-header .bubble:nth-child(2) {
-    width: 20px;
-    height: 20px;
-    bottom: -20px;
-    left: 45%;
-    animation: headerBubble2 7s infinite 1.5s ease-in-out;
-    --x-travel: 40px;
-    background-color: rgba(255, 255, 255, 0.6); /* Keep white */
-}
-
-.site-header .bubble:nth-child(3) {
-    width: 18px;
-    height: 18px;
-    bottom: -18px;
-    left: 75%;
-    animation: headerBubble3 10s infinite 0.8s ease-in-out;
-    --x-travel: 60px;
-    background-color: hsla(160, 70%, 65%, 0.6); /* Teal */
-}
-
-/* Add more bubbles for a more pronounced effect */
-.site-header .bubble:nth-child(4) {
-    width: 15px;
-    height: 15px;
-    bottom: -15px;
-    left: 30%;
-    animation: headerBubble2 8s infinite 0s ease-in-out;
-    --x-travel: 35px;
-    background-color: hsla(280, 70%, 65%, 0.6); /* Purple */
-}
-
-.site-header .bubble:nth-child(5) {
-    width: 12px;
-    height: 12px;
-    bottom: -12px;
-    left: 60%;
-    animation: headerBubble 9.5s infinite 1.2s ease-in-out;
-    --x-travel: 45px;
-    background-color: rgba(255, 255, 255, 0.6); /* Keep white */
-}
-
-.site-header .bubble:nth-child(6) {
-    width: 22px;
-    height: 22px;
-    bottom: -22px;
-    left: 85%;
-    animation: headerBubble3 7.5s infinite 2s ease-in-out;
-    --x-travel: 25px;
-    background-color: hsla(30, 70%, 70%, 0.6); /* Orange */
-}
-
-.site-header .bubble:nth-child(7) {
-    width: 16px;
-    height: 16px;
-    bottom: -16px;
-    left: 5%;
-    animation: headerBubble 10.5s infinite 0.3s ease-in-out;
-    --x-travel: 55px;
-    background-color: hsla(190, 70%, 65%, 0.6); /* Light Blue */
 }
 
 .logo {
@@ -247,33 +119,6 @@ img {
     overflow: hidden;
 }
 
-/* Bubble effect inside nav links */
-.site-header nav ul li a::before {
-    content: '';
-    position: absolute;
-    bottom: 3px;
-    right: 10px;
-    width: 8px;
-    height: 8px;
-    background-color: rgba(255, 255, 255, 0.6);
-    border-radius: 50%;
-    opacity: 0;
-    transition: all 0.3s ease;
-}
-
-.site-header nav ul li a::after {
-    content: '';
-    position: absolute;
-    bottom: 5px;
-    left: 15%;
-    width: 5px;
-    height: 5px;
-    background-color: rgba(255, 255, 255, 0.5);
-    border-radius: 50%;
-    opacity: 0;
-    transition: all 0.3s ease;
-}
-
 .site-header nav ul li a:hover,
 .site-header nav ul li a:focus {
     background: radial-gradient(circle at center, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.2));
@@ -284,38 +129,10 @@ img {
     outline: none;
 }
 
-.site-header nav ul li a:hover::before {
-    opacity: 0.8;
-    animation: navBubble 2s infinite;
-}
-
-.site-header nav ul li a:hover::after {
-    opacity: 0.6;
-    animation: navBubble2 3s infinite 0.5s;
-}
-
-@keyframes navBubble {
-    0% { transform: translateY(0); opacity: 0.8; }
-    50% { transform: translateY(-10px); opacity: 0.4; }
-    100% { transform: translateY(-20px); opacity: 0; }
-}
-
-@keyframes navBubble2 {
-    0% { transform: translateY(0); opacity: 0.6; }
-    50% { transform: translateY(-8px) translateX(5px); opacity: 0.3; }
-    100% { transform: translateY(-16px) translateX(8px); opacity: 0; }
-}
-
 .site-header nav ul li a.active {
     background: radial-gradient(circle at center, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.25));
     font-weight: 600;
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
-}
-
-.site-header nav ul li a.active::before,
-.site-header nav ul li a.active::after {
-    opacity: 0.8;
-    animation: navBubble 3s infinite, navBubble2 4s infinite 1s;
 }
 
 .site-header nav ul li a:active {

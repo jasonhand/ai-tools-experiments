@@ -20,3 +20,6 @@ yarn-error.log*
 # Env Files
 .env
 .env*.local
+
+# JetBrains
+.idea

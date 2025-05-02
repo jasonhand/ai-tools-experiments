@@ -1,0 +1,39 @@
+---
+// No server-side logic needed for this static header yet
+const navItems = [
+  { href: '/', text: 'Home' },
+  { href: '/transcripts', text: 'Transcripts' }, // Assuming a future index page for transcripts
+  { href: '/resources', text: 'Resources' }, // Assuming a future index page for resources
+  { href: '/about', text: 'About' }, // Assuming an About page
+];
+---
+<header class="site-header">
+  <div class="container">
+    <div class="logo">
+      <a href="/">AI Tools & Experiments</a>
+    </div>
+    <nav class="nav-links">
+      <ul>
+        {navItems.map(item => (
+          <li><a href={item.href}>{item.text}</a></li>
+        ))}
+      </ul>
+    </nav>
+    <div class="hamburger-menu" aria-label="Toggle Menu" role="button" aria-expanded="false" aria-controls="mobile-nav-list">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile Navigation Panel -->
+<div class="mobile-nav" id="mobile-nav-list">
+  <button class="close-btn" aria-label="Close Menu">&times;</button>
+  <ul>
+    {navItems.map(item => (
+      <li><a href={item.href}>{item.text}</a></li>
+    ))}
+  </ul>
+</div>
+<div class="overlay"></div>
