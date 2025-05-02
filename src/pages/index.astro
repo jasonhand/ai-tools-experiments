@@ -1,11 +1,684 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
+const pageTitle = "Home | AI Tools Lab"; // Or derive dynamically
+const description = "Collection of AI tools experiments and resources.";
 ---
-<MainLayout title="Home">
-  <h1>Welcome to AI Tools & Experiments</h1>
-  <p>This site showcases various AI tools and experiments.</p>
-  <p>Explore the <a href="/transcripts">Transcripts</a> or <a href="/resources">Resources</a> sections.</p>
 
-  <!-- Add more content for the homepage as needed -->
+<MainLayout title={pageTitle} description={description}>
+  {/* Featured Episode Styles (Inline) */}
+  <style is:inline>
+    /* Header logo font styling */
+    .logo a {
+        font-family: 'Revalia', cursive;
+        font-size: 1.6rem;
+    }
+    
+    #featured-episode {
+        margin-bottom: 40px;
+        padding: 25px;
+        background: linear-gradient(145deg, #f0f7ff 0%, #e6f0ff 100%);
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0, 86, 210, 0.1);
+    }
+    
+    #featured-episode h2 {
+        margin-bottom: 20px;
+        font-size: 1.8rem;
+        color: #0066cc;
+        border-bottom: 2px solid #0066cc;
+        padding-bottom: 8px;
+        display: inline-block;
+    }
+    
+    .featured-episode-container {
+        display: flex;
+        gap: 25px;
+        align-items: flex-start;
+    }
+    
+    .featured-episode-video {
+        flex: 0 0 50%;
+        position: relative;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+    
+    .featured-episode-video img {
+        width: 100%;
+        display: block;
+        transition: transform 0.3s ease;
+    }
+    
+    .featured-episode-video:hover img {
+        transform: scale(1.03);
+    }
+    
+    .play-button-overlay {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: rgba(0, 102, 204, 0.8);
+        border-radius: 50%;
+        width: 70px;
+        height: 70px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0.9;
+        transition: all 0.3s ease;
+    }
+    
+    .featured-episode-video:hover .play-button-overlay {
+        background-color: rgba(0, 102, 204, 1);
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.1);
+    }
+    
+    .featured-episode-content {
+        flex: 1;
+    }
+    
+    .featured-episode-content h3 {
+        color: #0066cc;
+        font-size: 1.4rem;
+        margin-bottom: 5px;
+    }
+    
+    .featured-episode-content h4 {
+        font-size: 1.6rem;
+        margin-top: 0;
+        margin-bottom: 15px;
+    }
+    
+    .featured-episode-content p {
+        font-size: 1.05rem;
+        line-height: 1.6;
+        margin-bottom: 20px;
+    }
+    
+    .featured-episode-meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+    
+    .recording-date {
+        color: #666;
+        font-size: 0.9rem;
+    }
+    
+    .featured-episode-tags {
+        display: flex;
+        gap: 8px;
+    }
+    
+    .tag {
+        background-color: #0066cc;
+        color: white;
+        padding: 4px 10px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 500;
+    }
+    
+    .featured-episode-button {
+        display: inline-block;
+        background-color: #0066cc;
+        color: white;
+        padding: 10px 25px;
+        border-radius: 6px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: background-color 0.2s ease;
+    }
+    
+    .featured-episode-button:hover {
+        background-color: #0055aa;
+    }
+    
+    @media (max-width: 768px) {
+        .featured-episode-container {
+            flex-direction: column;
+        }
+        
+        .featured-episode-video {
+            flex: 0 0 100%;
+            margin-bottom: 20px;
+        }
+    }
+    
+    /* Featured badge styling */
+    .featured-badge {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background-color: #ff6b00;
+        color: white;
+        padding: 4px 10px;
+        border-radius: 4px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        z-index: 2;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+  </style>
+
+  <!-- Filter Container -->
+  <div class="filter-container">
+    <div class="container">
+        <div class="episodes-filters">
+            <div class="filter-group index-filter-group">
+                <div class="tag-buttons">
+                    <button class="tag-filter active" data-tag="all">All Tags</button>
+                    <button class="tag-filter" data-tag="web-dev">Web Development</button>
+                    <button class="tag-filter" data-tag="ml-models">ML Models</button>
+                    <button class="tag-filter" data-tag="productivity">Productivity</button>
+                    <button class="tag-filter" data-tag="image-gen">Image Generation</button>
+                    <button class="tag-filter" data-tag="cursor">Cursor</button>
+                    <button class="tag-filter" data-tag="claude">Claude</button>
+                    <button class="tag-filter" data-tag="debugging">Debugging</button>
+                    <button class="tag-filter" data-tag="firebase">Firebase</button>
+                    <button class="tag-filter" data-tag="bolt">Bolt</button>
+                    <button class="tag-filter" data-tag="lovable">Lovable</button>
+                    <button class="tag-filter" data-tag="sora">Sora</button>
+                    <button class="tag-filter" data-tag="ai-development">AI Development</button>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+
+  <!-- Main Content Area -->
+  <main class="container">
+      <section id="featured-episode">
+          <h2>Newest Episode</h2>
+          <div class="featured-episode-container">
+              <div class="featured-episode-video">
+                  <a href="/transcripts/ep15/">
+                      <img src="/images/thumbnails/ep15.png" alt="AI Tools in Action: Exploring Sora Image Generation and Lovable App Builder">
+                      <div class="play-button-overlay">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="#ffffff">
+                              <path d="M8 5v14l11-7z"/>
+                          </svg>
+                      </div>
+                  </a>
+              </div>
+              <div class="featured-episode-content">
+                  <h3>Latest Episode: AI Tools in Action</h3>
+                  <h4>Exploring Sora Image Generation and Lovable App Builder</h4>
+                  <p>In this episode, Jason Hand and Ryan MacLean explore recent developments in AI tools, focusing on image generation with Sora and app building with Lovable. They discuss the significant improvement in AI's ability to generate images with text and test Lovable's capabilities by building applications together.</p>
+                  <div class="featured-episode-meta">
+                      <span class="recording-date">April 29, 2025</span>
+                      <div class="featured-episode-tags">
+                          <span class="tag">Sora</span>
+                          <span class="tag">Lovable</span>
+                          <span class="tag">Image Generation</span>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </section>
+
+      <section id="recordings">
+          <div class="episodes-intro">
+              <h2>All Episodes</h2>
+              <p>Browse through our complete collection of AI tools explorations and experiments. Use the tags above to filter episodes by topic.</p>
+          </div>
+
+          <div class="recording-grid">
+              <div class="recording-card" data-category="exploration" data-tags="lovable,sora,image-gen,ai-development">
+                  <a href="/transcripts/ep15/">
+                      <div class="video-container">
+                          <img src="/images/thumbnails/ep15.png" alt="Recording 15 Thumbnail">
+                          <span class="featured-badge">Newest</span>
+                      </div>
+                      <div class="recording-card-content">
+                          <h3>AI Tools in Action: Exploring Sora Image Generation and Lovable App Builder</h3>
+                          <p>Explore the latest developments in AI tools with Jason Hand and Ryan MacLean as they test image generation with Sora and app building with Lovable.</p>
+                          <div class="recording-meta">
+                              <span class="recording-date">April 29, 2025</span>
+                          </div>
+                      </div>
+                  </a>
+              </div>
+              <div class="recording-card" data-category="exploration" data-tags="bolt,ai-development">
+                  <a href="/transcripts/ep13/">
+                      <div class="video-container">
+                          <img src="/images/thumbnails/ep13.png" alt="Recording 13 Thumbnail">
+                      </div>
+                      <div class="recording-card-content">
+                          <h3>Exploring Bolt: Rapid App Development with AI-Powered Templates</h3>
+                          <p>Explore Bolt, an AI-powered development tool that enables rapid app creation through templates and natural language prompts, perfect for prototyping and concept visualization.</p>
+                          <div class="recording-meta">
+                              <span class="recording-date">April 22, 2025</span>
+                          </div>
+                      </div>
+                  </a>
+              </div>
+              <div class="recording-card" data-category="exploration" data-tags="cursor,ml-models,productivity,firebase">
+                  <a href="/transcripts/ep12/">
+                      <div class="video-container">
+                          <img src="/images/thumbnails/ep12.png" alt="Recording 12 Thumbnail">
+                      </div>
+                      <div class="recording-card-content">
+                          <h3>Cursor Rules, Firebase Studio, and the Evolving IDE Landscape</h3>
+                          <p>An exploration of AI Cursor Rules in modern development environments, Google's new Firebase Studio cloud-based IDE, and the evolving landscape of AI-powered development tools across major cloud providers.</p>
+                          <div class="recording-meta">
+                              <span class="recording-date">April 15, 2025</span>
+                          </div>
+                      </div>
+                  </a>
+              </div>
+              <div class="recording-card" data-category="exploration" data-tags="cursor,ml-models,productivity">
+                  <a href="/transcripts/ep11/">
+                      <div class="video-container">
+                          <img src="/images/thumbnails/ep11.png" alt="Recording 11 Thumbnail">
+                      </div>
+                      <div class="recording-card-content">
+                          <h3>Exploring Llama 4, OpenRouter, and Model Comparison Tools</h3>
+                          <p>A hands-on exploration of Meta's Llama 4 model and its massive context window, along with testing various AI models using comparison platforms like OpenRouter and LM Arena.</p>
+                          <div class="recording-meta">
+                              <span class="recording-date">April 7, 2025</span>
+                          </div>
+                      </div>
+                  </a>
+              </div>
+              <div class="recording-card" data-category="guide" data-tags="web-dev">
+                  <a href="/transcripts/ep10/">
+                      <div class="video-container">
+                          <img src="/images/thumbnails/ep10.png" alt="Recording 10 Thumbnail">
+                      </div>
+                      <div class="recording-card-content">
+                          <h3>First Look at Windsurf & Model Context Protocol (MCP)</h3>
+                          <p>An in-depth look at Windsurf IDE compared to Cursor, exploring AI code editor features, the Model Context Protocol (MCP), and effective project planning approaches.</p>
+                          <div class="recording-meta">
+                              <span class="recording-date">April 5, 2025</span>
+                          </div>
+                      </div>
+                  </a>
+              </div>
+              <div class="recording-card" data-category="exploration" data-tags="web-dev">
+                  <a href="/transcripts/ep09/">
+                      <div class="video-container">
+                          <img src="/images/thumbnails/ep09.png" alt="Recording 9 Thumbnail">
+                      </div>
+                      <div class="recording-card-content">
+                          <h3>From GTC to Website Building with AI Tools</h3>
+                          <p>Insights from NVIDIA's GTC conference and how the latest AI advancements can be applied to website development using various AI tools and techniques.</p>
+                          <div class="recording-meta">
+                              <span class="recording-date">April 2, 2025</span>
+                          </div>
+                      </div>
+                  </a>
+              </div>
+              <div class="recording-card" data-category="coding" data-tags="cursor,claude,debugging,web-dev">
+                  <a href="/transcripts/ep08/">
+                      <div class="video-container">
+                          <img src="/images/thumbnails/ep08.png" alt="Recording 8 Thumbnail">
+                      </div>
+                      <div class="recording-card-content">
+                          <h3>Using Cursor and Claude to Fix CSS Layout Issues</h3>
+                          <p>A step-by-step walkthrough of diagnosing and resolving complicated CSS layout issues with the help of Cursor's AI-powered assistance and Claude.</p>
+                          <div class="recording-meta">
+                              <span class="recording-date">March 31, 2025</span>
+                          </div>
+                      </div>
+                  </a>
+              </div>
+              <div class="recording-card" data-category="coding" data-tags="cursor,claude,debugging">
+                  <a href="/transcripts/ep07/">
+                      <div class="video-container">
+                          <img src="/images/thumbnails/ep07.png" alt="Recording 7 Thumbnail">
+                      </div>
+                      <div class="recording-card-content">
+                          <h3>Using Cursor and Claude to Solve Record Search Bugs</h3>
+                          <p>A practical debugging session using Cursor IDE and Claude to identify and fix complex search functionality bugs in a record management system.</p>
+                          <div class="recording-meta">
+                              <span class="recording-date">March 28, 2025</span>
+                          </div>
+                      </div>
+                  </a>
+              </div>
+              <div class="recording-card" data-category="demo" data-tags="web-dev,claude">
+                  <a href="/transcripts/ep06/">
+                      <div class="video-container">
+                          <img src="/images/thumbnails/ep06.png" alt="Recording 6 Thumbnail">
+                      </div>
+                      <div class="recording-card-content">
+                          <h3>Using Claude Code to Make Changes to My Personal Website</h3>
+                          <p>Following the journey of using Claude Code to implement substantial changes to a personal website, from planning to execution and troubleshooting.</p>
+                          <div class="recording-meta">
+                              <span class="recording-date">March 25, 2025</span>
+                          </div>
+                      </div>
+                  </a>
+              </div>
+              <div class="recording-card" data-category="demo" data-tags="web-dev,claude">
+                  <a href="/transcripts/ep05/">
+                      <div class="video-container">
+                          <img src="/images/thumbnails/ep05.png" alt="Recording 5 Thumbnail">
+                      </div>
+                      <div class="recording-card-content">
+                          <h3>Using Claude Code for Automated HTML Updates and Styling</h3>
+                          <p>A demonstration of how Claude Code can automate HTML updates and apply consistent styling across a website, improving efficiency and maintainability.</p>
+                          <div class="recording-meta">
+                              <span class="recording-date">March 23, 2025</span>
+                          </div>
+                      </div>
+                  </a>
+              </div>
+              <div class="recording-card" data-category="tutorial" data-tags="web-dev,claude">
+                  <a href="/transcripts/ep04/">
+                      <div class="video-container">
+                          <img src="/images/thumbnails/ep04.png" alt="Recording 4 Thumbnail">
+                      </div>
+                      <div class="recording-card-content">
+                          <h3>Building a Secure Feedback Form with Datadog Logs with Claude Code</h3>
+                          <p>How to create a secure feedback form that captures user input and sends it to Datadog for logging and analysis, built with Claude Code assistance.</p>
+                          <div class="recording-meta">
+                              <span class="recording-date">March 20, 2025</span>
+                          </div>
+                      </div>
+                  </a>
+              </div>
+              <div class="recording-card" data-category="guide" data-tags="image-gen">
+                  <a href="/transcripts/ep03/">
+                      <div class="video-container">
+                          <img src="/images/thumbnails/ep03.png" alt="Recording 3 Thumbnail">
+                      </div>
+                      <div class="recording-card-content">
+                          <h3>Automatic1111 and Local Text-to-Image Generation</h3>
+                          <p>A guide to setting up and using Automatic1111 for local text-to-image generation, covering installation, configuration, and effective prompt techniques.</p>
+                          <div class="recording-meta">
+                              <span class="recording-date">March 17, 2025</span>
+                          </div>
+                      </div>
+                  </a>
+              </div>
+              <div class="recording-card" data-category="exploration" data-tags="productivity,cursor">
+                  <a href="/transcripts/ep02/">
+                      <div class="video-container">
+                          <img src="/images/thumbnails/ep02.png" alt="Recording 2 Thumbnail">
+                      </div>
+                      <div class="recording-card-content">
+                          <h3>Exploring Warp Terminal and Cursor for Productivity</h3>
+                          <p>A walkthrough of Warp Terminal and Cursor IDE, demonstrating how these AI-enhanced tools can significantly boost developer productivity and workflow.</p>
+                          <div class="recording-meta">
+                              <span class="recording-date">March 15, 2025</span>
+                          </div>
+                      </div>
+                  </a>
+              </div>
+              <div class="recording-card" data-category="tutorial" data-tags="web-dev,ml-models">
+                  <a href="/transcripts/ep01/">
+                      <div class="video-container">
+                          <img src="/images/thumbnails/ep01.png" alt="Recording 1 Thumbnail">
+                      </div>
+                      <div class="recording-card-content">
+                          <h3>Building Quick Web Interfaces for ML Models</h3>
+                          <p>Exploring how to build simple but effective web interfaces for machine learning models using Gradio, allowing non-technical users to interact with ML systems.</p>
+                          <div class="recording-meta">
+                              <span class="recording-date">March 12, 2025</span>
+                          </div>
+                      </div>
+                  </a>
+              </div>
+              <!-- Add more recording cards as needed -->
+          </div>
+      </section>
+  </main>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Add play icons to any video containers that don't have them
+      addPlayIconsToVideos();
+
+      // Make video thumbnails clickable
+      makeVideoContainersClickable();
+
+      // Add automatic sorting for episode cards on the index page
+      sortEpisodesByDate();
+
+      // Initialize any tag filters on the page
+      initializeTagFilters();
+    });
+
+    // Helper function to convert month name to number (0-11)
+    function getMonthNumber(monthName) {
+      const months = {
+        'January': 0, 'February': 1, 'March': 2, 'April': 3, 
+        'May': 4, 'June': 5, 'July': 6, 'August': 7,
+        'September': 8, 'October': 9, 'November': 10, 'December': 11
+      };
+      
+      return months[monthName] || 0;
+    }
+
+    function getCardDate(card) {
+      // Extract date from either recording-card or resource-card
+      const dateElement = card.querySelector('.recording-date') || card.querySelector('.resource-date');
+      if (!dateElement) return new Date(0); // Return epoch if no date found
+      
+      const dateText = dateElement.textContent.trim();
+      
+      // Parse the date in format "Month DD, YYYY"
+      try {
+        // Use Date.parse for standard format
+        const parsedDate = new Date(dateText);
+        
+        // Check if valid date was parsed
+        if (!isNaN(parsedDate.getTime())) {
+          return parsedDate;
+        }
+        
+        // Fallback to manual parsing for "Month DD, YYYY" format
+        const parts = dateText.match(/(\w+)\s+(\d+),\s+(\d+)/);
+        if (parts) {
+          const month = getMonthNumber(parts[1]);
+          const day = parseInt(parts[2], 10);
+          const year = parseInt(parts[3], 10);
+          return new Date(year, month, day);
+        }
+        
+        // If we can't parse the date, return epoch
+        return new Date(0);
+      } catch (e) {
+        console.warn('Error parsing date:', dateText, e);
+        return new Date(0);
+      }
+    }
+
+    // Function to sort episode cards by date (newest first)
+    function sortEpisodesByDate() {
+      const cardsContainer = document.querySelector('.recording-grid');
+      if (!cardsContainer) return;
+      
+      console.log('Sorting episodes by date (newest first)');
+      
+      const cards = Array.from(cardsContainer.children);
+      
+      // Sort cards by date (newest first)
+      cards.sort((a, b) => {
+        const dateA = getCardDate(a);
+        const dateB = getCardDate(b);
+        
+        return new Date(dateB) - new Date(dateA); // Newest first
+      });
+      
+      // Remove existing cards
+      cards.forEach(card => card.remove());
+      
+      // Append sorted cards
+      cards.forEach(card => cardsContainer.appendChild(card));
+      
+      console.log('Episodes sorted successfully');
+    }
+
+    // Make video containers clickable (thumbnail area)
+    function makeVideoContainersClickable() {
+      const videoContainers = document.querySelectorAll('.video-container');
+      
+      videoContainers.forEach(container => {
+        const link = container.querySelector('a');
+        
+        if (link) {
+          const linkHref = link.getAttribute('href');
+          const linkTarget = link.getAttribute('target');
+          
+          // Make the entire container clickable
+          container.addEventListener('click', function(e) {
+            // Only handle clicks directly on the container or the image, not on the link itself
+            if (e.target === container || e.target.tagName === 'IMG') {
+              e.preventDefault();
+              // Open the link in the same way the anchor would
+              if (linkTarget === '_blank') {
+                window.open(linkHref, '_blank');
+              } else {
+                window.location.href = linkHref;
+              }
+            }
+          });
+          
+          // Add aria attributes for accessibility
+          container.setAttribute('role', 'button');
+          container.setAttribute('aria-label', 'Watch video');
+          container.style.cursor = 'pointer';
+        }
+      });
+    }
+
+    // Add play icons to video containers
+    function addPlayIconsToVideos() {
+      const videoContainers = document.querySelectorAll('.video-container');
+      
+      videoContainers.forEach(container => {
+        const link = container.querySelector('a');
+        
+        if (link) {
+          // Check if there is already a play-icon span
+          let playIcon = link.querySelector('.play-icon');
+          
+          // If not, create and add it
+          if (!playIcon) {
+            playIcon = document.createElement('span');
+            playIcon.className = 'play-icon';
+            link.appendChild(playIcon);
+          }
+        }
+      });
+    }
+
+    function shouldShowCardByTags(card, activeTags) {
+      if (activeTags.length === 0 || activeTags.includes('all')) {
+        return true;
+      }
+      
+      const cardTags = card.getAttribute('data-tags') ? 
+        card.getAttribute('data-tags').split(',') : [];
+      
+      // Check if the card has at least one of the active tags
+      return activeTags.some(tag => cardTags.includes(tag));
+    }
+
+    function filterCardsByTags(activeTags) {
+      // Works for both recording-card and resource-card
+      const cards = document.querySelectorAll('.recording-card, .resource-card');
+      const categoryFilter = document.getElementById('episode-category-filter');
+      const selectedCategory = categoryFilter ? categoryFilter.value : 'all';
+      
+      cards.forEach(card => {
+        const cardCategory = card.getAttribute('data-category');
+        const categoryMatch = selectedCategory === 'all' || cardCategory === selectedCategory;
+        const tagMatch = shouldShowCardByTags(card, activeTags);
+        
+        card.style.display = (categoryMatch && tagMatch) ? 'block' : 'none';
+      });
+    }
+
+    // Initialize any tag filters on the page
+    function initializeTagFilters() {
+      const tagFilters = document.querySelectorAll('.tag-filter');
+      const categoryFilter = document.getElementById('episode-category-filter');
+      const tagButtonsContainer = document.querySelector('.tag-buttons');
+      
+      if (tagFilters.length === 0) return;
+      
+      // Add visual feedback for touch devices
+      if (tagButtonsContainer) {
+        // Prevent horizontal scrolling from triggering filter changes unintentionally
+        tagButtonsContainer.addEventListener('scroll', function(e) {
+          // Set a flag to indicate the container is scrolling
+          tagButtonsContainer.setAttribute('data-scrolling', 'true');
+          
+          // Clear the flag after scrolling stops
+          clearTimeout(tagButtonsContainer.scrollTimeout);
+          tagButtonsContainer.scrollTimeout = setTimeout(function() {
+            tagButtonsContainer.setAttribute('data-scrolling', 'false');
+          }, 150);
+        });
+      }
+      
+      // Handle category filtering
+      if (categoryFilter) {
+        categoryFilter.addEventListener('change', function() {
+          const selectedCategory = this.value;
+          const cards = document.querySelectorAll('.recording-card, .resource-card');
+          
+          cards.forEach(card => {
+            const cardCategory = card.getAttribute('data-category');
+            
+            if (selectedCategory === 'all' || cardCategory === selectedCategory) {
+              // Only show if it also passes the tag filters
+              const activeFilters = Array.from(document.querySelectorAll('.tag-filter.active'))
+                .map(el => el.getAttribute('data-tag'));
+              
+              if (shouldShowCardByTags(card, activeFilters)) {
+                card.style.display = 'block';
+              }
+            } else {
+              card.style.display = 'none';
+            }
+          });
+        });
+      }
+      
+      // Handle tag filtering
+      tagFilters.forEach(filter => {
+        filter.addEventListener('click', function(e) {
+          // Don't activate the filter if the container is still scrolling (prevents accidental activations)
+          if (tagButtonsContainer && tagButtonsContainer.getAttribute('data-scrolling') === 'true') {
+            return;
+          }
+          
+          const tag = this.getAttribute('data-tag');
+          
+          // Add tactile feedback for mobile
+          this.style.transform = 'scale(0.95)';
+          setTimeout(() => {
+            this.style.transform = '';
+          }, 150);
+          
+          // Make this the only active tag of its group
+          const otherTagsInGroup = Array.from(
+            this.closest('.tag-buttons').querySelectorAll('.tag-filter')
+          ).filter(t => t !== this);
+          
+          otherTagsInGroup.forEach(t => t.classList.remove('active'));
+          this.classList.add('active');
+          
+          // Get all currently active filters
+          const activeFilters = Array.from(document.querySelectorAll('.tag-filter.active'))
+            .map(el => el.getAttribute('data-tag'));
+          
+          // Filter the cards
+          filterCardsByTags(activeFilters);
+        });
+      });
+    }
+
+  </script>
 
 </MainLayout>

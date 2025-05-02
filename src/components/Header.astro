@@ -37,3 +37,155 @@ const navItems = [
   </ul>
 </div>
 <div class="overlay"></div>
+
+<script>
+// Initialize mobile menu with direct links approach
+function initializeMobileMenuDirectLinks() {
+    console.log('Initializing mobile menu with direct links approach');
+    
+    // Query DOM elements
+    const siteHeader = document.querySelector('.site-header');
+    const headerContainer = document.querySelector('.site-header .container');
+    const existingMenu = document.querySelector('.hamburger-menu');
+    if (existingMenu) existingMenu.remove();
+    
+    const existingOverlay = document.querySelector('.menu-overlay');
+    if (existingOverlay) existingOverlay.remove();
+    
+    const nav = document.querySelector('.site-header nav');
+    
+    if (!siteHeader || !headerContainer || !nav) {
+        console.error('Required elements not found for mobile menu');
+        return;
+    }
+    
+    // Create hamburger menu button
+    const hamburgerMenu = document.createElement('div');
+    hamburgerMenu.className = 'hamburger-menu';
+    hamburgerMenu.setAttribute('role', 'button');
+    hamburgerMenu.setAttribute('tabindex', '0');
+    hamburgerMenu.setAttribute('aria-label', 'Toggle navigation menu');
+    
+    // Create hamburger icon
+    const logoImg = document.createElement('img');
+    // Use root-relative path for Astro
+    logoImg.src = '/images/ai-tools-lab-logo.png'; 
+    logoImg.width = 24;
+    logoImg.height = 24;
+    logoImg.alt = "Menu";
+    
+    // Add icon to hamburger menu
+    hamburgerMenu.appendChild(logoImg);
+    
+    // Add hamburger menu to header
+    headerContainer.appendChild(hamburgerMenu);
+    
+    // Create overlay
+    const menuOverlay = document.createElement('div');
+    menuOverlay.className = 'menu-overlay';
+    document.body.appendChild(menuOverlay);
+    
+    // Get all navigation items and convert to direct links
+    const navItems = nav.querySelectorAll('a');
+    const navLinks = [];
+    
+    navItems.forEach(item => {
+        navLinks.push({
+            href: item.getAttribute('href'),
+            text: item.textContent,
+            isActive: item.classList.contains('active')
+        });
+    });
+    
+    // Create mobile navigation container that will replace the nav element when open
+    const mobileNavContainer = document.createElement('div');
+    mobileNavContainer.className = 'mobile-nav-container';
+    mobileNavContainer.style.display = 'none';
+    mobileNavContainer.style.position = 'fixed';
+    mobileNavContainer.style.top = '0';
+    mobileNavContainer.style.right = '0';
+    mobileNavContainer.style.width = '80%';
+    mobileNavContainer.style.maxWidth = '300px';
+    mobileNavContainer.style.height = '100vh';
+    mobileNavContainer.style.backgroundColor = '#3E2D73'; // Match existing CSS variable if possible
+    mobileNavContainer.style.zIndex = '2001';
+    mobileNavContainer.style.paddingTop = '80px';
+    mobileNavContainer.style.boxShadow = '-2px 0 5px rgba(0, 0, 0, 0.2)';
+    mobileNavContainer.style.overflowY = 'auto';
+    
+    // Build mobile nav HTML directly
+    let mobileNavHTML = '<ul style="list-style: none; padding: 20px;">';
+    navLinks.forEach(link => {
+        mobileNavHTML += `
+        <li style="margin-bottom: 15px;">
+            <a href="${link.href}" 
+               style="
+                  color: white; 
+                  text-decoration: none; 
+                  font-size: 18px; 
+                  display: block; 
+                  padding: 10px;
+                  ${link.isActive ? 'font-weight: bold; background-color: rgba(255,255,255,0.1); border-radius: 5px;' : ''}
+               "
+            >${link.text}</a>
+        </li>`;
+    });
+    mobileNavHTML += '</ul>';
+    
+    mobileNavContainer.innerHTML = mobileNavHTML;
+    document.body.appendChild(mobileNavContainer);
+    
+    // Toggle function that doesn't reference the original nav
+    function toggleMenu() {
+        if (mobileNavContainer.style.display === 'none') {
+            // Open menu
+            mobileNavContainer.style.display = 'block';
+            hamburgerMenu.classList.add('active');
+            menuOverlay.classList.add('active');
+        } else {
+            // Close menu
+            mobileNavContainer.style.display = 'none';
+            hamburgerMenu.classList.remove('active');
+            menuOverlay.classList.remove('active');
+        }
+        document.body.classList.toggle('menu-open');
+    }
+    
+    // Toggle menu on hamburger click
+    hamburgerMenu.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        toggleMenu();
+    });
+    
+    // Close menu when clicking overlay
+    menuOverlay.addEventListener('click', function() {
+        toggleMenu();
+    });
+    
+    // Show hamburger on smaller screens, hide on larger
+    function checkScreenSize() {
+        if (window.innerWidth <= 768) {
+            hamburgerMenu.style.display = 'flex';
+        } else {
+            hamburgerMenu.style.display = 'none';
+            // Ensure menu is closed if screen becomes large while open
+            if (mobileNavContainer.style.display !== 'none') {
+                 toggleMenu();
+            }
+        }
+    }
+
+    // Initial check
+    checkScreenSize();
+
+    // Check on resize
+    window.addEventListener('resize', checkScreenSize);
+    
+    console.log('Mobile menu initialized with direct links approach');
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  initializeMobileMenuDirectLinks();
+});
+</script>

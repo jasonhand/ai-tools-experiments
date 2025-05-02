@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="32" height="32">
+  <circle cx="50" cy="50" r="45" fill="#93ACB5"/> <!-- Secondary Color -->
+  <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Arial" font-size="40" fill="white">AI</text>
+</svg>
