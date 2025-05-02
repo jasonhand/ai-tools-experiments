@@ -20,36 +20,6 @@ const ogImageUrl = "/images/resource-placeholder.jpg"; // Make sure placeholder 
              <button class="tag-filter" data-tag="llm">LLMs</button>
              <button class="tag-filter" data-tag="image-generation">Image Generation</button>
              <button class="tag-filter" data-tag="agi">AGI</button>
-             <button class="tag-filter" data-tag="web-scraping">Web Scraping</button>
-             <button class="tag-filter" data-tag="software-engineering">Software Engineering</button>
-             <button class="tag-filter" data-tag="security">Security</button>
-             <button class="tag-filter" data-tag="mcp">MCP</button>
-             <button class="tag-filter" data-tag="developer-tools">Developer Tools</button>
-             <button class="tag-filter" data-tag="education">Education</button>
-             <button class="tag-filter" data-tag="ai-usage">AI Usage</button>
-             <button class="tag-filter" data-tag="open-source">Open Source</button>
-             <button class="tag-filter" data-tag="ai-models">AI Models</button>
-             <button class="tag-filter" data-tag="infrastructure">Infrastructure</button>
-             <button class="tag-filter" data-tag="vibe-coding">Vibe Coding</button>
-             <button class="tag-filter" data-tag="ai-agents">AI Agents</button>
-             <button class="tag-filter" data-tag="interoperability">Interoperability</button>
-             <button class="tag-filter" data-tag="creativity">Creativity</button>
-             <button class="tag-filter" data-tag="art">Art</button>
-             <button class="tag-filter" data-tag="ai-generation">AI Generation</button>
-             <button class="tag-filter" data-tag="ai-economics">AI Economics</button>
-             <button class="tag-filter" data-tag="industry-trends">Industry Trends</button>
-             <button class="tag-filter" data-tag="web-development">Web Development</button>
-             <button class="tag-filter" data-tag="programming">Programming</button>
-             <button class="tag-filter" data-tag="research">Research</button>
-             <button class="tag-filter" data-tag="opinion">Opinion</button>
-             <button class="tag-filter" data-tag="data-training">Data Training</button>
-             <button class="tag-filter" data-tag="ui-design">UI Design</button>
-             <button class="tag-filter" data-tag="user-experience">User Experience</button>
-             <button class="tag-filter" data-tag="explainer">Explainer</button>
-             <button class="tag-filter" data-tag="career-development">Career Development</button>
-             <button class="tag-filter" data-tag="ai-safety">AI Safety</button>
-             <button class="tag-filter" data-tag="ethics">Ethics</button>
-             <button class="tag-filter" data-tag="vulnerability">Vulnerability</button>
           </div>
         </div>
       </div>
@@ -415,36 +385,6 @@ const ogImageUrl = "/images/resource-placeholder.jpg"; // Make sure placeholder 
       </div>
     </div>
 
-  <!-- Suggest Resource Section -->
-  <div class="container">
-    <div class="suggest-resource">
-      <h2>Have a Resource to Suggest?</h2>
-      <p>Help us keep this list up-to-date! If you know of a valuable article, tool, or discussion related to AI development, let us know.</p>
-      <button class="btn" id="toggle-form-btn">Suggest a Resource</button>
-
-      <form id="resource-form" class="hidden">
-        <div class="form-group">
-          <label for="resource-url">Resource URL:</label>
-          <input type="url" id="resource-url" name="resource-url" required>
-        </div>
-        <div class="form-group">
-          <label for="resource-title">Title:</label>
-          <input type="text" id="resource-title" name="resource-title" required>
-        </div>
-        <div class="form-group">
-          <label for="resource-description">Brief Description:</label>
-          <textarea id="resource-description" name="resource-description" rows="3" required></textarea>
-        </div>
-        <div class="form-group">
-          <label for="resource-tags">Relevant Tags (comma-separated):</label>
-          <input type="text" id="resource-tags" name="resource-tags" placeholder="e.g., llm, developer-tools, security">
-        </div>
-        <button type="submit" class="btn">Submit Suggestion</button>
-      </form>
-    </div>
-  </div>
-  <!-- End Suggest Resource Section -->
-
   <style is:global>
   /* Inline styles from resources.html lines 24-155 */
   .resource-card {
@@ -523,57 +463,6 @@ const ogImageUrl = "/images/resource-placeholder.jpg"; // Make sure placeholder 
     margin: 40px 0;
   }
 
-  .suggest-resource {
-    background: #f8f9fa;
-    padding: 30px;
-    border-radius: 12px;
-    margin: 50px 0;
-    text-align: center;
-  }
-
-  .suggest-resource h2 {
-    margin-bottom: 15px;
-    color: #333;
-  }
-
-  .suggest-resource p {
-    margin-bottom: 20px;
-    color: #666;
-  }
-
-  #resource-form {
-    max-width: 600px;
-    margin: 30px auto 0;
-    text-align: left;
-  }
-
-  #resource-form.hidden {
-      display: none;
-  }
-
-  #resource-form .form-group {
-    margin-bottom: 20px;
-  }
-
-  #resource-form label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: 500;
-  }
-
-  #resource-form input,
-  #resource-form select,
-  #resource-form textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    font-family: inherit;
-    font-size: 1rem;
-    box-sizing: border-box; /* Include padding in width */
-  }
-
-  /* Style for the filter buttons */
   .filter-container .tag-buttons {
       display: flex;
       flex-wrap: wrap;
@@ -608,24 +497,6 @@ const ogImageUrl = "/images/resource-placeholder.jpg"; // Make sure placeholder 
       padding-top: 20px;
       margin-bottom: 30px; /* Add space below filter */
   }
-
-  .btn { /* Basic button styling */
-      display: inline-block;
-      padding: 10px 20px;
-      background-color: var(--primary-color);
-      color: white;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      text-align: center;
-      text-decoration: none;
-      font-size: 1rem;
-      transition: background-color 0.3s ease;
-  }
-  .btn:hover {
-      background-color: color-mix(in srgb, var(--primary-color) 85%, black);
-  }
-
 
   @media (max-width: 768px) {
     .resource-grid {
@@ -662,33 +533,6 @@ const ogImageUrl = "/images/resource-placeholder.jpg"; // Make sure placeholder 
           });
         });
       });
-
-      // --- Suggestion Form Toggle Logic ---
-      const toggleButton = document.getElementById('toggle-form-btn');
-      const resourceForm = document.getElementById('resource-form');
-
-      if (toggleButton && resourceForm) {
-        toggleButton.addEventListener('click', () => {
-          const isHidden = resourceForm.classList.toggle('hidden');
-          toggleButton.textContent = isHidden ? 'Suggest a Resource' : 'Cancel Suggestion';
-        });
-      }
-
-      // --- Basic Form Submission Handling (Placeholder) ---
-     if (resourceForm) {
-        resourceForm.addEventListener('submit', (event) => {
-            event.preventDefault(); // Prevent actual form submission for now
-            alert('Suggestion submitted! (Note: This form is currently a placeholder and does not send data anywhere.)');
-            // Optionally hide the form again and reset button text
-            resourceForm.classList.add('hidden');
-            if(toggleButton) {
-              toggleButton.textContent = 'Suggest a Resource';
-            }
-            // Optionally clear form fields
-            // resourceForm.reset();
-        });
-     }
-
   });
 </script>
 

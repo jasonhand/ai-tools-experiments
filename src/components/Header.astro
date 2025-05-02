@@ -10,7 +10,7 @@ const navItems = [
 <header class="site-header">
   <div class="container header-content">
     <div class="logo">
-      <a href="/">
+      <a href="/pages/">
         <img src="/images/ai-tools-lab-logo.png" alt="AI Tools Lab Logo" class="logo-img">
         <span class="logo-text">AI Tools Lab</span>
       </a>
@@ -158,8 +158,8 @@ const navItems = [
    }
 
    /* Show mobile nav when header has .is-open class */ 
-   body .site-header.is-open .mobile-nav {
-     display: block !important; /* Increased specificity and !important for testing */
+   .site-header.is-open .mobile-nav {
+     display: block !important;
    }
 
    /* --- Desktop Styles (using a common breakpoint) --- */
@@ -176,45 +176,46 @@ const navItems = [
 </style>
 
 <script is:inline>
-  // Use is:inline to ensure script runs in the browser
-  // Attempt to run directly, assuming script runs after elements are parsed
-
-    const header = document.querySelector('.site-header');
-    const toggleButton = document.querySelector('.menu-toggle-label');
-    const mobileNav = document.querySelector('.mobile-nav'); // Get the nav itself
-    const mobileNavLinks = mobileNav ? mobileNav.querySelectorAll('a') : []; // Get links inside
-
-    console.log('Mobile Menu Script Loaded (Simplified)');
-    console.log('Header found:', header);
-    console.log('Toggle button found:', toggleButton);
-    console.log('Mobile nav found:', mobileNav);
-
-    if (!header || !toggleButton || !mobileNav) {
-      console.error('Mobile menu elements not found! (Simplified)');
-      return;
-    }
-
-    const toggleMenu = () => {
-      console.log('Toggling menu. Current classes:', header.classList);
-      header.classList.toggle('is-open');
-      console.log('Menu toggled. New classes:', header.classList);
-    };
-
-    const closeMenu = () => {
-      console.log('Closing menu via link. (Simplified)');
-      header.classList.remove('is-open');
-    };
-
-    toggleButton.addEventListener('click', (e) => {
-      console.log('Toggle button clicked! (Simplified)');
-      e.stopPropagation(); // Prevent potential bubbling issues
-      toggleMenu();
-    });
-
-    // Add listeners to nav links to close menu on click
-    mobileNavLinks.forEach(link => {
-      link.addEventListener('click', closeMenu);
-    });
-
-    // Removed overlay and escape key listeners for simplification
-  </script>
+  // Wrap in DOMContentLoaded to ensure elements exist
+  document.addEventListener('DOMContentLoaded', () => {
+ 
+     const header = document.querySelector('.site-header');
+     const toggleButton = document.querySelector('.menu-toggle-label');
+     const mobileNav = document.querySelector('.mobile-nav'); // Get the nav itself
+     const mobileNavLinks = mobileNav ? mobileNav.querySelectorAll('a') : []; // Get links inside
+ 
+     console.log('Mobile Menu Script Loaded (DOMContentLoaded)');
+     console.log('Header found:', header);
+     console.log('Toggle button found:', toggleButton);
+     console.log('Mobile nav found:', mobileNav);
+ 
+     if (!header || !toggleButton || !mobileNav) {
+       console.error('Mobile menu elements not found!');
+       return;
+     }
+ 
+     const toggleMenu = () => {
+       header.classList.toggle('is-open');
+       console.log('Menu toggled. Header classes:', header.classList);
+     };
+ 
+     const closeMenu = () => {
+       console.log('Menu closed via link.');
+       header.classList.remove('is-open');
+     };
+ 
+     toggleButton.addEventListener('click', (e) => {
+       console.log('Toggle button clicked!');
+       e.stopPropagation(); // Prevent potential bubbling issues
+       toggleMenu();
+     });
+ 
+     // Add listeners to nav links to close menu on click
+     mobileNavLinks.forEach(link => {
+       link.addEventListener('click', closeMenu);
+     });
++
++    // Removed overlay and escape key listeners for simplification
++  });
++
+ </script>

@@ -1,0 +1,235 @@
+---
+// src/pages/observations.astro
+import MainLayout from '../../layouts/MainLayout.astro';
+
+const pageTitle = "Observations & Insights";
+const description = "Discover patterns, insights, and key takeaways from our AI tools exploration journey.";
+const ogImageUrl = "/images/observations-placeholder.jpg"; // TODO: Add a relevant placeholder image
+---
+
+<MainLayout title={pageTitle} description={description} ogImage={ogImageUrl}>
+    <main class="container about-section">
+        <div class="about-header">
+            <h1>Observations & Insights</h1>
+            <p>Discover patterns, insights, and key takeaways from our AI tools exploration journey. Filter by tools, technologies, or concepts to focus on specific areas of interest.</p>
+        </div>
+
+        <!-- Mobile tab navigation for small screens -->
+        <div class="mobile-tabs">
+            <div class="mobile-tab active" data-view="takeaways">Takeaways</div>
+            <div class="mobile-tab" data-view="trends">Trends & Patterns</div>
+            <div class="mobile-tab" data-view="tools">Tools Comparison</div>
+        </div>
+
+        <div class="observations-layout">
+            <!-- Left sidebar with filters -->
+            <aside class="observations-sidebar">
+                <h2>Filter Observations</h2>
+                <div class="filter-section">
+                    <h3>By Tool/Tech</h3>
+                    <div class="filter-options">
+                        <label><input type="checkbox" name="filter" value="chatgpt"> ChatGPT</label>
+                        <label><input type="checkbox" name="filter" value="claude"> Claude</label>
+                        <label><input type="checkbox" name="filter" value="github-copilot"> GitHub Copilot</label>
+                        <label><input type="checkbox" name="filter" value="cursor"> Cursor IDE</label>
+                        <label><input type="checkbox" name="filter" value="perplexity"> Perplexity</label>
+                        <label><input type="checkbox" name="filter" value="gemini"> Gemini</label>
+                        <label><input type="checkbox" name="filter" value="llm"> LLMs (General)</label>
+                        <!-- Add more tool/tech filters as needed -->
+                    </div>
+                </div>
+                <div class="filter-section">
+                    <h3>By Concept</h3>
+                    <div class="filter-options">
+                        <label><input type="checkbox" name="filter" value="prompting"> Prompting</label>
+                        <label><input type="checkbox" name="filter" value="code-gen"> Code Generation</label>
+                        <label><input type="checkbox" name="filter" value="debugging"> Debugging</label>
+                        <label><input type="checkbox" name="filter" value="context-window"> Context Window</label>
+                        <label><input type="checkbox" name="filter" value="usability"> Usability</label>
+                        <!-- Add more concept filters as needed -->
+                    </div>
+                </div>
+                 <div class="filter-section view-switch">
+                    <h3>View</h3>
+                    <div class="filter-options">
+                        <label><input type="radio" name="view" value="takeaways" checked> Key Takeaways</label>
+                        <label><input type="radio" name="view" value="trends"> Trends & Patterns</label>
+                        <label><input type="radio" name="view" value="tools"> Tools Comparison</label>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Main content area -->
+            <section class="observations-content">
+                <!-- Content sections will be shown/hidden based on selected view -->
+
+                <!-- Key Takeaways View -->
+                <div id="takeaways-view" class="content-view active">
+                    <h2>Key Takeaways</h2>
+                    <div class="observation-card" data-tags="chatgpt,prompting">
+                        <h3>Effective Prompting is Crucial</h3>
+                        <p>Getting the most out of models like ChatGPT heavily depends on clear, specific, and iterative prompting. Simple requests yield simple results.</p>
+                        <span class="card-date">2025-04-10</span>
+                    </div>
+                     <div class="observation-card" data-tags="cursor,code-gen,debugging">
+                        <h3>Cursor IDE Shines for In-Code Interaction</h3>
+                        <p>Cursor's tight integration with the codebase makes AI-assisted refactoring and debugging feel more natural than context-switching to a separate chat interface.</p>
+                        <span class="card-date">2025-04-15</span>
+                    </div>
+                    <!-- Add more takeaway cards -->
+                </div>
+
+                <!-- Trends & Patterns View -->
+                <div id="trends-view" class="content-view">
+                    <h2>Trends & Patterns</h2>
+                     <div class="observation-card" data-tags="llm,context-window">
+                        <h3>Context Window Limitations</h3>
+                        <p>A recurring challenge across multiple LLMs is the limited context window, impacting tasks requiring analysis of large codebases or lengthy conversations.</p>
+                        <span class="card-date">2025-04-18</span>
+                    </div>
+                    <!-- Add more trend cards -->
+                </div>
+
+                <!-- Tools Comparison View -->
+                <div id="tools-view" class="content-view">
+                    <h2>Tools Comparison</h2>
+                     <div class="observation-card" data-tags="chatgpt,claude,code-gen">
+                        <h3>Code Generation: ChatGPT vs. Claude</h3>
+                        <p>Initial tests show Claude often producing more robust or idiomatic code for certain languages, while ChatGPT excels at quick snippets and boilerplate.</p>
+                        <span class="card-date">2025-04-20</span>
+                    </div>
+                    <!-- Add more comparison cards -->
+                </div>
+
+            </section>
+        </div>
+    </main>
+
+    <style>
+        /* Basic styles adapted from live site inspection */
+        .about-section { padding: 40px 0; }
+        .about-header { text-align: center; margin-bottom: 40px; }
+        .observations-layout { display: flex; gap: 30px; margin-top: 20px; }
+        .observations-sidebar { flex: 0 0 250px; border-right: 1px solid #eee; padding-right: 20px; }
+        .observations-content { flex: 1; }
+        .filter-section { margin-bottom: 25px; }
+        .filter-section h3 { font-size: 1.1rem; margin-bottom: 10px; border-bottom: 1px solid #eee; padding-bottom: 5px;}
+        .filter-options label { display: block; margin-bottom: 8px; cursor: pointer; }
+        .filter-options input[type="checkbox"], .filter-options input[type="radio"] { margin-right: 8px; }
+
+        .content-view { display: none; /* Hidden by default */ }
+        .content-view.active { display: block; /* Shown when active */ }
+
+        .observation-card {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .observation-card h3 { margin: 0 0 10px 0; font-size: 1.2rem; }
+        .observation-card p { margin: 0 0 10px 0; color: #555; }
+        .card-date { font-size: 0.85rem; color: #888; display: block; margin-top: 10px; }
+
+        /* Mobile Tabs */
+        .mobile-tabs {
+            display: none; /* Hidden on larger screens */
+            margin-bottom: 20px;
+            border-bottom: 1px solid #ccc;
+        }
+        .mobile-tab {
+            display: inline-block;
+            padding: 10px 15px;
+            cursor: pointer;
+            color: #555;
+        }
+        .mobile-tab.active {
+            font-weight: bold;
+            border-bottom: 2px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .observations-layout { flex-direction: column; }
+            .observations-sidebar { border-right: none; border-bottom: 1px solid #eee; padding-right: 0; padding-bottom: 20px; margin-bottom: 20px; flex-basis: auto; width: 100%;}
+            .filter-section.view-switch { display: none; } /* Hide desktop view switcher */
+            .mobile-tabs { display: flex; justify-content: space-around; } /* Show mobile tabs */
+        }
+    </style>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const filters = document.querySelectorAll('.observations-sidebar input[name="filter"]');
+            const viewRadios = document.querySelectorAll('.observations-sidebar input[name="view"]');
+            const mobileTabs = document.querySelectorAll('.mobile-tab');
+            const cards = document.querySelectorAll('.observation-card');
+            const contentViews = document.querySelectorAll('.content-view');
+
+            function filterCards() {
+                const activeFilters = Array.from(filters)
+                    .filter(input => input.checked)
+                    .map(input => input.value);
+
+                cards.forEach(card => {
+                    const cardTags = card.dataset.tags ? card.dataset.tags.split(',') : [];
+                    const matchesFilters = activeFilters.length === 0 || activeFilters.some(filter => cardTags.includes(filter));
+
+                    // Check if the card belongs to the currently active view
+                    const parentView = card.closest('.content-view');
+                    const parentViewId = parentView ? parentView.id : null;
+                    const currentViewValue = document.querySelector('input[name="view"]:checked')?.value + '-view'; // e.g., 'takeaways-view'
+
+                    if (matchesFilters && parentViewId === currentViewValue) {
+                        card.style.display = '';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            }
+
+            function switchView(viewValue) {
+                 // Update content views
+                contentViews.forEach(view => {
+                    if (view.id === viewValue + '-view') {
+                        view.classList.add('active');
+                    } else {
+                        view.classList.remove('active');
+                    }
+                });
+
+                // Update desktop radio buttons
+                const desktopRadio = document.querySelector(`.observations-sidebar input[name="view"][value="${viewValue}"]`);
+                if (desktopRadio) desktopRadio.checked = true;
+
+                // Update mobile tabs
+                mobileTabs.forEach(tab => {
+                    if (tab.dataset.view === viewValue) {
+                        tab.classList.add('active');
+                    } else {
+                        tab.classList.remove('active');
+                    }
+                });
+
+                // Re-apply filters for the new view
+                filterCards();
+            }
+
+            // Event Listeners
+            filters.forEach(input => input.addEventListener('change', filterCards));
+
+            viewRadios.forEach(radio => radio.addEventListener('change', (event) => {
+                switchView(event.target.value);
+            }));
+
+             mobileTabs.forEach(tab => tab.addEventListener('click', (event) => {
+                switchView(event.target.dataset.view);
+            }));
+
+            // Initial setup
+            switchView('takeaways'); // Set default view
+        });
+    </script>
+
+</MainLayout>

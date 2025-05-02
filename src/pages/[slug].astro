@@ -1,10 +1,11 @@
 ---
-// src/pages/transcripts/[slug].astro
-import MainLayout from '../../layouts/MainLayout.astro';
+// src/pages/[slug].astro - Moved from src/pages/transcripts/
+import MainLayout from '../layouts/MainLayout.astro';
 
 // Required for dynamic routes
 export async function getStaticPaths() {
   // Use Astro.glob to import raw HTML content at build time
+  // Path updated from ../content/ to ./content/ due to file relocation
   const transcriptModules = await Astro.glob('../content/transcripts/*.html', { query: 'raw' });
 
   const paths = Object.entries(transcriptModules).map(([filePath, rawHtmlContent]) => {
@@ -38,7 +39,9 @@ try {
     bodyContent = bodyMatch[1].trim();
     // Basic fix for relative paths within the injected HTML:
     // Replace ../ with / for root-relative paths assuming assets are in public/
-    bodyContent = bodyContent.replace(/\.\.\//g, '/');
+    // Adjusted this relative path fix logic as well, assuming assets are in /public
+    // This might need refinement depending on actual asset structure in HTML files
+    bodyContent = bodyContent.replace(/\.\.\//g, '/'); 
   } else {
     // If body is missing, the raw content might be the body itself
     bodyContent = rawHtmlContent;

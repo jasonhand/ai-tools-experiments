@@ -2265,10 +2265,6 @@ code {
     transform: scale(1.03);
 }
 
-main.container {
-    /* Remove margin and position */
-}
-
 .episode-content {
     margin-top: 0;
     padding-top: 0;
