@@ -22,7 +22,11 @@
   },
   "homepage": "https://github.com/yourusername/ai-tools-experiments#readme",
   "dependencies": {
-    "node-fetch": "^2.6.7",
-    "@datadog/browser-rum": "^4.31.0"
+    "@datadog/browser-rum": "^4.31.0",
+    "node-fetch": "^2.6.7"
+  },
+  "devDependencies": {
+    "@astrojs/mdx": "^4.2.6",
+    "astro": "^5.7.10"
   }
 }

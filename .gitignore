@@ -6,3 +6,17 @@ todo.md
 /observations/
 update_episodes.ps1
 update_episodes.sh
+
+# Astro
+/dist/
+/.astro/
+
+# Node
+/node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Env Files
+.env
+.env*.local
