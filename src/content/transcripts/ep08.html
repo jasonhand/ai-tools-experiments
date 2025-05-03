@@ -1,78 +1,7 @@
-<!DOCTYPE html>
 
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Using Cursor and Claude to Fix CSS Layout Issues</title>
-    
-    <!-- Favicon -->
-    <link rel="icon" href="../images/ai-tools-lab-logo.png" />
-    
-    <!-- Stylesheets -->
-    <link rel="stylesheet" href="../styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Revalia&display=swap" rel="stylesheet">
-    
-    <!-- Logo styling -->
-    <style>
-        /* Header logo font styling */
-        .logo a {
-            font-family: 'Revalia', cursive;
-            font-size: 1.6rem;
-        }
-    </style>
-    
-    <!-- Datadog RUM -->
-    <script
-        src="https://www.datadoghq-browser-agent.com/us1/v6/datadog-rum.js"
-        type="text/javascript">
-    </script>
-    <script>
-        window.DD_RUM && window.DD_RUM.init({
-          clientToken: 'pub1ef411c82203fccee1b3d7b58d064f1d',
-          applicationId: 'cea3fe47-039f-47fb-91b3-57389419c2c9',
-          // `site` refers to the Datadog site parameter of your organization
-          // see https://docs.datadoghq.com/getting_started/site/
-          site: 'datadoghq.com',
-          service: 'ai-labs',
-          env: 'production',
-          // Specify a version number to identify the deployed version of your application in Datadog
-          // version: '1.0.0',
-          sessionSampleRate: 100,
-          sessionReplaySampleRate: 20,
-          defaultPrivacyLevel: 'mask-user-input',
-        });
-    </script>
-</head>
 
-<body>
-    <header class="site-header">
-        <div class="bubble"></div>
-        <div class="bubble"></div>
-        <div class="bubble"></div>
-        <div class="bubble"></div>
-        <div class="bubble"></div>
-        <div class="bubble"></div>
-        <div class="bubble"></div>
-        <div class="container">
-            <div class="logo">
-                <img src="../images/ai-tools-lab-logo.png" alt="AI Tools Lab Logo" class="site-logo">
-                <a href='/pages/'>AI Tools Lab</a>
-            </div>
-            <nav>
-                <ul>
-                    <li><a href='/pages/'>Home</a></li>
-                    <li><a href='/pages/resources'>Resources</a></li>
-                    <li><a href='/pages/observations'>Observations</a></li>
-                    <li><a href='/pages/about'>About</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
 
-    <main class="container">
         <div class="video-container">
             <a href="https://www.youtube.com/watch?v=-yNJmVCR-nM" target="_blank">
                 <img src="../images/thumbnails/ep08.png" alt="Episode 8 Thumbnail">
@@ -80,7 +9,6 @@
         </div>
 
         <div class="episode-content">
-            <h1>Using Cursor and Claude to Fix CSS Layout Issues</h1>
             
             <p>In this episode, Jason continues his exploration of using AI tools for debugging code by focusing on his "Ignite Karaoke" project, a web application that displays random images for users to improvise presentations around. After successfully fixing the search functionality in his Vinyl Viewer application in the previous episode, Jason now tackles a layout issue in Ignite Karaoke where images display with excessive space at the top of the screen. Using Cursor with Claude, Jason analyzes the CSS positioning problem and implements a solution by adjusting the margin and z-index settings. He demonstrates how the AI quickly identifies the root cause and suggests precise changes to fix the layout issue. Throughout the episode, Jason highlights how AI-assisted debugging tools like Cursor can efficiently solve specific coding problems, saving developers time and frustration when dealing with CSS and layout challenges.</p>
 
@@ -530,38 +458,6 @@
 
     
 
-    <footer>
-        <div class="bubble"></div>
-        <div class="bubble"></div>
-        <div class="bubble"></div>
-        <div class="bubble"></div>
-        <div class="bubble"></div>
-        <div class="bubble"></div>
-        <div class="bubble"></div>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">
-                    <img src="../images/ai-tools-lab-logo.png" alt="AI Tools Lab Logo" class="footer-logo-img">
-                    <div>
-                        <h2>AI Tools Lab</h2>
-                        <p>Exploring the landscape of AI tools and technologies</p>
-                    </div>
-                </div>
-                <div class="footer-links">
-                    <h3>Quick Links</h3>
-                    <ul>
-                        <li><a href='/pages/'>Home</a></li>
-                        <li><a href='/pages/resources'>Resources</a></li>
-                        <li><a href='/pages/observations'>Observations</a></li>
-                        <li><a href='/pages/about'>About</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2024 AI Tools Lab. All rights reserved. <span id="easter-egg" class="easter-egg">π</span></p>
-            </div>
-        </div>
-    </footer>
 
     <!-- Easter Egg Modal -->
     <div id="easter-egg-modal" class="easter-egg-modal">
@@ -573,8 +469,6 @@
 
     <script src="../script.js"></script>
 
-</body>
 
-</html> 
 
 

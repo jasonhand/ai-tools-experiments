@@ -23,3 +23,6 @@ yarn-error.log*
 
 # JetBrains
 .idea
+
+# Apple System Files
+.DS_Store
