@@ -47,10 +47,12 @@ try {
     if (/^\d+$/.test(slug)) {
       title = `Episode ${slug}`;
       bodyContent = `<p>Content for episode ${slug} is being prepared.</p>`;
-      // Skip the rest of the processing
-      throw new Error('Using fallback content for numeric slug');
+      // Skip the rest of the processing without throwing an error
+      console.log(`Using fallback content for numeric slug: ${slug}`);
     } else {
-      throw new Error('HTML content is not available or not a string');
+      console.log(`HTML content is not available for slug: ${slug}, using fallback`);
+      title = `${slug?.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase()) ?? 'Content'}`;
+      bodyContent = `<p>Content for ${title} is being prepared.</p>`;
     }
   }
   
@@ -76,8 +78,15 @@ try {
   }
 } catch (error) {
   console.error(`Error processing transcript content for slug ${slug}:`, error);
-  bodyContent = `<p style="color: red;">Error processing transcript content for ${slug}.</p>`;
-  title = `Error: ${slug}`;
+  // Create a more user-friendly error message and properly formatted content
+  title = `${slug?.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase()) ?? 'Content'}`;
+  bodyContent = `
+    <div class="error-container">
+      <h2>Content is being prepared</h2>
+      <p>The content for ${title} is currently being updated. Please check back later.</p>
+      <a href="/" class="home-link">Return to Home</a>
+    </div>
+  `;
 }
 
 ---
@@ -138,5 +147,42 @@ try {
   }
   .transcript-body-content a:hover {
     text-decoration: underline;
+  }
+  
+  /* Error container styling */
+  .error-container {
+    text-align: center;
+    padding: 2rem;
+    margin: 2rem auto;
+    max-width: 600px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  }
+  
+  .error-container h2 {
+    color: #0066cc;
+    margin-bottom: 1rem;
+  }
+  
+  .error-container p {
+    margin-bottom: 1.5rem;
+    color: #555;
+  }
+  
+  .home-link {
+    display: inline-block;
+    padding: 0.5rem 1.5rem;
+    background-color: #0066cc;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 500;
+    transition: background-color 0.2s;
+  }
+  
+  .home-link:hover {
+    background-color: #0055aa;
+    text-decoration: none;
   }
 </style>
