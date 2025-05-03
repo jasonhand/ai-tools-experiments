@@ -35,15 +35,33 @@ const { rawHtmlContent } = Astro.props;
 let title = slug; // Default title
 let bodyContent = ''; // Variable for extracted body content
 
+// Check if rawHtmlContent is a string or an object with default property
+const htmlString = typeof rawHtmlContent === 'string' ? rawHtmlContent : 
+                   (rawHtmlContent && typeof rawHtmlContent === 'object' && rawHtmlContent.default) ? 
+                   rawHtmlContent.default : '';
+
 try {
+  // Handle special cases for numeric slugs (like 20, 21) that might not have proper HTML content
+  if (typeof htmlString !== 'string' || htmlString === '') {
+    // For numeric slugs or empty content, create a placeholder
+    if (/^\d+$/.test(slug)) {
+      title = `Episode ${slug}`;
+      bodyContent = `<p>Content for episode ${slug} is being prepared.</p>`;
+      // Skip the rest of the processing
+      throw new Error('Using fallback content for numeric slug');
+    } else {
+      throw new Error('HTML content is not available or not a string');
+    }
+  }
+  
   // Attempt to extract title from <title> tag if present in the HTML
-  const titleMatch = rawHtmlContent.match(/<title>(.*?)<\/title>/i);
+  const titleMatch = htmlString.match(/<title>(.*?)<\/title>/i);
   if (titleMatch && titleMatch[1]) {
     title = titleMatch[1].trim();
   }
 
   // Attempt to extract content between <body> tags
-  const bodyMatch = rawHtmlContent.match(/<body[^>]*>([\s\S]*?)<\/body>/i);
+  const bodyMatch = htmlString.match(/<body[^>]*>([\s\S]*?)<\/body>/i);
   if (bodyMatch && bodyMatch[1]) {
     bodyContent = bodyMatch[1].trim();
     // Basic fix for relative paths within the injected HTML:
@@ -53,7 +71,7 @@ try {
     bodyContent = bodyContent.replace(/\.\.\//g, '/'); 
   } else {
     // If body is missing, the raw content might be the body itself
-    bodyContent = rawHtmlContent;
+    bodyContent = htmlString;
     title = `${slug?.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase()) ?? 'Transcript'}`;
   }
 } catch (error) {
