@@ -11,7 +11,7 @@ export async function getStaticPaths() {
     const paths = Object.entries(transcriptModulesMeta).map(([filePath, rawHtmlContent]) => {
       // Extract slug from filename (e.g., '../content/transcripts/ep01.html' -> 'ep01')
       // The filePath is the key in the object returned by import.meta.glob
-      // TEMPORARY: Remove 'pages/' prefix for build debugging
+      // Ensure slug is properly formatted without any prefix
       const slug = filePath.split('/').pop().replace('.html', '');
       return {
         params: { slug },

@@ -65,7 +65,7 @@ Note: The file `src/pages/about.astro` appears obsolete and doesn't match the li
 - [ ] Review all changes made.
 - [ ] Ensure site visually matches ai-tools-lab.com where intended.
 - [ ] Run final checks (linting, build).
-- [ ] Commit changes to `test-branch` (refer to MEMORY[096ffc7e-a9fa-41e6-adf3-32050a0d4751]).
+- [ ] Commit changes to `test` branch (refer to MEMORY[096ffc7e-a9fa-41e6-adf3-32050a0d4751]).
 
 ## Phase 4: Performance Analysis & Optimization (Lower Priority)
 

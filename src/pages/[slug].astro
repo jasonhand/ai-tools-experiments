@@ -11,8 +11,8 @@ export async function getStaticPaths() {
 
     const paths = Object.entries(transcriptModules).map(([filePath, rawHtmlContent]) => {
       // Extract slug from filename (e.g., '../content/transcripts/ep01.html' -> 'ep01')
-      // Prepend 'pages/' to match the live site URL structure
-      const slug = `pages/${filePath.split('/').pop().replace('.html', '')}`;
+      // Don't prepend 'pages/' as it causes routing issues
+      const slug = filePath.split('/').pop().replace('.html', '');
       return {
         params: { slug },
         props: { rawHtmlContent } // Pass the raw HTML string directly
