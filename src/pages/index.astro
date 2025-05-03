@@ -65,19 +65,23 @@ const indexHtmlContent = htmlFiles['../content/transcripts/index.html'].default;
         transform: translate(-50%, -50%);
         background-color: rgba(0, 102, 204, 0.8);
         border-radius: 50%;
-        width: 70px;
-        height: 70px;
+        width: 60px;
+        height: 60px;
         display: flex;
         align-items: center;
         justify-content: center;
         opacity: 0.9;
         transition: all 0.3s ease;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        z-index: 2;
     }
     
+    .video-container:hover .play-button-overlay,
     .featured-episode-video:hover .play-button-overlay {
         background-color: rgba(0, 102, 204, 1);
         opacity: 1;
         transform: translate(-50%, -50%) scale(1.1);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
     }
     
     .featured-episode-content {
@@ -300,14 +304,29 @@ const indexHtmlContent = htmlFiles['../content/transcripts/index.html'].default;
         const link = container.querySelector('a');
         
         if (link) {
-          // Check if there is already a play-icon span
-          let playIcon = link.querySelector('.play-icon');
+          // Check if there is already a play button overlay
+          let playButtonOverlay = link.querySelector('.play-button-overlay');
           
           // If not, create and add it
-          if (!playIcon) {
-            playIcon = document.createElement('span');
-            playIcon.className = 'play-icon';
-            link.appendChild(playIcon);
+          if (!playButtonOverlay) {
+            playButtonOverlay = document.createElement('div');
+            playButtonOverlay.className = 'play-button-overlay';
+            
+            // Create the play icon SVG
+            const playSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+            playSvg.setAttribute('width', '24');
+            playSvg.setAttribute('height', '24');
+            playSvg.setAttribute('viewBox', '0 0 24 24');
+            playSvg.setAttribute('fill', 'white');
+            playSvg.style.filter = 'drop-shadow(0 1px 2px rgba(0,0,0,0.3))';
+            playSvg.style.marginLeft = '2px'; // Slight adjustment for visual centering
+            
+            const playPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+            playPath.setAttribute('d', 'M8 5v14l11-7z');
+            
+            playSvg.appendChild(playPath);
+            playButtonOverlay.appendChild(playSvg);
+            link.appendChild(playButtonOverlay);
           }
         }
       });

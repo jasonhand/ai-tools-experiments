@@ -1,0 +1,178 @@
+{
+  "totalEpisodes": 17,
+  "checkedEpisodes": 17,
+  "successfulEpisodes": 17,
+  "failedEpisodes": [],
+  "episodeDetails": [
+    {
+      "id": "ep17",
+      "url": "http://localhost:4322/pages/ep17",
+      "title": "Ep17",
+      "hasBackLink": true,
+      "hasTranscriptContent": true,
+      "hasSubstantialContent": true,
+      "contentLength": 62992,
+      "status": "success"
+    },
+    {
+      "id": "ep16",
+      "url": "http://localhost:4322/pages/ep16",
+      "title": "Ep16",
+      "hasBackLink": true,
+      "hasTranscriptContent": true,
+      "hasSubstantialContent": true,
+      "contentLength": 13591,
+      "status": "success"
+    },
+    {
+      "id": "ep15",
+      "url": "http://localhost:4322/pages/ep15",
+      "title": "Ep15",
+      "hasBackLink": true,
+      "hasTranscriptContent": true,
+      "hasSubstantialContent": true,
+      "contentLength": 8309,
+      "status": "success"
+    },
+    {
+      "id": "ep14",
+      "url": "http://localhost:4322/pages/ep14",
+      "title": "Ep14",
+      "hasBackLink": true,
+      "hasTranscriptContent": true,
+      "hasSubstantialContent": true,
+      "contentLength": 24851,
+      "status": "success"
+    },
+    {
+      "id": "ep13",
+      "url": "http://localhost:4322/pages/ep13",
+      "title": "Ep13",
+      "hasBackLink": true,
+      "hasTranscriptContent": true,
+      "hasSubstantialContent": true,
+      "contentLength": 55757,
+      "status": "success"
+    },
+    {
+      "id": "ep12",
+      "url": "http://localhost:4322/pages/ep12",
+      "title": "Ep12",
+      "hasBackLink": true,
+      "hasTranscriptContent": true,
+      "hasSubstantialContent": true,
+      "contentLength": 24947,
+      "status": "success"
+    },
+    {
+      "id": "ep11",
+      "url": "http://localhost:4322/pages/ep11",
+      "title": "Ep11",
+      "hasBackLink": true,
+      "hasTranscriptContent": true,
+      "hasSubstantialContent": true,
+      "contentLength": 5777,
+      "status": "success"
+    },
+    {
+      "id": "ep10",
+      "url": "http://localhost:4322/pages/ep10",
+      "title": "Ep10",
+      "hasBackLink": true,
+      "hasTranscriptContent": true,
+      "hasSubstantialContent": true,
+      "contentLength": 5221,
+      "status": "success"
+    },
+    {
+      "id": "ep09",
+      "url": "http://localhost:4322/pages/ep09",
+      "title": "Ep09",
+      "hasBackLink": true,
+      "hasTranscriptContent": true,
+      "hasSubstantialContent": true,
+      "contentLength": 36459,
+      "status": "success"
+    },
+    {
+      "id": "ep08",
+      "url": "http://localhost:4322/pages/ep08",
+      "title": "Ep08",
+      "hasBackLink": true,
+      "hasTranscriptContent": true,
+      "hasSubstantialContent": true,
+      "contentLength": 18278,
+      "status": "success"
+    },
+    {
+      "id": "ep07",
+      "url": "http://localhost:4322/pages/ep07",
+      "title": "Ep07",
+      "hasBackLink": true,
+      "hasTranscriptContent": true,
+      "hasSubstantialContent": true,
+      "contentLength": 13455,
+      "status": "success"
+    },
+    {
+      "id": "ep06",
+      "url": "http://localhost:4322/pages/ep06",
+      "title": "Ep06",
+      "hasBackLink": true,
+      "hasTranscriptContent": true,
+      "hasSubstantialContent": true,
+      "contentLength": 12513,
+      "status": "success"
+    },
+    {
+      "id": "ep05",
+      "url": "http://localhost:4322/pages/ep05",
+      "title": "Ep05",
+      "hasBackLink": true,
+      "hasTranscriptContent": true,
+      "hasSubstantialContent": true,
+      "contentLength": 12488,
+      "status": "success"
+    },
+    {
+      "id": "ep04",
+      "url": "http://localhost:4322/pages/ep04",
+      "title": "Ep04",
+      "hasBackLink": true,
+      "hasTranscriptContent": true,
+      "hasSubstantialContent": true,
+      "contentLength": 18609,
+      "status": "success"
+    },
+    {
+      "id": "ep03",
+      "url": "http://localhost:4322/pages/ep03",
+      "title": "Ep03",
+      "hasBackLink": true,
+      "hasTranscriptContent": true,
+      "hasSubstantialContent": true,
+      "contentLength": 49847,
+      "status": "success"
+    },
+    {
+      "id": "ep02",
+      "url": "http://localhost:4322/pages/ep02",
+      "title": "Ep02",
+      "hasBackLink": true,
+      "hasTranscriptContent": true,
+      "hasSubstantialContent": true,
+      "contentLength": 32169,
+      "status": "success"
+    },
+    {
+      "id": "ep01",
+      "url": "http://localhost:4322/pages/ep01",
+      "title": "Ep01",
+      "hasBackLink": true,
+      "hasTranscriptContent": true,
+      "hasSubstantialContent": true,
+      "contentLength": 18314,
+      "status": "success"
+    }
+  ]
+}

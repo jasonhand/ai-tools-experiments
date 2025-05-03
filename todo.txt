@@ -85,3 +85,15 @@ Note: The file `src/pages/about.astro` appears obsolete and doesn't match the li
 - [ ] Review Astro 5 documentation for relevant built-ins (View Transitions, Asset Optimization, etc.).
 - [ ] Identify opportunities to leverage new features for improved workflow or performance.
 - [ ] Plan initial integration steps for selected features.
+
+## Phase 6: Docker and Automated Testing
+
+- [x] Create Dockerfile for consistent build environment.
+- [x] Create docker-compose.yml for easy container management.
+- [x] Set up Puppeteer tests for automated UI testing.
+- [x] Create test runner script (tests/run-tests.sh) to automate the testing process.
+- [ ] Run Docker build tests before deploying to production.
+- [x] Integrate tests with CI/CD pipeline using GitHub Actions.
+- [x] Use Netlify build hook (https://api.netlify.com/build_hooks/6815aa2896ae6ddba51a8a30) to trigger deployments after successful tests.
+- [ ] Add more comprehensive tests for critical user flows.
+- [ ] Set up monitoring for deployed site performance and availability.

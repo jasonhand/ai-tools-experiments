@@ -1,0 +1,62 @@
+#!/bin/bash
+
+echo "Running post-commit tests..."
+
+# Store the current working directory
+CWD=$(pwd)
+
+# Check if the development server is already running
+if ! nc -z localhost 4322 2>/dev/null; then
+  echo "Starting development server..."
+  # Start the development server in the background
+  npm run dev &
+  SERVER_PID=$!
+  
+  # Wait for the server to start (adjust timeout as needed)
+  echo "Waiting for server to start..."
+  for i in {1..30}; do
+    if nc -z localhost 4322 2>/dev/null; then
+      echo "Server started successfully."
+      break
+    fi
+    if [ $i -eq 30 ]; then
+      echo "Server failed to start within the timeout period."
+      exit 1
+    fi
+    sleep 1
+  done
+  
+  # Flag to indicate we started the server
+  STARTED_SERVER=true
+else
+  echo "Development server is already running."
+  STARTED_SERVER=false
+fi
+
+# Wait a bit more to ensure the server is fully ready
+sleep 3
+
+echo "Running episode checker tests..."
+node ./tests/episode-checker.js
+EPISODE_CHECK_RESULT=$?
+
+echo "Running comprehensive site tests..."
+node ./tests/comprehensive-site-test.js
+COMPREHENSIVE_TEST_RESULT=$?
+
+# Kill the server if we started it
+if [ "$STARTED_SERVER" = true ]; then
+  echo "Shutting down development server..."
+  kill $SERVER_PID
+  # Wait for the server to shut down
+  sleep 2
+fi
+
+# Check if any tests failed
+if [ $EPISODE_CHECK_RESULT -ne 0 ] || [ $COMPREHENSIVE_TEST_RESULT -ne 0 ]; then
+  echo "\033[0;31mPost-commit tests failed!\033[0m"
+  exit 1
+else
+  echo "\033[0;32mAll post-commit tests passed!\033[0m"
+  exit 0
+fi

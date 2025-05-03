@@ -8,7 +8,9 @@
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "install-hooks": "./hooks/install-hooks.sh",
+    "test-episodes": "node ./tests/episode-checker.js"
   },
   "repository": {
     "type": "git",
@@ -32,6 +34,7 @@
   "devDependencies": {
     "@astrojs/mdx": "^4.2.6",
     "@playwright/test": "^1.52.0",
-    "astro": "^5.7.10"
+    "astro": "^5.7.10",
+    "puppeteer": "^24.8.0"
   }
 }

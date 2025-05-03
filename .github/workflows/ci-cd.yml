@@ -1,0 +1,77 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [main, test]
+  pull_request:
+    branches: [main, test]
+
+jobs:
+  test:
+    name: Build and Test
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Build project
+        run: npm run build
+      
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+      
+      - name: Build Docker image
+        run: docker-compose build
+      
+      - name: Install Puppeteer dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libgbm-dev libasound2
+      
+      - name: Install Puppeteer
+        run: npm install --save-dev puppeteer
+      
+      - name: Start Docker container
+        run: docker-compose up -d
+      
+      - name: Wait for container to be ready
+        run: sleep 10
+      
+      - name: Run basic Puppeteer tests
+        run: node ./tests/docker-build-test.js
+      
+      - name: Run comprehensive site tests
+        run: node ./tests/comprehensive-site-test.js
+      
+      - name: Stop Docker container
+        run: docker-compose down
+      
+      - name: Upload screenshots as artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-screenshots
+          path: tests/screenshots/
+          retention-days: 7
+  
+  deploy:
+    name: Deploy to Netlify
+    needs: test
+    if: success() && github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/test')
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Trigger Netlify build hook
+        run: curl -X POST -d {} https://api.netlify.com/build_hooks/6815aa2896ae6ddba51a8a30
+      
+      - name: Notify on success
+        run: echo "Successfully triggered Netlify deployment"
