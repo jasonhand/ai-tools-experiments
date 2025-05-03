@@ -1,8 +1,110 @@
-<h2>About</h2>
-<p>
-    Your host is Ryan MacLean, a developer with a passion for exploring new technologies. Ryan shares his learning process,
-    challenges, and discoveries as he navigates the rapidly evolving landscape of AI tools.
-</p>
-<p>
-    Connect with Ryan on <a href="https://www.linkedin.com/in/ryanmaclean/" target="_blank" rel="noopener noreferrer">LinkedIn</a>.
-</p>
+<main class="container about-section">
+    <div class="about-header">
+    </div>
+    
+    <div class="about-content">
+        <section class="about-section-block">
+            <h2>What is AI Tools Lab?</h2>
+            <div style="display: flex; align-items: center; gap: 30px;">
+                <div style="flex: 3;">
+                    <p>
+                        AI Tools Lab consists of 30-40 minute recorded technical demonstrations of hands-on (early or first) 
+                        experiences with AI-related tooling for developers. Each episode explores different aspects of 
+                        AI tools and their practical applications in software development.
+                    </p>
+                </div>
+                <div style="flex: 2; text-align: right;">
+                    <img src="/images/ai-tools-lab-logo.png" alt="AI Tools Lab" style="width: 250px; height: auto;">
+                </div>
+            </div>
+        </section>
+        
+        <section class="about-section-block">
+            <h2>Why AI Tools Lab?</h2>
+            <p>
+                Our goal is to help teams navigate the AI era by leading discussions, demos, and observations 
+                that are grounded in curiosity and honest experiences. By sharing these insights, we aim to 
+                be leaders, not laggers, through this technological transition.
+            </p>
+            <p>
+                What it means to be a developer is changing rapidly. Therefore, what it means to be a developer 
+                advocate is changing rapidly as well. Through AI Tools Lab, we explore these changes together.
+            </p>
+        </section>
+        
+        <section class="about-section-block">
+            <h2>Our Goals</h2>
+            <ol class="goals-list">
+                <li>
+                    <strong>Education and Exploration:</strong> To provide clear, concise technical demonstrations of AI tools, focusing on practical applications for developers.
+                </li>
+                <li>
+                    <strong>Honest Assessment:</strong> To offer grounded, real-world perspectives on the capabilities and limitations of these tools based on early experiences.
+                </li>
+                <li>
+                    <strong>Community Engagement:</strong> To foster discussion and share learning experiences within the developer community about navigating the AI landscape.
+                </li>
+                <li>
+                    <strong>Adaptability:</strong> To continuously explore new tools and techniques as the AI field evolves, keeping developers informed.
+                </li>
+            </ol>
+        </section>
+
+        <section class="about-section-block">
+            <h2>Structure of Each Episode</h2>
+            <ol class="structure-list">
+                <li>
+                    <strong>Introduction:</strong> Brief overview of the tool and the episode's focus.
+                </li>
+                <li>
+                    <strong>Demonstration:</strong> Hands-on walkthrough of setup, core features, and a specific use case.
+                </li>
+                <li>
+                    <strong>Observations:</strong> Discussion of findings, challenges, potential benefits, and limitations.
+                </li>
+                <li>
+                    <strong>Conclusion:</strong> Summary of key takeaways and potential next steps.
+                </li>
+            </ol>
+        </section>
+        
+        <section class="about-section-block feedback-section">
+            <h2>Feedback</h2>
+            <p>We value your input! Please share your thoughts, suggestions, or questions about AI Tools Lab.</p>
+            
+            <div class="feedback-form-container">
+                <form id="feedback-form" class="feedback-form">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required="">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required="">
+                    </div>
+                    <div class="form-group">
+                        <label for="tool">Tool Used</label>
+                        <select id="tool" name="tool">
+                            <option value="">Select a tool</option>
+                            <option value="gradio">Gradio</option>
+                            <option value="warp">Warp Terminal</option>
+                            <option value="cursor">Cursor</option>
+                            <option value="automatic1111">Automatic1111</option>
+                            <option value="claude-code">Claude Code</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="ai-tool-interest">What AI or LLM-related tool are you most interested in learning about?</label>
+                        <input type="text" id="ai-tool-interest" name="ai-tool-interest">
+                    </div>
+                    <div class="form-group">
+                        <label for="feedback">Feedback</label>
+                        <textarea id="feedback" name="feedback" rows="5" required=""></textarea>
+                    </div>
+                    <button type="submit" class="btn">Submit Feedback</button>
+                </form>
+            </div>
+        </section>
+    </div>
+</main>
