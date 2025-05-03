@@ -79,9 +79,11 @@ try {
 
     <div class="episode-content">
       <div class="video-container" role="button" aria-label="Watch video" style="cursor: pointer;">
-        <a href="#" target="_blank">
-          <img src={`/images/thumbnails/${slug}.png`} alt={`${title} Thumbnail`}>
-        </a>
+        {slug !== 'about' && (
+          <a href="#" target="_blank">
+            <img src={`/images/thumbnails/${slug}.png`} alt={`${title} Thumbnail`}>
+          </a>
+        )}
       </div>
 
       <h1>{title}</h1>
