@@ -48,6 +48,14 @@
 - [x] Organize files/folders more intuitively (e.g., move `transcript_epNN.html` to a dedicated `content/transcripts` folder).
   - Verified transcripts are already in `src/content/transcripts`.
 
+## Phase 2.5: Comprehensive Visual Verification (Local vs. Live)
+
+- [x] Verify Homepage (`/`) matches `ai-tools-lab.com`. (Layout/styles match, content count may differ)
+- [x] Verify About Page (`/about/`) matches `ai-tools-lab.com/about`.
+- [x] Verify Resources Page (`/resources/`) matches `ai-tools-lab.com/resources`. (Layout/styles match, content may differ)
+- [x] Verify Observations Page (`/observations/`) matches `ai-tools-lab.com/observations`. (Layout/styles match, content may differ)
+- [x] Verify Transcript Pages (`/pages/epNN/`) match `ai-tools-lab.com/pages/epNN` (Checked ep01, ep07, ep15).
+
 ## Phase 3: Final Review & Commit
 
 - [ ] Review all changes made.
