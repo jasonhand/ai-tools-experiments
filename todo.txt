@@ -51,10 +51,12 @@
 ## Phase 2.5: Comprehensive Visual Verification (Local vs. Live)
 
 - [x] Verify Homepage (`/`) matches `ai-tools-lab.com`. (Layout/styles match, content count may differ)
-- [x] Verify About Page (`/about/`) matches `ai-tools-lab.com/about`.
+- [x] Verify About Page (`/pages/about`) matches `ai-tools-lab.com/pages/about`. (Using dynamic route + about.html)
 - [x] Verify Resources Page (`/resources/`) matches `ai-tools-lab.com/resources`. (Layout/styles match, content may differ)
 - [x] Verify Observations Page (`/observations/`) matches `ai-tools-lab.com/observations`. (Layout/styles match, content may differ)
 - [x] Verify Transcript Pages (`/pages/epNN/`) match `ai-tools-lab.com/pages/epNN` (Checked ep01, ep07, ep15).
+
+Note: The file `src/pages/about.astro` appears obsolete and doesn't match the live site's `/pages/about` structure. It should be reviewed/removed during cleanup.
 
 ## Phase 3: Final Review & Commit
 
