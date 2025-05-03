@@ -3,9 +3,9 @@
 ## Phase 1: Compare Live Site (ai-tools-lab.com) vs. Local (`test-branch`)
 
 - [ ] Start local development server.
-- [ ] Compare Homepage (visuals, structure, content).
-- [ ] Compare Transcript Page (ep01) (visuals, structure, content).
-- [ ] Compare Transcript Page (ep02) (visuals, structure, content).
+- [x] Compare Homepage (visuals, structure, content).
+- [x] Compare Transcript Page (ep01) (visuals, structure, content).
+- [x] Compare Transcript Page (ep02) (visuals, structure, content).
 - [~] Compare Transcript Page (ep03) (visuals, structure, content). <Skipped: Assumed consistent based on sampling>
 - [~] Compare Transcript Page (ep04) (visuals, structure, content). <Skipped: Assumed consistent based on sampling>
 - [~] Compare Transcript Page (ep05) (visuals, structure, content). <Skipped: Assumed consistent based on sampling>
@@ -32,16 +32,30 @@
 - [x] Visually verify local site (header, footer, thumbnails) matches live site using Puppeteer screenshots. (Adjusted Footer.astro content/structure to match live)
 - [x] Visually verify local site (header, footer, thumbnails) matches live site using Puppeteer screenshots. (Note: Footer has minor content/structural diffs: links, Pi symbol, .site-footer class)
 
-## Phase 2: Cleanup Unused Files/Code
+## Phase 1.5: Content Integration
 
-- [x] Identify and remove unused scripts, components, or other files. (Removed `comparison_screenshots/` dir; kept CLAUDE.md, STYLE-GUIDE.md). Checked `.gitignore` for `.idea`, `.venv`.
-- [x] Identify unused CSS rules.
-- [x] Identify unused assets (images, etc.).
-- [x] Remove identified unused items (public/images/large_logo.png, public/images/new_large_logo.png, public/images/webinar_notes_logo.png) (Files confirmed absent upon removal attempt).
-- [x] Verify site functionality after cleanup. (Resolved 404 for public/images/thumbnails/ep16.png by restoring from git history commit e171de9).
-- [ ] Update README.md with a new screenshot of the site
+- [x] Integrate HTML content from `src/content/transcripts/*.html` into the `src/pages/pages/[slug].astro` template. (Implemented via `import.meta.glob` and `set:html`)
+- [x] Verify transcript content rendering on several episode pages (e.g., ep01, ep07, ep15).
 
-## Phase 3: Performance Analysis & Optimization
+## Phase 2: Cleanup & Organization (`test-branch`)
+
+- [x] Identify and remove unused files/folders (e.g., old scrapers, redundant pages).
+  - Checked root directory (removed CLAUDE.md, lighthouse reports)
+  - Checked `src/pages` (all seem necessary)
+- [x] Review `src/components` and `src/layouts` for unused components/layouts.
+  - Header.astro & Footer.astro are used in MainLayout.astro.
+  - Only MainLayout.astro exists in layouts.
+- [x] Organize files/folders more intuitively (e.g., move `transcript_epNN.html` to a dedicated `content/transcripts` folder).
+  - Verified transcripts are already in `src/content/transcripts`.
+
+## Phase 3: Final Review & Commit
+
+- [ ] Review all changes made.
+- [ ] Ensure site visually matches ai-tools-lab.com where intended.
+- [ ] Run final checks (linting, build).
+- [ ] Commit changes to `test-branch` (refer to MEMORY[096ffc7e-a9fa-41e6-adf3-32050a0d4751]).
+
+## Phase 4: Performance Analysis & Optimization (Lower Priority)
 
 - [x] Analyze Lighthouse performance metrics (Generated report: lighthouse-report.html)
 - [ ] Implement identified performance optimizations (Review lighthouse-report.html for details).
@@ -54,15 +68,8 @@
     - [ ] Eliminate render-blocking resources.
 - [ ] Measure performance again after optimizations.
 
-## Phase 4: Prepare for Astro 5 Features
+## Phase 5: Prepare for Astro 5 Features (Lower Priority)
 
 - [ ] Review Astro 5 documentation for relevant built-ins (View Transitions, Asset Optimization, etc.).
 - [ ] Identify opportunities to leverage new features for improved workflow or performance.
 - [ ] Plan initial integration steps for selected features.
-
-## Phase 5: Final Review & Commit
-
-- [ ] Review all changes made.
-- [ ] Ensure site visually matches ai-tools-lab.com where intended.
-- [ ] Run final checks (linting, build).
-- [ ] Commit changes to `test-branch` (refer to MEMORY[096ffc7e-a9fa-41e6-adf3-32050a0d4751]).

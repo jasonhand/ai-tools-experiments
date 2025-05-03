@@ -1,0 +1,134 @@
+---
+// src/pages/[slug].astro - Moved from src/pages/transcripts/
+import MainLayout from '../../layouts/MainLayout.astro';
+
+// Required for dynamic routes
+export async function getStaticPaths() {
+  try {
+    // Let's use the recommended import.meta.glob to get both path and content easily
+    const transcriptModulesMeta = import.meta.glob('../../content/transcripts/*.html', { query: 'raw', eager: true });
+
+    const paths = Object.entries(transcriptModulesMeta).map(([filePath, rawHtmlContent]) => {
+      // Extract slug from filename (e.g., '../content/transcripts/ep01.html' -> 'ep01')
+      // The filePath is the key in the object returned by import.meta.glob
+      // TEMPORARY: Remove 'pages/' prefix for build debugging
+      const slug = filePath.split('/').pop().replace('.html', '');
+      return {
+        params: { slug },
+        props: { rawHtmlContent } // Pass the raw HTML content object
+      };
+    });
+
+    // Debug: Log the generated paths
+    console.log('[getStaticPaths] Generated paths (using import.meta.glob):', JSON.stringify(paths, null, 2));
+    return paths;
+
+  } catch (error) {
+    console.error('[getStaticPaths] Error generating paths:', error);
+    // Return an empty array or re-throw, depending on desired behavior on error
+    return []; 
+  }
+}
+// Get the slug and the raw HTML content object passed via props
+const { slug } = Astro.params;
+const { rawHtmlContent } = Astro.props; // This is { default: '<html>...' }
+
+let title = slug; // Default title
+let bodyContent = ''; // Variable for extracted body content
+
+// Access the actual HTML string
+const htmlString = rawHtmlContent.default; 
+
+try {
+  if (typeof htmlString !== 'string') {
+    throw new Error('rawHtmlContent.default is not a string');
+  }
+  // Attempt to extract title from <title> tag if present in the HTML string
+  const titleMatch = htmlString.match(/<title>(.*?)<\/title>/i);
+  if (titleMatch && titleMatch[1]) {
+    title = titleMatch[1].trim();
+  }
+
+  // Attempt to extract content between <body> tags from the HTML string
+  const bodyMatch = htmlString.match(/<body[^>]*>([\s\S]*?)<\/body>/i);
+  if (bodyMatch && bodyMatch[1]) {
+    bodyContent = bodyMatch[1].trim();
+    // Basic fix for relative paths within the injected HTML:
+    // Replace ../ with / for root-relative paths assuming assets are in public/
+    bodyContent = bodyContent.replace(/\.\.\//g, '/');
+  } else {
+    // If body is missing, the raw content might be the body itself (less likely with full HTML files)
+    console.warn(`Could not find <body> tag in transcript for ${slug}. Displaying raw content.`);
+    bodyContent = htmlString; // Fallback to the full HTML string
+    // Attempt to create a title from the slug if none found
+    if (!titleMatch) {
+       title = `${slug?.replace('pages/','').replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase()) ?? 'Transcript'}`;
+    }
+  }
+} catch (error) {
+  console.error(`Error processing transcript content for slug ${slug}:`, error);
+  bodyContent = `<p style="color: red;">Error processing transcript content for ${slug}. Check console logs.</p>`;
+  title = `Error: ${slug}`;
+}
+
+---
+
+<MainLayout title={`${title} - Transcript`}>
+  <main class="container">
+    <a href="javascript:history.back()" class="back-link">← Back</a>
+
+    <div class="episode-content">
+      <div class="video-container" role="button" aria-label="Watch video" style="cursor: pointer;">
+        <a href="#" target="_blank">
+          <img src={`/images/thumbnails/${slug}.png`} alt={`${title} Thumbnail`}>
+        </a>
+      </div>
+
+      <h1>{title}</h1>
+
+      <div class="transcript-body-content">
+        <div set:html={bodyContent} />
+      </div>
+    </div>
+  </main>
+</MainLayout>
+
+<style is:global>
+  .back-link {
+    display: inline-block;
+    margin: 1rem 0;
+    color: #007bff;
+    text-decoration: none;
+  }
+  .back-link:hover {
+    text-decoration: underline;
+  }
+  .episode-content {
+    margin-bottom: 2rem;
+  }
+  .video-container {
+    position: relative;
+    margin-bottom: 1.5rem;
+  }
+  .video-container img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  }
+  .episode-content h1 {
+    margin-bottom: 1em;
+  }
+  .transcript-body-content p {
+    margin-bottom: 1em;
+    line-height: 1.6;
+  }
+  .transcript-body-content a {
+    color: var(--accent-color);
+    text-decoration: none;
+  }
+  .transcript-body-content a:hover {
+    text-decoration: underline;
+  }
+</style>
