@@ -9,5 +9,5 @@ export default defineConfig({
   },
   // Output directory remains 'dist' by default
   // Specify site URL for correct absolute path generation
-  site: 'https://ai-tools-experiments.netlify.app', // Updated with actual Netlify site URL
+  site: 'https://ai-tools-lab-tst.netlify.app', // Updated with test Netlify site URL
 });
