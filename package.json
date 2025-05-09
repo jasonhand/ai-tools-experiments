@@ -29,7 +29,7 @@
   "homepage": "https://github.com/jasonhand/ai-tools-experiments#readme",
   "dependencies": {
     "@datadog/browser-rum": "^4.31.0",
-    "astro": "^5.7.10",
+    "astro": "^5.7.12",
     "node-fetch": "^2.6.7",
     "puppeteer": "^24.8.2"
   },
