@@ -1897,14 +1897,16 @@ code {
         align-items: center;
         width: 100%;
         justify-content: flex-start;
-        padding-right: 50%;
+        padding-right: 0; /* Removed 50% padding */
         position: relative;
     }
     
-    .logo .site-logo {
-        display: block;
+    /* Hide logo on all mobile devices */
+    .logo .site-logo,
+    .site-header .logo .site-logo {
+        display: none !important; /* Hide logo on mobile with !important to override other rules */
         width: auto;
-        height: 100px; /* Doubled in size for mobile */
+        height: 100px; 
     }
     
     .logo a {
@@ -2252,15 +2254,19 @@ code {
     /* Smaller header elements for very small screens */
     .site-header {
         padding: 0;
-        height: 70px; /* Even smaller fixed height for the smallest screens */
+        height: auto; /* Allow header to adjust height */
+        padding-top: 10px; /* Add some padding */
+        padding-bottom: 10px; /* Add some padding */
     }
     
-    .logo .site-logo {
-        height: 65px; /* Sized to fit within the 70px header height */
+    /* Keep logo hidden on smallest screens */
+    .logo .site-logo,
+    .site-header .logo .site-logo {
+        display: none !important; /* Maintain hidden logo on smaller screens */
     }
     
     .logo a {
-        font-size: 2rem !important;
+        font-size: 1.2rem; /* Adjust font size for AI Tools Lab text */
     }
     
     .hamburger-menu {
@@ -2454,18 +2460,7 @@ code {
     }
     
     /* Adjust header on mobile */
-    .site-header {
-        padding: 1rem 0;
-    }
-    
-    .site-header .logo .site-logo {
-        width: auto;
-        height: 140px; /* Doubled in size for tablet/small devices */
-    }
-    
-    h2 {
-        font-size: 1.5rem;
-    }
+    /* Mobile styles moved to min-width: 769px media query */
 }
 
 /* Filter Container Styles */
@@ -2868,5 +2863,20 @@ main.container {
         font-size: 20px;
         top: 5px;
         right: 5px;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 991px) {
+    .site-header {
+        padding: 1rem 0;
+    }
+    
+    .site-header .logo .site-logo {
+        width: auto;
+        height: 140px; /* Doubled in size for tablet/small devices */
+    }
+    
+    h2 {
+        font-size: 1.5rem;
     }
 }
