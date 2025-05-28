@@ -1,0 +1,234 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+
+// Get all articles using the recommended import.meta.glob instead of Astro.glob
+const articleModules = await import.meta.glob('./articles/*.mdx', { eager: true });
+
+// Define article type based on the structure we need
+interface Article {
+  frontmatter: {
+    Title: string;
+    summary?: string;
+    HeroImg: string;
+    Date?: string;
+    Tags?: string[];
+    [key: string]: any;
+  };
+  url: string;
+  file: string;
+  // Include any other properties that might be used
+  [key: string]: any;
+}
+
+// Convert the modules to our Article type
+const articles: Article[] = Object.entries(articleModules).map(([path, module]: [string, any]) => {
+  return {
+    ...module,
+    file: path
+  } as Article;
+});
+
+// Sort by date (newest first)
+articles.sort((a, b) => 
+    new Date(b.frontmatter.Date || '').getTime() - new Date(a.frontmatter.Date || '').getTime()
+);
+
+// Get newest article for featured section
+const newestArticle = articles[0];
+
+// Extract all unique tags from articles
+const allTags = [...new Set(
+    articles.flatMap(article => 
+        article.frontmatter.Tags || []
+    )
+)];
+---
+
+<MainLayout title="Articles | AI Tools Lab">
+    <div class="filter-container">
+        <div class="container">
+            <div class="articles-filters">
+                <div class="filter-group index-filter-group">
+                    {/* <div class="tag-buttons">
+                        <button class="tag-filter active" data-tag="all">All Tags</button>
+                        {allTags.map((tag: string) => (
+                            <button class="tag-filter" data-tag={tag.toLowerCase()}>{tag}</button>
+                        ))}
+                    </div> */}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <main class="container">
+        <!-- Featured/Newest Article Section -->
+        <section id="featured-article">
+            <h2>Latest Article</h2>
+            <div class="featured-article-container">
+                <div class="featured-article-image">
+                    <a href={newestArticle.url}>
+                        <img src={newestArticle.frontmatter.HeroImg} alt={newestArticle.frontmatter.Title}>
+                    </a>
+                </div>
+                <div class="featured-article-content">
+                    <h3>{newestArticle.frontmatter.Title}</h3>
+                    <p>{newestArticle.frontmatter.summary}</p>
+                    <div class="featured-article-meta">
+                        <span class="article-date">{newestArticle.frontmatter.Date}</span>
+                        <div class="featured-article-tags">
+                            {newestArticle.frontmatter.Tags?.map((tag: string) => (
+                                <span class="tag">{tag}</span>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- All Articles Grid -->
+        <section id="articles">
+            <div class="articles-intro">
+                <h2>All Articles</h2>
+                <p>Browse through our collection of articles and insights.</p>
+            </div>
+            
+            <div class="article-grid">
+                {articles.map((article) => (
+                    <div class="article-card" data-category="article" 
+                         data-tags={article.frontmatter.Tags?.join(',').toLowerCase()}>
+                        <a href={article.url}>
+                            <div class="article-image">
+                                <img src={article.frontmatter.HeroImg} alt={article.frontmatter.Title}>
+                                {/* {article === newestArticle && <span class="featured-badge">Newest</span>} */}
+                            </div>
+                            <div class="article-card-content">
+                                {/* <h3>{article.frontmatter.Title}</h3> */}
+                                {/* <p>{article.frontmatter.Summary}</p> */}
+                                <div class="article-meta">
+                                    <span class="article-date">{article.frontmatter.Date}</span>
+                                    <div class="article-tags">
+                                        {article.frontmatter.Tags?.map((tag: string) => (
+                                            <span class="tag">{tag}</span>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                ))}
+            </div>
+        </section>
+    </main>
+</MainLayout>
+
+<style>
+    /* Styles similar to episodes but with article-specific classes */
+    #featured-article {
+        margin-bottom: 40px;
+        padding: 25px;
+        background: linear-gradient(145deg, #f0f7ff 0%, #e6f0ff 100%);
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0, 86, 210, 0.1);
+    }
+
+    .featured-article-container {
+        display: flex;
+        gap: 25px;
+    }
+
+    .featured-article-image {
+        flex: 0 0 40%;
+    }
+
+    .featured-article-image img {
+        width: 100%;
+        border-radius: 8px;
+    }
+
+    .article-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 30px;
+        margin-top: 30px;
+    }
+
+    .article-card {
+        background: white;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: transform 0.2s ease;
+    }
+
+    .article-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .article-image img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+    }
+
+    .article-card-content {
+        padding: 20px;
+    }
+
+    .article-meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 15px;
+    }
+
+    .article-tags {
+        display: flex;
+        gap: 8px;
+    }
+
+    .tag {
+        background-color: #0066cc;
+        color: white;
+        padding: 4px 10px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 500;
+    }
+
+    @media (max-width: 768px) {
+        .featured-article-container {
+            flex-direction: column;
+        }
+        
+        .featured-article-image {
+            flex: 0 0 100%;
+        }
+    }
+</style>
+
+<script>
+    // Tag filtering functionality
+    document.addEventListener('DOMContentLoaded', () => {
+        const tagButtons = document.querySelectorAll<HTMLButtonElement>('.tag-filter');
+        const cards = document.querySelectorAll<HTMLElement>('.article-card');
+
+        tagButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const tag = button.getAttribute('data-tag') || 'all';
+                
+                tagButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                cards.forEach(card => {
+                    const tags = card.getAttribute('data-tags') || '';
+                    if (tag === 'all' || tags.includes(tag)) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+    });
+</script>
+<script is:inline src="/scripts/script.js"></script>

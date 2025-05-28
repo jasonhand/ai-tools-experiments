@@ -1,0 +1,40 @@
+---
+import MainLayout from './MainLayout.astro';
+import EpisodeNavigation from '../components/EpisodeNavigation.astro';
+
+const { frontmatter, headings, url } = Astro.props;
+interface Heading { depth: number; text: string; }
+const pageTitle = headings.find((h: Heading) => h.depth === 1)?.text || 'Untitled';
+
+// Extract current episode number from url (e.g. "ep01" from "/episodes/ep01")
+const currentEpisode = url.split('/').pop() || '';
+---
+<MainLayout title={pageTitle}>
+    <main class="container">
+        <div>
+            <div class="episode-content">
+                <br />
+                <div class="video-container">
+                    <a href={`https://www.youtube.com/watch?v=${frontmatter.VideoID}`} target="_blank" rel="noopener noreferrer" class="youtube-link">
+                        <img src={frontmatter.HeroImg} alt={`Episode ${frontmatter.EpisodeNumber} Thumbnail`} />
+                        <span class="play-icon" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 0; height: 0; border-style: solid; border-width: 15px 0 15px 25px; border-color: transparent transparent transparent #6C756B; z-index: 10; opacity: 0.9;"></span>
+                    </a>
+                </div>
+                <article class="markdown-content">
+                    <h1>{frontmatter.Title}</h1>
+                    <slot />
+                </article>            
+            </div>
+        </div>
+    </main>
+    
+    <EpisodeNavigation currentEpisode={currentEpisode} />
+</MainLayout>
+
+<style>
+    .markdown-content {
+        max-width: 800px;
+        margin: 2rem auto;
+        padding: 0 1rem;
+    }
+</style>

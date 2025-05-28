@@ -1,0 +1,78 @@
+---
+layout: ../../layouts/EpisodeLayout.astro
+Title: "Exploring Bolt: Rapid App Development with AI-Powered Templates"
+Author: "jasonhand24@gmail.com"
+HeroImg: "../images/thumbnails/ep13.png"
+VideoID: "hc-hKcoP3Pw"
+EpisodeNumber: "13"
+Date: "2025-04-26"
+Description: "Explore Bolt, an AI-powered development tool that enables rapid app creation through templates and natural language prompts, perfect for prototyping and concept visualization."
+Tags: ["bolt", "ai-development"]
+---
+import TranscriptSection from '../../components/TranscriptSection.astro';
+
+# Summary
+
+In this conversation, Ryan MacLean and Jason Hand explore Bolt, a browser-based AI-powered development tool for quickly building web and mobile applications. Ryan demonstrates how Bolt enables developers to start with templates and build functioning apps through natural language prompts. The tool shines in its ability to create rapid prototypes or what has been termed "vibe coding" - allowing users to quickly visualize concepts before committing to deeper development. They examine a translation app Ryan built that converts English to Japanese text with Furigana pronunciation guides, highlighting both Bolt's capabilities and limitations. While the app encountered some implementation challenges, it demonstrated Bolt's strength in quickly exploring frameworks and approaches. The discussion compares Bolt to other AI coding tools like Cursor, Claude Code, and Windsurf, noting that Bolt is particularly effective for initial prototyping but users may want to download and transfer projects to more robust IDEs for production refinement.
+
+## Jump To
+
+- [Introduction and catching up on AI developments](https://youtu.be/hc-hKcoP3Pw?t=0)
+- [Reviewing previous conversations about AI coding tools](https://youtu.be/hc-hKcoP3Pw?t=60)
+- [Exploring the AI-tools-lab.com website features](https://youtu.be/hc-hKcoP3Pw?t=128)
+- [Introduction to Bolt and its template-based approach](https://youtu.be/hc-hKcoP3Pw?t=253)
+- [Building an app with Bolt using Astro framework](https://youtu.be/hc-hKcoP3Pw?t=360)
+- [Creating a Japanese translation app with Expo](https://youtu.be/hc-hKcoP3Pw?t=600)
+- [Troubleshooting API integration and translation features](https://youtu.be/hc-hKcoP3Pw?t=900)
+- [Demonstrating screenshot-based programming in Bolt](https://youtu.be/hc-hKcoP3Pw?t=1260)
+- [Exploring deployment options and Netlify integration](https://youtu.be/hc-hKcoP3Pw?t=1470)
+- [Discussion on security considerations for generated apps](https://youtu.be/hc-hKcoP3Pw?t=1710)
+
+## Resources
+
+- [Bolt Website](https://bolt.new) - The hosted version of the Bolt AI-powered development tool
+- [Bolt DIY (Open Source Version)](https://bolt.diy) - Free offline version that can connect to various AI models
+- [Expo Framework](https://expo.dev) - Mobile app development framework supported by Bolt
+- [Supabase](https://supabase.com) - Database solution mentioned in the discussion
+- [OpenRouter](https://openrouter.ai) - Service for accessing various AI models
+
+## Key Takeaways
+
+- Bolt provides a template-based approach to rapidly build web and mobile applications
+- It's particularly useful for prototyping and "vibe coding" - quickly visualizing concepts
+- The tool works with multiple frameworks including React, Next.js, and Expo
+- Users can download their code and continue development in their preferred IDE
+- While it may not be ideal for production-grade applications, it excels at exploration and prototyping
+- Screenshot-based programming allows for quickly recreating interfaces from images
+- Bolt offers both hosted and open-source versions for different use cases
+
+{/* TRANSCRIPT SECTION - Full conversation text with timestamps */}
+<h2>Full Transcript</h2>
+
+<TranscriptSection transcriptContent={`
+[00:00:00] **Jason Hand:** It's a Monday, so we're back at it with AI conversations.
+
+[00:00:02] **Ryan MacLean:** It. Yeah it's like the advancements of Gen AI seem to never sleep, unfortunately. So I did watch a little bit of news over the weekend, but I might have missed some announcements or something. I realized there's new chat g BT models that I've yet to play around with. I'm not sure if you have but I'm playing around with some other tools. I've been playing around with Bolt, which we'll get into in a little bit. But is it worth doing a recap of what we covered last week? Is that gonna work?
+
+[00:00:20] **Jason Hand:** Yeah, I think in general it's probably good for us to just touch on what we talked about in the previous week so yeah, what absolutely. What did we talk about?
+
+[00:00:30] **Ryan MacLean:** That's a good question 'cause I forgot. So let's pull it up here. So just to reiterate, this website that I'm showing now on the shared screen is ai hyphen tools hyphen lab.com. And then last week you can see that Jason uploaded the recording of last week. So we were talking about a little bit about Cursor Rules, some about Cursor Rules, and we were talking about the IDE landscape. And I, I feel like this is one of those soapboxes, I'm gonna keep carting out because there are a bunch of new IDEs or ways of working with code. This seems to be one of those. Gen AI I don't know if you'll say it's like a killer app, but it's pretty close. Like it actually does help quite a bit in terms of boilerplate coding, that kind of thing. And as a result, there are a lot of tools, and we've talked about a few of these now. So we've talked about Cursor. We talked about Claude Code, we talked about Windsurf, that there's a lot going on. We touched on MCP little bit, I believe. Yeah, a little bit prior to that as well. Hey. Yeah. Hey,
+
+[00:01:30] **Jason Hand:** you know what, I, you just gave me an idea. This might be a good time to actually point out a feature, a new feature of this website. Oh, sure. Yeah. What do you got? If you go to the observations, little bubble up in the top, oh shoot. Do I need to start adding stuff here? This is probably on me. Sorry. No, it'll, I feel like I just came up with one.
+
+[00:02:00] **Ryan MacLean:** My bad. We'll handle the display of Japanese characters in all the languages can also figure out if something has kanji and if it has kanji, if it needs Furigana. So that's all in the library, which is fantastic, which makes it easier for me. And again, it's not that this code is throwaway or anything like that, but the approach that it gave me, I think is more valuable than anything else. Now, so it gave us our plan here. So it says. Yeah. Now it's saying that we should move to Yarn, in fact whereas before we did not. And I think all we need to do is actually just start it. So I'll see if we can do that, is what it's actually recommending. We'll see if this works. Okay. And it's building our app. Let's see if the build works, which is what failed last time. If not, I can show an older preview. Okay. It didn't in fact work, but we'll go to the app that it built and I'll talk about what the problems are. Okay? So in this one. What it's using is an expert system, so it's got like a lookup table of English and Japanese values, and it'll pick one from the left and put on the right. So it would be like a, hi, my name is I believe. Is one of the ones that was pre-canned. Oh yeah. And now it's saying that it's, so some of the issues here are like, this toggle doesn't actually work, so it's still hitting OpenAI. The other thing that I noticed is that this dark mode wasn't working in the beginning, so I had to talk to it to get that working. But basically imagine a system here that will translate and give you a response kind of thing. It does look like it's failing right now. So...
+
+[00:03:00] **Ryan MacLean:** anyway, this is super, I do have you ever seen those word cloud kind of things? Now I'm not a big fan of that that visualization. 'cause I find it a little bit confusing to go through and do it. But even just having the top 10 topics you've talked about, because we have in fact talked about Python and APIs quite a bit. But maybe just in, in passing. And I wonder if it's worth me thinking about that in general now. Yeah. Looking at these as opposed to a hugging phase or like a warp terminal, like a product base. I wonder if there are some trends in here that I'm forgetting about. Cursor Rules is another one. Ones where we've got Windsurf rules and Cursor Rules, but I think guidelines for what we're doing are pretty interesting. Awesome. I like this.
+
+[00:04:00] **Jason Hand:** Yeah. Yeah. Anyway, just wanted to point that out 'cause Yeah I felt like you know it. Right now we're up to I think this is episode 13 or something, but. Assuming that we continue moving forward here, this, these numbers will continue to grow and there'll be just a lot of information on this site that's gonna be harder to find. Absolutely finding good ways to filter and sort and. Search. This is another thing too, I was thinking of when you, we were talking earlier about dictionaries. Yeah.
+
+[00:04:26] **Ryan MacLean:** Sorry. It came to mind as well. I completely forgot about, because this is important we're using a lot of words here that, that are new to at least new to me, and that this is ever evolving, emerging. It feels like I'm always learning something new and I just, I scroll by one here, cross country B laws, which I have not heard of, for example. I have, there are terms in here that, that are new to me for sure.
+
+[00:04:47] **Jason Hand:** Yeah. And to be completely transparent, I. Forget which model. Probably Sonnet 3.7 helped me put together this dictionary. Fantastic. I just basically asked it to put together a, entry level LLM dictionary that I can use. And anyway, that's where we're at on this. Yeah, I didn't mean to derail us there on just a little, you're good track of what we talked about last week, but but one of the things we did talk about, just briefly was Bolt, we threw something at it. In the IDE conversation, I know that you've got some more experience with Bolt than what we showed off there, right?
+
+[00:05:13] **Ryan MacLean:** Now I've been paying for Bolt for a minute At full disclosure. Somebody had asked me, I think maybe two months ago to look in sort of these new, what we call them I wanna say like a vibe coating, like recipe builder kind of thing. There's a few of them out there. There's Rep Lit, V zero and Bolt are the ones that I've been playing around with. Essentially, imagine an app where if you go in New Start Fresh, what you'd be doing is giving it like a quick prompt to build an app. Now I'm showing off this is like the, the cake that's already been baked, if you will. So we, we do have one that actually works, which is cool. But I'll, I think what I could do is just go into, if I can here, pull up the sidebar. Yeah, go ahead.
+
+[00:05:47] **Jason Hand:** For those of you who didn't see Bolt last week or see us, like it is a completely browser based online experience. Yes. It's not a, it's not a downloadable IDE.
+
+[00:05:55] **Ryan MacLean:** Yes. Sorry. This is full screen on a browser here. We'll see if I can. Pull this out. [00:06:00] So this is just on bolt.new. Once you get started it comes to this page here, and I think we might have mentioned a little bit about these little bubbles here. So what I was doing prior to today's meeting was I just went through this, build a mobile app with Expo. 'cause I've never heard of Expo before. In fact, this is the first time I've heard of the framework and I know it's gonna be JavaScript, people laughing, but honestly, I'd not heard of this at all. This not fresh to me.
+`} />

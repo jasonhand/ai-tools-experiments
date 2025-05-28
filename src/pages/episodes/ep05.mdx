@@ -1,0 +1,106 @@
+---
+layout: ../../layouts/EpisodeLayout.astro
+Title: "Using Claude Code for Automated HTML Updates and Styling"
+Author: "jasonhand24@gmail.com"
+HeroImg: "../images/thumbnails/ep05.png"
+VideoID: "5ovKpnUeCb8"
+EpisodeNumber: "5"
+Date: "2025-04-26"
+Description: "A demonstration of how Claude Code can automate HTML updates and apply consistent styling across a website, improving efficiency and maintainability."
+Tags: ["web-dev", "claude"]
+---
+import TranscriptSection from '../../components/TranscriptSection.astro';
+
+# Summary
+
+In this second part of Jason's exploration of Claude Code, he continues building his feedback form application that sends data to Datadog. After encountering CORS issues in the previous episode, Jason shows how Claude Code helped him implement a Node.js proxy server solution to bypass these limitations. He walks through the deployment process on Netlify, explaining how to configure environment variables to securely store the Datadog API keys. Jason demonstrates the completed application, showing how the form collects user feedback and successfully transmits it to Datadog's logs API. He highlights how Claude Code significantly simplified the development process, allowing him to create a functional web application with back-end components despite having limited coding experience. The episode showcases the potential of AI-assisted development tools to make coding more accessible.
+
+## Jump To
+
+- [Introduction to website updates using Claude Code](https://youtu.be/5ovKpnUeCb8?t=0)
+- [Demonstrating inconsistencies across episode pages](https://youtu.be/5ovKpnUeCb8?t=90)
+- [Starting a Claude chat to standardize page layouts](https://youtu.be/5ovKpnUeCb8?t=150)
+- [Claude examining HTML structure differences](https://youtu.be/5ovKpnUeCb8?t=270)
+- [Reviewing Claude's transcript navigation improvements](https://youtu.be/5ovKpnUeCb8?t=360)
+- [Adding episode navigation sections to page bottoms](https://youtu.be/5ovKpnUeCb8?t=450)
+- [Fixing container structure and spacing issues](https://youtu.be/5ovKpnUeCb8?t=570)
+- [Creating chapter markers for better video navigation](https://youtu.be/5ovKpnUeCb8?t=630)
+- [Renaming sections and updating links](https://youtu.be/5ovKpnUeCb8?t=720)
+- [Planning to split multi-video episodes and conclusion](https://youtu.be/5ovKpnUeCb8?t=780)
+
+## Resources
+
+- [Claude Code](https://claude.ai/claude-code)
+- [GitHub Repository for AI Lab Experiments](https://github.com/jasonhand/ai-tools-experiments)
+
+## Key Takeaways
+
+- Claude Code can efficiently update HTML/CSS without requiring manual coding
+- Using AI assistants for website maintenance saves significant time
+- Consistent styling across pages improves user experience
+- Adding proper navigation and chapter markers enhances content accessibility
+- Claude can read and understand complex HTML structures to make targeted changes
+- Website maintenance becomes conversational rather than technical when using AI
+
+{/* TRANSCRIPT SECTION - Full conversation text with timestamps */}
+<h2>Full Transcript</h2>
+
+<TranscriptSection transcriptContent={`
+[00:00:00] **Jason Hand:** Hello everyone. This is Jason Hand. I want to welcome you back to another video in a series I'm calling "AI Lab Experiments". If you haven't checked out the website that I've created to track all of these different AI tools and AI experiments, I recommend checking it out. I will be including a link in the description.
+
+[00:00:30] **Jason Hand:** But the purpose of this video is to literally just go into the website that I created, built the skeleton of it already, and then used Claude Code to make several updates to the website, such as making sure that the transcript sections are consistent.
+
+[00:01:00] **Jason Hand:** I wanted to make sure that episodes 2 and 4 matched episodes 1 and 3 in terms of the way they work. So let's take a look at the website and I'll show you the difference. Let me just open up my browser here. And the issue is that on the main site, I've got four different episodes, and each one has a different structure.
+
+[00:01:30] **Jason Hand:** If you look, for example, at episode 1, you can see that this is the transcripts section. There's a control area where there's a top and a bottom, and there's also a nice section that contains all of the transcript, and you can see the timestamps for everything. If I go to episode 2, it's a little bit different, and you can see we have the top button but we don't have the bottom button.
+
+[00:02:00] **Jason Hand:** And the full transcript just kind of appears. So we want to make episode 2 look like episode 1. So we need to make it consistent. And the same is true for episode 3. Let's look at episode 3. Episode 3 looks like episode 1. It's got the transcript navigation buttons. And then episode 4 looks more like episode 2. It's missing the buttons to control the experience.
+
+[00:02:30] **Jason Hand:** So I want to make them consistent and actually Claude code is the right tool for this. So I'm going to jump into Claude and ask Claude to help me out with this. Let me open my Claude chat. So here I am, I opened up Claude. I've started a new chat and I want to update my lab experiments website. Specifically, I need episode 2 and episode 4 to have a "transcript section" that matches episode 1 and episode 3.
+
+[00:03:00] **Jason Hand:** So I will be posting a link to the github repo soon, but first I want to give Claude a bit more information about what I'm looking for. So the transcript section of episode 1 and 3 includes a transcript navigation with controls. The transcript section of episode 2 and 4 is much more basic and doesn't have the controls. I'd like the transcript section of episode 2 and 4 to match the style of episodes 1 and 3.
+
+[00:03:30] **Jason Hand:** So I'm describing the differences between episodes 1 and 3 versus episodes 2 and 4 that we just saw. They all include a transcript but episodes 1 and 3 have better controls for navigating that transcript.
+
+[00:04:00] **Jason Hand:** OK so Claude understands the task. It needs to update the HTML for episodes 2 and 4 to include the transcript navigation controls that episodes 1 and 3 have. We need to give it a link to a GitHub repository where all of these files are stored. So I'll give it the GitHub repository URL so that it can actually see the actual files.
+
+[00:04:30] **Jason Hand:** So I've gone ahead and given Claude the link to the repository. Claude should be able to browse that repository and take a look at the code of these different episodes, and see where there are differences.
+
+[00:05:00] **Jason Hand:** Let's see, Claude is going to look at the HTML files for each episode. Claude will be able to see there's an ep01.html, an ep02.html, an ep03.html, and an ep04.html, each of which is the web page for each individual episode.
+
+[00:05:30] **Jason Hand:** So Claude has looked at episodes 1, episodes 3, episodes 2, and he's identified the differences, which are exactly what I described. Episodes 1 and 3 have a transcript navigation section with top and bottom buttons, while episodes 2 and 4 don't have these controls. So Claude is going to update the HTML of episodes 2 and 4 to include transcript navigation controls similar to what's in episodes 1 and 3.
+
+[00:06:00] **Jason Hand:** But Claude actually asked me a good question here, which is whether I want to include other formatting differences between the episodes. Episode 1 also has proper timestamp and speaker classes, while episode 2 doesn't consistently use those classes. Claude is offering to fix these inconsistencies as well. I'm going to say yes on all counts, make everything as consistent as possible.
+
+[00:06:30] **Jason Hand:** So now Claude is going to make the changes to episodes 2 and 4. Claude is going to update ep02.html first, then ep04.html after that. We should be able to see what changes Claude is making here.
+
+[00:07:00] **Jason Hand:** OK Claude has sent back the changes that have been made to ep02.html and ep04.html. So for episode 2, Claude has added the transcript navigation section with the top and bottom buttons and added the transcript CSS class wrapper, and made the timestamps consistent. Similarly for episode 4, Claude has added the transcript navigation controls and made sure all the timestamp and speaker classes are properly formatted.
+
+[00:07:30] **Jason Hand:** I'd like to also add a "navigation" section to the bottom of each episode page. So I'll ask Claude to help me out with this as well.
+
+[00:08:00] **Jason Hand:** Now adding episode navigation at the bottom of each page is a good idea, but Claude wants to know if I already have any CSS styles for this type of navigation. Claude checked the styles.css file and found some relevant styles that could be adapted, and has actually recommended a specific new class called episode-navigation. So I'll say the suggested styling looks good. Let's add the episode navigation section to all four episodes using the recommended styles. I like the idea of a container with a grid layout for the navigation.
+
+[00:08:30] **Jason Hand:** Claude is showing me the CSS it's going to add, which includes a new CSS class with rules for how the navigation section will look. I'm going to approve that. And now Claude's working on adding the navigation sections to each of the episodes, making sure that they link to the correct next and previous episodes.
+
+[00:09:00] **Jason Hand:** So Claude has now added a navigation section to each episode. For episode 1, there is no previous episode, so it just shows the next episode. For episode 2, it shows both the previous and next episode. For episode 3, it also shows both the previous and next episode. And for episode 4, there's no next episode, so it just shows the previous episode.
+
+[00:09:30] **Jason Hand:** It looks like the spacing looks a little bit off for the nav section on episode 2. I'm letting Claude know that the spacing looks incorrect. Everything else looks good. The rest of the episodes have the proper spacing.
+
+[00:10:00] **Jason Hand:** Oh I see the difference, actually. The transcript and navigation sections need to be inside main container, not outside of it. The issue is on line 92, we close the main container div, but we need to move that down to the section where it's after the transcript and navigation sections.
+
+[00:10:30] **Jason Hand:** OK so we've got the episode navigation sections done now. Let me think about what else we could have Claude fix for us. Actually, I want to ask Claude to give us chapter markers for episode 1. There's a transcript for episode 1, and I'd like Claude to go through that transcript and create a list of chapter markers, so that if somebody is watching the video, they know what parts to skip to.
+
+[00:11:00] **Jason Hand:** Let's do one final update to the website. Let's fix the first video link for episode 2. It's actually not the right URL. I'm going to tell Claude the new URL.
+
+[00:11:30] **Jason Hand:** I've let Claude know that the URL for the first video in episode 2 is the wrong URL. It's actually the YouTube URL to a different video. So Claude needs to update it. Claude is going to check what URL is currently being used and update it to the correct one. Claude is also going to update it in the image link as well as the video link.
+
+[00:12:00] **Jason Hand:** Let me think about whether there's anything else I want Claude to update. Let's remove "Claude Code" from the "Jason's List of Tools to Explore" section in the index.html file. And rename it to "Tools to Explore Yet".
+
+[00:12:30] **Jason Hand:** Let's read the beginning of the index.html file so I can see the structure of that section and how it needs to be update. Let's get a look at the index.html file.
+
+[00:13:00] **Jason Hand:** OK one final update I'd like to make. I'd like to split up the episodes that have more than one video. Having more than one video on an episode page is confusing. Episode 2 has 3 videos, and episode 4 has 2 videos. Let's create new pages for these, styled like the other ones.
+
+[00:13:30] **Jason Hand:** So now we're asking Claude to break up some of the more complicated episodes into individual video pages. Claude is going to look at the structure of the episodes, and break up episode 2 and episode 4. Specifically, we need to create a new page for the 2nd and 3rd videos from episode 2, and the 2nd video from episode 4.
+
+[00:14:00] **Jason Hand:** I need to step away from this task for today, but I'll pick it up again in our next chat. But I think you get a pretty good idea for how I've been using Claude Code to streamline the process of making updates on my AI Tools Experiments website. I've been able to make a number of updates to the pages, all without having to write a single line of code myself. Claude has understood the goals that I want to achieve, and has written the code to implement those changes. So thank you for watching, and I'll see you next time.
+`} />

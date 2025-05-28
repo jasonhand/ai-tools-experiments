@@ -1,0 +1,134 @@
+---
+layout: ../../layouts/EpisodeLayout.astro
+Title: "From GTC to Website Building with AI Tools"
+Author: "jasonhand24@gmail.com"
+HeroImg: "../images/thumbnails/ep09.png"
+VideoID: "IW9GjOzoFAw"
+EpisodeNumber: "9"
+Date: "2025-04-26"
+Description: "Insights from NVIDIA's GTC conference and how the latest AI advancements can be applied to website development using various AI tools and techniques."
+Tags: ["web-dev"]
+---
+import TranscriptSection from '../../components/TranscriptSection.astro';
+
+# Summary
+
+In this episode, Jason Hand and Ryan MacLean discuss their experiences at NVIDIA's GTC conference in San Jose, where over 25,000 attendees gathered for what they described as the 'Super Bowl of AI conferences.' They share insights from the conference, highlighting the shift from curiosity to practical implementation in the AI industry, with many attendees seeking guidance on production readiness, hallucination detection, and security concerns. Jason then demonstrates how he used Claude Code to create a website for their AI tools experiments project, complete with a feedback form that sends data to Datadog.
+
+## Jump To
+
+- [Introduction and catching up since GTC conference](https://youtu.be/IW9GjOzoFAw?t=0)
+- [Jason's experience attending 15+ sessions at GTC](https://youtu.be/IW9GjOzoFAw?t=120)
+- [Physical AI applications at GTC: robots and autonomous vehicles](https://youtu.be/IW9GjOzoFAw?t=240)
+- [Jason's experience at the Datadog booth and common concerns](https://youtu.be/IW9GjOzoFAw?t=360)
+- [Wallet attacks and API cost management concerns](https://youtu.be/IW9GjOzoFAw?t=480)
+- [Demonstrating the new website with feedback form](https://youtu.be/IW9GjOzoFAw?t=600)
+- [Discussing improvements to the Ignite Karaoke project](https://youtu.be/IW9GjOzoFAw?t=780)
+- [Showcase of the improved Vinyl Viewer application](https://youtu.be/IW9GjOzoFAw?t=840)
+- [Demonstrating the enhanced A Call of Cats adoption application](https://youtu.be/IW9GjOzoFAw?t=900)
+- [Wrapping up and plans for next episode](https://youtu.be/IW9GjOzoFAw?t=1020)
+
+## Resources
+
+- [Claude Code](https://claude.ai/code)
+- [Windsurf IDE](https://winder.ai/)
+- [Ignite Karaoke GitHub Repository](https://github.com/jasonhand/ignite-karaoke)
+- [Vinyl Viewer GitHub Repository](https://github.com/jasonhand/vinyl-viewer)
+- [Datadog](https://www.datadoghq.com/)
+- [NVIDIA GTC Conference](https://www.nvidia.com/en-us/gtc/)
+
+## Key Takeaways
+
+- The AI industry is shifting from curiosity to practical implementation, with GTC attendance growing to over 25,000 people
+- Many organizations are concerned with hallucination detection, security, and cost management as they move AI projects to production
+- Claude Code can efficiently help build websites and web applications with features like feedback forms and API integrations
+- AI tools like Claude Code can resolve long-standing bugs and improve UI/UX in existing projects
+- The concept of "wallet attacks" (competitors trying to exhaust your API quotas) is an emerging concern in AI deployment
+- Serverless functions can help overcome CORS limitations when building web applications that integrate with third-party APIs
+
+{/* TRANSCRIPT SECTION - Full conversation text with timestamps */}
+<h2>Full Transcript</h2>
+
+<TranscriptSection transcriptContent={`
+[00:00:00] **Jason Hand:** Hey Jason.
+
+[00:00:01] **Ryan MacLean:** Hey, how's it going?
+
+[00:00:02] **Jason Hand:** Not too bad. I wanna say it's been a minute, but yeah, I just saw you last week. Actually a couple days.
+
+[00:00:11] **Ryan MacLean:** It's been like five minutes or something. Yeah, a little bit longer. Not as long as it usually is. Good to see you again.
+
+[00:00:15] **Jason Hand:** For sure. Where were we last week? What were we doing again? Remind me, we,
+
+[00:00:18] **Ryan MacLean:** yeah, we went to San Jose, California for NVIDIA's GTC conference, the Super Bowl of AI conferences, as they liked to, to say often last week. Yeah, it was good. We.
+
+[00:00:31] **Jason Hand:** Go ahead. It felt like the Super Bowl. There were a lot of people there. It was fairly busy.
+
+[00:00:35] **Ryan MacLean:** I feel like I saw a different side of the conference that you did. I was at the booth for four days. Whereas I think you got to see some sessions, which is pretty interesting, but. It felt a lot bigger this year than last year, and a lot of the stories I heard of were people, boots on the ground trying to actually get stuff running, some experience, some dev stuff, some staging, a little bit of pride here and there. But yeah, it sounds like people are actually trying to get some work done now, which is awesome.
+
+[00:00:58] **Jason Hand:** Yeah. My, my take is same stuff. It's gotten bigger, I think there's 25,000 plus people there this year. They've expanded as you saw. They've opened up. Like the park in the middle of downtown San Jose and just blocked that all off. And that's where we would go for lunch or just to get outside. There was lines for all of the sessions, every session. I went to 15 different sessions over the week and there was, I always waited in a line of 30 minutes or more. It was a lot and a lot of people. And yeah, I needed the weekend to recover. I'm not sure I fully have, but I do have a lot of notes from stuff I need to go back and check out. To your point, I think there's more people doing more now. Last year, it seemed like a lot of looky-loos and just curious people like, like me and just trying to understand what are people doing, what are people experimenting with? And now people are actually building some really interesting things. The sessions I went to were all like high quality way, way much larger improvements than I expected from last year. There's a few dozens right from last year that I went to that I was like, that was a waste. And that didn't happen this year.
+
+[00:02:03] **Ryan MacLean:** Oh, that's fantastic.
+
+[00:02:04] **Jason Hand:** Yeah they were all really good. I met with some really great people some contacts and some friends at Nvidia that I only get to see there. So overall, yeah, it was a great week. We found, we, we went and had a good time at our favorite vegan vinyl restaurant. Absolutely place. And yeah, it's just a good good week of learning and soaking things up and now I gotta. Take my notes and try to do something interesting. Just could just coalesce all the knowledge together.
+
+[00:02:29] **Ryan MacLean:** Yeah.
+
+[00:02:29] **Jason Hand:** Now, one thing I did do is go around booths, looking around to see if there's anything there to be seen. There was, there were a lot of robots there, there were last year as well, but there were a lot of mechanical arms to do surgeries remotely and stuff like that. I think my favorite was that it was at the pebble flow, the the electric trailer thing that we saw.
+
+[00:02:47] **Ryan MacLean:** Yeah.
+
+[00:02:48] **Jason Hand:** I don't know, maybe it's because I could get inside of something and look around that. It was novel to me, but I thought that was pretty cool and I didn't expect to see vehicles at an event like this, but there were definitely test drives as well, which I thought was interesting.
+
+[00:02:59] **Ryan MacLean:** That was very cool actually. And I don't know if how this will work, but I'll, I'm switch to my desktop real quick, just 'cause I have gtc Oh, website up. But it's yeah, the, there was a lot of humanoid robots, just a lot of robotics in general. And autonomous vehicles. There were more different autonomous vehicles this year. And then to your point, the pebble which is this really neat camping trailer that has. It's a smart trailer essentially. And not only is it, electric and you can live off the grid and got some really cool features like that, but it'll also, it's got its own drive train, so it'll help with the driving and cut back on, the fuel efficiency. That it's, that something like that would be, sucking outta you. So yeah, it was a really cool, I wish I had the money for type of toy, but same thing. I think it was 170 5K was the one that we were looking at in US dollars. It was like Canadian. It's quite, it had that one feature though, that.
+
+[00:03:52] **Jason Hand:** What was it called? The smart hitch or magnetic hitch or something like that.
+
+[00:03:55] **Ryan MacLean:** Magic tow Magic hit magic Tow Magic. Could be magic hitch or something along those lines. But yeah, it just it'll, using the app, you can drive it and actually hitch onto your vehicle. Amazing. You can pivot it around so you can maneuver it into really tight spaces. So yeah. Different type of ai. I am sure, somewhere in that thing in the app least. But it was fun. It was a really cool little trailer thing.
+
+[00:04:16] **Jason Hand:** Definitely it feels like the apply the application of Gen AI to some of these topics, I think it's maybe when it's in the physical realm is obvious to me. And I guess spending most of the day with, chat bots or ides or APIs, it's nice to see some of this in the physical world. I, it's scary as some of the, remote procedure robots and stuff like that are, I think that is.
+
+[00:04:35] **Ryan MacLean:** Future, and these are early days, so it can only get better than where they are right now. And I did see somebody manipulating little little elastic bands, for example, with these tiny little oh yeah, manipulators, I guess they're called Surgical. Surgical manipulators. Yeah. It was very interesting to see someone just off the street with a, like a VR headset, just picking up a robotic arm and picking up this tiny little elastic band in flexing, I thought was pretty cool. Yeah, pretty impressive. And good to know that. You know that there's advancements like that, in medicine that are beneficial from a lot of this stuff. So I, I'm curious if there's any, you hung, you said you hung out at the booth quite a bit more and this year and was there any themes, any interesting conversations that came up at, at your time at the booth that you wanted to share with us?
+
+[00:05:20] **Jason Hand:** Obviously Datadog's got features and things like that. So as I'm going through them, some things will resonate with people more than others. The main one that, that we were talking about was hallucination detection. That seemed to strike a chord with a lot of people in terms of the non-deterministic way that an API or a large language model may answer. There were people asking about things like on-prem or air gap. So I think security also seemed to be a little bit of concern, either in the way that they're deploying things. Or in terms of what they're adding to the models or perhaps their clients may be using them for, there are only a few people talking about what they're doing in prod. A lot of them were a little bit hesitant in Devon staging in terms of what they had not being confident to push that into prod just yet. So they're in their experimental phase and they're worried I hate to use the word governance 'cause it's not that exciting. But in terms of on the backend, so you've deployed something, it seems to be working, and then what would those failure modes. B basically. So it's a fear of the unknown, maybe a bit of uncertainty and doubt in terms of what that would look like once it becomes in productionized, I hate to use this term, but once it becomes the production feature, what are those things of concern? One of them seems to be, I. Being able to make them deterministic, either via caching or a database or reg or what have you. The other is more around that security, so ensuring that there's no PII going into this system 'cause they don't want it. Two, that if it's being fine tuned that there's nothing coming out of it that might be sensitive. And then thirdly, just that security itself. So it, there, there were only a couple people talking about wallet attacks. So imagine you've got a competitor. On your chat bot just, typing in stuff in order to hit your backend API. So you get out a quota and then you have to downgrade your service, that kind of thing. But that came up as well as a bit of a concern is that a lot of these API calls if in the cloud may cost money, and as a result, the question is how do I. Stem or stop this flow basically of people coming in and maybe abusing my service or overusing my service that they're overzealous and what does that look like? How can I implement a quota system or find that one user and maybe slow down the API request rate that they got. But there were some interesting things that honestly, I hadn't thought of. 'cause that one came up and I hadn't thought of the a, a wallet attack kind of way, but it's more about rate limiting, at the end of the day. But there were quite a few concerns about, not how do I get started, but more like we, we have started, what do we need to know before we go into production basically? So again, I thought was fantastic. I think if that's the state of maturity that we're at after one year, that tells me that this is growing pretty fast. And I guess it, it tells you and I that the rationale for having a conversation like this is important because a lot of people are still learning on a regular basis and it's growing by leaps and bounds.
+
+[00:07:52] **Ryan MacLean:** Yeah. Yep. That was my experience too, and I know every time I came back by the booth after, in between sessions there was always a huge crowd. You were often there giving demos to like, usually one or two people and then two people behind them were also kinda looking over their shoulder and then two people were looking over their, it was trying to project a bit. Yeah. And I even hung out there off oftentimes if I couldn't get into a session, which happens because again, there's just so many people there. So I would come back and I got into a lot of good conversations and answering questions just 'cause there were so many people around. And, we were crammed in between Crew AI and Fiddler, and then there was like 11 labs and there's a lot of like notable, companies in the space right around us. And then you'll see somebody come up to us and it'll get, go one of two ways, either no Datadog, and they're like, what are you doing over here with all these tools? And what do you, and also what do you have to do about with ai? Tell me more. And then there's other people who, came up to me telling, saying that they. We'd love to work with us whenever we're ready for a round of funding. I just have no idea who we are and think we're over a small company over here with the startup. They thought we were series C or something yet. Yeah. Which was, it's fun. You get a lot of, you get a lot of interesting people coming to the booth.
+
+[00:09:00] **Jason Hand:** Definitely heard that and leading up to it. I think you had actually done a bunch of work, so we didn't have to do too much today. What did it seems like you've been very busy. Do you rest?
+
+[00:09:10] **Ryan MacLean:** It's like working out, you sometimes you can't, it can't always be leg day. You gotta have rest once in a while.
+
+[00:09:14] **Jason Hand:** That's true. That's true.
+
+[00:09:15] **Ryan MacLean:** Lately my hours have dipped, but I think a lot of that's 'cause it's, 'cause daylight saving has given us back more time and Right. Yeah. I'm just more productive this time of year. But yeah, I did before we went on. On our trip to out to San Jose for the conference I worked on a few things because we knew we were gonna be gone. We weren't trying to have an episode every week. That's just a thing we're trying to stick with. And I had some free time without, Ryan and I had, didn't have time to get together a bunch, but I had been able to go and play with a few tools on my own. Some things that we've already talked about Cursor, which was one episode that, we did. Couple weeks ago I've been playing around with Claude Code, which is another right really fun tool. And so I actually spent a lot of time using Claude code. And I'm gonna switch over to my de desktop here.
+
+[00:10:00] **Jason Hand:** Sure.
+
+[00:10:01] **Ryan MacLean:** The site looks way better.
+
+[00:10:03] **Jason Hand:** Yeah.
+
+[00:10:04] **Ryan MacLean:** So I used Claude code essentially to create a website for us. So if you remember previously we had the. The whole thing was on GitHub as far as what we're pointing people to, right? Here inside the AI tools experiments. This is just, whoops, runway. This is where we were gonna have everything, right? So I went ahead and I'm in the way here, but I went ahead and put in a link that just takes you to where did it go? Take Tuesday here now. And essentially what I've done is created an episode for every. Everything that we've done so far, and I think we were up to we went over automatic 1111 a couple weeks ago with when you are showing us some stuff and then really these next five I. The result of me some on the weekend, but some I did like in Fri like last Thursday and Friday, and I was on a roll and I just kept hitting and record with what I was doing. And so if you go back and look I'll just explain briefly what these are. This first one here is, you had Ryan suggested. When we were doing the automatic 1111 that we add a feedback form of some right. Of some type for every, everybody to like, just give us some feedback, give us some suggestions on what you'd like to hear. So that got me thinking like, how can I add a feedback form? And I decided I, we, I need a website to put that feedback form on. So what this video does is we'll take you and I've got it on YouTube. It's unlisted. But it'll take you to the video here. If you click on the image and it'll. Basically walk you through what I did to create this website. And a lot of it's just HH TM L, JavaScript, CSS, nothing really fancy going on, and my intention was to make it a GitHub page. But the problem is, in order to do, down here at the very bottom is the feedback form that I added. And in order to do a feedback form, there's. There's some, things you have to consider in terms of where it's hosted and it's not exactly, I don't know if it's completely infeasible or unfeasible, whatever the word is to do it. But it's more difficult to set up a, for something that submits a. Feedback from a GitHub page, right? And I ran into those problems. I expected I'd run into those problems, but I wanted to see how Claude would handle it. And so eventually we it suggested a pivot that we make this site a little bit more advanced and we go ahead and deploy it onto Netlify with a proxy server that can handle our cores. Communication. So sending, sending stuff, cross scripting stuff is basically what it's trying to prevent you from doing. And so it cloud code helped me write a little serverless function that I added to my repo that has everything with the website, stuff that Claude also helped, cloud Code helped me reach write. And then I deployed it in net into Netlify after a little bit of back and forth with a few minor errors in the in the build and deployment process. We. Finally got it working works great. And the feedback form is, as you can see, it's nothing fancy. In fact, okay, I need to add some more fields and make it a little bit more helpful. I just wanted it to be functional at this point, right? But what I've got happening is you can put in your stuff here if I can remember my email address and talk at the same time. It's always video trying to type and talk. Okay. Yeah. And so we're talking about cloud code here and I don't know, we'll say something new and when I hit submit here you get, we get a little feedback thing here from Chrome, but otherwise, you don't know what happened here. What I did just for funsies, honestly, and to see if you could do it, which is why I do a lot of things. I had it sending that feedback, that form data over into Datadog.
+
+[00:13:49] **Jason Hand:** Oh, gotcha.
+
+[00:13:49] **Ryan MacLean:** So I can actually see it in, lemme see if I can pull up Datadog here. But we can let's see. Do I have, are you sending this like a metric, like form created plus one or just a a custom log, basically.
+
+[00:14:01] **Jason Hand:** Oh, a log. Okay. Gotcha. Yep.
+
+[00:14:03] **Ryan MacLean:** And. And then presumably going through, you could gr these logs or reject them or something like that.
+
+[00:14:11] **Jason Hand:** Yeah I haven't quite got to that because we're not getting any feedback in, and I haven't just wanted to, I sorry. Write some feedback on those one to one, Pump on all that stuff here. But yeah, ideally I'll be able to go in and start to see all that stuff. And actually here, I'll switch to my screen now that I can show it. So yeah, in Datadog here I can see the. Like again, there's not much coming over. Yeah. So can js on so we can parse it out. That's pretty cool. Yeah. Add more fields in here, but then to your point, I think I could set up some monitoring or some alerting or maybe even a workflow to have something else happen, maybe to let me know that some feedback came in or Right. To sign for a mailing list or something.
+
+[00:14:50] **Ryan MacLean:** Something dubious.
+
+[00:14:52] **Jason Hand:** Yeah. Oh yeah. I dunno about that. But but yeah, something along those lines, just to make it, it's a little bit more interactive for me, so I don't just have to go into the dashboard and look to see if we've got feedback right. But that was, all just off your idea to add a feedback form. Then I got to thinking I, I think I need a website, like a proper website, not just a GitHub page, but I need a real website unless, this is the other thing. I could have just done a Google form or of course, there's a million other form deployments out there, but like that, where's the fun in that, and I'm always looking for some ways to like. Do something weird with Datadog, just like abuse the platform in fun ways. Maybe abuse is not the right word, but use it in ways. Leverage, it wasn't intended to be a form submission tool. Novel usage.
+
+[00:15:33] **Ryan MacLean:** Yeah, for sure. Yeah, exactly. Novels may be better, but yeah, so did that. And then that was that first episode that I recorded and in the next ones I basically went through. All of the projects that I've worked on. If I go back into my into my GitHub, a lot of these projects that I have down here for example, the vinyl viewer one. Which is just a way for me to view my vinyl record collection. As well as the Ignite Karaoke one, which is one I built for the team. And then decided to just make out, put out there. And then this last one here, this it's pronounced. A little weird but yes, he tell you a call of cats.
+
+[00:16:12] **Jason Hand:** Yeah, it's hard. Exactly. And especially if you can't see my mouth. But anyway I think everybody who owns a cat knows what it says. So that's another project that I decided to go back and see if I could improve upon all of those to some degree. And like under an hour, 40 minutes or so. And so I went and did that. And I wanna show you a few of the things, of course that, that I did. So back on my desktop here in, in my website, first of all, I like updated my website also the same way, one of one of those videos. Thank you. One of those videos helped me do some cleanup here, including just talking to cla Claude saying, Hey, I wanna add a bunch of new links up at the top. And it just helped me, get through that in much faster. Let me go through the ones that, that I just mentioned off so that Ignite karaoke. One, I don't know, Ryan, if you remember this tool.
+
+[00:16:57] **Ryan MacLean:** I sure do. Yeah.
+
+[00:16:58] **Jason Hand:** But the, this tool lets you play Ignite Karaoke with, whoever your team, your friends, and forever when I first made it up here at the very top, this is supposed to be like a fire flame here. Best you can do in CSS. But there was this huge gap up there and it bugged me and I couldn't figure out how to get rid of it. So I decided to ask Claude code to try to help me. Sort that out. And like within five minutes I had this thing finally like bug free in terms of the things up there that were bothering me. So that was a real quick win that I've been sitting on this for a year, I think, or something like that is the last time I went in here and tried to solve for that. So anyway, it was fun to just go in and I'm stalling here to let all these images go by of course. But it was fun to go through and revisit this project 'cause I feel, and then put it back on my website because I feel like now it is a little bit more complete.
+`} />

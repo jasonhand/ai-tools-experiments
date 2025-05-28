@@ -1,0 +1,66 @@
+---
+layout: ../../layouts/EpisodeLayout.astro
+Title: "Exploring Llama 4, OpenRouter, and Model Comparison Tools"
+Author: "jasonhand24@gmail.com"
+HeroImg: "../images/thumbnails/ep11.png"
+VideoID: "DkooO8M0Xn8"
+EpisodeNumber: "11"
+Date: "2025-04-26"
+Description: "A hands-on exploration of Meta's Llama 4 model and its massive context window, along with testing various AI models using comparison platforms like OpenRouter and LM Arena."
+Tags: ["cursor", "ml-models", "productivity"]
+---
+import TranscriptSection from '../../components/TranscriptSection.astro';
+
+# Summary
+
+In this episode, Jason and Ryan explore the freshly released Llama 4 model from Meta, which was just released over the weekend. They dive into its capabilities, testing it on Hugging Face, and discuss its groundbreaking 10+ million token context window. The conversation covers whether such a massive context window might eliminate the need for RAG (Retrieval Augmented Generation) and how it could simplify prompt engineering by allowing for more detailed system prompts and guardrails. They also explore two model comparison platforms—OpenRouter and LM Arena—which allow users to test and compare different AI models side by side. During their exploration, they discover a lesser-known model called LunarCall that surprisingly outperforms others on a specific test. This episode provides valuable insights into the rapidly evolving landscape of AI models and practical tools for comparing their performance.
+
+## Jump To
+
+- [Introduction and discussion about Llama 4's weekend release](https://youtu.be/DkooO8M0Xn8?t=0)
+- [Exploring Llama 4 on Hugging Face](https://youtu.be/DkooO8M0Xn8?t=60)
+- [Discussion about Llama 4's 10+ million token context window](https://youtu.be/DkooO8M0Xn8?t=120)
+- [Benefits of large context windows for guardrails and PRDs](https://youtu.be/DkooO8M0Xn8?t=240)
+- [Testing Llama 4 with basic questions](https://youtu.be/DkooO8M0Xn8?t=300)
+- [Testing Llama 4 with specific knowledge questions](https://youtu.be/DkooO8M0Xn8?t=480)
+- [Introduction to model comparison tools: OpenRouter](https://youtu.be/DkooO8M0Xn8?t=900)
+- [Introduction to LM Arena for model comparison](https://youtu.be/DkooO8M0Xn8?t=1260)
+- [Comparing models on music knowledge](https://youtu.be/DkooO8M0Xn8?t=1380)
+- [Discovering LunarCall, a surprising new model](https://youtu.be/DkooO8M0Xn8?t=1440)
+
+## Resources
+
+- [Llama 4 on HuggingFace](https://huggingface.co/meta-llama/Meta-Llama-3-8B-Instruct) - Try Meta's latest language model
+- [OpenRouter](https://openrouter.ai/) - Platform for comparing and routing between multiple AI models
+- [LM Arena](https://lmarena.ai/) - Interactive tool for blind comparison testing of language models
+- [DeepSeek](https://deepseek.ai/) - AI model mentioned in the episode comparisons
+
+## Key Takeaways
+
+- Llama 4 features a massive 10+ million token context window, potentially revolutionizing how we work with large documents and complex instructions
+- Despite large context windows, RAG (Retrieval Augmented Generation) remains valuable for cost efficiency and performance optimization
+- Expanded context windows enable more comprehensive guardrails and detailed system prompts in production applications
+- Even the latest AI models still struggle with certain types of knowledge, particularly specialized programming techniques and niche factual information
+- AI hallucinations remain a concern, particularly for factual questions, as demonstrated by the incorrect musician information
+- Tools like OpenRouter and LM Arena provide valuable ways to compare different models for specific use cases
+- Model comparison can reveal surprising results, such as lesser-known models (like LunarCall) outperforming more established ones on certain tasks
+- The AI model landscape is evolving extremely rapidly, with new models being released at an unprecedented pace
+- Blind testing through platforms like LM Arena helps eliminate bias when evaluating model performance
+- The increasing size of training corpora is gradually improving factual knowledge, but specialized domains still present challenges
+
+{/* TRANSCRIPT SECTION - Full conversation text with timestamps */}
+<h2>Full Transcript</h2>
+
+<TranscriptSection transcriptContent={`
+[00:00:00] **Jason Hand:** Hey, Ryan. What's up? 
+
+[00:00:03] **Ryan MacLean:** Not much. It feels like it's just been a little while this time. Only like a couple days. Yeah, three days. 
+
+[00:00:10] **Jason Hand:** It's Monday and we just did this on Friday, but this is good. This is, we're staying on top of things. This is the important thing. 
+
+[00:00:15] **Ryan MacLean:** Yeah, on that note, like I, I thought I was doing good watching the news during the week, but I didn't think there was going to be a model dropped over the weekend. Yeah, Saturday seems like a, an odd day for me at least to drop a big model, that kind of stuff. Here we are.
+
+[00:00:30] **Jason Hand:** It's been at least 24 hours, so something big has definitely happened in the news of AI. So yeah, LLama 4 is indeed is the thing that just came out that we just spoke right before we hit record. And we thought we would just talk a little bit about Llama 4 since it just came out and some of the tools that are. I have been on our list of things to look at a little bit closer. Some of 'em allow us to compare some different models and so maybe we'll do something like that. And keep it a little bit more on the briefer side for today's recording.
+
+[00:00:60] **Ryan MacLean:** Yeah, sure thing. So I'll share my screen first. I will admit that I know some about this model just because of, watching YouTube, that kind of stuff. But it's really new. So I, I assume that I could just, turn on a Lama and add it. And of course it's only been a couple days, so it's, it hasn't been added yet. It is however hosted on Hugging Face. And if you've not been to Hugging Face before, it's I don't wanna say a model repository 'cause it's a lot more than that. And we talked a little bit about Gradio before, which kind came out of Hugging Face. So this interface should look very similar to what I've been demoing in a couple earlier sessions.
+`} />

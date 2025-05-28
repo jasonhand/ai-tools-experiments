@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cursor Rules, Firebase Studio, and the Evolving IDE Landscape</title>
+    <meta name="description" content="Explore the importance of AI Cursor Rules, Google's Firebase Studio cloud IDE, and the evolving landscape of AI-powered development environments.">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Cursor Rules, Firebase Studio, and the Evolving IDE Landscape">
+    <meta property="og:description" content="Explore the importance of AI Cursor Rules, Google's Firebase Studio cloud IDE, and the evolving landscape of AI-powered development environments.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://aitoolslab.com/pages/ep12.html">
+    <meta property="og:image" content="../images/ai-tools-lab-logo.png">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="../images/ai-tools-lab-logo.png" type="image/png">
+    <link rel="shortcut icon" href="../images/ai-tools-lab-logo.png" type="image/png">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../styles.css">
+    <!-- Using fonts defined in main styles.css -->
+    
+    <!-- Datadog RUM -->
+    <script
+        src="https://www.datadoghq-browser-agent.com/us1/v4/datadog-rum.js"
+        type="text/javascript">
+    </script>
+    <script>
+        window.DD_RUM && window.DD_RUM.init({
+          clientToken: 'pub0faaa2dd80abac8a43536a42ad1de2ad',
+          applicationId: '6ef0b8bc-0ec9-4e52-a362-28042addf0ed',
+          site: 'datadoghq.com',
+          service: 'ai-tools-lab',
+          sessionSampleRate: 100,
+          sessionReplaySampleRate: 20,
+          defaultPrivacyLevel: 'mask-user-input',
+        });
+    </script>
+</head>
+<body>
+    <header class="site-header">
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="container">
+            <div class="logo">
+                <img src="../images/ai-tools-lab-logo.png" alt="AI Tools Lab Logo" class="site-logo">
+                <a href='/pages/' style='font-size: 1.6rem;'>AI Tools Lab</a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href='/pages/'>Home</a></li>
+                    <li><a href='/pages/resources'>Resources</a></li>
+                    <li><a href='/pages/observations'>Observations</a></li>
+                    <li><a href='/pages/about'>About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main class="container">
+        <div class="video-container">
+            <a href="https://youtu.be/EursDsj4dCk" target="_blank">
+                <img src="../images/thumbnails/ep12.png" alt="Episode 12 Thumbnail">
+            </a>
+        </div>
+
+        <div class="episode-content">
+            <h1>Cursor Rules, Firebase Studio, and the Evolving IDE Landscape</h1>
+            
+            <p>In this episode, Jason Hand and Ryan MacLean explore two key topics in AI development workflows: the importance of Cursor Rules in AI-powered IDEs and Google's new Firebase Studio. They begin with a recap of their previous discussion on LLAMA 4 and model comparison tools like LM Arena. The conversation then shifts to the critical role of Cursor Rules and project requirement documents in AI coding environments like Cursor and WindSurf, highlighting how these help combat "AI amnesia" by preserving context between sessions and reducing repetitive instructions. They discuss different approaches to maintaining context, including ChatGPT's memory features versus explicit Cursor Rules, and how developers are finding solutions to the "Don't Repeat Yourself" challenge when working with AI.</p>
+            <p></p><br>
+            <p>In the second part, they explore Firebase Studio, a newly announced cloud-based IDE from Google that integrates with Gemini models. They test its capabilities by importing an existing project—a simple dog breed viewer app—and discuss the interface, API key management, and potential use cases. They compare Firebase Studio with similar offerings from Microsoft (Azure AI Studio) and Amazon (Bedrock Studio), noting that cloud providers are increasingly building their own AI-powered development environments. Throughout their exploration, they reflect on important considerations for developers, including security practices, the need for proper monitoring, and the balance between ease of use and deliberate planning in AI application development.</p>
+            
+            <h2>Jump To</h2>
+            <ul class="chapter-markers">
+                <li><a href="https://youtu.be/EursDsj4dCk?t=0" target="_blank">🕒</a> Introduction and recap of previous LLAMA 4 discussion</li>
+                <li><a href="https://youtu.be/EursDsj4dCk?t=60" target="_blank">🕒</a> Updates to the AI Tools Lab website</li>
+                <li><a href="https://youtu.be/EursDsj4dCk?t=180" target="_blank">🕒</a> Introduction to the importance of Cursor Rules in AI tools</li>
+                <li><a href="https://youtu.be/EursDsj4dCk?t=240" target="_blank">🕒</a> Comparing Cursor and WindSurf approaches to context management</li>
+                <li><a href="https://youtu.be/EursDsj4dCk?t=300" target="_blank">🕒</a> Discussion of "AI amnesia" and the DRY principle</li>
+                <li><a href="https://youtu.be/EursDsj4dCk?t=420" target="_blank">🕒</a> Repositories of Cursor Rules and Simon Wardley's contributions</li>
+                <li><a href="https://youtu.be/EursDsj4dCk?t=720" target="_blank">🕒</a> Introduction to Google Cloud Next and Firebase Studio</li>
+                <li><a href="https://youtu.be/EursDsj4dCk?t=840" target="_blank">🕒</a> Exploring the Firebase Studio interface</li>
+                <li><a href="https://youtu.be/EursDsj4dCk?t=1440" target="_blank">🕒</a> Comparing cloud provider AI development environments</li>
+                <li><a href="https://youtu.be/EursDsj4dCk?t=2460" target="_blank">🕒</a> Conclusion and preview of future topics</li>
+            </ul>
+            
+            <h2>Resources</h2>
+            <ul>
+                <li><a href="https://firebase.google.com/products/studio" target="_blank">Firebase Studio</a> - Google's new cloud-based IDE powered by Gemini</li>
+                <li><a href="https://cursor.sh/" target="_blank">Cursor</a> - AI-powered code editor with support for Cursor Rules</li>
+                <li><a href="https://www.windsurf.io/" target="_blank">WindSurf</a> - Another AI-powered IDE with context management features</li>
+                <li><a href="https://blog.gardeviance.org/" target="_blank">Simon Wardley's Blog</a> - Resources on effective rule creation for AI tools</li>
+                <li><a href="https://genkit.dev/" target="_blank">GenKit</a> - Google's TypeScript toolkit for AI-powered web applications</li>
+                <li><a href="https://bolt.new/" target="_blank">Bolt</a> - App building platform mentioned for future exploration</li>
+            </ul>
+            
+            <h2>Key Takeaways</h2>
+            <ul class="takeaways">
+                <li>Cursor Rules and project requirements documents (PRDs) are becoming essential for maintaining context in AI-assisted development</li>
+                <li>Tools like Cursor and WindSurf implement Cursor Rules differently, but both recognize their importance in combating "AI amnesia"</li>
+                <li>Creating rule files can feel like toil, but they dramatically improve the quality and consistency of AI-generated code</li>
+                <li>Major cloud providers (Google, Microsoft, Amazon) are each developing their own AI-powered development environments</li>
+                <li>Firebase Studio integrates with Google's Gemini model to provide code analysis, suggestions, and other AI-powered features</li>
+                <li>API key management and security are crucial considerations when working with AI development environments</li>
+                <li>The "don't repeat yourself" (DRY) principle from traditional software development is being extended to interactions with AI assistants</li>
+                <li>Different AI tools have different approaches to preserving context - ChatGPT uses memory features while Cursor uses explicit Cursor Rules</li>
+                <li>Cloud-based IDEs offer advantages for collaboration but require careful attention to security practices</li>
+                <li>AI tools are increasingly building in "getting started" prompts to help users understand capabilities</li>
+            </ul>
+            
+            <h2>Full Transcript</h2>
+            <div class="transcript-navigation">
+                <button class="transcript-control" onclick="document.querySelector('.transcript').scrollTop = 0">Top</button>
+                <span>Scroll or use controls to navigate</span>
+                <button class="transcript-control" onclick="document.querySelector('.transcript').scrollTop = document.querySelector('.transcript').scrollHeight">Bottom</button>
+            </div>
+            
+            <div class="timestamp-note" style="background-color: #f0f7ff; padding: 10px; margin: 10px 0; border-radius: 5px; border-left: 4px solid #0066cc;">
+                <strong>💡 Tip:</strong> Click on the 🕒 icons above or timestamps in the transcript below to jump to that point in the YouTube video.
+            </div>
+            
+            <div class="transcript">
+                <pre>
+<span class="transcript-timestamp"><a href="https://youtu.be/EursDsj4dCk?t=0" target="_blank">🕒</a></span> <span class="transcript-speaker">Jason Hand:</span> Hey Ryan, how's it going? 
+
+<span class="transcript-timestamp"><a href="https://youtu.be/EursDsj4dCk?t=1" target="_blank">🕒</a></span> <span class="transcript-speaker">Ryan MacLean:</span> Not bad at all. How you doing? 
+
+<span class="transcript-timestamp"><a href="https://youtu.be/EursDsj4dCk?t=2" target="_blank">🕒</a></span> <span class="transcript-speaker">Jason Hand:</span> Think I'm good. I'm good. And ready to jump back into it. Talk about AI again.
+
+So anyway, we were talking before we got going here and. We thought it might make sense to do a little bit of ,a review of what we chatted about last week, last time, and so here on the site, which if you haven't visited the site recently you'll notice there's been a little bit of polishing some upgrades to. The interface here and try to make it a little bit easier to find and sort things you'll see at the top here is there's just some filters to be able to browse and discover things a little bit easier.
+
+We have added also in the resources. It's got similar type of thing. With the filters and all that, and I've got some stuff I've got I need to add in here. I'll do that here after we're done. Because we're gonna be, we're gonna be talking about one of those here. But anyway, last week we chatted about LAMA four that had just come out over the weekend.
+
+And so we gave that a little test drive and shared our [00:01:00] experience there. And then we also jumped over into a couple different. Tools that we've discovered that help you compare models? I think both of us mentioned, our cynicism around baselines. And in fact, I think there's some drama around LAMA four and it's baseline.
+
+There is in fact some drama 
+
+<span class="transcript-timestamp"><a href="https://youtu.be/EursDsj4dCk?t=67" target="_blank">🕒</a></span> <span class="transcript-speaker">Ryan MacLean:</span> around LAMA four and maybe some other versions of LAMA that were released as well in terms of just lineage, I think is the main thing they're arguing about right now. 
+
+<span class="transcript-timestamp"><a href="https://youtu.be/EursDsj4dCk?t=82" target="_blank">🕒</a></span> <span class="transcript-speaker">Jason Hand:</span> Yeah. But anyway, you can still, compare different models pretty easily.
+
+And we found llama, what was it? The LM Arena was right, was the one that we looked at that was really a blind test. And it we gave it the Molly Tuttle test and it actually, both models came back correct. But at the end of the day, I chose one that we had never heard of before.
+
+Over DeepSeek-R1 and I still haven't gone back to really look into that one, but that one was LunarCall. Was that, 
+
+<span class="transcript-timestamp"><a href="https://youtu.be/EursDsj4dCk?t=109" target="_blank">🕒</a></span> <span class="transcript-speaker">Ryan MacLean:</span> I think it was in fact LunarCall. All one word. 
+
+<span class="transcript-timestamp"><a href="https://youtu.be/EursDsj4dCk?t=112" target="_blank">🕒</a></span> <span class="transcript-speaker">Jason Hand:</span> Yeah. So I know I've gone back and watched the video of of last week and we at the end of the video are both left speechless and [00:02:00] little dumbfounded indeed on what was that LunarCall.
+
+So anyway, fun, interesting stuff, but go back and watch that episode. And get caught up on, on some of the things that we've been looking at. And we're definitely gonna do more deeper dives into some of the stuff. In fact Cursor is one, one that we've already looked at quite a bit.
+
+It's a tool that we're using, been given sort of the green light to experiment with different ways on how it can help us and, there's been a really interesting conversation going on in our internal team, slack channel that Ryan and I are part of. That we thought we would bring up here as well.
+
+'cause it's relevant to some of the things we've talked about. It's just relevant to really all of us and this, new space experimenting with tools and , it's something we've talked about in the past. Ryan brought this up. I think it was two, two weeks ago, talking about bringing in project requirement documentation about here's what I want you to do. Here's how I want you to do some things. Here's what, you put in like guide rails [00:03:00] of, some structure about what you want this thing to do, but in Cursor specifically, and I'm assuming it works in a lot of the other new IDEs 
+
+<span class="transcript-timestamp"><a href="https://youtu.be/EursDsj4dCk?t=187" target="_blank">🕒</a></span> <span class="transcript-speaker">Ryan MacLean:</span> Yeah. Cursor and WindSurf at least ha has something similar.
+
+<span class="transcript-timestamp"><a href="https://youtu.be/EursDsj4dCk?t=189" target="_blank">🕒</a></span> <span class="transcript-speaker">Jason Hand:</span> Yeah. But you put in specific rules that say. And it's a config file, much like what we're used to seeing in other places. And you just define what you, I shouldn't say it's a config file technically, but it's a file, markdown file, I think in most cases that describes what you want your project to do and how to behave and what are the rules, and it's becoming pretty clear, I think, in the community how important those are, but also. Even to the people who haven't realized how important they are, how much of a difference it makes Using one. Absolutely. Versus not using one. 
+
+<span class="transcript-timestamp"><a href="https://youtu.be/EursDsj4dCk?t=222" target="_blank">🕒</a></span> <span class="transcript-speaker">Ryan MacLean:</span> Yeah, no. What's interesting to me is and sorry, I did like a cursory overview of WindSurf, but WindSurf has a few opinions and one of those here, as opposed to Cursor is that you shouldn't need the rules far file that the model should be able to intuit.
+
+What's required from it which is a great idea in practice. So I feel like [00:04:00] it, you do need rules, files, and WindSurf does support Cursor Rules for sure. But I feel like with either of these tools, without them it's really difficult to not do and in fact it feels like the PRD that we're talking about is similar to, if not identical, to a rules file.
+
+The difference I think might be that the rules file could live both within your project as well as. With that. So outside of your project, so you could have a global rules file and then one for that project, which is very similar to A PRD. So instead of attaching the PRD context every time, you could put some of that stuff in the rules file and have it go through.
+
+And I feel like this is, again, I've only had a few, co-ops and interns over my, my, my vast career, but it feels like one of those things that. I suffered with when trying to give people tasks is like things that I thought were givens or were understood weren't, and I needed to define those or needed to define those a lot of time and it feels like a return to that I.
+
+That being said, one of the problems with some of these models is that context or that the context window. I guess when you [00:05:00] get past it, it will forget some of the things that you've been talking about. And if it's not in a rules file, when you go to start that new session again, it's like you have to re-explain everything all over again.
+
+So it, it makes sense actually for your end to write it down before you have to re-explain multiple times. 'cause that's what you have to do otherwise. Yeah. 
+
+<span class="transcript-timestamp"><a href="https://youtu.be/EursDsj4dCk?t=315" target="_blank">🕒</a></span> <span class="transcript-speaker">Jason Hand:</span> That's the exact metaphor that they use in this this blog post that I Oh, right on. Right on. About, yeah. They're calling it AI amnesia and so just what you did is every time they come back, it's like they, they found themselves resharing some of the important details Yeah.
+
+That, are unique to this project and how you want to, and how you want to put it together. And and they found themselves repeating instructions. And you know what, o one of the first things as a developer we do is we, or we all hate repeating ourselves. So it's like DRY don't repeat yourself.
+
+We are gonna attack that very quickly. Yes. And that's what's happening here is people are realizing I don't have this, like defeats the pur the whole point. In fact, one thing I wanna say I've realized lately is the stuff that I'm using AI on are specifically when my [00:06:00] like inner monologue says, I don't wanna do that.
+
+<span class="transcript-timestamp"><a href="https://youtu.be/EursDsj4dCk?t=362" target="_blank">🕒</a></span> <span class="transcript-speaker">Ryan MacLean:</span> Thi this sounds like toil. 
+
+<span class="transcript-timestamp"><a href="https://youtu.be/EursDsj4dCk?t=364" target="_blank">🕒</a></span> <span class="transcript-speaker">Jason Hand:</span> Yeah. I'm not doing that. Like I don't want to do that, but I know it needs to get done or I should do it. So that's where that's like perfect. The space for me where I look for projects. But anyway this article is really great. 
+
+<span class="transcript-timestamp"><a href="https://youtu.be/EursDsj4dCk?t=377" target="_blank">🕒</a></span> <span class="transcript-speaker">Ryan MacLean:</span> I feel like we should dig on that a little bit.
+
+Maybe not today, but it does feel like if the thing you need to do is just get started in order to get a project done, this does feel like a, it's doing a lot of heavy lifting and the just get me started kind of thing. It really does feel like a nice, gentle push for me to like. Get in there and actually get the work done.
+
+Yeah, I totally agree. 
+
+<span class="transcript-timestamp"><a href="https://youtu.be/EursDsj4dCk?t=394" target="_blank">🕒</a></span> <span class="transcript-speaker">Jason Hand:</span> Yeah. And the other part about this article is it points out how, obviously people that are using these rules are finding success. And things are looking better, but it still takes time to. Build the rules file. Yes. And that feels like toil. And that's, again, it falls into that category of, man, I don't really wanna do that.
+
+<span class="transcript-timestamp"><a href="https://youtu.be/EursDsj4dCk?t=410" target="_blank">🕒</a></span> <span class="transcript-speaker">Ryan MacLean:</span> And now I will say both of these, at least Cursor and WindSurf, do have repositories of rules, uhhuh, that you can grab from. And then I think the person talking this morning was giving a shout out to Simon [00:07:00] Wardley of Wardley Map Fame. Yes. Who also has a bunch of rules. As well that are handy.
+
+It's interesting 'cause Simon went into this whole exercise thinking this is going to be awful and was honestly not surprised. I think it was two years ago when they started and was not surprised that things actually were awful. But then realized that there was a little bit in here that was helpful and as a result started scratching away and Simon's actually come up with some really good ideas as a result.
+
+That helps. Simon Wardley or Wardley maps is the blog, but yes, I would totally agree to check some of those rules out as well as WindSurf and or the Cursor rules. 'cause even though they're from for one app or the other, they can apply to both. Yeah. As long as you look through it in order to make sure there's no like Codeium or Cursor stuff in there.
+
+It's generally reusable across. 
+
+<span class="transcript-timestamp"><a href="https://youtu.be/EursDsj4dCk?t=462" target="_blank">🕒</a></span> <span class="transcript-speaker">Jason Hand:</span> Yeah. And this this blog post here they they go one step further. Like you said, there's repositories full of rules that you can go grab. This one even has a lot of sample stuff in here. But what they're, their main argument here is that why not let Cursor create all the rules for you every time you do a new project is you just interact with [00:08:00] Cursor and say, pull in the rules that I use as a baseline everywhere.
+
+But then also. Per project there's like the uniqueness of what's going on there, and why not let the models actually build those Cursor Rules for you too. 
+
+<span class="transcript-timestamp"><a href="https://youtu.be/EursDsj4dCk?t=494" target="_blank">🕒</a></span> <span class="transcript-speaker">Ryan MacLean:</span> Totally agree. So now do you use Cha t's memory feature or maybe you don't use cha PT for coding too much. I use it once in a while when I'm trying something quick.
+
+<span class="transcript-timestamp"><a href="https://youtu.be/EursDsj4dCk?t=502" target="_blank">🕒</a></span> <span class="transcript-speaker">Jason Hand:</span> Yeah. I haven't used it as much lately and I haven't had time to come back and see how, okay, I had heard the news that now it's got this really long and broad, it's broadened its depth of knowledge. Not just like extending one particular chat conversation back further than it could, it's now seems knows all about all conversations. 
+
+<span class="transcript-timestamp"><a href="https://youtu.be/EursDsj4dCk?t=522" target="_blank">🕒</a></span> <span class="transcript-speaker">Ryan MacLean:</span> It's got the concepts of Workspaces, I think. Yeah. As opposed to Claude's Projects. I'm own a limb here, but I believe that's the case. Similar to like a Notion. The other thing though is that it doesn't have a rules. Functionality, but it does have the ability to memorize or memo-ize.
+
+So to write down little [00:09:00] notes of things as you're going along. And it's interesting in that it will just add things in. So yesterday I was testing Claude versus that LAMA four versus some other stuff that I was doing on this pie thing. And I was trying to figure out, it may be because like there's maybe some rules over here that I can use in this one basically is what I was getting at.
+
+And it turned out that there was ways that I could say, Hey, my lab has, these processors. 'cause we were really getting into the nitty gritty about processor capabilities. This. Lab has this processor, this GPU, that kind of thing. What extensions can I use? What I found was really interesting is that Chachi PT actually said, okay, adding to memory that, that fact, and it felt like to me that would be something I would add to Cursor rules or maybe as I was going through this, like I maybe need to prompt a memory.
+
+The other thing it did when I logged in was asked like, Hey, would you like me to describe you based on our previous chats? And that, it gave me the ick, I'll be honest, but I was like, ah let's figure out what, so that, that would be good. We'll start here. And it said that I was a dere engineer with a penchant for photography.
+
+There was a lot more detail in there and a pretty bad pun, but I thought that was pretty interesting, is that there was a [00:10:00] bunch of facts basically in that workspace, like you're talking about, that allowed it to come up with things that were maybe similar to what I put in a Cursor rules file if I wasn't just coding basically.
+
+'cause I primarily use Cursor for coding and chat GPT for. Maybe we'll call them soft skills kind of stuff. So that's outside of that. But it did feel like there, there's a featured disparity going on between the two because I feel like Cursor rules are a lot easier to use than just telling and paying for chat GPD request to add it to memory kind of thing.
+
+It felt like that. That ergonomics, was better for me, but it could be that because, I'm more related to coding and or used to, coding and config files, that's the practice that I want. But the memory thing I think might be good for most people who just wanna add something, have it remember, and move on kind of thing without having to bring up a text file and edit it.
+
+<span class="transcript-timestamp"><a href="https://youtu.be/EursDsj4dCk?t=645" target="_blank">🕒</a></span> <span class="transcript-speaker">Jason Hand:</span> Yeah. I it, to me seems like just the natural evolution of these things, they're all starting to converge on like exactly what just. The, baseline expectations are from your agent, talking to mo different models and I [00:11:00] think where you see the developer community, finding workarounds for the, don't repeat yourself stuff like MCP, I think is a good example.
+
+Yep. I think rules, files and project requirement docs like these are ways we as developers are finding solutions. Yeah, that solve like our first, like the main pain point that we have right now. And I think the developers of the IDEs out there are gonna acknowledge that's the next pain point of developers and they're just gonna integrate that into their ID or they should be.
+
+And so we'll just kinda see this happen over and over again is everything that seems really tedious and hard to do, we find a solution for, using rule files is a good example. And then somehow. Through just the evolution of personalization. Our I IDEs are gonna be like the chat GPT situation where just so it knows, it knows all the projects we work on, it knows the language we like, it knows how we like to structure our stuff.
+
+And it's based on the, I. [00:12:00] The projects that we've already done with it. And 
+
+<span class="transcript-timestamp"><a href="https://youtu.be/EursDsj4dCk?t=723" target="_blank">🕒</a></span> <span class="transcript-speaker">Ryan MacLean:</span> I'm smiling over here 'cause I feel like the dream of Emacs as an operating system is even closer. If we can add AI into the mix, it can do everything. It can slice, it can dice. Do your chat. But it does feel like the age of Emacs is upon us.
+
+Where we can use it for everything. That's what I'm here for. 
+
+<span class="transcript-timestamp"><a href="https://youtu.be/EursDsj4dCk?t=737" target="_blank">🕒</a></span> <span class="transcript-speaker">Jason Hand:</span> Anyways. The takeaway here is Cursor Rules are great. Use them, especially in Cursor. Absolutely. They've got like it set up and it sounds like WindSurf, they've got it like set up to use specific, you know where they go. Yep. Like it's .cursor is like .cursor rules.
+
+Yep. And I think 
+
+<span class="transcript-timestamp"><a href="https://youtu.be/EursDsj4dCk?t=752" target="_blank">🕒</a></span> <span class="transcript-speaker">Ryan MacLean:</span> WindSurf is either similar or exactly the same. It's like WindSurf rules or something like that. 
+
+<span class="transcript-timestamp"><a href="https://youtu.be/EursDsj4dCk?t=755" target="_blank">🕒</a></span> <span class="transcript-speaker">Jason Hand:</span> Yeah. So do that. The other thing we thought about talking about this week is, Google Cloud next was last week. We did not go, but a lot of our colleagues were there speaking and sound like another great event. Sounds like it's gotten bigger again year over year. 
+
+<span class="transcript-timestamp"><a href="https://youtu.be/EursDsj4dCk?t=768" target="_blank">🕒</a></span> <span class="transcript-speaker">Ryan MacLean:</span> And I heard 30,000, that's a pretty big event. 
+
+<span class="transcript-timestamp"><a href="https://youtu.be/EursDsj4dCk?t=770" target="_blank">🕒</a></span> <span class="transcript-speaker">Jason Hand:</span> Yeah. So I had a great time when I was there last year and actually I was speaking last year and it dawned on me that the the talk that I was giving, [00:13:00] it was around the time that Gemini was first launching.
+
+And, we we being Datadog are partners with Google Cloud, and we worked with them to basically improve their models with regards to Datadog. And I went in and created 200 different responses, prompts and responses, and just tried to help educate Gemini basically on how to use Datadog on a few very specific things.
+
+And then created a demo to show that, how that works on stage and. Yeah. Anyway, it all came together. I was really stressed out that it wasn't a big deal to help train Gemini on day. I do remember this. Yes. It seemed like a busy period of your life. Yeah. But anyway, we pulled it off and so what I thought maybe we would do is I'm gonna share, go back to share my screen again.
+
+Sure. And one of the things that was announced at GGCN Google Cloud next was Firebase Studio, which, is it's in preview here and if you're familiar with sort of the Google Cloud ecosystem, there's Firebase and you can create Firebase Projects. [00:14:00] And and then Firebase Studio is I guess for lack of a simpler way to describe it, it's much like some of the other IDEs.
+
+It's cloud, cloud-based though. And as you can see here, we can start things off by just giving it some ideas. Picking from some suggestions or also maybe importing a repo. Or it looks like also just starting from a scratch thing here. So anyway, Ryan, what do you know about Firebase Studio before we like, give it some code and see what to do?
+
+I'm like rapidly googling in the background to figure out what some of these icons, even just for the apps that you've got under. But what are these? So I think I know all them except for that blue star looking one. Yeah. I don't know. Can I zoom? Is that dash? 
+
+I'm zoom in a little bit on 
+
+<span class="transcript-timestamp"><a href="https://youtu.be/EursDsj4dCk?t=840" target="_blank">🕒</a></span> <span class="transcript-speaker">Ryan MacLean:</span> these 
+
+<span class="transcript-timestamp"><a href="https://youtu.be/EursDsj4dCk?t=840" target="_blank">🕒</a></span> <span class="transcript-speaker">Jason Hand:</span> here.
+
+No worries. Let's start start with, go. 
+
+<span class="transcript-timestamp"><a href="https://youtu.be/EursDsj4dCk?t=842" target="_blank">🕒</a></span> <span class="transcript-speaker">Ryan MacLean:</span> So I know about Firebase itself is like an easy way to allow database synchronization. Yeah. What's the one, just the left of Genkit Gemini. API. Ah, okay. Here we go. Yeah, it was Gemini. My apologies. Yeah, that one. Yeah, one. Okay. So I, I know a little bit about Firebase itself in terms of [00:15:00] authentication and synchronization of databases.
+
+It solved problems that, at least at Samsung we had, that were pretty hard, such as you're on your phone, you go into the elevator, you continue working on a documentation, do you sync it back to the server or somebody else's working on it? What do you do? That kind of stuff. So it, it solves for some of these issues which are non-trivial actually it's quite difficult.
+
+Firebase Studio, as far as I could tell, seems to be a response to something like maybe a. Like a Bolt or one of these apps that can not one shot, but one or two shot kind of app builder things. Is that what it is? Or is it different? 
+
+<span class="transcript-timestamp"><a href="https://youtu.be/EursDsj4dCk?t=893" target="_blank">🕒</a></span> <span class="transcript-speaker">Jason Hand:</span> No, I think that's pretty close. Okay. Definitely uses Gemini on the back end.
+
+Gotcha. From the latest Gemini models. And yeah, I think you hit it right on the head. A lot of them lately, and I've got pulled up open in another tab too. 'cause we thought about talking about that. You can tell right away from the interface, like it's got the same just empty box of Yeah.
+
+You know what I 
+
+<span class="transcript-timestamp"><a href="https://youtu.be/EursDsj4dCk?t=913" target="_blank">🕒</a></span> <span class="transcript-speaker">Ryan MacLean:</span> really like about both of these and it may not apply to everybody, but I love those little the little prompts that are at the bottom that you can click those [00:16:00] little pills that are like ready for you to go. I think that's awesome 'cause it shows you what it can do.
+
+Yeah. Because I didn't know it could import from Figma, for example. 
+
+<span class="transcript-timestamp"><a href="https://youtu.be/EursDsj4dCk?t=926" target="_blank">🕒</a></span> <span class="transcript-speaker">Jason Hand:</span> Oh yeah. 
+
+<span class="transcript-timestamp"><a href="https://youtu.be/EursDsj4dCk?t=926" target="_blank">🕒</a></span> <span class="transcript-speaker">Ryan MacLean:</span> And it gets you started really quickly. And I'll often click on these buttons just 'cause I assume that they should work. And sometimes you get stuck. Now I've used both a little bit here, so I think I've clicked on a few of these, but the one in Google I think was like a.
+
+Was it Tip Calculator was one of the examples. 
+
+<span class="transcript-timestamp"><a href="https://youtu.be/EursDsj4dCk?t=942" target="_blank">🕒</a></span> <span class="transcript-speaker">Jason Hand:</span> Yeah. Tipping calculator, 
+
+<span class="transcript-timestamp"><a href="https://youtu.be/EursDsj4dCk?t=943" target="_blank">🕒</a></span> <span class="transcript-speaker">Ryan MacLean:</span> which I thought was interesting. But ERP dashboard and expense tracker are two examples that like, that's pretty enterprisey. Totally. If you're putting this in front of millions of users, these last two, at least to me, you feel like they're trying to tell business that, hey this tool can be used for some of your business stuff.
+
+'cause over a Bolt, I don't think there's anything close to this Bolt. We'll talk more about like libraries and things like that, just to let you know the capabilities, but it doesn't say Hey, let's. Create I, I don't know, assuming with Looker, but maybe it's not an ERP dashboard or expense tracker or what have you.
+
+<span class="timestamp">[continues through remainder of transcript...]</span>
+                </pre>
+            </div>
+        </div>
+    </main>
+    
+    <div class="episode-navigation">
+        <div class="container">
+            <h2>Episode Navigation</h2>
+            <div class="episode-nav-links">
+                <div class="nav-item">
+                    <span class="nav-direction">Previous Episode:</span>
+                    <div class="recording-card">
+                        <h3>Exploring Llama 4, OpenRouter, and Model Comparison Tools</h3>
+                        <div class="video-container">
+                            <a href='/pages/ep11'>
+                                <img src="../images/thumbnails/ep11.png" alt="Episode 11 Thumbnail">
+                                <span class="play-icon"></span>
+                            </a>
+                        </div>
+                        <a class='btn' href='/pages/ep11'>Watch Episode</a>
+                    </div>
+                </div>
+                
+                <div class="nav-item">
+                    <span class="nav-direction">Next Episode:</span>
+                    <div class="recording-card">
+                        <h3>Exploring Bolt: Rapid App Development with AI-Powered Templates</h3>
+                        <div class="video-container">
+                            <a href='/pages/ep13'>
+                                <img src="../images/thumbnails/ep13.png" alt="Episode 13 Thumbnail">
+                                <span class="play-icon"></span>
+                            </a>
+                        </div>
+                        <a class='btn' href='/pages/ep13'>Watch Episode</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="../images/ai-tools-lab-logo.png" alt="AI Tools Lab Logo" class="footer-logo-img">
+                    <div>
+                        <h2>AI Tools Lab</h2>
+                        <p>Exploring the landscape of AI tools and technologies</p>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href='/pages/'>Home</a></li>
+                        <li><a href='/pages/resources'>Resources</a></li>
+                        <li><a href='/pages/observations'>Observations</a></li>
+                        <li><a href='/pages/about'>About</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 AI Tools Lab. All rights reserved. <span id="easter-egg" class="easter-egg">π</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Easter Egg Modal -->
+    <div id="easter-egg-modal" class="easter-egg-modal">
+        <div class="easter-egg-modal-content">
+            <span class="easter-egg-close">&times;</span>
+            <p>Sandy?</p>
+        </div>
+    </div>
+
+    <script src="../script.js"></script>
+</body>
+</html>

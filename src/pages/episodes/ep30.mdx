@@ -1,0 +1,90 @@
+---
+layout: ../../layouts/EpisodeLayout.astro
+Title: "Maximizing AI with Cursor: Building MCP Servers for Seamless Workflow" 
+Author: "jasonhand24@gmail.com"
+HeroImg: "../images/thumbnails/ep30.png"
+VideoID: "z45LjlhyGyE"
+EpisodeNumber: "30"
+Date: "2025-05-23"
+Description: "Whitney Lee shares her journey of building an MCP (Model Context Protocol) server designed to automate engineering journal entries. Learn how she evolved from experimenting with basic Cursor capabilities to developing a robust tool that captures Git commits, AI chat history, and terminal commands to enhance developer documentation and reflection."
+Tags: ["mcp", "cursor", "ai-development", "developer-tools", "documentation"]
+---
+import TranscriptSection from '../../components/TranscriptSection.astro';
+
+## Jump To
+- [🕒](https://youtu.be/z45LjlhyGyE?t=0) Introduction and Welcome
+- [🕒](https://youtu.be/z45LjlhyGyE?t=120) MCP Server Development Overview
+- [🕒](https://youtu.be/z45LjlhyGyE?t=230) Initial Coding Challenges
+- [🕒](https://youtu.be/z45LjlhyGyE?t=450) Task Management Tools
+- [🕒](https://youtu.be/z45LjlhyGyE?t=1200) Engineering Journal Vision
+- [🕒](https://youtu.be/z45LjlhyGyE?t=1500) Future Development Plans
+
+## Resources
+- [Cursor](https://www.cursor.so/) - AI-powered code editor
+- [Kubernetes](https://kubernetes.io/) - Container orchestration platform
+- [Model Context Protocol](https://github.com/windsurf-ai/mcp) - MCP specification and implementation
+
+## Key Takeaways
+- **Start Simple, Learn Deeply**: Whitney began with just Cursor to understand its raw capabilities before layering on tools
+- **Tool Selection**: Choosing supplementary tools such as Memory or Taskmaster should align with specific workflow needs
+- **MCP Servers Enable Structure**: A journal-generating MCP server can meaningfully document progress and enhance reflection
+- **Structured Problem Solving**: Breaking down tasks into smaller units aids in maintaining organization within complex projects
+- **Dynamic Documentation**: Keeping comprehensive records of project flows enhances both personal learning and project continuity
+
+## Summary
+
+In this in-depth conversation, Whitney Lee shares how a weekend of "vibe coding" with Cursor spiraled into building her own MCP (Model Context Protocol) server—designed to automate the creation of engineering journal entries from Git commits, AI chats, and terminal commands.
+
+With a background in Kubernetes and platform engineering—but not recent app development—Whitney walks through the creative and technical decisions behind her playful demo app and the real problem it helped her solve: tracking her technical progress and decisions with context, clarity, and reflection.
+
+**She explores:**
+
+- Why she started with raw Cursor and deliberately held off on using MCP tools
+- The specific challenges she encountered—like lack of memory, unclear documentation sourcing, and staying on task
+- How tools like Taskmaster, Memory, and Context 7 helped address those issues
+- Her vision for a journaling MCP server that automatically generates daily, weekly, and monthly summaries—complete with tone, milestones, terminal history, and reflections
+- How she designed and validated the architecture using AI-driven dialogue, test-driven development, and zero-trust principles
+
+This episode offers a real-world look at how AI tooling can support—not replace—human thinking, and how to shape those tools into something genuinely useful and sustainable.
+
+{/* TRANSCRIPT SECTION - Full conversation text with timestamps */}
+
+<TranscriptSection transcriptContent="[00:00:00] **Jason Hand:** Hey, Whitney, how's it going? 
+
+[00:00:01] **Whitney Lee:** So great. I'm so happy to be here. 
+
+[00:00:04] **Jason Hand:** Awesome. It's great to have you here. So what kind of stuff are you gonna show us today? 
+
+[00:00:07] **Whitney Lee:** Oh, I have caught the AI bug in a big way. So I'm gonna talk about how I've sussed out my AI workflow and how I've been inspired to build an MCP server and what that looks like.
+
+[00:00:20] **Jason Hand:** That's fantastic! Can you tell us a bit about your background and what led you to this project?
+
+[00:00:25] **Whitney Lee:** Sure! My background is actually in Kubernetes and platform engineering. I haven't done much app development recently, but I got really interested in how AI could help with documentation and tracking technical decisions. I spent a weekend just playing around with Cursor - what I call 'vibe coding' - and that's when the idea for this MCP server started taking shape.
+
+[00:00:45] **Jason Hand:** So what exactly does your MCP server do?
+
+[00:00:48] **Whitney Lee:** It's designed to automate the creation of engineering journal entries. It pulls together Git commits, AI chat history, and terminal commands to create a comprehensive record of what you're working on. The goal is to help engineers maintain better context and reflection about their work.
+
+[00:01:10] **Jason Hand:** That's really interesting. What made you start with just Cursor instead of jumping straight into using MCP tools?
+
+[00:01:15] **Whitney Lee:** I wanted to understand the baseline experience first. When you start with raw Cursor, you quickly run into certain limitations - like the lack of persistent memory, unclear documentation sources, and difficulty staying focused on complex tasks. This helped me identify exactly what problems I needed to solve with my MCP server.
+
+[00:01:40] **Jason Hand:** And how did tools like Taskmaster and Memory help address those issues?
+
+[00:01:45] **Whitney Lee:** They were game-changers. Taskmaster helped break down complex tasks into manageable chunks, while Memory gave me that crucial persistent context I needed. But the real magic happened when I started thinking about how to combine these capabilities into something that could automatically generate daily, weekly, and monthly summaries of my work.
+
+[00:02:10] **Jason Hand:** Can you tell us more about how you approached building the server?
+
+[00:02:15] **Whitney Lee:** I took a very methodical approach. I used AI-driven dialogue to validate my architecture decisions, implemented test-driven development from the start, and applied zero-trust principles throughout. The goal was to create something that wasn't just a cool demo, but a genuinely useful tool that could enhance how developers document and reflect on their work.
+
+[00:02:40] **Jason Hand:** This seems like a great example of using AI as a complement to human thinking rather than a replacement.
+
+[00:02:48] **Whitney Lee:** Exactly! It's about augmenting our capabilities, not replacing them. The AI helps capture and organize information, but the real value comes from how it enables better human reflection and decision-making. It's about creating tools that work with our natural workflow rather than forcing us to adapt to the tool.
+
+[00:03:05] **Jason Hand:** So what's next for the project?
+
+[00:03:08] **Whitney Lee:** I'm working on making it more robust and user-friendly. I want to add better visualization of the data, improve the natural language processing for better summaries, and maybe even add some predictive features that can help identify patterns in how we work. But most importantly, I want to keep it focused on enhancing human capabilities rather than replacing them.
+
+[00:03:30] **Jason Hand:** This has been fascinating, Whitney. Thanks for sharing your journey with us.
+
+[00:03:34] **Whitney Lee:** Thank you!" />

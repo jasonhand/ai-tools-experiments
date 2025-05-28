@@ -1,6 +1,0 @@
-# Map /pages/* routes to the Astro-generated HTML files at the root
-/pages/ep* /ep:splat.html 200
-/pages/:page /:page.html 200
-
-# Fallback to handle any other 404s gracefully
-/* /index.html 200

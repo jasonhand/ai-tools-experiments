@@ -1,0 +1,58 @@
+---
+layout: ../../layouts/EpisodeLayout.astro
+Title: "Automatic1111 and Local Text-to-Image Generation"
+Author: "jasonhand24@gmail.com"
+HeroImg: "../images/thumbnails/ep03.png"
+VideoID: "l2H0HADOa5o"
+EpisodeNumber: "3"
+Date: "2025-04-26"
+Description: "A guide to setting up and using Automatic1111 for local text-to-image generation, covering installation, configuration, and effective prompt techniques."
+Tags: ["image-gen"]
+---
+import TranscriptSection from '../../components/TranscriptSection.astro';
+
+# Summary
+
+In this episode, Jason Hand explores Automatic1111, a stable diffusion web UI for generating images from text prompts. He walks through the installation process using a precompiled version, sets it up locally, and demonstrates various features of the interface. Jason shows how to generate images using text prompts, adjust parameters like sampling methods and steps, and explores additional features like upscaling, inpainting, and img2img conversion. He also demonstrates how to use extensions like ControlNet to provide more control over image generation. The episode provides a comprehensive overview of Automatic1111's capabilities for anyone interested in text-to-image generation.
+            
+## Jump To
+
+- [Introduction to Automatic1111](https://youtu.be/l2H0HADOa5o?t=0)
+- [Overview of Automatic1111 and its features](https://youtu.be/l2H0HADOa5o?t=184)
+- [Installing Automatic1111 and connection to Gradio](https://youtu.be/l2H0HADOa5o?t=317)
+- [Discussing options for local vs. cloud deployment](https://youtu.be/l2H0HADOa5o?t=411)
+- [First image generation attempt](https://youtu.be/l2H0HADOa5o?t=486)
+- [Prompt engineering techniques for better results](https://youtu.be/l2H0HADOa5o?t=633)
+- [Working with negative prompts](https://youtu.be/l2H0HADOa5o?t=737)
+- [Comparing local generation vs. online options](https://youtu.be/l2H0HADOa5o?t=979)
+- [Limitations of older Stable Diffusion models](https://youtu.be/l2H0HADOa5o?t=1153)
+- [Final thoughts and practical applications](https://youtu.be/l2H0HADOa5o?t=1389)
+
+## Resources
+
+- [Automatic1111 GitHub Repository](https://github.com/AUTOMATIC1111/stable-diffusion-webui)
+- [Stable Diffusion](https://stability.ai/stable-diffusion)
+- [Hugging Face Spaces](https://huggingface.co/spaces)
+
+## Key Takeaways
+
+- Automatic1111 provides a web UI for Stable Diffusion image generation models
+- Local image generation is slower but offers privacy, offline access, and cost savings
+- Older models like SD 1.5 have limitations but are faster than newer ones
+- Prompt engineering with positive and negative prompts can improve generation results
+- The tool can be useful for brainstorming, ideation, and inspiration rather than final assets
+
+{/* TRANSCRIPT SECTION - Full conversation text with timestamps */}
+<h2>Full Transcript</h2>
+
+<TranscriptSection transcriptContent={`
+[00:00:00] **Ryan MacLean:** So last time we talked about Grado a bit and I feel like maybe I, I didn't give a good sales pitch in terms of why you'd want to use grado. 'cause you're just looking at small components and a lot of times it can be hard to maybe see a library of UI components and figure out where that could get you.
+
+[00:00:20] **Jason Hand:** Yeah, I can see that.
+
+[00:00:22] **Ryan MacLean:** The tool I wanted to intro today is called Automatic 1111. Now, I realize that's not the best name for a project, but what we're going to talk about is this. Stable diffusion web ui, and in particular, this is actually built off of radio, which is what we were talking about last week, and I figured I'd talk a little bit about how it works.
+
+[00:00:40] **Jason Hand:** Sounds good.
+
+[00:00:42] **Ryan MacLean:** For the full transcript, please refer to the video.
+`} />

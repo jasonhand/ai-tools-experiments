@@ -1,0 +1,138 @@
+---
+layout: ../../layouts/EpisodeLayout.astro
+Title: "YOLO Coding: Migrating from Static HTML to Astro with AI Tools"
+Author: "jasonhand24@gmail.com"
+HeroImg: "../images/thumbnails/ep20.png"
+VideoID: "qgTu6hv6Hys"
+EpisodeNumber: "20"
+Date: "2025-05-05"
+Description: "In this episode, Ryan MacLean shares his weekend experiment with 'YOLO Mode' (You Only Live Once) in AI-assisted coding, where he migrated the ai-tools-lab.com website from static HTML to Astro. Ryan discusses his approach of using multiple AI models with Model Context Protocol (MCP) tools, particularly highlighting how he combined Gemini 2.5 Pro's multimodal capabilities with Claude Sonnet 3.7's web search functionality to tackle different aspects of the project. Ryan explains the challenges he faced, including models struggling with large CSS files and Base64-encoded graphics, and reveals his workflow using Puppeteer and Sequential Thinking MCPs in Windsurf to compare and migrate the site effectively."
+Tags: ["puppeteer", "mcp", "gemini", "claude", "astro"]
+---
+import TranscriptSection from '../../components/TranscriptSection.astro';
+
+<p>In this episode, Ryan MacLean shares his weekend experiment with 'YOLO Mode' (You Only Live Once) in AI-assisted coding, where he migrated the ai-tools-lab.com website from static HTML to Astro. Ryan discusses his approach of using multiple AI models with Model Context Protocol (MCP) tools, particularly highlighting how he combined Gemini 2.5 Pro's multimodal capabilities with Claude Sonnet 3.7's web search functionality to tackle different aspects of the project. Ryan explains the challenges he faced, including models struggling with large CSS files and Base64-encoded graphics, and reveals his workflow using Puppeteer and Sequential Thinking MCPs in Windsurf to compare and migrate the site effectively.</p>
+
+<p>Throughout the conversation, Ryan emphasizes the importance of vigilant oversight when allowing AI tools to execute commands, especially around version control and API keys. He demonstrates how to set up MCPs in Windsurf, add Context7 for documentation access, and use to-do lists to checkpoint progress across lengthy AI sessions. Despite some visual discrepancies in the migrated site, Ryan found the process incredibly educational, allowing him to simultaneously learn Astro, improve his testing methodology with Vitest, automate deployments with Netlify, and enhance his work with Claude. Jason Hand, who initially suggested using AI for the migration, expresses excitement about how quickly they've been able to move from a static HTML site to a more maintainable content management system using these AI-powered development approaches.</p>
+
+## Jump To
+
+- [Introduction and YOLO Mode Coding](https://www.youtube.com/watch?v=qgTu6hv6Hys?t=0)
+- [Overview of the HTML to Astro Migration Project](https://www.youtube.com/watch?v=qgTu6hv6Hys?t=60)
+- [Visual Comparison Challenges and CSS Issues](https://www.youtube.com/watch?v=qgTu6hv6Hys?t=180)
+- [Switching Between AI Models for Different Tasks](https://www.youtube.com/watch?v=qgTu6hv6Hys?t=300)
+- [Setting Up MCPs in Windsurf (Puppeteer and Sequential Thinking)](https://www.youtube.com/watch?v=qgTu6hv6Hys?t=420)
+- [Safety Concerns with AI Auto-Approving Commands](https://www.youtube.com/watch?v=qgTu6hv6Hys?t=660)
+- [Memory Management and Context Windows](https://www.youtube.com/watch?v=qgTu6hv6Hys?t=900)
+- [Using Context7 for Documentation Access](https://www.youtube.com/watch?v=qgTu6hv6Hys?t=1080)
+- [Maintaining To-Do Lists and Progress Tracking](https://www.youtube.com/watch?v=qgTu6hv6Hys?t=1320)
+- [Final Thoughts on AI-Assisted Site Migration](https://www.youtube.com/watch?v=qgTu6hv6Hys?t=1620)
+
+## Resources
+
+- [AI Tools Lab Website](https://ai-tools-lab.com)
+- [Astro Documentation](https://astro.build)
+- [Context7 Documentation Repository](https://context7.ai)
+- [Vitest Testing Framework](https://vitest.dev)
+- [Puppeteer MCP](https://github.com/puppeteer/puppeteer)
+
+## Key Takeaways
+
+- AI 'YOLO Mode' can significantly accelerate website migrations, but requires constant human supervision to prevent security risks and unwanted changes
+- Combining different AI models (like Gemini 2.5 Pro for multimodal tasks and Claude Sonnet 3.7 for web searches) creates a more effective development workflow
+- Model Context Protocol (MCP) tools like Puppeteer and Sequential Thinking in Windsurf enable AI to interact with websites and execute multi-step processes
+- AI models struggle with large files (like CSS) and special formats (like Base64), requiring workarounds or alternative approaches
+- Long AI sessions face context window limitations; creating checkpoints and to-do lists helps maintain progress across multiple sessions
+
+{/* TRANSCRIPT SECTION - Full conversation text with timestamps */}
+<h2>Full Transcript</h2>
+
+<TranscriptSection transcriptContent={`
+[00:00:00] **Ryan MacLean:** Hey Jason, how's it going? 
+
+[00:00:01] **Jason Hand:** Hey Ryan. It's 
+
+[00:00:02] **Ryan MacLean:** going well. 
+
+[00:00:02] **Jason Hand:** How are you? 
+
+[00:00:03] **Ryan MacLean:** Not too bad. I feel like I'm full of energy. I spent the weekend coding, which is odd for me. I figured I'd talk a little bit about a method of coding.
+
+So we've talked about "vibe coding" or maybe I like to call it "vibe driven development" as opposed to "test driven development". But I was trying out that what the kids are calling this "YOLO Mode". So "You Only Live Once" a just. Have the AI just say yes to everything and basically auto accept. Now I'm gonna, there's a Bunch of caution here.
+
+So there's a few things that I'll get around, but the first thing I'll do is say I was trying to test the website out as I was migrating it from static HTML to Astro, so I'm just gonna please share my screen here. Yeah, go ahead. 
+
+[00:00:39] **Jason Hand:** I should. Clarify our website's, what you're referring to?
+
+[00:00:41] **Ryan MacLean:** My, my sincerest apologies that is in fact, correct. Yes. So we'll start with, this is the Docker container here, but this is the actual website. So it's the ai-tools-lab.com website. So this is the main site. And it's mostly static HTML. There's some JavaScript and stuff like that in here, but it's pretty plain, which is good.[00:01:00] 
+
+This is a great test of, say, migrating like an internal website that might have been written in HTML pages a while ago that you've been maintaining. There. There's some traffic kind of stuff, so it's not bad, but it's just that. There's a lot of context or there's a lot of files or maybe a lot of content even.
+
+'cause we're talking about transcripts as well as HTML page as well as some of the CSS that's quite big. And I found that this is a pretty good example of maybe not a big project, but like a small or medium sized project and maybe where the limits of some of the models are now versus where some of the strengths are in terms of testing and automation, which I was pretty impressed with and I think this is why I ended up coding all weekend.
+
+'cause it was actually pretty fun to play around with. On top of this, I was learning something new called Astro. I think you were also learning about it maybe in a different way on, on Friday, but it does look pretty cool as a way to put out documentation in a static website sort of way. I think you've used Hugo in the past, or Gatsby.
+
+Yeah. Yeah. 
+
+[00:01:53] **Jason Hand:** Hugo, I've used quite a bit for different projects, and you're right. On Friday we had, our team had our [00:02:00] usual end of week standup and Right. The topic of astro came up within the community standup, and I sent you a DM in Slack and I was like, "Hey, we should talk about Astro", 
+
+[00:02:11] **Ryan MacLean:** right?
+
+[00:02:12] **Jason Hand:** Because I. To your point, like this whole site's just HTML, it was created because of the this project basically it was just a part of the experiment. Now it's getting to the point where it's hard to manage and I'm like, I'm personally going through every post and making sure the HTML looks right and inevitably there's something a little off.
+
+And I was like, this just doesn't scale. We need to switch to a content management system ish type of thing where we're just giving markdown. To something and it builds our site. So that's where, how we ended up. I guess it sounds like both of us obsessing to some degree over Astro over the weekend 
+
+[00:02:47] **Ryan MacLean:** a little bit.
+
+I gotta say I really do frameworks or different ways of working about things. And I think that promise of being able to just bring your markdown files and how something worked to me sounded like a, that virtuous cycle or something I'd want to [00:03:00] chase essentially. So to get there, what is it, how many yaks do I need to shave in order to get to that point?
+
+Was what I was thinking. And I thought this would be pretty easy. So the. I think the crux or the impetus in my mind was visual comparison of those pages should be simple was it may be what I was wrong about in the beginning. So I was like, okay, what I'm going to do is use vision models to say this is the old site, this is a new site.
+
+Don't soft until they look the same. This is I found out this is the wrong approach. Okay. Not because it can't work, but because it's slow. Oh, interesting. It's very slow. It's like death by a million cuts. In particular, what I found out, and I'm gonna show it really quickly, but the site itself, so this is running in Docker and I'll talk about that in a moment here, but the site itself actually has quite a bit of CSS.
+
+And I think that might be the root cause is that a lot of the models were chunking. The CSS, they'd read lines from 1 to 99 and then 100 to 200, et cetera, et cetera, for a file that's about 3000 lines. And it would take a lot to have that in context. And then by the time it went to get to the other side to compare them, it was already lost kind of [00:04:00] thing.
+
+I think normally what I would do as a human is download both CSS files and look at them because they're quite large. So I'm just gonna quickly look at the actual CSS itself. So if we go into our project, and this is in Windsurf, I'll get rid of some of the sidebar here. But we'll quickly go into our project and look at our style sheet.
+
+And you can see there's a lot of files in here. I was going a little bit ham on the testing, so we don't need to look at all of these. But if we look at our style sheet, which I think has moved to public in here. And then let's look at our styles. So there, there's a lot of styles in here and not all of them are used.
+
+I feel like y if I was writing this code, this is what would happen to me. I think we're actually missing like 500 lines as well. 'cause I've gone through and trimmed this down a bit. Wow. A bit. But I feel like this is where it was choking. And again, there's nothing wrong with this file or anything like that.
+
+I think this is honestly a pretty standard length for CSS these days because we're using a lot of classes and we're using the cascading to apply different classes to different areas, so can get pretty complicated. On its own. Now the other thing I noticed is that there's some other [00:05:00] pages in here that are a little bit more complicated than others.
+
+In fact, one of them, the resource pages, which are pretty cool, have an inbuilt graphic. So this background here is built into the style. And again, neither, no harm, no foul. It's cool 'cause it's got Base64, it's right in there. And then color shifts between them.
+
+So it's actually pretty interesting. But when the LLM tried to read the Base64, I feel like this might be like an anti security or anti SQL injection kind of protection. It actually would choke on Base64 a lot. I have to instruct it to Hey, write that out to a file or maybe use a temporary store, but absolutely don't try to put this into your memory because you're having a really hard time with it.
+
+It's not that big. It's not a big file, but the model definitely had issues. Now I'm saying the model, in this case, I started with Gemini 2.5 Pro because I hadn't used it before. And the cool thing about that model is it's multimodal. So I could have it examine like the look and feel of one side and look at the other.
+
+Pretty good. But it meant when I had to explore the web, I had to use an [00:06:00] MCP, which I'll get here, get to here. So I was using Puppeteer as an MCP, and in order to use Gemini with Puppeteer, it meant that I had to go through a long, arduous process of opening the site, taking a screenshot, looking at the screenshot, and doing the same thing for the other.
+
+What I noticed is if I was using Sonnet 3.7, for example, it had web search built in but didn't have the bimodal or at least I couldn't get it to compare things on my end. I don't think it is multimodal and as a result I went back and forth between two models most of the weekend using the strengths of one and the strengths of the other to do things.
+
+And again, having spent three days on this, I can obviously think of a better way to do this. I think as an n8n user, you could probably think. It'd be a pretty good workflow or maybe I could add this to Cursor rules or use the memory. But what I'd like to talk about, because I only touched on it previously a little bit when we talked about Windsor, is how to actually set up the MCP shortcuts.
+
+So for MMCPs, what's a little bit different in Windsurf as opposed to Cursor, for example, is that though you can add them manually. There also is a [00:07:00] list of servers, which is handy.
+
+One of them that I want to use, Playwright for some reason, doesn't seem to work on Mac Arm 64 right now. I'm sure it'll get fixed. Playwright itself definitely does work, but this MCP seemed to have issues with it, so I ended up using Puppeteer as opposed to. I've removed it now, but basically what you do is just hit add and then hit save config and that's it.
+
+So it's saved to your config. I'll, we'll go look at it in a second, but the other one that I used was Sequential Thinking, which I think is in here. So Sequential Thinking will do similar to Aider or Claude Code. It will do one thing and then continue on to the next step, which is actually quite handy.
+
+So the combination of these two MMCPs actually got me very far. So if you can open up your source site and Puppeteer and your destination site in Puppeteer and then go through and sequentially think about the changes that need to be made, it it actually works quite well. There's a bit of, I don't know if you've watched The Simpsons you know when Homer's in charge of the power plant, but he is working remotely and he is got the little bird that just clicks. Okay. [00:08:00] There, there's a little bit of that in here. So think about the danger that would happen if you're just autosaving your file.
+
+So the first thing I did was create a new branch and I told it to only use that branch. Now I set up some pre-commit checks that we may see here in a moment that were perhaps not the best checks, but as a result I realized that the LLM. Both models would go around the checks if they got in the way.
+
+So there's pros and cons there for different things. A as well as set up some rules to not save API keys. And I noticed this morning, for example, that one of them was saved in a Terraform file, but be that where it is. So what we can do here is start a new chat. I can do things like say browse the local Docker site using Puppeteer, which is our MCP.
+
+Now I going, I'm not gonna say MCP Puppeteer here, though. You could, if you really need to coax it and compare it, and I'm just saying prod site here and not production, and not giving the URL because I believe I've got a [00:09:00] memory that points to it. Here we go.
+
+Okay. So what I'm hoping will happen is that we'll pop up Puppeteer and I can drag it over to show that it's like it's driving the website. I think the first thing that's going to do is see if it's actually working and it is up, so I can drag that over. It's running on Docker Desktop already. We can see the port here.
+
+This is how we were looking at the site a moment ago, and what it should do is pop up Puppeteer with a headless chrome browser, showing you what, what exists in the target, which is our test environment, and then what exists in the source, which is our prod environment. And then you can see it here as it's going through its sequentially thinking through that process.
+
+Now some of this that you're seeing is actually through Claude's Sonnet 3.7. But when Claude's done, it will actually go back to the MCP and tell it to continue from where it's left off. Now, you could do something similar to this by using a to-do file. In fact, I did use that quite a bit, but let's see if [00:10:00] it actually goes through the whole thing here.
+
+Okay, so it's literally just checking to see if the Docker container's running. But you can see that there's a lot of steps involved here, and this is really handy because otherwise what you'd be doing is. Doing all of these on your own, like approving should you do this now, check this. Now.
+
+That thing, in some of these cases it might be easier just to stop it and say, Hey, it's already started. I found that files would be like half edited if I do it that way. It feels like it's best to go through the entire process, but big. But here, if
+`} />

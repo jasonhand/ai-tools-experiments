@@ -1,0 +1,1466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Observations | AI Tools Lab</title>
+    <meta name="description" content="Observations and insights from our AI tools experiments.">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Observations | AI Tools Lab">
+    <meta property="og:description" content="Observations and insights from our AI tools experiments.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://aitoolslab.com/pages/observations.html">
+    <meta property="og:image" content="../images/ai-tools-lab-logo.png">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="../images/ai-tools-lab-logo.png" type="image/png">
+    <link rel="shortcut icon" href="../images/ai-tools-lab-logo.png" type="image/png">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../styles.css">
+    <!-- Using fonts defined in main styles.css -->
+    
+    <!-- Custom styles for improved observations page -->
+    <style>
+        /* Header logo font styling */
+        .logo a {
+            font-size: 3rem;
+        }
+        
+        /* Main layout improvements */
+        .observations-layout {
+            display: grid;
+            grid-template-columns: 260px 1fr;
+            gap: 30px;
+            position: relative;
+        }
+        
+        /* Sidebar styling */
+        .observations-sidebar {
+            position: sticky;
+            top: 20px;
+            height: calc(100vh - 100px);
+            overflow-y: auto;
+            padding-right: 15px;
+            scrollbar-width: thin;
+        }
+        
+        .observations-sidebar::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        .observations-sidebar::-webkit-scrollbar-thumb {
+            background-color: #ddd;
+            border-radius: 6px;
+        }
+        
+        .observations-content {
+            min-height: 500px;
+        }
+        
+        /* Filter group styling */
+        .filter-group {
+            margin-bottom: 25px;
+            background: #f8f9ff;
+            border-radius: 12px;
+            padding: 15px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+        
+        .filter-group h3 {
+            margin-top: 0;
+            margin-bottom: 12px;
+            font-size: 1rem;
+            color: #333;
+            border-bottom: 1px solid #e5e7eb;
+            padding-bottom: 8px;
+        }
+        
+        /* Tool filters */
+        .filters-container {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            max-height: 300px;
+            overflow-y: auto;
+            padding-right: 5px;
+        }
+        
+        .filter-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 0.9rem;
+        }
+        
+        .filter-item:hover {
+            background-color: #f0f0ff;
+        }
+        
+        .filter-item.active {
+            background-color: #e6e6ff;
+            font-weight: 500;
+        }
+        
+        .filter-item .count {
+            margin-left: auto;
+            background-color: #e2e2fe;
+            border-radius: 12px;
+            padding: 2px 8px;
+            font-size: 0.75rem;
+            color: #4f46e5;
+        }
+        
+        /* Search styling */
+        .filter-search {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+        
+        .filter-search:focus {
+            outline: none;
+            border-color: #7c4dff;
+            box-shadow: 0 0 0 2px rgba(124, 77, 255, 0.2);
+        }
+        
+        /* Reset filters button */
+        .reset-filters {
+            display: block;
+            width: 100%;
+            padding: 8px;
+            background-color: #f8f8f8;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            text-align: center;
+            margin-top: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 0.9rem;
+        }
+        
+        .reset-filters:hover {
+            background-color: #e8e8e8;
+        }
+        
+        /* Takeaway cards styling */
+        .takeaway-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .takeaway-card {
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .takeaway-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+        }
+        
+        .takeaway-card-header {
+            height: 140px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .takeaway-card-header img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .takeaway-card:hover .takeaway-card-header img {
+            transform: scale(1.05);
+        }
+        
+        .takeaway-card-header-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 12px 16px;
+            background: linear-gradient(0deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%);
+            color: white;
+        }
+        
+        .takeaway-card-header h3 {
+            margin: 0;
+            font-size: 1rem;
+            font-weight: 600;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+        }
+        
+        .takeaway-card-header .episode-number {
+            font-size: 0.8rem;
+            margin-bottom: 4px;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+        }
+        
+        .takeaway-card-body {
+            padding: 16px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .takeaway-card-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 12px;
+        }
+        
+        .takeaway-tag {
+            background-color: #f0f0ff;
+            color: #4f46e5;
+            font-size: 0.75rem;
+            padding: 3px 8px;
+            border-radius: 12px;
+        }
+        
+        .takeaway-content {
+            flex-grow: 1;
+        }
+        
+        .takeaway-content ul {
+            padding-left: 5px;
+            margin: 0;
+            list-style-type: none;
+        }
+        
+        .takeaway-content li {
+            margin-bottom: 12px;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            position: relative;
+            padding-left: 24px;
+        }
+        
+        .takeaway-content li:before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 5px;
+            width: 10px;
+            height: 10px;
+            background-color: #7c4dff;
+            border-radius: 50%;
+            opacity: 0.8;
+        }
+        
+        .takeaway-content li:hover:before {
+            background-color: #6366f1;
+            transform: scale(1.2);
+            transition: all 0.2s ease;
+        }
+        
+        .takeaway-card-footer {
+            padding: 12px 16px;
+            background-color: #f8f9ff;
+            border-top: 1px solid #eee;
+            text-align: right;
+        }
+        
+        .takeaway-card-footer a {
+            color: #4f46e5;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        
+        .takeaway-card-footer a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Empty state */
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            background-color: #f8f9ff;
+            border-radius: 12px;
+            margin: 40px 0;
+        }
+        
+        .empty-state h3 {
+            margin-top: 0;
+            color: #666;
+        }
+        
+        .empty-state p {
+            color: #888;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        
+        /* Mobile responsive */
+        @media (max-width: 768px) {
+            .observations-layout {
+                grid-template-columns: 1fr;
+            }
+            
+            .observations-sidebar {
+                position: relative;
+                height: auto;
+                margin-bottom: 20px;
+            }
+            
+            .takeaway-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Tab navigation for mobile */
+        .mobile-tabs {
+            display: none;
+            overflow-x: auto;
+            white-space: nowrap;
+            margin-bottom: 20px;
+            padding-bottom: 8px;
+            scrollbar-width: none;
+        }
+        
+        .mobile-tabs::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .mobile-tab {
+            display: inline-block;
+            padding: 8px 16px;
+            background-color: #f0f0ff;
+            border-radius: 20px;
+            margin-right: 8px;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+        
+        .mobile-tab.active {
+            background-color: #7c4dff;
+            color: white;
+            font-weight: 500;
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-tabs {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="container">
+            <div class="logo">
+                <img src="../images/ai-tools-lab-logo.png" alt="AI Tools Lab Logo" class="site-logo">
+                <a href='/'>AI Tools Lab</a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href='/'>Home</a></li>
+                    <li><a href='/articles'>Articles</a></li>
+                    <li><a class='active' href='/observations'>Observations</a></li>
+                    <li><a href='/about'>About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container about-section">
+        <div class="about-header">
+            <h1>Observations & Insights</h1>
+            <p>Discover patterns, insights, and key takeaways from our AI tools exploration journey. Filter by tools, technologies, or concepts to focus on specific areas of interest.</p>
+        </div>
+        
+        <!-- Mobile tab navigation for small screens -->
+        <div class="mobile-tabs">
+            <div class="mobile-tab active" data-view="takeaways">Takeaways</div>
+            <div class="mobile-tab" data-view="trends">Trends & Patterns</div>
+            <div class="mobile-tab" data-view="tools">Tools Comparison</div>
+        </div>
+        
+        <div class="observations-layout">
+            <!-- Left sidebar with filters -->
+            <aside class="observations-sidebar">
+                <div class="filter-group">
+                    <h3>Search</h3>
+                    <input type="text" class="filter-search" placeholder="Search observations..." id="observationSearch">
+                </div>
+                
+                <div class="filter-group">
+                    <h3>Filter by Tool</h3>
+                    <div class="filters-container" id="toolFilters">
+                        <div class="filter-item active" data-filter="tool" data-value="all">
+                            <span>All Tools</span>
+                            <span class="count">22</span>
+                        </div>
+                        <div class="filter-item" data-filter="tool" data-value="ebpf">
+                            <span>eBPF</span>
+                            <span class="count">1</span>
+                        </div>
+                        <div class="filter-item" data-filter="tool" data-value="chatgpt">
+                            <span>ChatGPT</span>
+                            <span class="count">2</span>
+                        </div>
+                        <div class="filter-item" data-filter="tool" data-value="github-copilot">
+                            <span>GitHub Copilot</span>
+                            <span class="count">1</span>
+                        </div>
+                        <div class="filter-item" data-filter="tool" data-value="tmux">
+                            <span>Tmux</span>
+                            <span class="count">1</span>
+                        </div>
+                        <div class="filter-item" data-filter="tool" data-value="claude-code">
+                            <span>Claude Code</span>
+                            <span class="count">1</span>
+                        </div>
+                        <div class="filter-item" data-filter="tool" data-value="terminal">
+                            <span>Terminal</span>
+                            <span class="count">1</span>
+                        </div>
+                        <div class="filter-item" data-filter="tool" data-value="helix">
+                            <span>Helix</span>
+                            <span class="count">1</span>
+                        </div>
+                        <div class="filter-item" data-filter="tool" data-value="astro">
+                            <span>Astro</span>
+                            <span class="count">1</span>
+                        </div>
+                        <div class="filter-item" data-filter="tool" data-value="stateofai">
+                            <span>State of AI</span>
+                            <span class="count">2</span>
+                        </div>
+                        <div class="filter-item" data-filter="tool" data-value="notebooklm">
+                            <span>Notebook LM</span>
+                            <span class="count">1</span>
+                        </div>
+                        <div class="filter-item" data-filter="tool" data-value="puppeteer">
+                            <span>Puppeteer</span>
+                            <span class="count">2</span>
+                        </div>
+                        <div class="filter-item" data-filter="tool" data-value="mcp">
+                            <span>MCP</span>
+                            <span class="count">4</span>
+                        </div>
+                        <div class="filter-item" data-filter="tool" data-value="gemini">
+                            <span>Gemini</span>
+                            <span class="count">2</span>
+                        </div>
+                        <div class="filter-item" data-filter="tool" data-value="claude">
+                            <span>Claude</span>
+                            <span class="count">11</span>
+                        </div>
+                        <div class="filter-item" data-filter="tool" data-value="sora">
+                            <span>Sora</span>
+                            <span class="count">1</span>
+                        </div>
+                        <div class="filter-item" data-filter="tool" data-value="lovable">
+                            <span>Lovable</span>
+                            <span class="count">1</span>
+                        </div>
+                        <div class="filter-item" data-filter="tool" data-value="cursor">
+                            <span>Cursor</span>
+                            <span class="count">4</span>
+                        </div>
+                        <div class="filter-item" data-filter="tool" data-value="bolt">
+                            <span>Bolt</span>
+                            <span class="count">1</span>
+                        </div>
+                        <div class="filter-item" data-filter="tool" data-value="gradio">
+                            <span>Gradio</span>
+                            <span class="count">1</span>
+                        </div>
+                        <div class="filter-item" data-filter="tool" data-value="n8n">
+                            <span>N8N</span>
+                            <span class="count">1</span>
+                        </div>
+                        <div class="filter-item" data-filter="tool" data-value="airtable">
+                            <span>Airtable</span>
+                            <span class="count">1</span>
+                        </div>
+                        <div class="filter-item" data-filter="tool" data-value="workflow">
+                            <span>Workflow</span>
+                            <span class="count">1</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="filter-group">
+                    <h3>Filter by Concept</h3>
+                    <div class="filters-container" id="conceptFilters">
+                        <div class="filter-item active" data-filter="concept" data-value="all">
+                            <span>All Concepts</span>
+                            <span class="count">22</span>
+                        </div>
+                        <div class="filter-item" data-filter="concept" data-value="system-monitoring">
+                            <span>System Monitoring</span>
+                            <span class="count">1</span>
+                        </div>
+                        <div class="filter-item" data-filter="concept" data-value="kernel-interaction">
+                            <span>Kernel Interaction</span>
+                            <span class="count">1</span>
+                        </div>
+                        <div class="filter-item" data-filter="concept" data-value="ai-learning">
+                            <span>AI Learning</span>
+                            <span class="count">1</span>
+                        </div>
+                        <div class="filter-item" data-filter="concept" data-value="terminal-tools">
+                            <span>Terminal Tools</span>
+                            <span class="count">1</span>
+                        </div>
+                        <div class="filter-item" data-filter="concept" data-value="ray-tracing">
+                            <span>Ray Tracing</span>
+                            <span class="count">1</span>
+                        </div>
+                        <div class="filter-item" data-filter="concept" data-value="test-coverage">
+                            <span>Test Coverage</span>
+                            <span class="count">1</span>
+                        </div>
+                        <div class="filter-item" data-filter="concept" data-value="ai-coding">
+                            <span>AI Coding</span>
+                            <span class="count">1</span>
+                        </div>
+                        <div class="filter-item" data-filter="concept" data-value="yolo-mode">
+                            <span>YOLO Mode</span>
+                            <span class="count">1</span>
+                        </div>
+                        <div class="filter-item" data-filter="concept" data-value="ai-tools">
+                            <span>AI Tools</span>
+                            <span class="count">1</span>
+                        </div>
+                        <div class="filter-item" data-filter="concept" data-value="industry-trends">
+                            <span>Industry Trends</span>
+                            <span class="count">1</span>
+                        </div>
+                        <div class="filter-item" data-filter="concept" data-value="survey-data">
+                            <span>Survey Data</span>
+                            <span class="count">2</span>
+                        </div>
+                        <div class="filter-item" data-filter="concept" data-value="css">
+                            <span>CSS</span>
+                            <span class="count">2</span>
+                        </div>
+                        <div class="filter-item" data-filter="concept" data-value="visual-context">
+                            <span>Visual Context</span>
+                            <span class="count">1</span>
+                        </div>
+                        <div class="filter-item" data-filter="concept" data-value="debugging">
+                            <span>Debugging</span>
+                            <span class="count">3</span>
+                        </div>
+                        <div class="filter-item" data-filter="concept" data-value="image-generation">
+                            <span>Image Generation</span>
+                            <span class="count">2</span>
+                        </div>
+                        <div class="filter-item" data-filter="concept" data-value="oauth">
+                            <span>OAuth & Plugins</span>
+                            <span class="count">1</span>
+                        </div>
+                        <div class="filter-item" data-filter="concept" data-value="code-editing">
+                            <span>Code Editing</span>
+                            <span class="count">5</span>
+                        </div>
+                        <div class="filter-item" data-filter="concept" data-value="app-development">
+                            <span>App Development</span>
+                            <span class="count">2</span>
+                        </div>
+                        <div class="filter-item" data-filter="concept" data-value="report-analysis">
+                            <span>Report Analysis</span>
+                            <span class="count">1</span>
+                        </div>
+                        <div class="filter-item" data-filter="concept" data-value="data-visualization">
+                            <span>Data Visualization</span>
+                            <span class="count">1</span>
+                        </div>
+                        <div class="filter-item" data-filter="concept" data-value="infographics">
+                            <span>Infographics</span>
+                            <span class="count">1</span>
+                        </div>
+                        <div class="filter-item" data-filter="concept" data-value="content-creation">
+                            <span>Content Creation</span>
+                            <span class="count">1</span>
+                        </div>
+                        <div class="filter-item" data-filter="concept" data-value="automation">
+                            <span>Automation</span>
+                            <span class="count">1</span>
+                        </div>
+                        <div class="filter-item" data-filter="concept" data-value="workflow">
+                            <span>Workflow</span>
+                            <span class="count">1</span>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                <button class="reset-filters" id="resetFilters">Reset All Filters</button>
+            </aside>
+            
+            <!-- Main content area -->
+            <div class="observations-content">
+                <div class="takeaway-cards">
+                    <!-- Episode 28 Card -->
+                    <div class="takeaway-card" data-episode="28" data-tools="ebpf,chatgpt,github-copilot" data-concepts="system-monitoring,kernel-interaction,ai-learning">
+                        <div class="takeaway-card-header">
+                            <img src="../images/thumbnails/ep28.png" alt="Episode 28 Thumbnail">
+                            <div class="takeaway-card-header-content">
+                                <div class="episode-number">Episode 28</div>
+                                <h3>Exploring eBPF with AI Tools: Insights and Applications</h3>
+                            </div>
+                        </div>
+                        <div class="takeaway-card-body">
+                            <div class="takeaway-card-tags">
+                                <span class="takeaway-tag">eBPF</span>
+                                <span class="takeaway-tag">ChatGPT</span>
+                                <span class="takeaway-tag">GitHub Copilot</span>
+                                <span class="takeaway-tag">System Monitoring</span>
+                            </div>
+                            <div class="takeaway-content">
+                                <ul>
+                                    <li>AI tools help non-developers explore complex technologies like eBPF through practical, hands-on experimentation</li>
+                                    <li>Learning through experimentation produces deeper understanding than theoretical study alone</li>
+                                    <li>System monitoring tools can be rapidly prototyped using generative AI, even with minimal programming experience</li>
+                                    <li>eBPF enables powerful observability capabilities for networking, memory access, and security monitoring</li>
+                                    <li>Using multiple AI models in sequence (like ChatGPT for initial code and GitHub Copilot for refinement) creates better solutions than a single tool</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="takeaway-card-footer">
+                            <a href='/pages/ep28' target='_blank'>View Full Episode →</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Episode 27 Card -->
+                    <div class="takeaway-card" data-episode="27" data-tools="tmux,claude-code,terminal,helix" data-concepts="terminal-tools,ray-tracing,test-coverage,ai-coding">
+                        <div class="takeaway-card-header">
+                            <img src="../images/thumbnails/ep27.png" alt="Episode 27 Thumbnail">
+                            <div class="takeaway-card-header-content">
+                                <div class="episode-number">Episode 27</div>
+                                <h3>Exploring Coding Efficiency: Utilizing Tmux and Claude Code for AI-Powered Ray Tracing</h3>
+                            </div>
+                        </div>
+                        <div class="takeaway-card-body">
+                            <div class="takeaway-card-tags">
+                                <span class="takeaway-tag">Tmux</span>
+                                <span class="takeaway-tag">Claude Code</span>
+                                <span class="takeaway-tag">Terminal</span>
+                                <span class="takeaway-tag">Helix</span>
+                            </div>
+                            <div class="takeaway-content">
+                                <ul>
+                                    <li>Embrace new technologies like terminal-based editing tools that increase productivity</li>
+                                    <li>Claude Code facilitates complex project completion through effective use of AI</li>
+                                    <li>Creating an elaborate setup leads to better management of large projects</li>
+                                    <li>Using detailed project logs can assist in identifying errors and improving workflow</li>
+                                    <li>The utility of test coverage checks helps maintain code reliability during development</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="takeaway-card-footer">
+                            <a href='/pages/ep27' target='_blank'>View Full Episode →</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Episode 26 Card -->
+                    <div class="takeaway-card" data-episode="26" data-tools="n8n,automation,airtable,workflow" data-concepts="content-creation,automation,workflow">
+                        <div class="takeaway-card-header">
+                            <img src="../images/thumbnails/ep26.png" alt="Episode 26 Thumbnail">
+                            <div class="takeaway-card-header-content">
+                                <div class="episode-number">Episode 26</div>
+                                <h3>Streamlining AI Content Creation with Automation: A Deep Dive into N8N Workflows</h3>
+                            </div>
+                        </div>
+                        <div class="takeaway-card-body">
+                            <div class="takeaway-card-tags">
+                                <span class="takeaway-tag">N8N</span>
+                                <span class="takeaway-tag">Automation</span>
+                                <span class="takeaway-tag">Airtable</span>
+                                <span class="takeaway-tag">Workflow</span>
+                            </div>
+                            <div class="takeaway-content">
+                                <ul>
+                                    <li>N8N automation can significantly streamline workflow processes in content creation</li>
+                                    <li>Using Airtable for tracking and managing data from interviews enhances the content's depth and accuracy</li>
+                                    <li>Automation can help in maintaining consistency and quality in content output through structured frameworks</li>
+                                    <li>Experimenting with different AI models can offer insights into performance and cost-effectiveness</li>
+                                    <li>Continual workflow adjustments are crucial to meet evolving project needs and technological advancements</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="takeaway-card-footer">
+                            <a href='/pages/ep26' target='_blank'>View Full Episode →</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Episode 24 Card -->
+                    <div class="takeaway-card" data-episode="24" data-tools="claude,stateofai,productivity" data-concepts="report-analysis,data-visualization,infographics">
+                        <div class="takeaway-card-header">
+                            <img src="../images/thumbnails/ep24.png" alt="Episode 24 Thumbnail">
+                            <div class="takeaway-card-header-content">
+                                <div class="episode-number">Episode 24</div>
+                                <h3>Streamlining AI Report Analysis: Figma AI 2025 Insights</h3>
+                            </div>
+                        </div>
+                        <div class="takeaway-card-body">
+                            <div class="takeaway-card-tags">
+                                <span class="takeaway-tag">Claude</span>
+                                <span class="takeaway-tag">State of AI</span>
+                                <span class="takeaway-tag">Productivity</span>
+                            </div>
+                            <div class="takeaway-content">
+                                <ul>
+                                    <li>Efficiently summarizing large reports can save time and reveal essential insights</li>
+                                    <li>Tools like Claude can help create visual aids such as infographics for presenting data</li>
+                                    <li>Critical analysis and comparison of reports can uncover unique insights and trends</li>
+                                    <li>Effective data presentation in professional settings requires clarity and precision</li>
+                                    <li>Integrating findings from multiple reports provides a comprehensive view of industry trends</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="takeaway-card-footer">
+                            <a href='/pages/ep24' target='_blank'>View Full Episode →</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Episode 20 Card -->
+                    <div class="takeaway-card" data-episode="20" data-tools="puppeteer,mcp,gemini,claude,astro" data-concepts="yolo-mode,code-editing">
+                        <div class="takeaway-card-header">
+                            <img src="../images/thumbnails/ep20.png" alt="Episode 20 Thumbnail">
+                            <div class="takeaway-card-header-content">
+                                <div class="episode-number">Episode 20</div>
+                                <h3>YOLO Coding: Migrating from Static HTML to Astro with AI Tools</h3>
+                            </div>
+                        </div>
+                        <div class="takeaway-card-body">
+                            <div class="takeaway-card-tags">
+                                <span class="takeaway-tag">Puppeteer</span>
+                                <span class="takeaway-tag">MCP</span>
+                                <span class="takeaway-tag">Gemini</span>
+                                <span class="takeaway-tag">Claude</span>
+                                <span class="takeaway-tag">Astro</span>
+                            </div>
+                            <div class="takeaway-content">
+                                <ul>
+                                    <li>AI 'YOLO Mode' can significantly accelerate website migrations, but requires constant human supervision to prevent security risks and unwanted changes</li>
+                                    <li>Combining different AI models (like Gemini 2.5 Pro for multimodal tasks and Claude Sonnet 3.7 for web searches) creates a more effective development workflow</li>
+                                    <li>Model Context Protocol (MCP) tools like Puppeteer and Sequential Thinking in Windsurf enable AI to interact with websites and execute multi-step processes</li>
+                                    <li>AI models struggle with large files (like CSS) and special formats (like Base64), requiring workarounds or alternative approaches</li>
+                                    <li>Long AI sessions face context window limitations; creating checkpoints and to-do lists helps maintain progress across multiple sessions</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="takeaway-card-footer">
+                            <a href='/pages/ep20' target='_blank'>View Full Episode →</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Episode 17 Card -->
+                    <div class="takeaway-card" data-episode="17" data-tools="notebooklm,stateofai,chatgpt,claude" data-concepts="ai-tools,industry-trends,survey-data">
+                        <div class="takeaway-card-header">
+                            <img src="../images/thumbnails/ep17.png" alt="Episode 17 Thumbnail">
+                            <div class="takeaway-card-header-content">
+                                <div class="episode-number">Episode 17</div>
+                                <h3>The State of AI 2025: Exploring Developer Tools, Models, and Industry Trends</h3>
+                            </div>
+                        </div>
+                        <div class="takeaway-card-body">
+                            <div class="takeaway-card-tags">
+                                <span class="takeaway-tag">State of AI</span>
+                                <span class="takeaway-tag">Notebook LM</span>
+                                <span class="takeaway-tag">Claude</span>
+                                <span class="takeaway-tag">ChatGPT</span>
+                            </div>
+                            <div class="takeaway-content">
+                                <ul>
+                                    <li>ChatGPT remains the dominant AI model with Claude gaining rapid popularity, but there's a wide ecosystem of AI tools that many developers are still discovering</li>
+                                    <li>The biggest pain points for AI users remain hallucinations/inaccuracies and context limitations, though these issues are being addressed with newer model versions</li>
+                                    <li>Local model deployment is more common than expected (46% of respondents), likely driven by data privacy concerns</li>
+                                    <li>According to DORA research, while generative AI provides individual productivity gains, it may have negative impacts on software delivery at organizational levels</li>
+                                    <li>Google's Notebook LM offers an efficient way to synthesize information from multiple sources, creating a personalized knowledge base</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="takeaway-card-footer">
+                            <a href='/pages/ep17' target='_blank'>View Full Episode →</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Episode 16 Card -->
+                    <div class="takeaway-card" data-episode="16" data-tools="puppeteer,mcp,gemini" data-concepts="css,visual-context">
+                        <div class="takeaway-card-header">
+                            <img src="../images/thumbnails/ep16.png" alt="Episode 16 Thumbnail">
+                            <div class="takeaway-card-header-content">
+                                <div class="episode-number">Episode 16</div>
+                                <h3>Enhancing CSS Editing with LLMs: Using Puppeteer for Visual Context</h3>
+                            </div>
+                        </div>
+                        <div class="takeaway-card-body">
+                            <div class="takeaway-card-tags">
+                                <span class="takeaway-tag">Puppeteer</span>
+                                <span class="takeaway-tag">MCP</span>
+                                <span class="takeaway-tag">Gemini</span>
+                                <span class="takeaway-tag">CSS</span>
+                            </div>
+                            <div class="takeaway-content">
+                                <ul>
+                                    <li>Using visual context through screenshots helps LLMs make better CSS editing decisions than relying on text alone</li>
+                                    <li>Puppeteer integration with LLMs creates a virtuous feedback cycle for quickly iterating on design changes</li>
+                                    <li>The MCP server is essential for allowing LLMs to interact with local development environments</li>
+                                    <li>Working in a test branch provides a safe environment for experimenting with AI-suggested CSS changes</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="takeaway-card-footer">
+                            <a href='/pages/ep16' target='_blank'>View Full Episode →</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Episode 15 Card -->
+                    <div class="takeaway-card" data-episode="15" data-tools="sora,lovable" data-concepts="image-generation,app-development">
+                        <div class="takeaway-card-header">
+                            <img src="../images/thumbnails/ep15.png" alt="Episode 15 Thumbnail">
+                            <div class="takeaway-card-header-content">
+                                <div class="episode-number">Episode 15</div>
+                                <h3>AI Tools in Action: Exploring Sora Image Generation and Lovable App Builder</h3>
+                            </div>
+                        </div>
+                        <div class="takeaway-card-body">
+                            <div class="takeaway-card-tags">
+                                <span class="takeaway-tag">Sora</span>
+                                <span class="takeaway-tag">Lovable</span>
+                                <span class="takeaway-tag">Image Generation</span>
+                            </div>
+                            <div class="takeaway-content">
+                                <ul>
+                                    <li>AI image generation has significantly improved, especially for text rendering in images</li>
+                                    <li>Sora can now create images with professional-looking fonts, proper kerning, and layout</li>
+                                    <li>Lovable is a full-stack development tool similar to Bolt, allowing rapid app creation</li>
+                                    <li>Generative AI quality has improved to the point where many outputs no longer trigger the "AI slop" response</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="takeaway-card-footer">
+                            <a href='/pages/ep15' target='_blank'>View Full Episode →</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Episode 14 Card -->
+                    <div class="takeaway-card" data-episode="14" data-tools="claude,mcp" data-concepts="oauth,plugins">
+                        <div class="takeaway-card-header">
+                            <img src="../images/thumbnails/ep14.png" alt="Episode 14 Thumbnail">
+                            <div class="takeaway-card-header-content">
+                                <div class="episode-number">Episode 14</div>
+                                <h3>Claude 3.7 Sonnet Plugins: AI Integration with Gmail, Drive and Calendar</h3>
+                            </div>
+                        </div>
+                        <div class="takeaway-card-body">
+                            <div class="takeaway-card-tags">
+                                <span class="takeaway-tag">Claude</span>
+                                <span class="takeaway-tag">OAuth</span>
+                                <span class="takeaway-tag">Plugins</span>
+                            </div>
+                            <div class="takeaway-content">
+                                <ul>
+                                    <li>Claude 3.7 Sonnet integrates with Gmail, Google Drive, and Calendar through simple OAuth authentication</li>
+                                    <li>The AI can analyze massive email volumes and generate personalized interactive dashboards</li>
+                                    <li>Claude creates customized email filter recommendations with ready-to-use filter language</li>
+                                    <li>Integration with Google Drive includes security recommendations for sensitive data</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="takeaway-card-footer">
+                            <a href='/pages/ep14' target='_blank'>View Full Episode →</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Episode 13 Card -->
+                    <div class="takeaway-card" data-episode="13" data-tools="bolt" data-concepts="app-development">
+                        <div class="takeaway-card-header">
+                            <img src="../images/thumbnails/ep13.png" alt="Episode 13 Thumbnail">
+                            <div class="takeaway-card-header-content">
+                                <div class="episode-number">Episode 13</div>
+                                <h3>Exploring Bolt: Rapid App Development with AI-Powered Templates</h3>
+                            </div>
+                        </div>
+                        <div class="takeaway-card-body">
+                            <div class="takeaway-card-tags">
+                                <span class="takeaway-tag">Bolt</span>
+                                <span class="takeaway-tag">App Development</span>
+                            </div>
+                            <div class="takeaway-content">
+                                <ul>
+                                    <li>Bolt provides a template-based approach to rapidly build web and mobile applications</li>
+                                    <li>It's particularly useful for prototyping and "vibe coding" - quickly visualizing concepts</li>
+                                    <li>The tool works with multiple frameworks including React, Next.js, and Expo</li>
+                                    <li>Users can download their code and continue development in their preferred IDE</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="takeaway-card-footer">
+                            <a href='/pages/ep13' target='_blank'>View Full Episode →</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Episode 12 Card -->
+                    <div class="takeaway-card" data-episode="12" data-tools="cursor" data-concepts="code-editing">
+                        <div class="takeaway-card-header">
+                            <img src="../images/thumbnails/ep12.png" alt="Episode 12 Thumbnail">
+                            <div class="takeaway-card-header-content">
+                                <div class="episode-number">Episode 12</div>
+                                <h3>Cursor Rules, Firebase Studio, and the Evolving IDE Landscape</h3>
+                            </div>
+                        </div>
+                        <div class="takeaway-card-body">
+                            <div class="takeaway-card-tags">
+                                <span class="takeaway-tag">Cursor</span>
+                                <span class="takeaway-tag">Firebase</span>
+                                <span class="takeaway-tag">IDE</span>
+                            </div>
+                            <div class="takeaway-content">
+                                <ul>
+                                    <li>Cursor Rules and project requirements documents (PRDs) are becoming essential for maintaining context in AI-assisted development</li>
+                                    <li>AI tools suffer from "amnesia" between sessions, requiring developers to repeatedly provide the same context</li>
+                                    <li>Cloud providers are each developing their own AI-powered development environments</li>
+                                    <li>Security practices and API key management are crucial considerations when working with cloud-based AI dev environments</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="takeaway-card-footer">
+                            <a href='/pages/ep12' target='_blank'>View Full Episode →</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Episode 11 Card -->
+                    <div class="takeaway-card" data-episode="11" data-tools="llama4,openrouter" data-concepts="llm,context-window">
+                        <div class="takeaway-card-header">
+                            <img src="../images/thumbnails/ep11.png" alt="Episode 11 Thumbnail">
+                            <div class="takeaway-card-header-content">
+                                <div class="episode-number">Episode 11</div>
+                                <h3>Exploring Llama 4, OpenRouter, and Model Comparison Tools</h3>
+                            </div>
+                        </div>
+                        <div class="takeaway-card-body">
+                            <div class="takeaway-card-tags">
+                                <span class="takeaway-tag">Llama 4</span>
+                                <span class="takeaway-tag">OpenRouter</span>
+                                <span class="takeaway-tag">LLM Comparison</span>
+                            </div>
+                            <div class="takeaway-content">
+                                <ul>
+                                    <li>Llama 4 features a massive 10+ million token context window, revolutionizing how we work with large documents</li>
+                                    <li>Despite large context windows, RAG remains valuable for cost efficiency and performance optimization</li>
+                                    <li>Even the latest AI models still struggle with certain types of specialized knowledge</li>
+                                    <li>AI hallucinations remain a concern, particularly for factual questions</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="takeaway-card-footer">
+                            <a href='/pages/ep11' target='_blank'>View Full Episode →</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Episode 10 Card -->
+                    <div class="takeaway-card" data-episode="10" data-tools="windsurf,mcp" data-concepts="ide,code-editing">
+                        <div class="takeaway-card-header">
+                            <img src="../images/thumbnails/ep10.png" alt="Episode 10 Thumbnail">
+                            <div class="takeaway-card-header-content">
+                                <div class="episode-number">Episode 10</div>
+                                <h3>First Look at Windsurf & Model Context Protocol (MCP)</h3>
+                            </div>
+                        </div>
+                        <div class="takeaway-card-body">
+                            <div class="takeaway-card-tags">
+                                <span class="takeaway-tag">Windsurf</span>
+                                <span class="takeaway-tag">MCP</span>
+                                <span class="takeaway-tag">IDE</span>
+                            </div>
+                            <div class="takeaway-content">
+                                <ul>
+                                    <li>Windsurf offers a free tier with the Cascade model, providing capable AI assistance for coding tasks</li>
+                                    <li>Creating a detailed Project Requirements Document (PRD) before coding leads to higher quality AI output</li>
+                                    <li>Different AI coding tools have different "ergonomics" that may suit different workflows</li>
+                                    <li>The role of developers is rapidly changing with AI tools, focusing more on architecture and planning than syntax</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="takeaway-card-footer">
+                            <a href='/pages/ep10' target='_blank'>View Full Episode →</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Episode 9 Card -->
+                    <div class="takeaway-card" data-episode="9" data-tools="gtc" data-concepts="ai-trends,web-dev">
+                        <div class="takeaway-card-header">
+                            <img src="../images/thumbnails/ep09.png" alt="Episode 9 Thumbnail">
+                            <div class="takeaway-card-header-content">
+                                <div class="episode-number">Episode 09</div>
+                                <h3>From GTC to Website Building with AI Tools</h3>
+                            </div>
+                        </div>
+                        <div class="takeaway-card-body">
+                            <div class="takeaway-card-tags">
+                                <span class="takeaway-tag">GTC</span>
+                                <span class="takeaway-tag">Web Development</span>
+                                <span class="takeaway-tag">AI Trends</span>
+                            </div>
+                            <div class="takeaway-content">
+                                <ul>
+                                    <li>AI content creation tools can accelerate the creation of various media types</li>
+                                    <li>Different tools have unique strengths and limitations</li>
+                                    <li>Understanding prompt engineering principles improves output quality</li>
+                                    <li>Ethical considerations are important when creating AI-generated content</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="takeaway-card-footer">
+                            <a href='/pages/ep09' target='_blank'>View Full Episode →</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Episode 8 Card -->
+                    <div class="takeaway-card" data-episode="8" data-tools="cursor,claude" data-concepts="css,debugging">
+                        <div class="takeaway-card-header">
+                            <img src="../images/thumbnails/ep08.png" alt="Episode 8 Thumbnail">
+                            <div class="takeaway-card-header-content">
+                                <div class="episode-number">Episode 08</div>
+                                <h3>Using Cursor and Claude to Fix CSS Layout Issues</h3>
+                            </div>
+                        </div>
+                        <div class="takeaway-card-body">
+                            <div class="takeaway-card-tags">
+                                <span class="takeaway-tag">Cursor</span>
+                                <span class="takeaway-tag">Claude</span>
+                                <span class="takeaway-tag">CSS</span>
+                                <span class="takeaway-tag">Debugging</span>
+                            </div>
+                            <div class="takeaway-content">
+                                <ul>
+                                    <li>Running AI models locally requires specific hardware and software configurations</li>
+                                    <li>Local environments provide more control and privacy than cloud-based alternatives</li>
+                                    <li>The AI ecosystem is rapidly evolving with new tools and models constantly emerging</li>
+                                    <li>Setting up proper development environments is crucial for efficient AI experimentation</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="takeaway-card-footer">
+                            <a href='/pages/ep08' target='_blank'>View Full Episode →</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Episode 7 Card -->
+                    <div class="takeaway-card" data-episode="7" data-tools="cursor,claude" data-concepts="debugging">
+                        <div class="takeaway-card-header">
+                            <img src="../images/thumbnails/ep07.png" alt="Episode 7 Thumbnail">
+                            <div class="takeaway-card-header-content">
+                                <div class="episode-number">Episode 07</div>
+                                <h3>Debugging with Cursor and Claude</h3>
+                            </div>
+                        </div>
+                        <div class="takeaway-card-body">
+                            <div class="takeaway-card-tags">
+                                <span class="takeaway-tag">Cursor</span>
+                                <span class="takeaway-tag">Claude</span>
+                                <span class="takeaway-tag">Debugging</span>
+                            </div>
+                            <div class="takeaway-content">
+                                <ul>
+                                    <li>AI debugging tools can identify issues in code more quickly than manual inspection</li>
+                                    <li>Cursor provides integrated features for asking questions about code and finding bugs</li>
+                                    <li>Claude can provide explanations of complex code patterns and suggest improvements</li>
+                                    <li>Debugging with AI is most effective when providing adequate context</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="takeaway-card-footer">
+                            <a href='/pages/ep07' target='_blank'>View Full Episode →</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Episode 6 Card -->
+                    <div class="takeaway-card" data-episode="6" data-tools="claude-code" data-concepts="web-dev">
+                        <div class="takeaway-card-header">
+                            <img src="../images/thumbnails/ep06.png" alt="Episode 6 Thumbnail">
+                            <div class="takeaway-card-header-content">
+                                <div class="episode-number">Episode 06</div>
+                                <h3>Using Claude Code to Make Changes to My Personal Website</h3>
+                            </div>
+                        </div>
+                        <div class="takeaway-card-body">
+                            <div class="takeaway-card-tags">
+                                <span class="takeaway-tag">Claude Code</span>
+                                <span class="takeaway-tag">Web Development</span>
+                            </div>
+                            <div class="takeaway-content">
+                                <ul>
+                                    <li>Claude Code can effectively implement substantial changes to personal websites</li>
+                                    <li>Planning before execution helps ensure successful implementation of changes</li>
+                                    <li>AI assistants can understand existing code patterns and maintain consistency</li>
+                                    <li>Claude can handle complex website changes across multiple files</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="takeaway-card-footer">
+                            <a href='/pages/ep06' target='_blank'>View Full Episode →</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Episode 5 Card -->
+                    <div class="takeaway-card" data-episode="5" data-tools="claude-code" data-concepts="web-dev,automation">
+                        <div class="takeaway-card-header">
+                            <img src="../images/thumbnails/ep05.png" alt="Episode 5 Thumbnail">
+                            <div class="takeaway-card-header-content">
+                                <div class="episode-number">Episode 05</div>
+                                <h3>Using Claude Code for Automated HTML Updates and Styling</h3>
+                            </div>
+                        </div>
+                        <div class="takeaway-card-body">
+                            <div class="takeaway-card-tags">
+                                <span class="takeaway-tag">Claude Code</span>
+                                <span class="takeaway-tag">HTML</span>
+                                <span class="takeaway-tag">Automation</span>
+                            </div>
+                            <div class="takeaway-content">
+                                <ul>
+                                    <li>Claude Code can automate repetitive HTML updates across multiple files</li>
+                                    <li>AI can apply consistent styling and structure to improve website maintainability</li>
+                                    <li>Reduces tedious manual editing for large-scale changes</li>
+                                    <li>Can adapt existing code patterns rather than creating from scratch</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="takeaway-card-footer">
+                            <a href='/pages/ep05' target='_blank'>View Full Episode →</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Episode 4 Card -->
+                    <div class="takeaway-card" data-episode="4" data-tools="claude-code" data-concepts="api,static-sites">
+                        <div class="takeaway-card-header">
+                            <img src="../images/thumbnails/ep04.png" alt="Episode 4 Thumbnail">
+                            <div class="takeaway-card-header-content">
+                                <div class="episode-number">Episode 04</div>
+                                <h3>Building a Secure Feedback Form with Datadog Logs with Claude Code</h3>
+                            </div>
+                        </div>
+                        <div class="takeaway-card-body">
+                            <div class="takeaway-card-tags">
+                                <span class="takeaway-tag">Claude Code</span>
+                                <span class="takeaway-tag">API</span>
+                                <span class="takeaway-tag">Datadog</span>
+                            </div>
+                            <div class="takeaway-content">
+                                <ul>
+                                    <li>Claude Code can efficiently generate HTML/CSS/JS for static websites</li>
+                                    <li>GitHub Actions allow secure handling of API keys through repository secrets</li>
+                                    <li>Static websites can still communicate with external APIs like Datadog</li>
+                                    <li>Structured logging provides a simple way to collect and analyze form submissions</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="takeaway-card-footer">
+                            <a href='/pages/ep04' target='_blank'>View Full Episode →</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Episode 3 Card -->
+                    <div class="takeaway-card" data-episode="3" data-tools="automatic1111,stable-diffusion" data-concepts="image-generation">
+                        <div class="takeaway-card-header">
+                            <img src="../images/thumbnails/ep03.png" alt="Episode 3 Thumbnail">
+                            <div class="takeaway-card-header-content">
+                                <div class="episode-number">Episode 03</div>
+                                <h3>Automatic1111 and Local Text-to-Image Generation</h3>
+                            </div>
+                        </div>
+                        <div class="takeaway-card-body">
+                            <div class="takeaway-card-tags">
+                                <span class="takeaway-tag">Automatic1111</span>
+                                <span class="takeaway-tag">Stable Diffusion</span>
+                                <span class="takeaway-tag">Image Generation</span>
+                            </div>
+                            <div class="takeaway-content">
+                                <ul>
+                                    <li>Automatic1111 provides a web UI for Stable Diffusion image generation models</li>
+                                    <li>Local image generation is slower but offers privacy, offline access, and cost savings</li>
+                                    <li>Older models like SD 1.5 have limitations but are faster than newer ones</li>
+                                    <li>Prompt engineering with positive and negative prompts can improve generation results</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="takeaway-card-footer">
+                            <a href='/pages/ep03' target='_blank'>View Full Episode →</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Episode 2 Card -->
+                    <div class="takeaway-card" data-episode="2" data-tools="warp,cursor" data-concepts="productivity">
+                        <div class="takeaway-card-header">
+                            <img src="../images/thumbnails/ep02.png" alt="Episode 2 Thumbnail">
+                            <div class="takeaway-card-header-content">
+                                <div class="episode-number">Episode 02</div>
+                                <h3>Exploring Warp Terminal and Cursor for Productivity</h3>
+                            </div>
+                        </div>
+                        <div class="takeaway-card-body">
+                            <div class="takeaway-card-tags">
+                                <span class="takeaway-tag">Warp Terminal</span>
+                                <span class="takeaway-tag">Cursor</span>
+                                <span class="takeaway-tag">Productivity</span>
+                            </div>
+                            <div class="takeaway-content">
+                                <ul>
+                                    <li>Warp offers a more intuitive terminal experience with AI-powered command suggestions</li>
+                                    <li>Cursor enhances coding with integrated AI assistance for code generation and review</li>
+                                    <li>Both tools provide significant productivity boosts for developers</li>
+                                    <li>Great for both beginners and experienced developers</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="takeaway-card-footer">
+                            <a href='/pages/ep02' target='_blank'>View Full Episode →</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Episode 1 Card -->
+                    <div class="takeaway-card" data-episode="1" data-tools="gradio,huggingface" data-concepts="ml-models">
+                        <div class="takeaway-card-header">
+                            <img src="../images/thumbnails/ep01.png" alt="Episode 1 Thumbnail">
+                            <div class="takeaway-card-header-content">
+                                <div class="episode-number">Episode 01</div>
+                                <h3>Building Quick Web Interfaces for ML Models</h3>
+                            </div>
+                        </div>
+                        <div class="takeaway-card-body">
+                            <div class="takeaway-card-tags">
+                                <span class="takeaway-tag">Gradio</span>
+                                <span class="takeaway-tag">Hugging Face</span>
+                                <span class="takeaway-tag">ML Models</span>
+                            </div>
+                            <div class="takeaway-content">
+                                <ul>
+                                    <li>Gradio is a very easy way to get a Huggingface Space locally (via <code>load</code>)</li>
+                                    <li>Gradio provides a simple way to build frontends for ML applications</li>
+                                    <li>When installing, make sure to create a virtual environment</li>
+                                    <li>Ensure to install Gradio in that environment after activation</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="takeaway-card-footer">
+                            <a href='/pages/ep01' target='_blank'>View Full Episode →</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Empty state - shown when no matches -->
+                    <div class="empty-state" id="emptyState" style="display: none; grid-column: 1 / -1;">
+                        <h3>No matching observations found</h3>
+                        <p>Try adjusting your filters or search term to see more results.</p>
+                        <button class="reset-filters" style="width: auto; display: inline-block; margin-top: 15px; padding: 8px 20px;">Reset Filters</button>
+                    </div>
+                </div>
+                
+                <!-- Pagination for future use -->
+                <div class="pagination" style="margin-top: 30px; text-align: center; display: none;">
+                    <a href="#" class="pagination-item">1</a>
+                    <a href="#" class="pagination-item active">2</a>
+                    <a href="#" class="pagination-item">3</a>
+                    <span class="pagination-ellipsis">...</span>
+                    <a href="#" class="pagination-item">8</a>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="../images/ai-tools-lab-logo.png" alt="AI Tools Lab Logo" class="footer-logo-img">
+                    <div>
+                        <h2>AI Tools Lab</h2>
+                        <p>Exploring the landscape of AI tools and technologies</p>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href='/pages/'>Home</a></li>
+                        <li><a href='/pages/resources'>Resources</a></li>
+                        <li><a href='/pages/observations'>Observations</a></li>
+                        <li><a href='/pages/about'>About</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 AI Tools Lab. All rights reserved. <span id="easter-egg" class="easter-egg">π</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Easter Egg Modal -->
+    <div id="easter-egg-modal" class="easter-egg-modal">
+        <div class="easter-egg-modal-content">
+            <span class="easter-egg-close">&times;</span>
+            <p>Sandy?</p>
+        </div>
+    </div>
+
+    <script src="../script.js"></script>
+    
+    <!-- Observations page specific JavaScript -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // DOM Elements
+        const toolFilters = document.querySelectorAll('[data-filter="tool"]');
+        const conceptFilters = document.querySelectorAll('[data-filter="concept"]');
+        const resetFiltersBtn = document.getElementById('resetFilters');
+        const searchInput = document.getElementById('observationSearch');
+        const takeawayCards = document.querySelectorAll('.takeaway-card');
+        const emptyState = document.getElementById('emptyState');
+        const mobileTabs = document.querySelectorAll('.mobile-tab');
+        
+        // Current filter state
+        let currentFilters = {
+            tool: 'all',
+            concept: 'all',
+            search: ''
+        };
+        
+        // Filter cards based on current filter state
+        function filterCards() {
+            let visibleCount = 0;
+            
+            takeawayCards.forEach(card => {
+                const cardTools = card.dataset.tools.split(',');
+                const cardConcepts = card.dataset.concepts.split(',');
+                const cardText = card.textContent.toLowerCase();
+                
+                // Check if card matches all active filters
+                const matchesTool = currentFilters.tool === 'all' || cardTools.includes(currentFilters.tool);
+                const matchesConcept = currentFilters.concept === 'all' || cardConcepts.includes(currentFilters.concept);
+                const matchesSearch = currentFilters.search === '' || cardText.includes(currentFilters.search.toLowerCase());
+                
+                if (matchesTool && matchesConcept && matchesSearch) {
+                    card.style.display = '';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+            
+            // Show empty state if no cards are visible
+            if (visibleCount === 0) {
+                emptyState.style.display = 'block';
+            } else {
+                emptyState.style.display = 'none';
+            }
+        }
+        
+        // Update active filter UI
+        function updateActiveFilters(filterType, value) {
+            const filterSet = filterType === 'tool' ? toolFilters : conceptFilters;
+            
+            filterSet.forEach(filter => {
+                filter.classList.toggle('active', filter.dataset.value === value);
+            });
+        }
+        
+        // Event handlers for filters
+        function handleFilterClick(e) {
+            const filterItem = e.currentTarget;
+            const filterType = filterItem.dataset.filter;
+            const filterValue = filterItem.dataset.value;
+            
+            // Update filter state
+            currentFilters[filterType] = filterValue;
+            
+            // Update UI
+            updateActiveFilters(filterType, filterValue);
+            
+            // Apply filters
+            filterCards();
+        }
+        
+        // Add click event to all filters
+        toolFilters.forEach(filter => {
+            filter.addEventListener('click', handleFilterClick);
+        });
+        
+        conceptFilters.forEach(filter => {
+            filter.addEventListener('click', handleFilterClick);
+        });
+        
+        // Handle search input
+        searchInput.addEventListener('input', function(e) {
+            currentFilters.search = e.target.value.trim();
+            filterCards();
+        });
+        
+        // Reset all filters
+        resetFiltersBtn.addEventListener('click', function() {
+            // Reset filter state
+            currentFilters = {
+                tool: 'all',
+                concept: 'all',
+                search: ''
+            };
+            
+            // Reset UI
+            updateActiveFilters('tool', 'all');
+            updateActiveFilters('concept', 'all');
+            searchInput.value = '';
+            
+            // Apply filters
+            filterCards();
+        });
+        
+        // Mobile tabs
+        mobileTabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                mobileTabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                
+                // Additional logic for switching views would go here
+                // For now, let's just do a simple filter reset
+                resetFiltersBtn.click();
+            });
+        });
+        
+        // Make sure all cards match the empty state button
+        document.querySelector('.empty-state .reset-filters').addEventListener('click', function() {
+            resetFiltersBtn.click();
+        });
+        
+        // Initial filter on page load
+        filterCards();
+    });
+    </script>
+</body>
+</html>

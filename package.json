@@ -1,44 +1,22 @@
 {
-  "name": "ai-tools-experiments",
-  "version": "1.0.0",
-  "description": "AI Lab Experiments & Tools",
-  "main": "index.js",
+  "name": "astro-test",
+  "type": "module",
+  "version": "0.0.1",
   "scripts": {
-    "check": "astro check",
-    "sync": "astro sync",
     "dev": "astro dev",
-    "prebuild": "rm -rf node_modules/.vite",
     "build": "astro build",
     "preview": "astro preview",
-    "test": "vitest run test/link-checker.test.js"
+    "astro": "astro"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/jasonhand/ai-tools-experiments.git"
-  },
-  "keywords": [
-    "ai",
-    "tools",
-    "experiments"
-  ],
-  "author": "",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/jasonhand/ai-tools-experiments/issues"
-  },
-  "homepage": "https://github.com/jasonhand/ai-tools-experiments#readme",
   "dependencies": {
-    "@datadog/browser-rum": "^4.31.0",
-    "astro": "^5.7.12",
-    "node-fetch": "^2.6.7",
-    "puppeteer": "^24.8.2"
+    "@astrojs/check": "^0.9.4",
+    "@astrojs/mdx": "^4.3.0",
+    "astro": "^5.8.0",
+    "typescript": "^5.8.3"
   },
-  "devDependencies": {
-    "cheerio": "^1.0.0",
-    "glob": "^11.0.2",
-    "vitest": "^3.1.3"
-  },
-  "optionalDependencies": {
-    "@rollup/rollup-linux-x64-gnu": "*"
-  }
+  "description": "```sh npm create astro@latest -- --template basics ```",
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }

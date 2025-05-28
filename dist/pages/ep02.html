@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exploring Warp Terminal and Cursor for Productivity</title>
+    <meta name="description" content="Exploring Warp Terminal and Cursor for enhanced development experiences with AI-powered features.">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Exploring Warp Terminal and Cursor for Productivity">
+    <meta property="og:description" content="Exploring Warp Terminal and Cursor for enhanced development experiences with AI-powered features.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://aitoolslab.com/pages/ep02.html">
+    <meta property="og:image" content="../images/ai-tools-lab-logo.png">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="../images/ai-tools-lab-logo.png" />
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Revalia&display=swap" rel="stylesheet">
+    
+    <!-- Logo styling -->
+    <style>
+        /* Header logo font styling */
+        .logo a {
+            /* Using font-family defined in main styles.css */
+            font-size: 1.6rem;
+        }
+    </style>
+    
+    <!-- Datadog RUM -->
+    <script
+        src="https://www.datadoghq-browser-agent.com/us1/v6/datadog-rum.js"
+        type="text/javascript">
+    </script>
+    <script>
+        window.DD_RUM && window.DD_RUM.init({
+          clientToken: 'pub1ef411c82203fccee1b3d7b58d064f1d',
+          applicationId: 'cea3fe47-039f-47fb-91b3-57389419c2c9',
+          // `site` refers to the Datadog site parameter of your organization
+          // see https://docs.datadoghq.com/getting_started/site/
+          site: 'datadoghq.com',
+          service: 'ai-labs',
+          env: 'production',
+          // Specify a version number to identify the deployed version of your application in Datadog
+          // version: '1.0.0',
+          sessionSampleRate: 100,
+          sessionReplaySampleRate: 20,
+          defaultPrivacyLevel: 'mask-user-input',
+        });
+    </script>
+</head>
+<body>
+    <header class="site-header">
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="container">
+            <div class="logo">
+                <img src="../images/ai-tools-lab-logo.png" alt="AI Tools Lab Logo" class="site-logo">
+                <a href='/pages/'>AI Tools Lab</a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href='/pages/'>Home</a></li>
+                    <li><a href='/pages/resources'>Resources</a></li>
+                    <li><a href='/pages/observations'>Observations</a></li>
+                    <li><a href='/pages/about'>About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main class="container">
+        <div class="video-container">
+            <a href="https://youtu.be/QYTe2BBhN1c" target="_blank">
+                <img src="../images/thumbnails/ep02.png" alt="Episode 2 Thumbnail">
+            </a>
+        </div>
+
+        <div class="episode-content">
+            <h1>Exploring Warp Terminal and Cursor for Productivity</h1>
+            
+            <p>In this second episode, Jason and Ryan explore AI-powered terminal and code editor tools that enhance the development experience. They start by diving into Warp Terminal, a modern terminal application that intelligently understands commands, offers AI-powered suggestions, and provides a more user-friendly interface compared to traditional terminals. The discussion then shifts to Cursor, an AI-enhanced code editor built on VSCode that helps with code generation, refactoring, and documentation. They demonstrate Cursor's capabilities by examining and improving Python code for a Datadog integration, showing how AI assistants can identify PEP8 formatting issues and suggest improvements. Throughout the episode, they highlight how these tools can make development more efficient while maintaining good coding practices.</p>
+            
+            <h2>Jump To</h2>
+            <ul class="chapter-markers">
+                <li><a href="https://youtu.be/QYTe2BBhN1c?t=0" target="_blank">🕒</a> Introduction to Warp Terminal</li>
+                <li><a href="https://youtu.be/QYTe2BBhN1c?t=180" target="_blank">🕒</a> Features of Warp Terminal</li>
+                <li><a href="https://youtu.be/QYTe2BBhN1c?t=360" target="_blank">🕒</a> Introduction to Cursor</li>
+                <li><a href="https://youtu.be/QYTe2BBhN1c?t=540" target="_blank">🕒</a> Reviewing Python code with Cursor</li>
+                <li><a href="https://youtu.be/QYTe2BBhN1c?t=720" target="_blank">🕒</a> PEP8 formatting assistance</li>
+                <li><a href="https://youtu.be/QYTe2BBhN1c?t=900" target="_blank">🕒</a> Fixing Datadog API integration</li>
+                <li><a href="https://youtu.be/QYTe2BBhN1c?t=1080" target="_blank">🕒</a> API key environment variables</li>
+                <li><a href="https://youtu.be/QYTe2BBhN1c?t=1260" target="_blank">🕒</a> Cursor's documentation capabilities</li>
+                <li><a href="https://youtu.be/QYTe2BBhN1c?t=1440" target="_blank">🕒</a> Comparing AI tools and workflows</li>
+                <li><a href="https://youtu.be/QYTe2BBhN1c?t=1620" target="_blank">🕒</a> Final thoughts and conclusion</li>
+            </ul>
+            
+            <h2>Resources</h2>
+            <ul>
+                <li><a href="https://warp.dev/" target="_blank">Warp Terminal</a></li>
+                <li><a href="https://cursor.sh/" target="_blank">Cursor</a></li>
+            </ul>
+            
+            <h2>Key Takeaways</h2>
+            <ul class="takeaways">
+                <li>Warp Terminal offers a more intuitive terminal experience compared to traditional terminals</li>
+                <li>Warp's AI features help with command discovery and syntax</li>
+                <li>Warp is great for both beginners and experienced developers</li>
+                <li>Cursor streamlines the coding process with AI assistance</li>
+                <li>Cursor is excellent for code review and refactoring</li>
+                <li>Cursor helps write better documentation</li>
+                <li>Cursor is useful for learning new programming concepts through AI explanations</li>
+            </ul>
+            
+            <h2>Full Transcript</h2>
+            <div class="transcript-navigation">
+                <button class="transcript-control" onclick="document.querySelector('.transcript').scrollTop = 0">Top</button>
+                <span>Scroll or use controls to navigate</span>
+                <button class="transcript-control" onclick="document.querySelector('.transcript').scrollTop = document.querySelector('.transcript').scrollHeight">Bottom</button>
+            </div>
+            
+            <div class="timestamp-note" style="background-color: #f0f7ff; padding: 10px; margin: 10px 0; border-radius: 5px; border-left: 4px solid #0066cc;">
+                <strong>💡 Tip:</strong> Click on the 🕒 icons above or timestamps in the transcript below to jump to that point in the YouTube video.
+            </div>
+            
+            <div class="transcript">
+                <pre>
+<span class="transcript-timestamp">[00:00:00]</span> <span class="transcript-speaker">Ryan MacLean:</span> So listen, I spent my weekend trying to stay away from AI generated stuff. I don't know why, I just stayed off the computer.
+
+But it sounds like you've been digging into some stuff. What have you been up to?
+
+<span class="transcript-timestamp">[00:00:12]</span> <span class="transcript-speaker">Jason Hand:</span> Yeah, actually I got into a little bit of a rabbit hole. So let me share my screen and talk to you about what I've been, it's been really weird. I don't know if you use Warp as your terminal.
+
+<span class="transcript-timestamp">[00:00:26]</span> <span class="transcript-speaker">Ryan MacLean:</span> I don't. I don't use Warp for terminal. I think we've been through this before, but I don't use Warp for terminal. But it's an AI powered terminal for free, right?
+
+<span class="transcript-timestamp">[00:00:36]</span> <span class="transcript-speaker">Jason Hand:</span> Yeah, that's right. I use it. I barely use the terminal. I, I mean, it's, I, I, I made the initial switch. cause I was getting tired of not being able to use like autocomplete and Iterm. and every now and then it just decides to start doing it again, which is a miracle, but I'm never, I don't trust it.
+
+And so Warp came along before all the AI stuff, and then they started adding in AI stuff, and I find that for someone like me who doesn't, like, live at the CLI like everybody else, but I, like, need to go there every now and [00:01:00] then, it's been nice for me to have a tool.
+
+And I've talked about it before, tools to me that elevate people like me without requiring that I go to the library and read 17 books. These are the kinds of tools that are going to democratize software development in general and make it more accessible to people and allow people like me to make contributions in ways that I never could have before, which I think is kind of interesting.
+
+But anyway, so Warp led me to another tool. Oh my god, that's so loud. I, I don't know if you heard my notification. It was ridiculous. Let me turn it down a little bit. Now I use, I also started, a couple of months ago, I started playing around with the Cursor. I'm curious actually, have you used Cursor?
+
+<span class="transcript-timestamp">[00:01:45]</span> <span class="transcript-speaker">Ryan MacLean:</span> I have, but I don't use it regularly. I just use VS Code.
+
+<span class="transcript-timestamp">[00:01:50]</span> <span class="transcript-speaker">Jason Hand:</span> I'm surprised, of the two of us, like, I'm the one using the esoteric AI tools.
+
+<span class="transcript-timestamp">[00:01:54]</span> <span class="transcript-speaker">Ryan MacLean:</span> But I think it's great. It's funny. I mean, so if I told you this, [00:02:00] but I think Cursor is great cause it's basically VS code. If I open a file, it looks like VS code.
+
+<span class="transcript-timestamp">[00:02:06]</span> <span class="transcript-speaker">Jason Hand:</span> Yeah. 
+
+<span class="transcript-timestamp">[00:02:07]</span> <span class="transcript-speaker">Ryan MacLean:</span> And but what you get is a, you get a bunch of AI stuff built in, which is pretty good. And not that VS code doesn't have this stuff too. Um, the AI tab is supposed to make some of this easier, and co pilot, of course, but, yeah, cursor, cursor, great product.
+
+Looks like they're also building another one, which I'm curious about, called Windsurf.
+
+<span class="transcript-timestamp">[00:02:25]</span> <span class="transcript-speaker">Jason Hand:</span> I haven't heard of that.
+
+<span class="transcript-timestamp">[00:02:26]</span> <span class="transcript-speaker">Ryan MacLean:</span> Yes. Same people. Same people who are building Cursor. We were just using both are building Windsurf. I think one of the big things for me is just. I'm, I'm very cognizant of the, amount of electron apps that I open.
+
+Like, if you have VS code open and Cursor open and all these Electron apps, like they do kind of eat a lot of memory. So I sometimes restrict myself to just one.
+
+<span class="transcript-timestamp">[00:02:44]</span> <span class="transcript-speaker">Jason Hand:</span> Yes. As, as a, I call myself, this is, I don't know if this is right, but I call myself a consumer developer. I'm a consumer first and a developer second, right? So, I, I, I get more out of using applications, which means a lot of Electron stuff.
+
+But I, I did [00:03:00] notice as I was tailing more and more logs over the last. I don't know, whatever six months. It started getting to me how much of my compute was being eaten up by browser, not just browser tabs, but Electron apps that I don't even realize.
+
+<span class="transcript-timestamp">[00:03:14]</span> <span class="transcript-speaker">Ryan MacLean:</span> Oh, a hundred percent. I mean, the single biggest thing that affects my computer's performance is Chrome, right? So every electron app you run, you're basically adding a Chrome app on top. of your regular Chrome app.
+
+So, yeah, I find it, I find it to be heavy. Alright, so we got the Warp terminal that I don't know anything about, and Cursor, which I do know about, although I'm not like, I'm not on expert user. So between the two, what, what is it you're trying to tell me, Jason?
+
+<span class="transcript-timestamp">[00:03:38]</span> <span class="transcript-speaker">Jason Hand:</span> Well, no, I'm, I'm not actually trying to tell you anything. I'm, I'm actually curious, I guess, let me, let me kind of frame the question this way. Warp is a terminal app, and it's awesome. It basically understands your commands and what you're trying to do, [00:04:00] and as you can see, It gives you access to AI that can help transform commands.
+
+It actually, I'd say it's three things. One, the interface is, I don't know, it's like what I would expect a terminal application to be in the year 2024. It's not like this thing that hasn't evolved since, since we interacted with giant mainframes.
+
+It is a modern terminal application, which is, I think, probably number one. That I would choose this. Number two, as I was mentioning, the AI help is pretty handy, especially again, for someone like me who's not always able to, to, to remember the exact syntax of very specific and detailed commands.
+
+But I can say, Hey, do this with this, and if I've done it before, it'll give me a list of predictive suggestions. Below it, when you're running it. The third thing is, which is super handy and weird, is that when an error is posted back into the terminal, you can actually click on the error, and then it will help parse that.
+
+And then give me advice on what's happened and some solutions. All these things again, for someone like me who's not [00:05:00] living at the command line, this has been super helpful. And as long as there's also a tab completion shortcut where it'll tab complete right there, and it just works, whereas I always had the worst trouble with with iTerm, even though I know there's like a million different ways on the internet I could supposedly fix it, I just never spend time with it.
+
+So anyway, got me thinking, I was curious if if, you know, if you were, if you do use, it's nice to, I'm just curious. It's nice to know if if people actually use it or not. But anyway, so Cursor, I've also been exploring a little bit.
+
+Same idea, same thing, allows me to iterate faster. I'm, I'm in a position of where I'm trying to just tinker with things like this. For so long, in my career, I've had to, I've been writing tickets, filling out forms, filling out spreadsheets, and I need to get back into just kind of hacking on things again.
+
+And so Cursor is the perfect tool, again, for the same reasons. It's got the base functionality that I know and expect from something like, in fact it's, I think it's really just a VS Code, I don't know if it's a. I don't know if it's a straight fork or what. I haven't, I haven't looked at the code base in, in depth enough.
+
+But what I did is that [00:06:00] I, I, I grabbed some old Python, a Python file that I had been messing around with for a while. And, I thought, I wonder what this would, I wonder what Cursor would do with this, because it, I haven't touched Python for far too long.
+
+But this is some code I had to help me manage, you know, adding data to, to Datadog. And, so I just put the, put my cursor in the file and then hit F1, and then, and then, talk to chat, right? This is the, this is
+
+<span class="transcript-timestamp">[00:06:30]</span> <span class="transcript-speaker">Ryan MacLean:</span> Yeah, that's a command P and then chat or something.
+
+<span class="transcript-timestamp">[00:06:33]</span> <span class="transcript-speaker">Jason Hand:</span> Yeah, yeah, that's, that's what I do. And I pop it up and I said, is this file? following pep8. And so of course, it gave me all these issues. Like not good, not good, not good, but I, I have this issue where I continually mess up this file. And, and so. I end up with a broken data dog cogeneration file and I, and I haven't been able to fix it.
+
+So one of the things I said was, so it helped me fix the, you know, all the formatting. And, and I wrote this code initially a long time ago when I didn't know anything about [00:07:00] Python. So I should say it made a lot of fixes for things that I had no clue about. and so it fixed all that and said that is now compliant with PEP 8.
+
+And then I said, does it look like there's a problem with the API key variables? Because I've been messing around trying to figure out where the issue is.
+
+<span class="transcript-timestamp">[00:07:16]</span> <span class="transcript-speaker">Ryan MacLean:</span> And do you have a, a local copy of your API keys and like a dot. MV file.
+
+<span class="transcript-timestamp">[00:07:23]</span> <span class="transcript-speaker">Jason Hand:</span> That's exactly the, the problem, right? So it it, it actually caught on to the problem. And it says, yes, line 59, this is pointing to the environment variables issue. You're, trying to use the DD API key and the DD app key, rather than what we have defined here.
+
+Well, what I have defined is API key and MV and app key. And down here I'm using DD API key and app key. So. But what do I know? So I've been screwing this up for quite a while. I just haven't spent the time to go back and fix it. But this, it pulled it right out and said, Hey, this is this is, you know, [00:08:00] you're going to run into issues.
+
+So from there, the natural question is how do I. fix this issue and it says I see two options changing the variables to match their names in the environment or change the environment variable names.
+
+<span class="transcript-timestamp">[00:08:13]</span> <span class="transcript-speaker">Ryan MacLean:</span> So it actually in this case, seems like your own, we use, we use DD_API_KEY, which is, uh, I don't know where that shows up on screen, but I'm sure you know exactly, uh, which variable that is.
+
+<span class="transcript-timestamp">[00:08:25]</span> <span class="transcript-speaker">Jason Hand:</span> Yeah, it's right here.
+
+<span class="transcript-timestamp">[00:08:26]</span> <span class="transcript-speaker">Ryan MacLean:</span> So, so the lines 36 and 37, like if we set the API_KEY to os.getenv DD_API_KEY in all caps. That would, that would be the convention that we use and that would be a standard that the Datadog uses. So I'm not positive if API_Key, DD API key, if that's the recommended standard or not, but at least for us internally, uh, we use DD_API_KEY. And DD_APP_KEY, which is actually distinct from some other variables. We have some other variables that are for our internal use.
+
+<span class="transcript-timestamp">[00:08:58]</span> <span class="transcript-speaker">Jason Hand:</span> Yep, so I, I, [00:09:00] so I'm using mixed standards here. Up top in my environment variables, I'm actually using what I, what I see in our instructions a lot, which is DD, underscore, API, underscore, key.
+
+<span class="transcript-timestamp">[00:09:11]</span> <span class="transcript-speaker">Ryan MacLean:</span> Yep.
+
+<span class="transcript-timestamp">[00:09:12]</span> <span class="transcript-speaker">Jason Hand:</span> But then, But then I'm screwing it up down here, where I'm with the function call, where I'm, I'm leaving out the DD, I'm just calling it API key, which is wrong. And I like to do this, I like to mess this up all the time. And then I'm leaving out the underscores in the second, in the second parts where I'm actually loading them. So it, again, it's super confusing because I'm referring to it in like three different ways.
+
+<span class="transcript-timestamp">[00:09:35]</span> <span class="transcript-speaker">Ryan MacLean:</span> Yeah. I mean, if we just check our docs real quick, like Datadog should, we should be consistent between what we call them on our site. And I'm just checking our docs site and honestly the more I look at this, the more I'm like, Oh, well, I, I'm not sure if I'll, I'll be right on this one. Let's find out. Let's see setup. API key.
+
+<span class="transcript-timestamp">[00:09:51]</span> <span class="transcript-speaker">Jason Hand:</span> Yeah, I don't know. I still, maybe I should just pull an example from somewhere. It's honestly I, I, I, I, I mean, I, I gotta [00:10:00] point out the larger thing is that. The Cursor is helpful here. It help, it totally pulled out this issue. Like I, you know, I, I don't know Python barely at all.
+
+And so this is a super frustrating thing where you have an API key, API key is DD API key. I probably am mixing them all up.
+
+<span class="transcript-timestamp">[00:10:18]</span> <span class="transcript-speaker">Ryan MacLean:</span> Oh, I see it API_KEY. So this is, this is DD_API_KEY, it's all capital.
+
+<span class="transcript-timestamp">[00:10:24]</span> <span class="transcript-speaker">Jason Hand:</span> Okay.
+
+<span class="transcript-timestamp">[00:10:25]</span> <span class="transcript-speaker">Ryan MacLean:</span> Yeah, so right here it says API_KEY equals os.getenv DD_API_KEY if you set it. So that's actually the correct, so what you have on 30, let me write it down. So on lines 35 and 36, that's actually the correct thing. So load environment variables.
+
+DD_API_KEY is the environment variable name, and API_KEY is the variable name. I'm 99% sure that that's correct. and now there's also API_KEY in DD_API_KEY. Yeah. So DD_API_KEY is the environment. variable name. That's correct. And API_KEY is the variable.
+
+<span class="transcript-timestamp">[00:10:56]</span> <span class="transcript-speaker">Jason Hand:</span> I, okay. But so, so on line 59, we're using, and [00:11:00] that's why I'm asking, this is the one that gets messed up. So on 59, uh, again. DD_API_KEY is what we're trying to load.
+
+<span class="transcript-timestamp">[00:11:08]</span> <span class="transcript-speaker">Ryan MacLean:</span> If we search our documentation for DD_API_KEY, there's a bunch of locations where it uses DD, and it, and it is, yeah, it is named DD_API_KEY.
+
+<span class="transcript-timestamp">[00:11:21]</span> <span class="transcript-speaker">Jason Hand:</span> Alright, so well, so that's, then that was the problem I was running into. Okay, was, between, I think, you know, our, our conversation around this, you know, again, what it pulled out is there's a couple ways to, to fix this.
+
+Either, either we fix where we're loading the environment variables, lines 35 or 36, to just be DD_API_KEY, or, or we fix where we're calling it to be the correct thing, which is without the DD_. And so the solution is just to, you know, change the environment to the right one, or change the references to be the right ones. Either or.
+
+<span class="transcript-timestamp">[00:11:54]</span> <span class="transcript-speaker">Ryan MacLean:</span> You know, I'm starting to get confused. I'm looking in our docs and they say we. We normally set the DD API key environment variable with [00:12:00] the API key. Let's, I'm going to find one more example because I think the names are similar.
+
+<span class="transcript-timestamp">[00:12:05]</span> <span class="transcript-speaker">Jason Hand:</span> I actually don't even care at this. I mean, the, the answer is the environment variable needs to match the, the value that we're. Pulling here. And I think the problem is I'm doing it wrong. But, but I haven't been able to keep track of which one is the right one, you know, I have to go to the docs every time.
+
+<span class="transcript-timestamp">[00:12:21]</span> <span class="transcript-speaker">Ryan MacLean:</span> Yeah, so we do have, I just, I've spent enough time with our documentation to see, we have examples where it's loading DD_API_KEY, and then there's API_KEY equals OS.getenv DD_API_KEY. But it's just because we want the variable to be called API_KEY. That's to be like a short name or a nice name.
+
+<span class="transcript-timestamp">[00:12:40]</span> <span class="transcript-speaker">Jason Hand:</span> Okay.
+
+<span class="transcript-timestamp">[00:12:41]</span> <span class="transcript-speaker">Ryan MacLean:</span> But you're right. The important thing is just being consistent.
+
+<span class="transcript-timestamp">[00:12:44]</span> <span class="transcript-speaker">Jason Hand:</span> Yeah. And my three lines that I've written here aren't consistent.
+
+<span class="transcript-timestamp">[00:12:48]</span> <span class="transcript-speaker">Ryan MacLean:</span> Yeah. So up top you're, you're putting API_KEY from os.getenv DD_API_KEY, and then down in Initialize you're calling API Key, which does which should be the variable name. But instead you're calling DD_API_KEY, which is the, which [00:13:00] is the environment variable name.
+
+<span class="transcript-timestamp">[00:13:01]</span> <span class="transcript-speaker">Jason Hand:</span> Yeah. And at the initializ, yeah, the initialize function. Yeah, exactly. And, and so Cursor did correctly pull this out. It correctly identified that I was, there was, why there was a problem. It's, it's trying to look for API_KEY, or, I mean, DD_API_KEY, but I never created a variable by that name.
+
+<span class="transcript-timestamp">[00:13:20]</span> <span class="transcript-speaker">Ryan MacLean:</span> I'm actually with you now. So up top, you're doing the right things. Lines 35 and 36 are right. Because you're, because you're getting the environment variables. DD_API_KEY and DD_APP_KEY. And assigning them to API_KEY and APP_KEY. So now the expected variable names are API_KEY and APP_KEY. Like no DD. And now if I look at Line 59, you're passing in the variables DD_API_KEY, and DD_APP_KEY. But there is no variable defined with those names. So those are the, those are the environment variable names.
+
+<span class="transcript-timestamp">[00:13:51]</span> <span class="transcript-speaker">Jason Hand:</span> Yep. So what I should be passing in is the actual variables, which is API_KEY and APP_KEY.
+
+<span class="transcript-timestamp">[00:13:57]</span> <span class="transcript-speaker">Ryan MacLean:</span> That's correct. So lines 35 and 36 are right but [00:14:00] line 59 is wrong. Line 59 should be initialize API Key, app key all caps.
+
+<span class="transcript-timestamp">[00:14:06]</span> <span class="transcript-speaker">Jason Hand:</span> Exactly. And that, and that's the error catching. So I think we've played this out enough, but I just thought. You know, if we're looking at these like AI enabled dev tools like Warp, like Cursor, I wonder at a certain point, like, Where's your pain threshold?
+
+Like, what's the threshold of pain that gets you over the edge to try any AI tool, right? Like, for me, Warp Terminal was just annoying. Like, I'm just like, I'm just, I just want my tab autocomplete to work. That's all I really want from a terminal. And so that got me over the edge and I got into Warp, but I like the AI stuff there too.
+
+And then Cursor, same deal. I'm just like, I'm so tired of not knowing Python and this is, and this is just annoying. So I tried it out. And it was, I was, I was happy with what I saw. So, um, I don't know, I wonder, do you, are you, are you, um, what, what, what would get you over the edge for [00:15:00] exploring a, a sort of AI enhanced dev tool?
+
+<span class="transcript-timestamp">[00:15:04]</span> <span class="transcript-speaker">Ryan MacLean:</span> Honestly, I, I'm really impressed by using these tools. I spend a lot less time trying to remember syntax, you know? I mean, if we go just down to the most basic level, like why we might use AI tools or even, even like Stack Overflow, or let's go with Copilot to keep it an AI tool, all of this really boils down to, it's faster for me to.
+
+Ask for help than it is for me to search my brain for like the correct argparser, argparse API class that I would use. Like, like, so I think the, I think the easiest win is just when, when it knows the syntax that you don't remember or when it can help you transform text. What I find is awesome. Like one of my.
+
+co workers, I talked, told him about this workflow. Like, if I have a JavaScript file, I can't remember what TypeScript types look like. And I asked Cursor to convert my JavaScript to TypeScript. It's awesome as a beginner. TypeScript person, for it to just give me a list of, like it pulls out all of the [00:16:00] things and says, Oh, you probably need a type for this and a type for that.
+
+And it does it in seconds. That, for me is a big boost. I'm also a, a fan of docs. Like I write, a lot of docs for my code and I, you know, we've all heard the joke. The best documented code is the code you don't have to document. But anyway, whatever. You, you do have to document code.
+
+And I, I find using any tools that can help me explain my code to me when I return to it are super helpful.
+
+<span class="transcript-timestamp">[00:16:28]</span> <span class="transcript-speaker">Jason Hand:</span> Yeah. Yeah. And I, And I think this is a, and I think for, for, for every developer, every, everybody who's using these tools you're, you know, you're going to have your own opinion on, is this helping me? Is this not helping me?
+
+What, what would help me is I want to learn, or I want to be efficient, or I want, you know, whatever that goal is that you have. And I think that these tools, you know, they can and will help. Some, some, some people more than others, right? And I, I don't use Cursor nearly as much as you would, I'm sure.
+
+But I just thought this was really a [00:17:00] nice, like, this caught my problem right away. It's like, well, here's your problem, are you, are you referring to the environment variable names or the variable names that you created? Uh, on line 59. And again, as, as we talked about in our most recent session, I want the AI to talk to me in a way that, you know, reminds me of when I used to work with a good consultant, who's like, Are you, is this what you're trying to do?
+
+And let, let me know, is that or is it this?
+
+<span class="transcript-timestamp">[00:17:24]</span> <span class="transcript-speaker">Ryan MacLean:</span> Cause that's what the person is doing, is they're explaining the problem back to you. You know, this is like a mirroring technique. but what's great is I think it also makes you a better engineer. When, when you see in the docs, DD_API_KEY, DD_APP_KEY.
+
+And you see initialize API_KEY, APP_KEY. And I think what is going through the mind of many newer engineers is like, oh, these look similar. Maybe they are the same thing. Even though one has DD, and the other one doesn't. And you know, if you're, in, in this case, what you're working on is basically a wrapper for dataden.
+
+So you probably just copied line 59 from somewhere. And that worked. But I think it, it's, it's actually working against you in, in, in figuring out [00:18:00] what variables are where.
+
+<span class="transcript-timestamp">[00:18:01]</span> <span class="transcript-speaker">Jason Hand:</span> Really, what I'm embarrassed is that I fed all the errors, I kept feeding the errors back into warp and it never even hinted or suggested that as a possible cause of why we were getting 404.
+
+Four errors, I think, or four or three errors at the time. Anyway, it was just Oh that was a huge opportunity for [00:19:00] detecting what in the world is this not, why is it not working?
+
+<span class="transcript-timestamp">[00:19:02]</span> <span class="transcript-speaker">Ryan MacLean:</span> I wonder though, if this is a good friction log for us, because I bet you somewhere in our docs that it says Datadog API key, and then it says DDA API key, because I've seen both before in our docs.
+
+I wonder if it's ingested old versions of the docs, and it's got some of that stuff in the memory, as well as the newer stuff, and then it's doing Two things at the same time. It feels like at this stage, in 2025, the current year, that it looks like, adjusting your documentation for AI use seems to be important, which is odd to me, but it does seem critical.
+
+Especially in, I'm not sure if you've done it in Cursor yet, but you can add documentation. And depending on the form of the documentation, you'll have more or less success, basically.
+
+<span class="transcript-timestamp">[00:19:45]</span> <span class="transcript-speaker">Jason Hand:</span> I did see in a video that you can add docs as like a source.
+
+<span class="transcript-timestamp">[00:19:51]</span> <span class="transcript-speaker">Ryan MacLean:</span> You were, I think, suggesting that we ask it to make sense of this code. Is that what your first suggestion was or what do you think? So PEP 8 is the style guide.
+
+basically, so [00:20:00] it's one of these. earlier tickets from Python that will tell you basically that your project should look a certain way. now one thing that I will often do is grab my Python code and say hey, does this comply to PEP 8?
+
+So PEP 8 is what it is. it means are there, did you hit enter after Your function, that kind of stuff, twice as opposed to once. So there's enough space there, because white space is important to Python for legibility. And again, not that this code is bad, I just wonder, looking at it, if there'd be a pep8 way to handle this file.
+
+And I think at least on Mac, what it would generally do is use pylance to go through that stuff. But I wonder what Curse will do on Windows to see if it's compliant with pep8, basically.
+
+<span class="transcript-timestamp">[00:20:37]</span> <span class="transcript-speaker">Jason Hand:</span> Okay how do we put it through the ringer?
+
+<span class="transcript-timestamp">[00:20:40]</span> <span class="transcript-speaker">Ryan MacLean:</span> We'll find out. I think what you can do here is, normally you'd select it all and then start a chat.
+
+if you hit on the top right there, there's a little sidebar button just to the left of that. That one there.
+
+<span class="transcript-timestamp">[00:20:51]</span> <span class="transcript-speaker">Jason Hand:</span> Oh, that.
+
+<span class="transcript-timestamp">[00:20:52]</span> <span class="transcript-speaker">Ryan MacLean:</span> Yeah, on the, on the, yeah, but that's, that's actually the wrong one. Try the one [00:21:00] on the right of that. No, that's, that's not right. Sorry, I, I, okay. There we go. No, you know what? You can, try going to the, I think there's. Try hitting slash, just hit, just hit slash.
+
+There you go. And then PEP8. And I. And I'm picking on you, sorry for that. This is, I'm just curious. This is really a general thing that I think is really interesting about, Sonnet, which is I think what you're running here.
+
+<span class="transcript-timestamp">[00:21:25]</span> <span class="transcript-speaker">Jason Hand:</span> Oh, at it's finest.
+
+<span class="transcript-timestamp">[00:21:26]</span> <span class="transcript-speaker">Ryan MacLean:</span> Oh, at it's finest. So this one says imports should be on separate lines. Standard library imports should come first, which makes sense. Yeah, so again, that was like missing whitespace around operators. And honestly, PEP 8 compliant formatting is available just. hitting auto format as opposed to running it through an LLM.
+
+<span class="transcript-timestamp">[00:21:45]</span> <span class="transcript-speaker">Jason Hand:</span> Yeah, you don't, like, I mean this is true.
+
+<span class="transcript-timestamp">[00:21:48]</span> <span class="transcript-speaker">Ryan MacLean:</span> it is totally true, but I, I think it's, so okay, here, here's an exercise. So what we've, we've already looked at your code, and we found an issue that was, that was messing things up. It was a [00:22:00] little bit buggy, you know, because you had various names for the, for the, like, various ways of referring to that API key.
+
+I'm wondering if the best thing to do, is load up our API and see if it, see if it actually will explain to us basically what datadog, the API integration is all about?
+
+<span class="transcript-timestamp">[00:22:16]</span> <span class="transcript-speaker">Jason Hand:</span> Sure. Let's do that.
+
+<span class="transcript-timestamp">[00:22:17]</span> <span class="transcript-speaker">Ryan MacLean:</span> I know what the answer is, but I'm curious how close it'll be to the general use case. Do you want to do that?
+
+<span class="transcript-timestamp">[00:22:22]</span> <span class="transcript-speaker">Jason Hand:</span> Sure.
+
+<span class="transcript-timestamp">[00:22:23]</span> <span class="transcript-speaker">Ryan MacLean:</span> So, okay. So just, I thought we'd do something different that. Like, you know, there's a lot of auto format out there. A lot of like, code, you know, tools for checking that stuff. But I'm thinking about now is a, can it tell us the use case for your API wrapper?
+
+<span class="transcript-timestamp">[00:22:36]</span> <span class="transcript-speaker">Jason Hand:</span> Oh, cool.
+
+<span class="transcript-timestamp">[00:22:36]</span> <span class="transcript-speaker">Ryan MacLean:</span> Yeah, can you, can you try, let's ask it, let's ask it about data dog metrics API.
+
+<span class="transcript-timestamp">[00:22:42]</span> <span class="transcript-speaker">Jason Hand:</span> Alright. So it says, what is the data dog metrics API? I'm going to, and I realize now I'm not selecting, I'm not targeting this, so let me, uh, going to dismiss this and try F1 and see if I can just say. Talk to chat GPT or something like that.
+
+<span class="transcript-timestamp">[00:22:59]</span> <span class="transcript-speaker">Ryan MacLean:</span> Oh, I think chat [00:23:00] GPT might be, uh, that's probably a, a command you've put in to make it work. Um
+
+<span class="transcript-timestamp">[00:23:05]</span> <span class="transcript-speaker">Jason Hand:</span> I don't know. I don't remember now.
+
+<span class="transcript-timestamp">[00:23:07]</span> <span class="transcript-speaker">Ryan MacLean:</span> Oh, no. What's really interesting. I think, uh, Cursor, it's, it's really interesting. Let me, um, this, I'm going to start, going to, are there, let's see if there's like, uh, a menu of something. It's on, it's on the left, isn't, isn't it on the left here where it says like, is are there any buttons on the left that I missed?
+
+<span class="transcript-timestamp">[00:23:26]</span> <span class="transcript-speaker">Jason Hand:</span> Yeah, no. Let's see. Explorer. Terminal.
+
+<span class="transcript-timestamp">[00:23:30]</span> <span class="transcript-speaker">Ryan MacLean:</span> debug console.
+
+<span class="transcript-timestamp">[00:23:34]</span> <span class="transcript-speaker">Jason Hand:</span> remote Explorer, timeline, outline extensions, Oh, chat. There you go.
+
+<span class="transcript-timestamp">[00:23:39]</span> <span class="transcript-speaker">Ryan MacLean:</span> And that's probably, that's, that's what I was saying. Highlight your selection, highlight the, the file, and then click through. Or just, just type. Just type. And I think this'll allow it to have context for your request.
+
+<span class="transcript-timestamp">[00:23:51]</span> <span class="transcript-speaker">Jason Hand:</span> Okay. Let's see. What is the data dog metrics API?
+
+<span class="transcript-timestamp">[00:23:57]</span> <span class="transcript-speaker">Ryan MacLean:</span> So this is, this is a pretty good answer. [00:24:00] Datadog metrics API is used to send, get, and query metric data to Datadog's monitoring service. And the key components are Datadog metrics come in several types. Gauges, counts, rates, histograms.
+
+Ingestion endpoints. You can submit data via HTTP API or various clients or libraries. Metric queries, listing metrics, metric metadata, and then here's what's interesting we talking about here, API keys. To use the Metrics API, you need a Datadog API key and application key. API key for submitting metrics, app key for read operations and management.
+
+It does mention that environment variables DD API key are usually all, usually capitalized with underscores. And that's an environment variable. So there's a little bit of confusion here, but it does tell you that the environment variables are environment variable names that you might set. So if you set environment variables in your dot env file, if you use those, you set DD API key.
+
+But the variables themselves, when you're using the Python API, are simple strings without DD. So, I think that actually matches our earlier discussion to the letter.
+
+<span class="transcript-timestamp">[00:25:00]</span> <span class="transcript-speaker">Jason Hand:</span> I think so, too.
+
+<span class="transcript-timestamp">[00:25:02]</span> <span class="transcript-speaker">Ryan MacLean:</span> But it's, but, but I think it underscores, it really underscores what we were talking about in terms of, For, for people who are fairly deeply in the code, let's say, like you are or I am, this is, this is a, I think a better answer, I, I thought it'd be much, much shorter.
+
+I thought it would be like, yeah, you, you push data or metrics with the, with the Python client or the API and you need an API key. That's what I thought it was gonna say. But then it kinda does this, I don't know, it goes a little bit more in depth. It mentions some more about usage patterns, about managing metrics, data, data collections, rolling ups, it gets into everything here.
+
+<span class="transcript-timestamp">[00:25:38]</span> <span class="transcript-speaker">Jason Hand:</span> Yeah, I wonder how much of this is based on data dog documentation versus how much of it, you know, just ingested as part of the model, you know, in general.
+
+<span class="transcript-timestamp">[00:25:47]</span> <span class="transcript-speaker">Ryan MacLean:</span> But listen, I would say, and I'll take out some stuff just because, the metrics queries part, while this is true, there is a thing called a metrics query [00:26:00] API. But then it mentions the code snippets, and this is exactly how the, the code that you're writing right now would be used.
+
+Initialize the Datadog client with API key and app key, define a metric data point, post the metrics, and handle errors. That's the fourth one. So it's four steps for submitting metrics. This is exactly, I think, exactly what your code was doing. And I think you're, you're right, that there are, I'm going to, I'm going to go off topic a little bit, but there are better ways to, to manage your keys than having them in environment variables.
+
+Let's just put it that way. But we'll get to that some other time. I just, I'm really impressed by this answer because again, I thought it was gonna be like, oh, it's a, here's some metrics.
+
+<span class="transcript-timestamp">[00:26:43]</span> <span class="transcript-speaker">Jason Hand:</span> Yeah.
+
+<span class="transcript-timestamp">[00:26:44]</span> <span class="transcript-speaker">Ryan MacLean:</span> I find I learned so much about our product just by [00:27:00] adding the docs into Cursor that it seems silly, but it's like we have new docs every day, every week, every month, and I'm always falling behind, so it's awesome for me to be able to have the current source of truth as I'm playing around with stuff.
+
+Alright, we should probably wrap it up there, so for those of you watching, I hope this has been helpful. And we'll see you on the next one. Bye.
+                </pre>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Episode Navigation -->
+    <div class="episode-navigation">
+        <div class="container">
+            <h2>Episode Navigation</h2>
+            <div class="episode-nav-links">
+                <div class="nav-item">
+                    <span class="nav-direction">Previous Episode:</span>
+                    <div class="recording-card">
+                        <h3>Building Quick Web Interfaces for ML Models</h3>
+                        <div class="video-container">
+                            <a href='/pages/ep01'>
+                                <img src="../images/thumbnails/ep01.png" alt="Episode 1 Thumbnail">
+                            </a>
+                        </div>
+                        <a class='btn' href='/pages/ep01'>View Notes</a>
+                    </div>
+                </div>
+                
+                <div class="nav-item">
+                    <span class="nav-direction">Next Episode:</span>
+                    <div class="recording-card">
+                        <h3>Automatic1111 and Local Text-to-Image Generation</h3>
+                        <div class="video-container">
+                            <a href='/pages/ep03'>
+                                <img src="../images/thumbnails/ep03.png" alt="Episode 3 Thumbnail">
+                            </a>
+                        </div>
+                        <a class='btn' href='/pages/ep03'>View Notes</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="../images/ai-tools-lab-logo.png" alt="AI Tools Lab Logo" class="footer-logo-img">
+                    <div>
+                        <h2>AI Tools Lab</h2>
+                        <p>Exploring the landscape of AI tools and technologies</p>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href='/pages/'>Home</a></li>
+                        <li><a href='/pages/resources'>Resources</a></li>
+                        <li><a href='/pages/observations'>Observations</a></li>
+                        <li><a href='/pages/about'>About</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 AI Tools Lab. All rights reserved. <span id="easter-egg" class="easter-egg">π</span></p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Easter Egg Modal -->
+    <div id="easter-egg-modal" class="easter-egg-modal">
+        <div class="easter-egg-modal-content">
+            <span class="easter-egg-close">&times;</span>
+            <p>Sandy?</p>
+        </div>
+    </div>
+
+    <script src="../script.js"></script>
+</body>
+</html>

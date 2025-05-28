@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YOLO Coding: Migrating from Static HTML to Astro with AI Tools</title>
+    <meta name="description" content="In this episode, Ryan MacLean shares his weekend experiment with 'YOLO Mode' (You Only Live Once) in AI-assisted coding, where he migrated the ai-tools-lab.com website from static HTML to Astro. Ryan discusses his approach of using multiple AI models with Model Context Protocol (MCP) tools, particularly highlighting how he combined Gemini 2.5 Pro's multimodal capabilities with Claude Sonnet 3.7's web search functionality to tackle different aspects of the project. Ryan explains the challenges he faced, including models struggling with large CSS files and Base64-encoded graphics, and reveals his workflow using Puppeteer and Sequential Thinking MCPs in Windsurf to compare and migrate the site effectively.
+
+Throughout the conversation, Ryan emphasizes the importance of vigilant oversight when allowing AI tools to execute commands, especially around version control and API keys. He demonstrates how to set up MCPs in Windsurf, add Context7 for documentation access, and use to-do lists to checkpoint progress across lengthy AI sessions. Despite some visual discrepancies in the migrated site, Ryan found the process incredibly educational, allowing him to simultaneously learn Astro, improve his testing methodology with Vitest, automate deployments with Netlify, and enhance his work with Claude. Jason Hand, who initially suggested using AI for the migration, expresses excitement about how quickly they've been able to move from a static HTML site to a more maintainable content management system using these AI-powered development approaches.">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="YOLO Coding: Migrating from Static HTML to Astro with AI Tools">
+    <meta property="og:description" content="In this episode, Ryan MacLean shares his weekend experiment with 'YOLO Mode' (You Only Live Once) in AI-assisted coding, where he migrated the ai-tools-lab.com website from static HTML to Astro. Ryan discusses his approach of using multiple AI models with Model Context Protocol (MCP) tools, particularly highlighting how he combined Gemini 2.5 Pro's multimodal capabilities with Claude Sonnet 3.7's web search functionality to tackle different aspects of the project. Ryan explains the challenges he faced, including models struggling with large CSS files and Base64-encoded graphics, and reveals his workflow using Puppeteer and Sequential Thinking MCPs in Windsurf to compare and migrate the site effectively.
+
+Throughout the conversation, Ryan emphasizes the importance of vigilant oversight when allowing AI tools to execute commands, especially around version control and API keys. He demonstrates how to set up MCPs in Windsurf, add Context7 for documentation access, and use to-do lists to checkpoint progress across lengthy AI sessions. Despite some visual discrepancies in the migrated site, Ryan found the process incredibly educational, allowing him to simultaneously learn Astro, improve his testing methodology with Vitest, automate deployments with Netlify, and enhance his work with Claude. Jason Hand, who initially suggested using AI for the migration, expresses excitement about how quickly they've been able to move from a static HTML site to a more maintainable content management system using these AI-powered development approaches.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://aitoolslab.com/pages/ep20.html">
+    <meta property="og:image" content="../images/ai-tools-lab-logo.png">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="../images/ai-tools-lab-logo.png" type="image/png">
+    <link rel="shortcut icon" href="../images/ai-tools-lab-logo.png" type="image/png">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Revalia&display=swap" rel="stylesheet">
+    
+    <!-- Datadog RUM -->
+    <script
+        src="https://www.datadoghq-browser-agent.com/us1/v4/datadog-rum.js"
+        type="text/javascript">
+    </script>
+    <script>
+        window.DD_RUM && window.DD_RUM.init({
+          clientToken: 'pub0faaa2dd80abac8a43536a42ad1de2ad',
+          applicationId: '6ef0b8bc-0ec9-4e52-a362-28042addf0ed',
+          site: 'datadoghq.com',
+          service: 'ai-tools-lab',
+          sessionSampleRate: 100,
+          sessionReplaySampleRate: 20,
+          defaultPrivacyLevel: 'mask-user-input',
+        });
+    </script>
+</head>
+<body>
+    <header class="site-header">
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="container">
+            <div class="logo">
+                <img src="../images/ai-tools-lab-logo.png" alt="AI Tools Lab Logo" class="site-logo">
+                <a href='/pages/' style='font-size: 3rem;'>AI Tools Lab</a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href='/pages/'>Home</a></li>
+                    <li><a href='/pages/resources'>Resources</a></li>
+                    <li><a href='/pages/observations'>Observations</a></li>
+                    <li><a href='/pages/about'>About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main class="container">
+        <div class="episode-content">
+            <!-- VIDEO CONTAINER - YouTube embed with thumbnail -->
+            <div class="video-container">
+                <a href="https://www.youtube.com/watch?v=qgTu6hv6Hys" target="_blank">
+                    <img src="../images/thumbnails/ep20.png" alt="Episode 0 Thumbnail">
+                    <span class="play-icon"></span>
+                </a>
+            </div>
+            
+            <!-- TITLE SECTION -->
+            <h1>YOLO Coding: Migrating from Static HTML to Astro with AI Tools</h1>
+            
+            <!-- SUMMARY SECTION - Brief overview of episode content -->
+            <p>In this episode, Ryan MacLean shares his weekend experiment with 'YOLO Mode' (You Only Live Once) in AI-assisted coding, where he migrated the ai-tools-lab.com website from static HTML to Astro. Ryan discusses his approach of using multiple AI models with Model Context Protocol (MCP) tools, particularly highlighting how he combined Gemini 2.5 Pro's multimodal capabilities with Claude Sonnet 3.7's web search functionality to tackle different aspects of the project. Ryan explains the challenges he faced, including models struggling with large CSS files and Base64-encoded graphics, and reveals his workflow using Puppeteer and Sequential Thinking MCPs in Windsurf to compare and migrate the site effectively.
+
+Throughout the conversation, Ryan emphasizes the importance of vigilant oversight when allowing AI tools to execute commands, especially around version control and API keys. He demonstrates how to set up MCPs in Windsurf, add Context7 for documentation access, and use to-do lists to checkpoint progress across lengthy AI sessions. Despite some visual discrepancies in the migrated site, Ryan found the process incredibly educational, allowing him to simultaneously learn Astro, improve his testing methodology with Vitest, automate deployments with Netlify, and enhance his work with Claude. Jason Hand, who initially suggested using AI for the migration, expresses excitement about how quickly they've been able to move from a static HTML site to a more maintainable content management system using these AI-powered development approaches.</p>
+            
+            <!-- CHAPTER MARKERS SECTION - Timestamps and topics for easy navigation -->
+            <h2>Jump To</h2>
+            <ul class="chapter-markers">
+                <li><a href="https://www.youtube.com/watch?v=qgTu6hv6Hys?t=0" target="_blank">🕒</a> Introduction and YOLO Mode Coding</li>
+                <li><a href="https://www.youtube.com/watch?v=qgTu6hv6Hys?t=60" target="_blank">🕒</a> Overview of the HTML to Astro Migration Project</li>
+                <li><a href="https://www.youtube.com/watch?v=qgTu6hv6Hys?t=180" target="_blank">🕒</a> Visual Comparison Challenges and CSS Issues</li>
+                <li><a href="https://www.youtube.com/watch?v=qgTu6hv6Hys?t=300" target="_blank">🕒</a> Switching Between AI Models for Different Tasks</li>
+                <li><a href="https://www.youtube.com/watch?v=qgTu6hv6Hys?t=420" target="_blank">🕒</a> Setting Up MCPs in Windsurf (Puppeteer and Sequential Thinking)</li>
+                <li><a href="https://www.youtube.com/watch?v=qgTu6hv6Hys?t=660" target="_blank">🕒</a> Safety Concerns with AI Auto-Approving Commands</li>
+                <li><a href="https://www.youtube.com/watch?v=qgTu6hv6Hys?t=900" target="_blank">🕒</a> Memory Management and Context Windows</li>
+                <li><a href="https://www.youtube.com/watch?v=qgTu6hv6Hys?t=1080" target="_blank">🕒</a> Using Context7 for Documentation Access</li>
+                <li><a href="https://www.youtube.com/watch?v=qgTu6hv6Hys?t=1320" target="_blank">🕒</a> Maintaining To-Do Lists and Progress Tracking</li>
+                <li><a href="https://www.youtube.com/watch?v=qgTu6hv6Hys?t=1620" target="_blank">🕒</a> Final Thoughts on AI-Assisted Site Migration</li>
+            </ul>
+            
+            <!-- RESOURCES SECTION - Links and tools mentioned in the episode -->
+            <h2>Resources</h2>
+            <ul>
+                <li><a href="https://ai-tools-lab.com">AI Tools Lab Website</a></li>
+                <li><a href="https://astro.build">Astro Documentation</a></li>
+                <li><a href="https://context7.ai">Context7 Documentation Repository</a></li>
+                <li><a href="https://vitest.dev">Vitest Testing Framework</a></li>
+                <li><a href="https://github.com/puppeteer/puppeteer">Puppeteer MCP</a></li>
+                <!-- Format for resources:
+                <li><a href="https://example.com" target="_blank">Resource Name</a> - Brief description of the resource</li>
+                <li><a href="https://tool-website.com" target="_blank">Tool Name</a> - What this tool does and how it was referenced</li>
+                -->
+            </ul>
+            
+            <!-- KEY TAKEAWAYS SECTION - Main learning points from the episode -->
+            <h2>Key Takeaways</h2>
+            <ul class="takeaways">
+                <li>AI 'YOLO Mode' can significantly accelerate website migrations, but requires constant human supervision to prevent security risks and unwanted changes</li>
+                <li>Combining different AI models (like Gemini 2.5 Pro for multimodal tasks and Claude Sonnet 3.7 for web searches) creates a more effective development workflow</li>
+                <li>Model Context Protocol (MCP) tools like Puppeteer and Sequential Thinking in Windsurf enable AI to interact with websites and execute multi-step processes</li>
+                <li>AI models struggle with large files (like CSS) and special formats (like Base64), requiring workarounds or alternative approaches</li>
+                <li>Long AI sessions face context window limitations; creating checkpoints and to-do lists helps maintain progress across multiple sessions</li>
+                <!-- Format for takeaways:
+                <li>First important insight or learning from the episode</li>
+                <li>Second key concept or takeaway point</li>
+                <li>Third significant observation or conclusion</li>
+                -->
+            </ul>
+            
+            <!-- TRANSCRIPT SECTION - Full conversation text with timestamps -->
+            <h2>Full Transcript</h2>
+            <div class="transcript-navigation">
+                <button class="transcript-control" onclick="document.querySelector('.transcript').scrollTop = 0">Top</button>
+                <span>Scroll or use controls to navigate</span>
+                <button class="transcript-control" onclick="document.querySelector('.transcript').scrollTop = document.querySelector('.transcript').scrollHeight">Bottom</button>
+            </div>
+            
+            <div class="timestamp-note" style="background-color: #f0f7ff; padding: 10px; margin: 10px 0; border-radius: 5px; border-left: 4px solid #0066cc;">
+                <strong>💡 Tip:</strong> Click on the 🕒 icons above or timestamps in the transcript below to jump to that point in the YouTube video.
+            </div>
+            
+            <div class="transcript">
+                <pre>
+<a href="https://youtu.be/qgTu6hv6Hys?t=0" target="_blank" class="transcript-timestamp">[00:00:00]</a> <span class="transcript-speaker">Ryan MacLean:</span> Hey Jason, how's it going? 
+
+<a href="https://youtu.be/qgTu6hv6Hys?t=1" target="_blank" class="transcript-timestamp">[00:00:01]</a> <span class="transcript-speaker">Jason Hand:</span> Hey Ryan. It's 
+
+<a href="https://youtu.be/qgTu6hv6Hys?t=2" target="_blank" class="transcript-timestamp">[00:00:02]</a> <span class="transcript-speaker">Ryan MacLean:</span> going well. 
+
+<a href="https://youtu.be/qgTu6hv6Hys?t=2" target="_blank" class="transcript-timestamp">[00:00:02]</a> <span class="transcript-speaker">Jason Hand:</span> How are you? 
+
+<a href="https://youtu.be/qgTu6hv6Hys?t=3" target="_blank" class="transcript-timestamp">[00:00:03]</a> <span class="transcript-speaker">Ryan MacLean:</span> Not too bad. I feel like I'm full of energy. I spent the weekend coding, which is odd for me. I figured I'd talk a little bit about a method of coding.
+
+So we've talked about "vibe coding" or maybe I like to call it "vibe driven development" as opposed to "test driven development". But I was trying out that what the kids are calling this "YOLO Mode". So "You Only Live Once" a just. Have the AI just say yes to everything and basically auto accept. Now I'm gonna, there's a Bunch of caution here.
+
+So there's a few things that I'll get around, but the first thing I'll do is say I was trying to test the website out as I was migrating it from static HTML to Astro, so I'm just gonna please share my screen here. Yeah, go ahead. 
+
+<a href="https://youtu.be/qgTu6hv6Hys?t=39" target="_blank" class="transcript-timestamp">[00:00:39]</a> <span class="transcript-speaker">Jason Hand:</span> I should. Clarify our website's, what you're referring to?
+
+<a href="https://youtu.be/qgTu6hv6Hys?t=41" target="_blank" class="transcript-timestamp">[00:00:41]</a> <span class="transcript-speaker">Ryan MacLean:</span> My, my sincerest apologies that is in fact, correct. Yes. So we'll start with, this is the Docker container here, but this is the actual website. So it's the ai-tools-lab.com website. So this is the main site. And it's mostly static HTML. There's some JavaScript and stuff like that in here, but it's pretty plain, which is good.<a href="https://youtu.be/qgTu6hv6Hys?t=60" target="_blank" class="transcript-timestamp">[00:01:00]</a> 
+
+This is a great test of, say, migrating like an internal website that might have been written in HTML pages a while ago that you've been maintaining. There. There's some traffic kind of stuff, so it's not bad, but it's just that. There's a lot of context or there's a lot of files or maybe a lot of content even.
+
+'cause we're talking about transcripts as well as HTML page as well as some of the CSS that's quite big. And I found that this is a pretty good example of maybe not a big project, but like a small or medium sized project and maybe where the limits of some of the models are now versus where some of the strengths are in terms of testing and automation, which I was pretty impressed with and I think this is why I ended up coding all weekend.
+
+'cause it was actually pretty fun to play around with. On top of this, I was learning something new called Astro. I think you were also learning about it maybe in a different way on, on Friday, but it does look pretty cool as a way to put out documentation in a static website sort of way. I think you've used Hugo in the past, or Gatsby.
+
+Yeah. Yeah. 
+
+<a href="https://youtu.be/qgTu6hv6Hys?t=113" target="_blank" class="transcript-timestamp">[00:01:53]</a> <span class="transcript-speaker">Jason Hand:</span> Hugo, I've used quite a bit for different projects, and you're right. On Friday we had, our team had our <a href="https://youtu.be/qgTu6hv6Hys?t=120" target="_blank" class="transcript-timestamp">[00:02:00]</a> usual end of week standup and Right. The topic of astro came up within the community standup, and I sent you a DM in Slack and I was like, "Hey, we should talk about Astro", 
+
+<a href="https://youtu.be/qgTu6hv6Hys?t=131" target="_blank" class="transcript-timestamp">[00:02:11]</a> <span class="transcript-speaker">Ryan MacLean:</span> right?
+
+<a href="https://youtu.be/qgTu6hv6Hys?t=132" target="_blank" class="transcript-timestamp">[00:02:12]</a> <span class="transcript-speaker">Jason Hand:</span> Because I. To your point, like this whole site's just HTML, it was created because of the this project basically it was just a part of the experiment. Now it's getting to the point where it's hard to manage and I'm like, I'm personally going through every post and making sure the HTML looks right and inevitably there's something a little off.
+
+And I was like, this just doesn't scale. We need to switch to a content management system ish type of thing where we're just giving markdown. To something and it builds our site. So that's where, how we ended up. I guess it sounds like both of us obsessing to some degree over Astro over the weekend 
+
+<a href="https://youtu.be/qgTu6hv6Hys?t=167" target="_blank" class="transcript-timestamp">[00:02:47]</a> <span class="transcript-speaker">Ryan MacLean:</span> a little bit.
+
+I gotta say I really do frameworks or different ways of working about things. And I think that promise of being able to just bring your markdown files and how something worked to me sounded like a, that virtuous cycle or something I'd want to [00:03:00] chase essentially. So to get there, what is it, how many yaks do I need to shave in order to get to that point?
+
+Was what I was thinking. And I thought this would be pretty easy. So the. I think the crux or the impetus in my mind was visual comparison of those pages should be simple was it may be what I was wrong about in the beginning. So I was like, okay, what I'm going to do is use vision models to say this is the old site, this is a new site.
+
+Don't soft until they look the same. This is I found out this is the wrong approach. Okay. Not because it can't work, but because it's slow. Oh, interesting. It's very slow. It's like death by a million cuts. In particular, what I found out, and I'm gonna show it really quickly, but the site itself, so this is running in Docker and I'll talk about that in a moment here, but the site itself actually has quite a bit of CSS.
+
+And I think that might be the root cause is that a lot of the models were chunking. The CSS, they'd read lines from 1 to 99 and then 100 to 200, et cetera, et cetera, for a file that's about 3000 lines. And it would take a lot to have that in context. And then by the time it went to get to the other side to compare them, it was already lost kind of [00:04:00] thing.
+
+I think normally what I would do as a human is download both CSS files and look at them because they're quite large. So I'm just gonna quickly look at the actual CSS itself. So if we go into our project, and this is in Windsurf, I'll get rid of some of the sidebar here. But we'll quickly go into our project and look at our style sheet.
+
+And you can see there's a lot of files in here. I was going a little bit ham on the testing, so we don't need to look at all of these. But if we look at our style sheet, which I think has moved to public in here. And then let's look at our styles. So there, there's a lot of styles in here and not all of them are used.
+
+I feel like y if I was writing this code, this is what would happen to me. I think we're actually missing like 500 lines as well. 'cause I've gone through and trimmed this down a bit. Wow. A bit. But I feel like this is where it was choking. And again, there's nothing wrong with this file or anything like that.
+
+I think this is honestly a pretty standard length for CSS these days because we're using a lot of classes and we're using the cascading to apply different classes to different areas, so can get pretty complicated. On its own. Now the other thing I noticed is that there's some other [00:05:00] pages in here that are a little bit more complicated than others.
+
+In fact, one of them, the resource pages, which are pretty cool, have an inbuilt graphic. So this background here is built into the style. And again, neither, no harm, no foul. It's cool 'cause it's got Base64, it's right in there. And then color shifts between them.
+
+So it's actually pretty interesting. But when the LLM tried to read the Base64, I feel like this might be like an anti security or anti SQL injection kind of protection. It actually would choke on Base64 a lot. I have to instruct it to Hey, write that out to a file or maybe use a temporary store, but absolutely don't try to put this into your memory because you're having a really hard time with it.
+
+It's not that big. It's not a big file, but the model definitely had issues. Now I'm saying the model, in this case, I started with Gemini 2.5 Pro because I hadn't used it before. And the cool thing about that model is it's multimodal. So I could have it examine like the look and feel of one side and look at the other.
+
+Pretty good. But it meant when I had to explore the web, I had to use an [00:06:00] MCP, which I'll get here, get to here. So I was using Puppeteer as an MCP, and in order to use Gemini with Puppeteer, it meant that I had to go through a long, arduous process of opening the site, taking a screenshot, looking at the screenshot, and doing the same thing for the other.
+
+What I noticed is if I was using Sonnet 3.7, for example, it had web search built in but didn't have the bimodal or at least I couldn't get it to compare things on my end. I don't think it is multimodal and as a result I went back and forth between two models most of the weekend using the strengths of one and the strengths of the other to do things.
+
+And again, having spent three days on this, I can obviously think of a better way to do this. I think as an n8n user, you could probably think. It'd be a pretty good workflow or maybe I could add this to Cursor rules or use the memory. But what I'd like to talk about, because I only touched on it previously a little bit when we talked about Windsor, is how to actually set up the MCP shortcuts.
+
+So for MMCPs, what's a little bit different in Windsurf as opposed to Cursor, for example, is that though you can add them manually. There also is a [00:07:00] list of servers, which is handy.
+
+One of them that I want to use, Playwright for some reason, doesn't seem to work on Mac Arm 64 right now. I'm sure it'll get fixed. Playwright itself definitely does work, but this MCP seemed to have issues with it, so I ended up using Puppeteer as opposed to. I've removed it now, but basically what you do is just hit add and then hit save config and that's it.
+
+So it's saved to your config. I'll, we'll go look at it in a second, but the other one that I used was Sequential Thinking, which I think is in here. So Sequential Thinking will do similar to Aider or Claude Code. It will do one thing and then continue on to the next step, which is actually quite handy.
+
+So the combination of these two MMCPs actually got me very far. So if you can open up your source site and Puppeteer and your destination site in Puppeteer and then go through and sequentially think about the changes that need to be made, it it actually works quite well. There's a bit of, I don't know if you've watched The Simpsons you know when Homer's in charge of the power plant, but he is working remotely and he is got the little bird that just clicks. Okay. [00:08:00] There, there's a little bit of that in here. So think about the danger that would happen if you're just autosaving your file.
+
+So the first thing I did was create a new branch and I told it to only use that branch. Now I set up some pre-commit checks that we may see here in a moment that were perhaps not the best checks, but as a result I realized that the LLM. Both models would go around the checks if they got in the way.
+
+So there's pros and cons there for different things. A as well as set up some rules to not save API keys. And I noticed this morning, for example, that one of them was saved in a Terraform file, but be that where it is. So what we can do here is start a new chat. I can do things like say browse the local Docker site using Puppeteer, which is our MCP.
+
+Now I going, I'm not gonna say MCP Puppeteer here, though. You could, if you really need to coax it and compare it, and I'm just saying prod site here and not production, and not giving the URL because I believe I've got a [00:09:00] memory that points to it. Here we go.
+
+Okay. So what I'm hoping will happen is that we'll pop up Puppeteer and I can drag it over to show that it's like it's driving the website. I think the first thing that's going to do is see if it's actually working and it is up, so I can drag that over. It's running on Docker Desktop already. We can see the port here.
+
+This is how we were looking at the site a moment ago, and what it should do is pop up Puppeteer with a headless chrome browser, showing you what, what exists in the target, which is our test environment, and then what exists in the source, which is our prod environment. And then you can see it here as it's going through its sequentially thinking through that process.
+
+Now some of this that you're seeing is actually through Claude's Sonnet 3.7. But when Claude's done, it will actually go back to the MCP and tell it to continue from where it's left off. Now, you could do something similar to this by using a to-do file. In fact, I did use that quite a bit, but let's see if [00:10:00] it actually goes through the whole thing here.
+
+Okay, so it's literally just checking to see if the Docker container's running. But you can see that there's a lot of steps involved here, and this is really handy because otherwise what you'd be doing is. Doing all of these on your own, like approving should you do this now, check this. Now.
+
+That thing, in some of these cases it might be easier just to stop it and say, Hey, it's already started. I found that files would be like half edited if I do it that way. It feels like it's best to go through the entire process, but big. But here, if you see that it's doing something that's like a security problem or perhaps it's going down the wrong path, or it's creating a whole Bunch of new files that it doesn't need, or it's made a new branch, these are all warning signs.
+
+So you definitely need to watch this like a hawk. So watch it closely. Don't auto approve anything. Read these lines. Don't just watch YouTube while you're doing it. Maybe listen to a podcast, which is what I was doing at the same time. But you do need to visually be watching what's happening. So it looks like in this case, it's running on port 4321.
+
+It's found port 4321. So it seems like it knows it's already running. Then it's gonna go [00:11:00] ahead. Now, what you may be noticing in here is that it's "YOLO" running my command line. Again, big warning. What I would suggest is approving only the commands that you want. So I'll talk about those in a second.
+
+But it did open up. You can see that this is in in a private browser. It did open up Docker. It's going through the site and using it. I've also got this set up with Datadog rum as well, so I can see. See what pages it's hitting in case it's missed pages when it does test. But the combination of these two tools actually got me very far.
+
+So again, we're talking about MCPs and Windsurf and a "YOLO Mode", so it can run command line tools, it can do web browsing, it can think in a sequence, which is pretty handy now. We're using 3.7, so I can't do that image comparison the same way. It will generally take a screenshot and compare those screenshots as a result.
+
+It neither good nor bad. There's pros and cons to that approach as well. It depends on the windows sizing, it might look quite a bit different. So the match score could be pretty low if the windows sizes aren't good. But the other approach is comparing the CSS, which can take a long time.
+
+<a href="https://youtu.be/qgTu6hv6Hys?t=716" target="_blank" class="transcript-timestamp">[00:11:56]</a> <span class="transcript-speaker">Jason Hand:</span> I just saw the screen blink a little bit, didn't I? Yes. Or, <a href="https://youtu.be/qgTu6hv6Hys?t=720" target="_blank" class="transcript-timestamp">[00:12:00]</a> okay, so that, is that it in action? 
+
+<a href="https://youtu.be/qgTu6hv6Hys?t=721" target="_blank" class="transcript-timestamp">[00:12:01]</a> <span class="transcript-speaker">Ryan MacLean:</span> Yeah. It's still going, so still looking at the two. Another 
+
+<a href="https://youtu.be/qgTu6hv6Hys?t=725" target="_blank" class="transcript-timestamp">[00:12:05]</a> <span class="transcript-speaker">Jason Hand:</span> question I have too. Yeah. Is you turned on the Sequential Thinking MCP. 
+
+<a href="https://youtu.be/qgTu6hv6Hys?t=730" target="_blank" class="transcript-timestamp">[00:12:10]</a> <span class="transcript-speaker">Ryan MacLean:</span> Yes. 
+
+<a href="https://youtu.be/qgTu6hv6Hys?t=731" target="_blank" class="transcript-timestamp">[00:12:11]</a> <span class="transcript-speaker">Jason Hand:</span> And we're using Claude 3.7 Sonnet, which is a thinking model.
+
+<a href="https://youtu.be/qgTu6hv6Hys?t=735" target="_blank" class="transcript-timestamp">[00:12:15]</a> <span class="transcript-speaker">Ryan MacLean:</span> Yeah. And there's two ways to use it. We are thinking and without, but we're definitely in thinking mode. Yep. 
+
+<a href="https://youtu.be/qgTu6hv6Hys?t=739" target="_blank" class="transcript-timestamp">[00:12:19]</a> <span class="transcript-speaker">Jason Hand:</span> Okay. Do those. Help each other or do they conflict with each other or they ignore each, they're complimentary. How's it work? 
+
+<a href="https://youtu.be/qgTu6hv6Hys?t=746" target="_blank" class="transcript-timestamp">[00:12:26]</a> <span class="transcript-speaker">Ryan MacLean:</span> Okay. Yeah. They're complimentary. So we can so when we do the MCP two calls, they look like this.
+
+So we can see that it's got an MCP tool and this is probably when it was flashing. The other is in the thought process. So there's a Sonnet thought process, which is this. And then when it goes to Sequential Thinking mode, it will get back into this MCP tool. But you're pointing out a good point.
+
+'cause I don't actually see the thinking process. And in some cases you actually do have to say MCP Sequential Thinking for it to do it. I thought the rule would pick it up, but we'll talk about the rules here in, in a moment as opposed to the memories. So Windsurf wants to use [00:13:00] memories and it says it can automatically remember things that you want it to.
+
+I will say yes, but also in terms of logical fallacies and stuff like that, it gets into trouble. So if I say, Hey, I want you to use "Docker and Datadog for testing" is one of the things that I told it to memorize or put in the memory. 
+
+As a result, what it wrote down was "Use Docker to do any Datadog testing", which is similar, but not the same as what I asked.
+
+You've gotta go through and cull your memories as well. So they, it, it sounds similar, but it is definitely not the same. And it's. Probably not what you wanna do. You don't need to spin up Docker in order to use Datadog. In fact, I taught her how to use the Datadog CLI taught as a, we're putting that in scare quotes too, but basically said Hey, you've got access to a CLI tool.
+
+Please use that as well. Which I thought was maybe more handy. 
+
+<a href="https://youtu.be/qgTu6hv6Hys?t=825" target="_blank" class="transcript-timestamp">[00:13:45]</a> <span class="transcript-speaker">Jason Hand:</span> Yeah the one. That I'm just not ready to give the keys to his GitHub. I'm just not I'm too worried that, I don't know, just like over the weekend when you pushed out a a new branch, 
+
+<a href="https://youtu.be/qgTu6hv6Hys?t=835" target="_blank" class="transcript-timestamp">[00:13:55]</a> <span class="transcript-speaker">Ryan MacLean:</span> 10,000 commit. Yeah. 
+
+<a href="https://youtu.be/qgTu6hv6Hys?t=836" target="_blank" class="transcript-timestamp">[00:13:56]</a> <span class="transcript-speaker">Jason Hand:</span> And I was like, wait a second.
+
+Did he do that or did an AI do <a href="https://youtu.be/qgTu6hv6Hys?t=840" target="_blank" class="transcript-timestamp">[00:14:00]</a> that? Because 
+
+<a href="https://youtu.be/qgTu6hv6Hys?t=840" target="_blank" class="transcript-timestamp">[00:14:00]</a> <span class="transcript-speaker">Ryan MacLean:</span> The AI did it and right. It's no, no human. I'm pretty good at coding. No human's gonna make that amount of changes in that short of time. In fact, thinking about the project, like this project doesn't need 10,000 changes straight up. It's just not required.
+
+<a href="https://youtu.be/qgTu6hv6Hys?t=855" target="_blank" class="transcript-timestamp">[00:14:15]</a> <span class="transcript-speaker">Jason Hand:</span> You know what I mean? Like the more I dig into Astro, like I, there is like a large body of files and things that go along with the deployment, right? More than we have with just the HTML. I guess that's not true because we do have transcripts and other stuff that we sort of account for in different ways, but.
+
+Anyway. It is a, it is. I just accepted that's just a big, it's a big deployment. 
+
+<a href="https://youtu.be/qgTu6hv6Hys?t=874" target="_blank" class="transcript-timestamp">[00:14:34]</a> <span class="transcript-speaker">Ryan MacLean:</span> Yeah. Yeah. It is a big deployment and whenever it comes to Node you're gonna have a ton of packages as well.
+
+So it depends on what you're doing. I also noticed as I was going through, I made a test folder and started including tests that those screenshots can build really quickly. It could end up with 30, 40, depending on how many times I run the test. It could. Get a little bit difficult to manage. So I put that into 'gitignore' as well.
+
+The other thing is managing that 'gitignore' as you go along. So a again, if you're talking about GitHub, you gotta protect <a href="https://youtu.be/qgTu6hv6Hys?t=900" target="_blank" class="transcript-timestamp">[00:15:00]</a> your Personal Access Token, you gotta protect your SSH key. There's a whole Bunch of things that you need to protect. So what I said is actually I prefer the MCP not used GitHub. Here's a CLI and you can use it for status and you can push the test only.
+
+You cannot like don't "pass go", don't use anything else. And again I'm watching it like a hawk this morning. It created a new branch, which is I forgot to tell it. No, you can't create a new branch just to get around some of these rules. Like you actually have to push the test branch.
+
+So I had to add that to the rules as well. So we were talking about Sequential Thinking, so it did actually do Sequential Thinking up here so it can see that it's gone through. Eight, thoughts. It, it doesn't need a next thought in this case. So it's done. And I tried to summarize at the end, which is pretty handy.
+
+As we were using Claude, it was thinking about the problem rationally, which is good. And as a result we were checkpointing through the Sequential Thinking, driving that process as we go through. The last thing I'll say for some of these sessions, they can get pretty long, like these are my memories and rules and we'll talk about it.
+
+But some of these sessions can get so long that it has a hard time with the context just of what it's done, let <a href="https://youtu.be/qgTu6hv6Hys?t=960" target="_blank" class="transcript-timestamp">[00:16:00]</a> alone your code or what have you. And as a result, some memories seem like they get pushed out or some sequences are forgotten. So I would say it's. It feels like the two hour mark ish is about the time to create, like a new session, checkpoint your work, push to git, move on, that kind of thing.
+
+<a href="https://youtu.be/qgTu6hv6Hys?t=975" target="_blank" class="transcript-timestamp">[00:16:15]</a> <span class="transcript-speaker">Jason Hand:</span> I wonder if there's a I wonder if there's a technical term for that. It's like the Dunbar's number. Do you know what that is? 
+
+<a href="https://youtu.be/qgTu6hv6Hys?t=979" target="_blank" class="transcript-timestamp">[00:16:19]</a> <span class="transcript-speaker">Ryan MacLean:</span> Yeah. I dunno what the number is, but I know Dunbar, it's like you can only handle so much in your head at the same time. 
+
+<a href="https://youtu.be/qgTu6hv6Hys?t=985" target="_blank" class="transcript-timestamp">[00:16:25]</a> <span class="transcript-speaker">Jason Hand:</span> Yeah, exactly. There's only so many like people, you can maintain actual real relationships.
+
+Yeah. Is it a hundred friends or something like that? I don't remember the exact number. I was thinking way less thinking it was closer to 200 or more, but Okay. It's a, yeah, it's a, we got computers in front of us. I guess we could just look this up. Yeah, fair enough. Just Google 
+
+<a href="https://youtu.be/qgTu6hv6Hys?t=1001" target="_blank" class="transcript-timestamp">[00:16:41]</a> <span class="transcript-speaker">Ryan MacLean:</span> it.
+
+<a href="https://youtu.be/qgTu6hv6Hys?t=1002" target="_blank" class="transcript-timestamp">[00:16:42]</a> <span class="transcript-speaker">Jason Hand:</span> While 
+
+<a href="https://youtu.be/qgTu6hv6Hys?t=1003" target="_blank" class="transcript-timestamp">[00:16:43]</a> <span class="transcript-speaker">Ryan MacLean:</span> you're doing that, I'm just gonna go through some of these 150. 
+
+<a href="https://youtu.be/qgTu6hv6Hys?t=1006" target="_blank" class="transcript-timestamp">[00:16:46]</a> <span class="transcript-speaker">Jason Hand:</span> Yeah. I guess 150. Okay. Between 
+
+<a href="https://youtu.be/qgTu6hv6Hys?t=1008" target="_blank" class="transcript-timestamp">[00:16:48]</a> <span class="transcript-speaker">Ryan MacLean:</span> both what we said, 
+
+<a href="https://youtu.be/qgTu6hv6Hys?t=1009" target="_blank" class="transcript-timestamp">[00:16:49]</a> <span class="transcript-speaker">Jason Hand:</span> It's a cognitive limit to the number of social relationships a person can maintain, where they know each individual and the relationships with each other. This number was proposed by anthropologist Robin Dunbar in the <a href="https://youtu.be/qgTu6hv6Hys?t=1020" target="_blank" class="transcript-timestamp">[00:17:00]</a> nineties.
+
+Wow. That is awesome. Anyway, so it's similar to that, like it just loses the plot. I feel like that's a, that's like a thing I keep saying with these after a while. 
+
+<a href="https://youtu.be/qgTu6hv6Hys?t=1028" target="_blank" class="transcript-timestamp">[00:17:08]</a> <span class="transcript-speaker">Ryan MacLean:</span> A lost the plot. Yeah. It feels like it's forgotten what it was doing. Yeah. 
+
+So I just pulled up one of these memories just to show what it looks like. So generally what I would say in, in all caps is ADD TO MEMORY, this kind of thing.
+
+'cause I wanted to make sure that it was added there. I definitely did not write out. All of this, and I'm not sure if all of this is correct. So some of this in I ran into issues with roll up and es build on Arm 64. Some of this is the Docker image that we were using may not have been the right Docker image.
+
+So started off with Alpine, for example. And I feel like the model wasn't well versed in Alpine APK operations. So I swapped over to UBuntu and then eventually just swapped to the official Node one because they have different flavors for. Arm 64 x64, AR64 or what have you. So it just, using the different flavors help things move along.
+
+This is what I did in the first place, but as we go through and <a href="https://youtu.be/qgTu6hv6Hys?t=1080" target="_blank" class="transcript-timestamp">[00:18:00]</a> start adding these memories in, you can see that there's quite a few of them in here. You can add stuff that help. Now, couple of these in here. For Context7. Have you played around with Context7 before? I 
+
+<a href="https://youtu.be/qgTu6hv6Hys?t=1089" target="_blank" class="transcript-timestamp">[00:18:09]</a> <span class="transcript-speaker">Jason Hand:</span> have not. 
+
+<a href="https://youtu.be/qgTu6hv6Hys?t=1090" target="_blank" class="transcript-timestamp">[00:18:10]</a> <span class="transcript-speaker">Ryan MacLean:</span> Okay.
+
+One, one thing I'll say is there's a caveat here in that I don't necessarily trust MCPs, and I'm sure Context7 is fine in dealing with your private data that you're sending it. So I would say do not send API keys to an external MCP provider, for example, the same way as you wouldn't refer an API might be logged, what have you.
+
+So that's one of the first things that came to my mind is like, Hey, don't write the API keys to the project because if you're calling out an MCP tool that's run by somebody else. I don't want my code to land there. Definitely don't want my API keys to land there. If we're talking about boy overplayed Astro, that's totally fine.
+
+What Context7 is a repository for a Bunch of docs together, and in this case what I wanted was Astro and I wanted Vite. I think it's Vite it, it might be Vite and then Vitest is probably how Americans say this, but I, it sounds like Vitest to me, which is like another way to say speed. So <a href="https://youtu.be/qgTu6hv6Hys?t=1140" target="_blank" class="transcript-timestamp">[00:19:00]</a> anyway we'll say Vitest.
+
+So I want these three, and they weren't in the Cursor docs, which was the issue. So if we go back to Cursor. And look at Cascade. Let's just quickly pull up the docs. So in here, there's a lot in fact I ended up playing around with making my own MCPs for Datadog. Just for funsies. But like going through these it's pretty cool.
+
+You can look through the MCP docs or maybe look through the Eleventy Docs. There's some Next.js docs in here. I think there may have been some Netlify. Yeah, there were in fact, Netlify docs, which were in fact very handy as somebody who didn't know at Netlify at all, but has deployed to it a couple times from some of these "vibe coding" tools like Lovable or what was the other one?
+
+I think this quote, A Bolt, I think is the other one. But being able to deploy quickly to Netlify is great, but once you've deployed, there's a whole Bunch of other stuff you need to worry about. How often does it deploy? Is it actually working? Just 'cause it deploy doesn't mean it's good. There's building as well for Astro, making sure that we're spitting out the right files at any rate.
+
+So I want to combine those docs together. There's one problem with Context7 in that you need to <a href="https://youtu.be/qgTu6hv6Hys?t=1200" target="_blank" class="transcript-timestamp">[00:20:00]</a> manually add it to Windsurf, but it's not that difficult. I'm just gonna pull up those docs here now and I'll show them to you. My apologies. I think this should work. So this is from Upstash. We'll pull 'em over here.
+
+And I won't go over this too long, but basically it's got pretty up to date info on how to actually add these into your clients. So I talked to you a little bit about this morning, but I was surprised you could add this kind of stuff to Claude Desktop basically. So in there you can add MCP tools now, which is I.
+
+Phenomenal. In fact, if you wanna pull up something from multiple sources of docs, I feel like this is a great way to do it. Give me boilerplate for Vite, Vitest, and Netlify, for example. No problem whatsoever. Now in Cursor and in Windsurf, there's a way to install it using NPX here, which I think is what I use, and it works pretty well.
+
+What I found interesting is that you could use Bun or Dino, which I had not seen before. 
+
+<a href="https://youtu.be/qgTu6hv6Hys?t=1256" target="_blank" class="transcript-timestamp">[00:20:56]</a> <span class="transcript-speaker">Jason Hand:</span> Ah, yeah. I didn't know you could do Bun. 
+
+<a href="https://youtu.be/qgTu6hv6Hys?t=1258" target="_blank" class="transcript-timestamp">[00:20:58]</a> <span class="transcript-speaker">Ryan MacLean:</span> I didn't either. Yeah. NPX is <a href="https://youtu.be/qgTu6hv6Hys?t=1260" target="_blank" class="transcript-timestamp">[00:21:00]</a> pretty handy there. There's other ways of doing anything here. There's Zed, there's NPX there's, sorry. There's different clients that you can do, but you can also do it in Docker.
+
+Now, I thought this is pretty interesting because I would like to in fact, log all of the calls that code to Context7, to ensure in fact that the traffic that I'm sending is okay. Maybe ship those logs off to a SIEM tool or what have you. What we're going to do though is just grab this NPX up at the top.
+
+So this is for Cursor. We're gonna grab Windsurf, which is this. It's very similar. We don't need the MCP service block, I don't think, but I'm going to grab it just because this manual block might be a little bit different than the auto block. So again, in settings, and we're going into Windsurf settings and MCP server.
+
+So we can go to "Add Server" here. But what I'm going to do is look at the raw config and okay. I'm just gonna format this a little bit better. Okay, so we've got Puppeteer Sequential Thinking Context7. Make sure this looks right. Okay, that looks okay. So now we've got the MCP server installed, and <a href="https://youtu.be/qgTu6hv6Hys?t=1320" target="_blank" class="transcript-timestamp">[00:22:00]</a> what we should be able to do is pull up the docs. So in here I can say.
+
+And generally I've found that you don't need to type MCP every time as mentioned, but it seems like the first couple times you use it, it does need that little hint like, "Hey, I've got a tool for this. It's new. Please use it". I, again, I had two rules in there that said this because I really wanted to use it every time.
+
+I still don't feel like it picked it up every time I tried to use its internal docs, but let's see if it can pull it up. And the way we can tell is that we'll have that little bar that looks a little bit different. 
+
+<a href="https://youtu.be/qgTu6hv6Hys?t=1359" target="_blank" class="transcript-timestamp">[00:22:39]</a> <span class="transcript-speaker">Jason Hand:</span> And we should point out to V five of Astro is the latest. 
+
+<a href="https://youtu.be/qgTu6hv6Hys?t=1363" target="_blank" class="transcript-timestamp">[00:22:43]</a> <span class="transcript-speaker">Ryan MacLean:</span> Yes. And I'm using I think 5.73, which got a few little changes in it, but five is definitely the latest and Okay, perfect.
+
+So it is using Context7 that's pulling up the version that we want in order to pull up the docs for the version, which is great. And you can see that is using Sequential Thinking in order to <a href="https://youtu.be/qgTu6hv6Hys?t=1380" target="_blank" class="transcript-timestamp">[00:23:00]</a> go through it. And now it's thinking, okay, so it's got docs and it's got my code and it's gotta compare the practices between them.
+
+Fairly complicated question actually, and it's a good question for beginners. Hey, there's you're doing something, it's working. Are you doing it the right way? Or what are your peers doing? Or are there other GitHub repos out there that use the same version that could do this? I've found using the web is actually a really good one, like when it comes with the conclusion and says everything looks great, I will say, Hey, can you quickly check the web as well?
+
+And Sonnets great at web searches and pulling back useful info and combining the two. What I really got outta this, and maybe the reason why I did this all weekend is because I was learning about new HTML processes new CSS procedures, as well as learning a new tool and getting things working and tested in Netlify.
+
+It was like a, like it's more than a trifecta because a four facta, a five effect outta it. It felt amazing like doing three or four things at once. Basically learning, coding, working on <a href="https://youtu.be/qgTu6hv6Hys?t=1440" target="_blank" class="transcript-timestamp">[00:24:00]</a> something with Jason, like this is phenomenal. 
+
+<a href="https://youtu.be/qgTu6hv6Hys?t=1443" target="_blank" class="transcript-timestamp">[00:24:03]</a> <span class="transcript-speaker">Jason Hand:</span> Yeah I've had that feeling. It's like a, it's a flow state for sure.
+
+And it's just fun. 
+
+<a href="https://youtu.be/qgTu6hv6Hys?t=1448" target="_blank" class="transcript-timestamp">[00:24:08]</a> <span class="transcript-speaker">Ryan MacLean:</span> Yeah, totally agree. Now between these calls especially, 'cause they're pretty long, this can take a while, like five minutes wouldn't be out of the norm, for example. What I will say is, when it's done, generally what I'll say is add this to the, to-do so the goal is to either checkpoint your work or check off something that you've done. But you can't just end there. Something needs to be we need to say that we've done something because if I stop this session and start again later, it might not have all the context that, that kind of thing.
+
+Yeah. So 
+
+<a href="https://youtu.be/qgTu6hv6Hys?t=1475" target="_blank" class="transcript-timestamp">[00:24:35]</a> <span class="transcript-speaker">Jason Hand:</span> where is that to do 
+
+<a href="https://youtu.be/qgTu6hv6Hys?t=1476" target="_blank" class="transcript-timestamp">[00:24:36]</a> <span class="transcript-speaker">Ryan MacLean:</span> Let I, I'll pull that up here. In fact it spilled over into the readme, so we'll look at that in a moment, but it's right here. Oh, I see. Okay. And let's see if we can preview it. Perfect. Where is the preview? There we go. I do find the preview pretty handy and let's pull this out.
+
+Yeah, it's a little grab. You note the note at the top 'cause it did spill over into readme, which I'll show in a moment. <a href="https://youtu.be/qgTu6hv6Hys?t=1500" target="_blank" class="transcript-timestamp">[00:25:00]</a> 
+
+<a href="https://youtu.be/qgTu6hv6Hys?t=1500" target="_blank" class="transcript-timestamp">[00:25:00]</a> <span class="transcript-speaker">Jason Hand:</span> Oh, interesting. 
+
+<a href="https://youtu.be/qgTu6hv6Hys?t=1504" target="_blank" class="transcript-timestamp">[00:25:04]</a> <span class="transcript-speaker">Ryan MacLean:</span> Yeah. And you can see some of the changes that I've made as well. 
+
+<a href="https://youtu.be/qgTu6hv6Hys?t=1506" target="_blank" class="transcript-timestamp">[00:25:06]</a> <span class="transcript-speaker">Jason Hand:</span> It's becoming, it's not just a to-do, it's a changelog. 
+
+<a href="https://youtu.be/qgTu6hv6Hys?t=1510" target="_blank" class="transcript-timestamp">[00:25:10]</a> <span class="transcript-speaker">Ryan MacLean:</span> It is. That's a good, that's a good point.
+
+It's becoming like a, what's changed in this version 
+
+<a href="https://youtu.be/qgTu6hv6Hys?t=1514" target="_blank" class="transcript-timestamp">[00:25:14]</a> <span class="transcript-speaker">Jason Hand:</span> or Yeah. A changelog, but also just a historical look back on your roadmap, as this thing has evolved. 
+
+<a href="https://youtu.be/qgTu6hv6Hys?t=1522" target="_blank" class="transcript-timestamp">[00:25:22]</a> <span class="transcript-speaker">Ryan MacLean:</span> Yeah. And also I find that some of the things in here yeah, this, for example, isn't fixed, and this is a problem that I was dealing with this morning, is that it was trying to pass.
+
+The key to GitHub workflows, but it should not. So I ended up doing Docker GitHub workflows. The whole thing, the, I just some slap some DevOps on it. Let's go. 
+
+<a href="https://youtu.be/qgTu6hv6Hys?t=1542" target="_blank" class="transcript-timestamp">[00:25:42]</a> <span class="transcript-speaker">Jason Hand:</span> Yeah. Workflows are great for that. 
+
+<a href="https://youtu.be/qgTu6hv6Hys?t=1543" target="_blank" class="transcript-timestamp">[00:25:43]</a> <span class="transcript-speaker">Ryan MacLean:</span> Yes, I would agree. But that's it. It's not a lot it's quite a bit that happened.
+
+But in terms of what I actually learned it, it sounds like importing HTML with globs is very easy in Astro and, it probably could have been done in five minutes if I just asked Claude to do it, but I did learn a lot more Claude Code. Sorry. <a href="https://youtu.be/qgTu6hv6Hys?t=1560" target="_blank" class="transcript-timestamp">[00:26:00]</a> I did learn a lot more about it in the process defining those tests, so going through Vitest tests and making it, use those against it to make sure I knew that the sites looked the same totally, and that they're visually identical.
+
+<a href="https://youtu.be/qgTu6hv6Hys?t=1571" target="_blank" class="transcript-timestamp">[00:26:11]</a> <span class="transcript-speaker">Jason Hand:</span> And I jokingly said last, on Friday, like one of the last things I said to you is just send it over to, let's send it over to Claude and see if it can help us come up with a migration script. And 
+
+<a href="https://youtu.be/qgTu6hv6Hys?t=1581" target="_blank" class="transcript-timestamp">[00:26:21]</a> <span class="transcript-speaker">Ryan MacLean:</span> I think you might've even said it, and this is my voice for yours. 'cause because you made it along, it was like, oh, Claude.
+
+Oh yeah. Like a ring a 
+
+<a href="https://youtu.be/qgTu6hv6Hys?t=1588" target="_blank" class="transcript-timestamp">[00:26:28]</a> <span class="transcript-speaker">Jason Hand:</span> bell. "Oh, Claaaaaaauuuude". Yeah, exactly. 'cause that's it's been my go-to for like literally any problem I run into, I'm like I wonder if Claude can solve this. And. Here we are with another problem of we'd like to move our basic HTML JavaScript CSS site to a real content management system called Astro.
+
+How you get from A to B, don't care. Don't wanna know. 
+
+<a href="https://youtu.be/qgTu6hv6Hys?t=1612" target="_blank" class="transcript-timestamp">[00:26:52]</a> <span class="transcript-speaker">Ryan MacLean:</span> Yep. 
+
+<a href="https://youtu.be/qgTu6hv6Hys?t=1613" target="_blank" class="transcript-timestamp">[00:26:53]</a> <span class="transcript-speaker">Jason Hand:</span> Just get there. And we did, or you did. 
+
+<a href="https://youtu.be/qgTu6hv6Hys?t=1617" target="_blank" class="transcript-timestamp">[00:26:57]</a> <span class="transcript-speaker">Ryan MacLean:</span> Yeah, I certainly got it working. I will say that there are <a href="https://youtu.be/qgTu6hv6Hys?t=1620" target="_blank" class="transcript-timestamp">[00:27:00]</a> some discrepancies here and there. I think you found that the form looked a little bit weird this morning, for example, 
+
+<a href="https://youtu.be/qgTu6hv6Hys?t=1624" target="_blank" class="transcript-timestamp">[00:27:04]</a> <span class="transcript-speaker">Jason Hand:</span> visual things.
+
+<a href="https://youtu.be/qgTu6hv6Hys?t=1625" target="_blank" class="transcript-timestamp">[00:27:05]</a> <span class="transcript-speaker">Ryan MacLean:</span> What I found interesting is that even though I kept telling it, please just import the html, it consistently tried to rewrite it, which is, that's okay. That's totally fine. It felt like at some point in time, I would expect the model to say, Hey markdown might actually be better.
+
+This or markdown MDX might be better for this. But at no point was that a suggestion, which I found pretty funny actually. It did create an example episode, which I think I can pull up here early on as a way to, let's pull 'em on. My apologies. They're in here. 
+
+<a href="https://youtu.be/qgTu6hv6Hys?t=1655" target="_blank" class="transcript-timestamp">[00:27:35]</a> <span class="transcript-speaker">Jason Hand:</span> One of the other things that's tricky with at least the episode pages is that they contain the transcript, right?
+
+Which some of them can be quite lengthy. Which, again, I don't, depending on what tokens and context is being sent around like that is just adding to the. Noise maybe, I don't know if noise, but adding to that overflow, that buffer that we have of right of memory. I don't know.
+
+I feel like I'm using <a href="https://youtu.be/qgTu6hv6Hys?t=1680" target="_blank" class="transcript-timestamp">[00:28:00]</a> words that aren't quite the right words, but they still fit the, yeah, 
+
+<a href="https://youtu.be/qgTu6hv6Hys?t=1682" target="_blank" class="transcript-timestamp">[00:28:02]</a> <span class="transcript-speaker">Ryan MacLean:</span> it feels like that context window, basically the amount of context that we're sending every time is overwhelming. It would agree. I also just for fun said "Hey, what would Jason think?"
+
+Like you've seen all these transcripts, what would Jason think of this? And I was like, oh, it made a fake bio for you as a senior front end developer or something like that as well at one point in time. So I was like, oh, okay. You seem to know who Jason is. What would Jason think of this?
+
+And they used you as a, like a persona, essentially using the Jason persona. What would they think of the project kinda thing? And it felt like optimizing for speed and delivery was the main thing that the models were trying to recommend Jason would push forward. I'm not sure if that's true.
+
+That if that's what you'd optimize for 
+
+<a href="https://youtu.be/qgTu6hv6Hys?t=1722" target="_blank" class="transcript-timestamp">[00:28:42]</a> <span class="transcript-speaker">Jason Hand:</span> to talk to my therapist. Yeah. 
+
+<a href="https://youtu.be/qgTu6hv6Hys?t=1724" target="_blank" class="transcript-timestamp">[00:28:44]</a> <span class="transcript-speaker">Ryan MacLean:</span> It's certainly what I was working on at the time, so I feel like it confused the two. I'm not Jason, do you think 
+
+<a href="https://youtu.be/qgTu6hv6Hys?t=1729" target="_blank" class="transcript-timestamp">[00:28:49]</a> <span class="transcript-speaker">Jason Hand:</span> I'm Jason? 
+
+<a href="https://youtu.be/qgTu6hv6Hys?t=1730" target="_blank" class="transcript-timestamp">[00:28:50]</a> <span class="transcript-speaker">Ryan MacLean:</span> Cool. I, yeah, this been awesome. MCPs that can auto be added Puppeteer, super easy, Sequential Thinking, super easy Playwright for me on that, on arm 64 I had issues just with I think it's a <a href="https://youtu.be/qgTu6hv6Hys?t=1740" target="_blank" class="transcript-timestamp">[00:29:00]</a> pathing issue.
+
+But Puppeteer will get you most of the way there. You can use Playwright in the command line. It can run the command line, and it can run Datadog. Datadog, CLI, Datadog, SCA, and Datadog itself, which I thought were awesome Hey, is the service running? Is a PM running? Those kind of questions are easy.
+
+Is the site deployed? Has it built, does it have the new changes that we just added to the code? Easy peasy. And then the two MCPs that I showed you, as well as adding Context7 for your docs. But again, remember, don't send sensitive info to third party MCPs when you add them. 
+
+<a href="https://youtu.be/qgTu6hv6Hys?t=1771" target="_blank" class="transcript-timestamp">[00:29:31]</a> <span class="transcript-speaker">Jason Hand:</span> Alright, cool. I appreciate you showing us all that.
+
+Of course. I appreciate all the hard work over the weekend. Hopefully you did get outside and enjoy a little bit of 
+
+<a href="https://youtu.be/qgTu6hv6Hys?t=1781" target="_blank" class="transcript-timestamp">[00:29:41]</a> <span class="transcript-speaker">Ryan MacLean:</span> No nontechnical it, it wasn't as nice here as it was there. I think so don't Oh, really don't worry about, it's pretty overcast here. Yeah. 
+
+<a href="https://youtu.be/qgTu6hv6Hys?t=1787" target="_blank" class="transcript-timestamp">[00:29:47]</a> <span class="transcript-speaker">Jason Hand:</span> Okay. Cool. Yeah, I guess we gotta, there's a few things we gotta go dig into a little bit further.
+
+But we are so close to having what we set out to do just as recent as Friday. Agreed. Like half a workday ago. 
+
+<a href="https://youtu.be/qgTu6hv6Hys?t=1798" target="_blank" class="transcript-timestamp">[00:29:58]</a> <span class="transcript-speaker">Ryan MacLean:</span> Yeah. Pretty exciting 
+
+<a href="https://youtu.be/qgTu6hv6Hys?t=1799" target="_blank" class="transcript-timestamp">[00:29:59]</a> <span class="transcript-speaker">Jason Hand:</span> <a href="https://youtu.be/qgTu6hv6Hys?t=1800" target="_blank" class="transcript-timestamp">[00:30:00]</a> stuff. 
+
+<a href="https://youtu.be/qgTu6hv6Hys?t=1800" target="_blank" class="transcript-timestamp">[00:30:00]</a> <span class="transcript-speaker">Ryan MacLean:</span> It feels like an accelerator. I gotta say for quick and easy conversions. Deployments. Migration. This feels like a quick first step. 
+
+<a href="https://youtu.be/qgTu6hv6Hys?t=1808" target="_blank" class="transcript-timestamp">[00:30:08]</a> <span class="transcript-speaker">Jason Hand:</span> Yeah.
+
+Yeah, I agree. And okay. Cool. Appreciate you showing us all that. And we'll go ahead and say goodbye here and see you on the next one. 
+
+<a href="https://youtu.be/qgTu6hv6Hys?t=1816" target="_blank" class="transcript-timestamp">[00:30:16]</a> <span class="transcript-speaker">Ryan MacLean:</span> Fantastic. Bye folks. See you.
+
+
+<!-- Format for transcript entries:
+<span class="transcript-timestamp">[00:00:00]</span> <span class="transcript-speaker">Speaker Name:</span> Text of what was said
+
+<span class="transcript-timestamp">[00:00:30]</span> <span class="transcript-speaker">Other Speaker:</span> Response or continuation
+-->
+                </pre>
+            </div>
+        </div>
+    </main>
+    
+    <!-- EPISODE NAVIGATION SECTION - Links to previous and next episodes -->
+    <div class="episode-navigation">
+        <div class="container">
+            <h2>Episode Navigation</h2>
+            <div class="episode-nav-links">
+                <div class="nav-item">
+                    <span class="nav-direction">Previous Episode:</span>
+                    <div class="recording-card">
+                        <h3>The State of AI 2025: Exploring Developer Tools, Models, and Industry Trends</h3>
+                        <div class="video-container">
+                            <a href='/pages/ep17'>
+                                <img src="../images/thumbnails/ep17.png" alt="Episode 17 Thumbnail">
+                                <span class="play-icon"></span>
+                            </a>
+                        </div>
+                        <a class='btn' href='/pages/ep17'>Watch Episode</a>
+                    </div>
+                </div>
+                
+                <div class="nav-item">
+                    <span class="nav-direction">Latest Episode:</span>
+                    <div class="recording-card">
+                        <h3>Streamlining AI Report Analysis: Figma AI 2025 Insights</h3>
+                        <div class="video-container">
+                            <a href='/pages/ep24'>
+                                <img src="../images/thumbnails/ep24.png" alt="Episode 24 Thumbnail">
+                                <span class="play-icon"></span>
+                            </a>
+                        </div>
+                        <a class='btn' href='/pages/ep24'>Watch Episode</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="../images/ai-tools-lab-logo.png" alt="AI Tools Lab Logo" class="footer-logo-img">
+                    <div>
+                        <h2>AI Tools Lab</h2>
+                        <p>Exploring the landscape of AI tools and technologies</p>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href='/pages/'>Home</a></li>
+                        <li><a href='/pages/resources'>Resources</a></li>
+                        <li><a href='/pages/observations'>Observations</a></li>
+                        <li><a href='/pages/about'>About</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 AI Tools Lab. All rights reserved. <span id="easter-egg" class="easter-egg">π</span></p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Easter Egg Modal -->
+    <div id="easter-egg-modal" class="easter-egg-modal">
+        <div class="easter-egg-modal-content">
+            <span class="easter-egg-close">&times;</span>
+            <p>Sandy?</p>
+        </div>
+    </div>
+    
+    <script src="../script.js"></script>
+</body>
+</html>

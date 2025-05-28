@@ -1,0 +1,108 @@
+<!DOCTYPE html><html lang="en" data-astro-cid-ouamjn2i> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Hands-On with eBPF and AI Tools - Accelerating Kernel-Level Observability | AI Tools Lab</title><meta name="description" content="AI Tools Lab - Exploring the landscape of AI tools and technologies"><!-- Open Graph Meta Tags --><meta property="og:title" content="Hands-On with eBPF and AI Tools - Accelerating Kernel-Level Observability | AI Tools Lab"><meta property="og:description" content="AI Tools Lab - Exploring the landscape of AI tools and technologies"><meta property="og:type" content="website"><meta property="og:image" content="/images/ai-tools-lab-logo.png"><!-- Favicon --><link rel="icon" href="/images/ai-tools-lab-logo.png" type="image/png"><link rel="shortcut icon" href="/images/ai-tools-lab-logo.png" type="image/png"><!-- Stylesheets --><link rel="stylesheet" href="/styles.css"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Revalia&display=swap" rel="stylesheet"><script src="https://www.datadoghq-browser-agent.com/us1/v5/datadog-rum.js" type="text/javascript">
+    </script><script type="module">const a=window.DD_RUM;a&&a.init({clientToken:"pub501e7bdae51f592b13b33adf351655a3",applicationId:"db2aad17-02cf-4e95-bee7-09293dd29f1a",site:"datadoghq.com",service:"ai-tools-lab",sessionReplaySampleRate:20,defaultPrivacyLevel:"mask-user-input"});</script><style>.markdown-content[data-astro-cid-zm77yjld]{max-width:800px;margin:2rem auto;padding:0 1rem}
+.logo[data-astro-cid-ouamjn2i] a[data-astro-cid-ouamjn2i]{font-family:Revalia,sans-serif;font-size:3rem}
+</style></head> <body data-astro-cid-ouamjn2i> <header class="site-header"> <div class="bubble"></div> <div class="bubble"></div> <div class="bubble"></div> <div class="bubble"></div> <div class="bubble"></div> <div class="bubble"></div> <div class="bubble"></div> <div class="container"> <div class="logo"> <img src="/images/ai-tools-lab-logo.png" alt="AI Tools Lab Logo" class="site-logo"> <a href="/">AI Tools Lab</a> </div> <nav> <ul> <li><a href="/">Home</a></li> <li><a href="/episodes">Episodes</a></li>  <li><a href="/articles">Articles</a></li> <li><a href="/observations">Observations</a></li> <li><a href="/about">About</a></li> </ul> </nav> </div> </header>  <main class="container" data-astro-cid-zm77yjld> <div data-astro-cid-zm77yjld> <div class="episode-content" data-astro-cid-zm77yjld> <br data-astro-cid-zm77yjld> <article class="markdown-content" data-astro-cid-zm77yjld> <img src="../images/thumbnails/ep28.png"/>
+<h1 id="hands-on-with-ebpf-and-ai-tools---accelerating-kernel-level-observability">Hands-On with eBPF and AI Tools - Accelerating Kernel-Level Observability</h1>
+<h2 id="the-challenge-bridging-kernel-programming-and-rapid-prototyping">The Challenge: Bridging Kernel Programming and Rapid Prototyping</h2>
+<p>When I first set out to learn about eBPF (Extended Berkeley Packet Filter), my aim wasn’t just to understand it in theory but to apply it in a way that would give me tangible, real-world insight. For many in infrastructure or security, the kernel can feel like an opaque, intimidating space—one where even seasoned engineers hesitate to experiment. But the real barrier isn’t just technical complexity; it’s also the time and expertise required to get something meaningful running.</p>
+<p>As I put it in my conversation with Jason Hand, “the best way that I learn anything is by trying something, seeing if it breaks or if it actually works when I start.” eBPF is especially intriguing because it lets us interact directly with the operating system kernel, opening the door to deep observability and control over critical resources like memory and network interfaces. Yet, for those new to kernel-level programming—or even seasoned developers short on time—the learning curve can be steep.</p>
+<p>This is where generative AI tools like ChatGPT and GitHub Copilot are changing the game: can they help lower the bar for experimentation and learning with technologies like eBPF?</p>
+<h2 id="why-ebpf-matters-context-and-key-use-cases">Why eBPF Matters: Context and Key Use Cases</h2>
+<p>At its core, eBPF allows us to run sandboxed programs in the Linux kernel without modifying source code or loading kernel modules. This capability is a major leap for observability, security, and performance tooling. As I explained during our discussion, “eBPF… works very closely with the kernel of your operating system or your computer itself, which controls how your computer uses hardware… how I can control, like how I access memory or the network or anything at all. It’s really cool.”</p>
+<h3 id="suggested-visual-ebpf-system-architecture">Suggested Visual: eBPF System Architecture</h3>
+<p>An effective diagram here would show the application/user space, kernel space, and hardware layers, highlighting how eBPF programs are loaded from user space, verified and run in kernel space, and can attach to system calls, network events, or tracepoints.</p>
+<h3 id="real-world-applications">Real-World Applications</h3>
+<p>At Datadog, we use eBPF across several products, including:</p>
+<ul>
+<li><strong>Universal Service Monitoring</strong></li>
+<li><strong>Cloud Network Monitoring</strong></li>
+<li><strong>Security Monitoring</strong></li>
+</ul>
+<p>These leverage eBPF to collect telemetry, trace system calls, and detect suspicious events with minimal overhead. For students or professionals curious about security, I often recommend looking up eBPF—and sometimes even challenge them to do so on the spot. “I often will ask them if they know about eBPF and if they say no… I ask them to pull out their phone and then to look up eBPF.”</p>
+<p>For further reading, the <a href="https://ebpf.io/">official eBPF documentation</a> and <a href="https://www.datadoghq.com/">Datadog’s own resources</a> are excellent starting points.</p>
+<h2 id="experimenting-with-ebpf-using-generative-ai">Experimenting with eBPF Using Generative AI</h2>
+<p>My goal was to monitor critical Linux files—specifically the <code>/etc/shadow</code> file, which stores user privilege information. Unauthorized changes here are a major security concern. I wanted to see if I could build a simple eBPF-based monitor for this file with minimal prior programming experience, primarily using AI-assisted tooling.</p>
+<p>I asked ChatGPT: “write a program to monitor changes to a file (e.g., /etc/shadow) on Linux using eBPF.” The initial output wasn’t perfect, but it was a starting point. As I explained, “Was it perfect out of the box? No. Was I able to use another tool, Copilot with GitHub and VS Studio Code to get it right? 100%.”</p>
+<h3 id="sample-code-snippet-ai-generated-and-corrected">Sample Code Snippet (AI-generated and corrected)</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="python"><code><span class="line"><span style="color:#6A737D"># This is a representative example; actual implementation may vary</span></span>
+<span class="line"><span style="color:#F97583">from</span><span style="color:#E1E4E8"> bcc </span><span style="color:#F97583">import</span><span style="color:#79B8FF"> BPF</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># eBPF program as a C string</span></span>
+<span class="line"><span style="color:#E1E4E8">bpf_program </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> &quot;&quot;&quot;</span></span>
+<span class="line"><span style="color:#9ECBFF">int kprobe__vfs_write(struct pt_regs *ctx) {</span></span>
+<span class="line"><span style="color:#9ECBFF">    // Insert logic to filter for the /etc/shadow file</span></span>
+<span class="line"><span style="color:#9ECBFF">    bpf_trace_printk(&quot;vfs_write called!</span><span style="color:#79B8FF">\\</span><span style="color:#9ECBFF">n&quot;);</span></span>
+<span class="line"><span style="color:#9ECBFF">    return 0;</span></span>
+<span class="line"><span style="color:#9ECBFF">}</span></span>
+<span class="line"><span style="color:#9ECBFF">&quot;&quot;&quot;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">b </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> BPF(</span><span style="color:#FFAB70">text</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">bpf_program)</span></span>
+<span class="line"><span style="color:#79B8FF">print</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">&quot;Monitoring /etc/shadow for write attempts...&quot;</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">while</span><span style="color:#79B8FF"> True</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#F97583">    try</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#79B8FF">        print</span><span style="color:#E1E4E8">(b.trace_readline())</span></span>
+<span class="line"><span style="color:#F97583">    except</span><span style="color:#79B8FF"> KeyboardInterrupt</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#79B8FF">        exit</span><span style="color:#E1E4E8">()</span></span></code></pre>
+<p><em>Note: In practice, filtering for <code>/etc/shadow</code> and handling permissions requires additional logic.</em></p>
+<h3 id="debugging-with-copilot">Debugging with Copilot</h3>
+<p>After encountering a Python error (“bytes-like object is required, not string”), I pasted the error into Copilot, which quickly pointed out the issue and suggested a fix. The process was iterative—tweaking prompts, making corrections, and learning along the way. As I shared: “The time savings is almost as important as it lowers the frustration of searching the web for a solution and sifting through things that may not be relevant.”</p>
+<h2 id="implementation-process-and-key-decisions">Implementation Process and Key Decisions</h2>
+<p>The workflow looked like this:</p>
+<ol>
+<li><strong>Prompt ChatGPT for a starter script</strong> (Python, using BCC).</li>
+<li><strong>Test and note errors</strong> (e.g., type mismatches, missing logic for file filtering).</li>
+<li><strong>Use Copilot for debugging and clarification</strong>; paste errors and get targeted suggestions.</li>
+<li><strong>Iterate quickly</strong>: Modify code, rerun, and observe output.</li>
+<li><strong>Manual validation</strong>: Edit <code>/etc/shadow</code> (with caution) and verify immediate detection.</li>
+</ol>
+<p>This workflow allowed me, as a self-described “infra guy” and not a developer, to quickly go from idea to working prototype. I didn’t have to scour Stack Overflow or GitHub issues for hours.</p>
+<h3 id="trade-offs-and-limitations">Trade-Offs and Limitations</h3>
+<ul>
+<li><strong>Security:</strong> This method is <em>not</em> suitable for production monitoring of critical files. As I noted, “Would I rely on this method to do production level monitoring of critical system files? That would be a no for that.”</li>
+<li><strong>Code Quality:</strong> The AI-generated code often needs manual correction and review, especially for security-sensitive tasks.</li>
+<li><strong>Performance:</strong> eBPF is highly efficient, but naïve scripts may miss edge cases or introduce unnecessary overhead.</li>
+</ul>
+<h2 id="results-and-observability">Results and Observability</h2>
+<p>The result was a functional script that immediately detected changes to <code>/etc/shadow</code>, printing alerts in real-time:</p>
+<blockquote>
+<p>“If I go ahead… and write something silly in there and then ‘w:q’ to write and quit, actually wrote it, and then you see that I wrote it because that is the write attempt of shadow, so we know exactly that something happened… That was immediate. It was very much right away and I can close that.”</p>
+</blockquote>
+<p><img src="/assets/terminal.BndFCT4B_ZnKFNB.webp" alt="Prompt: Terminal output showing real-time alerts upon file modification." width="1024" height="1024" loading="lazy" decoding="async"></p>
+<p>While this experiment only scratched the surface—“this much of what we can do with eBPF”—it demonstrated how AI tooling can enable fast prototyping and learning.</p>
+<h2 id="practical-use-cases-and-considerations">Practical Use Cases and Considerations</h2>
+<h3 id="where-this-approach-excels">Where This Approach Excels</h3>
+<ul>
+<li><strong>Rapid Prototyping:</strong> Quickly testing ideas without deep kernel programming expertise.</li>
+<li><strong>Learning by Doing:</strong> “Theory is important but the practical application helps solidify what you’ve learned.”</li>
+<li><strong>Experimentation:</strong> Exploring new observability or security concepts in a safe, isolated environment.</li>
+</ul>
+<h3 id="deployment-and-scalability">Deployment and Scalability</h3>
+<ul>
+<li><strong>Production Readiness:</strong> For robust, secure deployments, leverage mature tools (e.g., Datadog’s eBPF-powered monitoring) rather than DIY scripts.</li>
+<li><strong>Resource Needs:</strong> eBPF’s efficiency means minimal CPU and memory impact, but poorly written programs can affect system stability.</li>
+<li><strong>Ethics:</strong> Monitoring critical files or TTY activity has privacy and security implications. Always respect organizational policies and user consent.</li>
+</ul>
+<h2 id="the-future-ai-driven-observability-and-greener-computing">The Future: AI-Driven Observability and Greener Computing</h2>
+<p>Looking ahead, the intersection of kernel-level observability and AI promises even more powerful tools for system monitoring, troubleshooting, and automation. As I mentioned, “Future innovations I am interested in with regards to kernel level programming and AI would be gaining an understanding of how we can better tune AI models…not just in the time it takes to complete a query but more so when it comes down to the environmental impact.”</p>
+<p>Possible directions include:</p>
+<ul>
+<li><strong>AI-optimized eBPF programs for minimal energy consumption</strong></li>
+<li><strong>Automated anomaly detection on kernel events</strong></li>
+<li><strong>Self-healing infrastructure with feedback from kernel telemetry</strong></li>
+</ul>
+<p>Open questions remain around making these tools more accessible, transparent, and sustainable.</p>
+<h2 id="recommendations-for-getting-started">Recommendations for Getting Started</h2>
+<p>For those new to eBPF and AI-assisted coding, my advice is simple: start with hands-on goals. “Have an idea of something you want to accomplish,” and use AI tools like ChatGPT and Copilot to scaffold your learning. Don’t be afraid to experiment—even if you’re not a developer.</p>
+<p>For further exploration:</p>
+<ul>
+<li><a href="https://ebpf.io/">eBPF Official Documentation</a></li>
+<li><a href="https://www.datadoghq.com/">Datadog Homepage</a></li>
+<li><a href="https://chat.openai.com/chat">ChatGPT</a></li>
+<li><a href="https://github.com/features/copilot">GitHub Copilot</a></li>
+</ul>
+<h2 id="final-thoughts">Final Thoughts</h2>
+<p>The combination of eBPF and AI-powered coding tools has made kernel-level experimentation more approachable than ever, especially for those of us without a deep programming background. As I told Jason, “If you’re afraid of doing something, because you’re not a developer such as me… How do I get into there?… and try something that I think is cool?”</p>
+<p>The answer: dive in, experiment, and let AI help you bridge the gap.</p>
+<hr/>
+<p><em>This post is based on a conversation between Jason Hand and Scott Mabe. All quotes attributed to Scott Mabe unless otherwise noted.</em></p> </article> </div> </div> </main>  <main class="container" data-astro-cid-ouamjn2i></main> <footer> <div class="bubble"></div> <div class="bubble"></div> <div class="bubble"></div> <div class="bubble"></div> <div class="bubble"></div> <div class="bubble"></div> <div class="bubble"></div> <div class="container"> <div class="footer-content"> <div class="footer-logo"> <img src="../images/ai-tools-lab-logo.png" alt="AI Tools Lab Logo" class="footer-logo-img"> <div> <h2>AI Tools Lab</h2> <p>Exploring the landscape of AI tools and technologies</p> </div> </div> <div class="footer-links"> <h3>Quick Links</h3> <ul> <li><a href="/">Home</a></li> <li><a href="/resources">Resources</a></li> <li><a href="/observations">Observations</a></li> <li><a href="/about">About</a></li> </ul> </div> </div> <div class="footer-bottom"> <p>&copy; 2024 AI Tools Lab. All rights reserved. <span id="easter-egg" class="easter-egg">π</span></p> </div> </div> </footer> <script src="/scripts/script.js"></script> </body> </html> 

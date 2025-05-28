@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Automatic1111 and Local Text-to-Image Generation</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="../images/ai-tools-lab-logo.png" />
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Revalia&display=swap" rel="stylesheet">
+    
+    <!-- Logo styling -->
+    <style>
+        /* Header logo font styling */
+        .logo a {
+            /* Using font-family defined in main styles.css */
+            font-size: 1.6rem;
+        }
+    </style>
+    
+    <!-- Datadog RUM -->
+    <script
+        src="https://www.datadoghq-browser-agent.com/us1/v6/datadog-rum.js"
+        type="text/javascript">
+    </script>
+    <script>
+        window.DD_RUM && window.DD_RUM.init({
+          clientToken: 'pub1ef411c82203fccee1b3d7b58d064f1d',
+          applicationId: 'cea3fe47-039f-47fb-91b3-57389419c2c9',
+          // `site` refers to the Datadog site parameter of your organization
+          // see https://docs.datadoghq.com/getting_started/site/
+          site: 'datadoghq.com',
+          service: 'ai-labs',
+          env: 'production',
+          // Specify a version number to identify the deployed version of your application in Datadog
+          // version: '1.0.0',
+          sessionSampleRate: 100,
+          sessionReplaySampleRate: 20,
+          defaultPrivacyLevel: 'mask-user-input',
+        });
+    </script>
+</head>
+<body>
+    <header class="site-header">
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="container">
+            <div class="logo">
+                <img src="../images/ai-tools-lab-logo.png" alt="AI Tools Lab Logo" class="site-logo">
+                <a href='/pages/'>AI Tools Lab</a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href='/pages/'>Home</a></li>
+                    <li><a href='/pages/resources'>Resources</a></li>
+                    <li><a href='/pages/observations'>Observations</a></li>
+                    <li><a href='/pages/about'>About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main class="container">
+        <div class="episode-content">
+            <h1>Automatic1111 and Text-to-Image Generation</h1>
+            
+            <div class="video-container">
+                <a href="https://youtu.be/l2H0HADOa5o" target="_blank">
+                    <img src="../images/thumbnails/ep03.png" alt="Automatic1111 Tutorial Thumbnail">
+                    <span class="play-icon"></span>
+                </a>
+            </div>
+            
+            <p>In this episode, Jason Hand explores Automatic1111, a stable diffusion web UI for generating images from text prompts. He walks through the installation process using a precompiled version, sets it up locally, and demonstrates various features of the interface. Jason shows how to generate images using text prompts, adjust parameters like sampling methods and steps, and explores additional features like upscaling, inpainting, and img2img conversion. He also demonstrates how to use extensions like ControlNet to provide more control over image generation. The episode provides a comprehensive overview of Automatic1111's capabilities for anyone interested in text-to-image generation.</p>
+            
+            <h2>Jump To</h2>
+            <ul class="chapter-markers">
+                <li><a href="https://youtu.be/l2H0HADOa5o?t=0" target="_blank">🕒</a> Introduction to Automatic1111</li>
+                <li><a href="https://youtu.be/l2H0HADOa5o?t=184" target="_blank">🕒</a> Overview of Automatic1111 and its features</li>
+                <li><a href="https://youtu.be/l2H0HADOa5o?t=317" target="_blank">🕒</a> Installing Automatic1111 and connection to Gradio</li>
+                <li><a href="https://youtu.be/l2H0HADOa5o?t=411" target="_blank">🕒</a> Discussing options for local vs. cloud deployment</li>
+                <li><a href="https://youtu.be/l2H0HADOa5o?t=486" target="_blank">🕒</a> First image generation attempt</li>
+                <li><a href="https://youtu.be/l2H0HADOa5o?t=633" target="_blank">🕒</a> Prompt engineering techniques for better results</li>
+                <li><a href="https://youtu.be/l2H0HADOa5o?t=737" target="_blank">🕒</a> Working with negative prompts</li>
+                <li><a href="https://youtu.be/l2H0HADOa5o?t=979" target="_blank">🕒</a> Comparing local generation vs. online options</li>
+                <li><a href="https://youtu.be/l2H0HADOa5o?t=1153" target="_blank">🕒</a> Limitations of older Stable Diffusion models</li>
+                <li><a href="https://youtu.be/l2H0HADOa5o?t=1389" target="_blank">🕒</a> Final thoughts and practical applications</li>
+            </ul>
+            
+            <h2>Resources</h2>
+            <p>Resources will be added soon.</p>
+            
+            <h2>Key Takeaways</h2>
+            <ul class="takeaways">
+                <li>Automatic1111 provides a web UI for Stable Diffusion image generation models</li>
+                <li>Local image generation is slower but offers privacy, offline access, and cost savings</li>
+                <li>Older models like SD 1.5 have limitations but are faster than newer ones</li>
+                <li>Prompt engineering with positive and negative prompts can improve generation results</li>
+                <li>The tool can be useful for brainstorming, ideation, and inspiration rather than final assets</li>
+            </ul>
+            
+            <h2>Full Transcript</h2>
+            
+            <div class="transcript-navigation">
+                <button class="transcript-control" onclick="document.querySelector('.transcript').scrollTop = 0">Top</button>
+                <span>Scroll or use controls to navigate</span>
+                <button class="transcript-control" onclick="document.querySelector('.transcript').scrollTop = document.querySelector('.transcript').scrollHeight">Bottom</button>
+            </div>
+            
+            <div class="timestamp-note" style="background-color: #f0f7ff; padding: 10px; margin: 10px 0; border-radius: 5px; border-left: 4px solid #0066cc;">
+                <strong>💡 Tip:</strong> Click on the 🕒 icons above or timestamps in the transcript below to jump to that point in the YouTube video.
+            </div>
+            
+            <div class="transcript">
+                <pre>
+<span class="transcript-timestamp">[00:00:00]</span> <span class="transcript-speaker">Ryan MacLean:</span> So last time we talked about Grado a bit and I feel like maybe I, I didn't give a good sales pitch in terms of why you'd want to use grado. 'cause you're just looking at small components and a lot of times it can be hard to maybe see a library of UI components and figure out where that could get you.
+
+Like what why is this important? Why are UI components easy? Or why would AV model build like a web app that just has the text form? There, there's a lot more that I could do with my life. I figured I could show one that I've used admittedly before, but it's been a minute. It's been about a year, maybe a year and a half since I've touched this.
+
+But it's around the generative AI portion where you're creating images. I'll talk a little bit about how I use these kind of tools as opposed to just, I'm not trying to recreate realistic photos or anything like that, but I generally use it for brainstorming. And in one, one case in particular is one I'm trying to come up with.
+
+Iconography. So if I asked you, Jason, what is a symbol that might evoke security to you? Would you, could you think of like an image or a picture or something that would. Bring I 
+
+<span class="transcript-timestamp">[00:00:56]</span> <span class="transcript-speaker">Jason Hand:</span> think of a padlock or something like that. 
+
+<span class="transcript-timestamp">[00:00:59]</span> <span class="transcript-speaker">Ryan MacLean:</span> There you go. Padlock shields, those kind of thing. Yeah. I agreed.
+
+Oftentimes I get stuck when it's like what about distributed tracing or what about looking at logs or something like that? That kind of thing. And sometimes it's maybe a loop or what looks like a bunch of lines attacks or something like that.
+
+So that's generally what I'm trying to do is trying to think of a way that would visually describe something, or if I'm trying to think of a description or maybe a mood.
+
+What's the color would do this? Or maybe what does like a youthful or happy layout look I know this all sounds silly, but if that's the reaction that I want from someone when they view an image, the question to me is what that image looks like.
+
+And then can I reverse engineer this and either Photoshop or Illustrator? I rarely, if ever, use these images on their own. I just want say that. But it's not because they're. Not good. It's more that I feel like I could, I can do that last mile, if that makes sense. Yeah. But in terms of brainstorming tools is pretty handy for me.
+
+So the tool I wanted to intro today is called Automatic 1111. Now, I realize that's not the best name for a project, but what we're going to talk about is this. Stable diffusion web ui, and in particular, this is actually built off of radio, which is what we were talking about last week, and I figured I'd talk a little bit about how it works.
+
+So at the very basic, it's an image generator. So what it'll do is generate images for you from text to image. So if you've got something that describes an image, it will give you. An image for it. What's interesting though, is it can also work in reverse. So you can give it an image and it can describe it for you, which is pretty handy for me when I'm thinking about how to like tag my Lightroom library.
+
+I haven't come up with an app just yet, but that's what I'd like to do eventually is be able to give it a library or a news session and have it rate maybe the ones where the eyes are closed. 'cause I've messed up and pressed the shutter at the wrong button or something like that, that, that's where I'm getting to.
+
+I'm not there yet, but that's. What stuck in my head in terms of useful or utility in my daily life. Now, there are other things in here. You can train these models. You can do things like tokenization. There are some extensions. There are things, I think they're called checkpoints, where you can add to it.
+
+So let's say if I want to generate an image, I only want. Photorealism or maybe I only want anime. Let's say I'm trying to make a new manga and I'm trying to come up with concepts like that so you can give them different areas of expertise, which is pretty interesting. We talked a little bit about icons.
+
+There are sets for things like stickers or icons. I'm sure you've probably seen like the deli sticker maker was pretty was pretty popular back in the day. But that's where it goes. So I'm just gonna quickly swap over to my screen here where I've actually got, I've cheated a little bit here in that I've got this already installed, but to install it on a Mac and I'm using a Mac here just because I've got a little bit more memory on my max. Studio, but these are the commands here. So it's on their webpage when you go under install, but it's essentially, there's a few things that are required.
+
+So it, of these that you might not have, CMake, proto, buff, and rust. You may not have, you probably already have Gi w, GI as well as Python. This is set this three point 10, but you've probably got a more recent version installed. So you'll see if I go through this, it's already installed. It's totally fine.
+
+The next is to get clone into the repo, which is fine. So we're going to go into that repo, which is called. Stable diffusion. Now, if you state, if you used stable diffusion before, you know that there are some problems with this model in particular. It doesn't do very well with words and it doesn't do very well with fingers.
+
+So if you think back two years ago, what was image generation? What was the state of the art? What did it look like? Thi this is that. We'll talk about how to make that a little bit better here in a moment. But in terms of how we get things up and running, this is that. Now to start it, we're going to use something called, I think it's called Start Web ui. So we're just going to look at that first. Maybe it's web UI start. It is in fact, is it just web ui SH? My apologies, but I'll hear all. I'll show you what it's actually doing. So it's just doing a quick I. Look through to make sure everything on the system is okay. And in our case, it's gonna catch right around the top here.
+
+So it's going to go at WebU. I osm sage. So if you're worried about what this is actually running. So it's essentially a strip that runs from top to bottom. There's no functions or methods or anything like that in here. And all it's going to do is start up a radio application, a web ui, and that web UI will allow us to start giving texts that will give us images.
+
+So I'm just gonna do that now, which is that web ui. Yeah, go ahead. 
+
+<span class="transcript-timestamp">[00:05:17]</span> <span class="transcript-speaker">Jason Hand:</span> So last time when we talked about radio and went over it, we grabbed a. What did they call 'em? From hugging Face. Yes. What what were those things? I think they 
+
+<span class="transcript-timestamp">[00:05:28]</span> <span class="transcript-speaker">Ryan MacLean:</span> called them spaces. 
+
+<span class="transcript-timestamp">[00:05:29]</span> <span class="transcript-speaker">Jason Hand:</span> Spaces, that's right. Yeah. So is that, is this pulling in from a space the same way or how's this working?
+
+<span class="transcript-timestamp">[00:05:36]</span> <span class="transcript-speaker">Ryan MacLean:</span> It is not. Now my understanding is there, there are spaces on hugging space that you could grab. So if you don't have local processing for this. For example because it does actually require generally a lot of memory in order to create larger images. You could use it in the hugging space. The difference between the two, I think might be speed, so you can generate things locally quite a bit faster than you could on the cloud, for example.
+
+That being said, if you need to generate, like you were saying, 1920 by 10 eighties, pretty expensive actually to generate an image that size. Normally you'd be looking at 500 by 500 or five 12 by five 12. Kilobytes sorry. Pixels, which isn't very big. It's standardized. So if you need anything larger than that, chances are you need either a, b for your computer or it'd be better to load up one of those spaces, as you were saying.
+
+Now, if you want to present that locally to your users and maybe gate it with a login, you could do that. Or if you want to have it run locally as well, as opposed to running the cloud and just present locally. You could also point at a local model to that too, if you want to build your own web.
+
+UI In this case, what it's doing is it's grabbing down stable diffusion on its own, so locally, and it's loading up the model locally and it will present everything locally. So this isn't a local only solution, but you're absolutely right. There are many ways that you could slice and dice this or maybe mix this up, mix up this deployment if you wanted to.
+
+<span class="transcript-timestamp">[00:06:51]</span> <span class="transcript-speaker">Jason Hand:</span> Okay, 
+
+<span class="transcript-timestamp">[00:06:51]</span> <span class="transcript-speaker">Ryan MacLean:</span> great. Now we talked about, so we talked a little bit in the green room about how this isn't great at generating images. So I tried to generate one of a view as a test, for example and obviously that the text was wrong. So I'm gonna try to view avoid texts. We talked about prompting.
+
+I think, you know what is a general thing that you ask it for prompting? Typically, I will say the most interesting image, which is it's not the best prompt, I think, for testing, but it will tell you a little bit about the model. Now, before we do that, I want to talk a little bit about seeds.
+
+So I'm using random seeds here. Now, if we set this seed when we're going through and generating it, maybe more. Similar the next time that we generate an image, but on random, typically if we generate an image after this, it's going to be completely different. The other thing is newer models in particular.
+
+So we're using stable diffusion 1.5. In particular models that are stable, diffusion two or XL and older will typically require something over 700 by 700 in terms of pixels, or 10 24 by 10 24. So we're going to use 800 by 800, which should be fine. And again, remember this is a very old model, so don't expect the results to be amazing.
+
+But expect it to be fast. So what we're going to do is I 
+
+<span class="transcript-timestamp">[00:08:06]</span> <span class="transcript-speaker">Jason Hand:</span> expect it to be as amazing as the first one I saw 
+
+<span class="transcript-timestamp">[00:08:10]</span> <span class="transcript-speaker">Ryan MacLean:</span> do. Yeah. So not great is we're getting at here, folks. Oh, it was great. And then on the mon on the bottom here, I've got the the built in. Quote, unquote, GPU the part of the apple M two GPU that's being used for this.
+
+We should actually see this increase in usage as we're using it to show that we're using the GPU side of the dye as opposed to the CPU side. The only reason I mention this is because of speed. So when you're using the GPU accelerated side, it's quite a bit faster. But you get access to that shared memory.
+
+So in this case, I've got 64 gigabytes of memory, which is a lot in fact, for image generation. And we can generate something like 1920 by 10 80 p. It'll take a minute and you may want to have it sample a little bit longer to get more details, but we'll talk about that as we get to it. So if I generate this, I'm hoping that this GPU should get used, we should use more memory, and as a result, we should get an image at the bottom Now.
+
+Some of the apps based on, this will actually show you a preview here. That's fuzzy. This is an older one, so it doesn't I, I do wanna call out here that it's made a meme. What is happening? Let's see if we can actually find it. Okay so this is. This is this is one of the things that stable diffusion 1.5 will do.
+
+Now there you can look at what it's trained on. Some of what it's trained on is Reddit and it's trained on Reddit for a specific period of time, and I. Feel like during that period this meme must have been popular because it's definitely the just Equis person. 
+
+<span class="transcript-timestamp">[00:09:33]</span> <span class="transcript-speaker">Jason Hand:</span> I don't know why, but I still can't.
+
+I've been looking at it for like at least 60 seconds and I still can't count how many fingers are on the left hand and like either, both of them, I don't know what I'm looking at. Yeah. 
+
+<span class="transcript-timestamp">[00:09:43]</span> <span class="transcript-speaker">Ryan MacLean:</span> Now, no. I will say full disclosure, I actually love these older images 'cause they're they're quaint right there.
+
+There are definitely problems with them. It's, yeah, early heart. Yeah. Now there, there's a couple. If you've not dealt with image generation in a minute, there are some few prompt engineering things that we can do around this to make it not look so awful or curse it. So one is we didn't specify if it's going to be black or white.
+
+We also didn't say, please don't give us weird fingers which can be handy. The other thing is there are different ways of. Of changing our prompt both in the positive way. So we've got this up here. So let's say we could say in color, and I'm going to put this in the Canadian spelling, which funnily enough can change things a little bit because the tokens might be a little bit different.
+
+The other would be if we typed in weird hands or just weird. Maybe in here we could get rid of anything that looks weird. Careful, 
+
+<span class="transcript-timestamp">[00:10:33]</span> <span class="transcript-speaker">Jason Hand:</span> it's my family. 
+
+<span class="transcript-timestamp">[00:10:36]</span> <span class="transcript-speaker">Ryan MacLean:</span> Fair enough. Correct number of fingers is what we're looking for in particular. So even this might be a little bit better, but the other thing we can do is start sampling more.
+
+Now, I don't think we've talked about neural networks and I. Generative adversarial networks, which is where this came from. But imagine, Jason, if you and I had an argument about the most interest image and what it would look like I might say, it should have mountains and you may say it should have a human.
+
+We can start there and start having that argument. Now that's interesting as a two person argument, it's way more interesting as a 20 person argument, and it becomes unmanageable at the 202,000. 2 million, neural nodes here arguing about what it looks like. But that's how it works.
+
+It's like a really big argument of what it really looks like. And as we go through our sampling steps, it's almost how many generations we have this argument for, including things that we've learned in the past. So if we change this to something like 40, it should get a little bit better in terms of detail.
+
+The other thing I'll say is that in terms of what it's been tested on, there is a, sorry, this is this is it's almost nightmarish, creepy. What I wanna say is that depending on how it was trained, it may be trained on tags and the tags could be voluntary. For example, in Flicker, you may have a lot of people tagging things with interesting, but they may not be interesting.
+
+And in fact this crowd photo or what it's trying to do, it looks like it's gotta be royalty or something like that. It's just not there yet. 
+
+<span class="transcript-timestamp">[00:11:58]</span> <span class="transcript-speaker">Jason Hand:</span> To me, it looks like something from like the inner. Cover of a Zappa album or something. 
+
+<span class="transcript-timestamp">[00:12:02]</span> <span class="transcript-speaker">Ryan MacLean:</span> Oh, interesting. Now again, this is getting more detailed as we go more into it, but if we're using a random seed again, so we don't know which seed we've done.
+
+But if I can do something like a high res fix, and this is going to up sample it, we're gonna need to talk over this as well 'cause it's gonna take a second. But as we go through more sample steps and more op sampling, we'll get more and more. Detail. Now, we said it should not be weird. I don't think it necessarily nailed the should not be rear directive.
+
+But the other thing we can see here is that as we're taking more sampling steps, we're getting more of that those blurry inpro, I don't know what you call them, artifacts or things that are just off to the side. But I do, I actually really enjoy this portion as well where it's trying to come out with, I don't know if it's a layout or some sort of graphical design, but like you can see it coming into, I.
+
+Blurriness. It's like you're waking up and you've rubbed your eyes and you're trying to see something. It is. I just find this incredibly interesting that this is definitely not the exercise, but I find this stuff we're just 
+
+It looks like we're getting into a more of a collage here.
+
+Again, this, 
+
+<span class="transcript-timestamp">[00:13:02]</span> <span class="transcript-speaker">Jason Hand:</span> This seems a little less terrifying, I'd say so far. 
+
+<span class="transcript-timestamp">[00:13:05]</span> <span class="transcript-speaker">Ryan MacLean:</span> That that's just it. It's the more detailed they become, the more of the uncanny valley it seems like we're into. And the more weird they get into I'll change this prompt in a minute. 'cause this prompt can be fraught with errors, but it tells me generally a lot about the model and how it's been trained.
+
+<span class="transcript-timestamp">[00:13:18]</span> <span class="transcript-speaker">Jason Hand:</span> Yeah. And to be honest, like weird is a little subjective. Yes, I'm a little weird. I don't know what that means exactly. We could probably be more specific on just. I'm guessing like what exactly we would think is a negative about certain aspects, 
+
+<span class="transcript-timestamp">[00:13:33]</span> <span class="transcript-speaker">Ryan MacLean:</span> y You got it. Yeah. It's definitely going to be a little bit different depending on the person.
+
+And we can change this, of course. We can make it something else if we want to change it. Can you do, is 
+
+<span class="transcript-timestamp">[00:13:41]</span> <span class="transcript-speaker">Jason Hand:</span> it work like keywords? Can you just put in a bunch of like comma separated? 
+
+<span class="transcript-timestamp">[00:13:45]</span> <span class="transcript-speaker">Ryan MacLean:</span> You got it. Yeah. It's comma separated. So what got any tips here? What else could we do? What the I 
+
+<span class="transcript-timestamp">[00:13:49]</span> <span class="transcript-speaker">Jason Hand:</span> don't know.
+
+Maybe we should see what this one looks like and then if it helps dial it in, but. But then again I don't wanna derail you either on, on show off. No, no worries. We've got a couple minutes 
+
+<span class="transcript-timestamp">[00:13:57]</span> <span class="transcript-speaker">Ryan MacLean:</span> here. It takes a minute. The only thing I watch shows Yeah. This one's taking a while. Yeah.
+
+It's because we did the high res fix. We also set it from 40 samples to a hundred. Which is wanna be like double the time. So not only did we more than double our time, but we're also adding like a high res fix to it. And you can see the 
+
+<span class="transcript-timestamp">[00:14:11]</span> <span class="transcript-speaker">Jason Hand:</span> GPU clock in it out too. 
+
+<span class="transcript-timestamp">[00:14:12]</span> <span class="transcript-speaker">Ryan MacLean:</span> Absolutely. And that's the other thing that, the reason I've got this up here is that this is, it may seem trivial because we're using these image generators on the web.
+
+You might be using apple's and emoji, which I. I feel like they haven't said it, but I feel like it's based on the same tact. 'cause it got some of the same issues. It does take a minute and there are things that you can do on your phone. For example, I think Apple's got, I'm trying to think of the name.
+
+Draw Things, is the name of the app that you can get on the app store, for example, for free and run this offline with depending on your phone, you probably have six or eight gigabytes of memory and you could start generating images like this as well if you're just trying to, come up with some brainstorming, that kind of stuff.
+
+You can certainly do it offline on your phone. And in fact, depending on your computer, it may be faster than your computers generate on your phone as opposed to on there. Sorry. I realize this is probably like watching paint, try hear as we go through this process, but 
+
+<span class="transcript-timestamp">[00:15:00]</span> <span class="transcript-speaker">Jason Hand:</span> At least it does give you some feedback.
+
+I think that's some of the most frustrating tools I play with is that you just sit there and you're like, okay, is anything happening? So visual feedback again for me is a big key, but, or big bonus. 
+
+<span class="transcript-timestamp">[00:15:12]</span> <span class="transcript-speaker">Ryan MacLean:</span> Now have you played around with giving some of these models images to have them describe things like, one of my first tests was what's that meme look at this Datadog graph.
+
+And you give it a graph and you say describe what's going on. Yeah. And I've had pros and cons. Sometimes it works well, sometimes it doesn't. Even images of my own I made like a, an artistic merit checker, for example. Yeah. Using one of the llama vision models, and I gave it starry night and I said, Hey.
+
+Rate this in terms of artistic merit. And I think they were like, the artist could do better. Maybe a little bit more contrast swirly stuff in the sky is a little bit distracting. Maybe remove that, which is really interesting to me. 'cause it's like a milk toast approach to art.
+
+Like what is the generic reply that you might have to like, like a work of art. They're saying like, eh could be better. Like 50 out of a hundred kind of thing. Yeah. 
+
+<span class="transcript-timestamp">[00:16:01]</span> <span class="transcript-speaker">Jason Hand:</span> Oh yeah. We don't need to hear their opinions on that, but I do find that 
+
+<span class="transcript-timestamp">[00:16:05]</span> <span class="transcript-speaker">Ryan MacLean:</span> in reverse is pretty cool. 
+
+<span class="transcript-timestamp">[00:16:06]</span> <span class="transcript-speaker">Jason Hand:</span> Yeah. Yeah. Yeah, so much of this so to answer your question I have done that before, so Okay.
+
+Give it an image and have it described, but really just outta curiosity to see what it what it thinks. I've run, I don't really have a lot of use cases for that and every good use case that I can think of, for like accessibility needs to be able to understand what things are.
+
+There are tools that do it a million times better than I could ever attempt to do it. So it was like one of those things that I think a lot of people like, oh, this is like an interesting technical solution that has been created here recently. And Right. We can see it for ourself was like my experience just to try it out.
+
+But then from there it's okay, hot dog or. 
+
+<span class="transcript-timestamp">[00:16:51]</span> <span class="transcript-speaker">Ryan MacLean:</span> Hot dog. Not hot dog. 
+
+<span class="transcript-timestamp">[00:16:54]</span> <span class="transcript-speaker">Jason Hand:</span> I can tell the difference too. 
+
+<span class="transcript-timestamp">[00:16:55]</span> <span class="transcript-speaker">Ryan MacLean:</span> So one of the things you mentioned in there, and I'm glad you talked on it, is accessibility. So the question is maybe if my vision is deteriorating, could there be a system that, again, this doesn't need to be cyberpunk or anything like that, but imagine the rebound smart glasses that could describe and say, Hey, there's a bus in front of you.
+
+Maybe don't continue walking. It's a big yellow object. Pretty sure it's a bus, but it's definitely a vehicle. That kind of thing. The other thing that we can do in these models is and again for I try not to put on the black hat here, but for accessibility reasons, perhaps we'd like to help people decipher those codes.
+
+It says what are the letters in this text before getting in? Not a capcha or recapture, but some of them are very difficult actually for me to even decipher and I have to hit, call me or whatever. Sometimes this can help with those in fact, as well, for people who can't actually see the image or can't get past it.
+
+The other thing, of course is like black hat. People are starting to use this to get past captures in terms of their web scraping workflows and things like that as well. Yeah, I was just 
+
+<span class="transcript-timestamp">[00:17:48]</span> <span class="transcript-speaker">Jason Hand:</span> about to say if we can help somebody use that to solve that problem. You've also solved the problem for the unfortunately bad guys.
+
+You got it. 
+
+<span class="transcript-timestamp">[00:17:54]</span> <span class="transcript-speaker">Ryan MacLean:</span> Which does appear to be the current state of the art. Now I will admit that this is still generating in the background. I may fitting off a little bit more than I can just Is it Wow. But it is going. Yeah 
+
+<span class="transcript-timestamp">[00:18:03]</span> <span class="transcript-speaker">Jason Hand:</span> It's okay. At least your computer's hanging in there. It's not, 
+
+<span class="transcript-timestamp">[00:18:05]</span> <span class="transcript-speaker">Ryan MacLean:</span> it's not yeah, it's certainly not falling over yet. You can see the GPU is being used though and this is one of the things I really do wanna show, so I'm glad I could. Now, this is an M two Ultra, so it's non-trivial in terms of a processor, and it does have 64 gigabytes of memory, which is.
+
+I'm not gonna say it's all being used by this, it's probably only using a portion of it, but it will cycle in and outta that portion. I think this model is going to take up about 16 gigabytes. I think Max and by default will take about eight. So it shouldn't be too bad. 
+
+<span class="transcript-timestamp">[00:18:34]</span> <span class="transcript-speaker">Jason Hand:</span> So to me, the main downfall of this is yes, I don't think we've got we the patience for this type of weight also true.
+
+See, when we're experimenting, also true, which is like the next hurdle, for us to figure out. 
+
+<span class="transcript-timestamp">[00:18:47]</span> <span class="transcript-speaker">Ryan MacLean:</span> Now, when I was doing this a year ago, what I would do is queue up a bunch of generations and I would take more of a curatorial approach to this. So I would run things overnight.
+
+And then I would wake up in the morning and kind of look through different generations when I ran for weeks on ends because I actually had a good idea I thought I had a good idea in mind and I had it run for a really long time to. To figure out like, does it get better or worse?
+
+One thing I noticed is that, so we've got it set to a hundred sampling steps. You can set this quite large, in fact, where you can go through many generations as you want. There does seem to be a point where it doesn't get any better and it seems to be, at least for me, it was around a hundred. With this model it may defer on others.
+
+I'll talk a bit about some of the maybe state of the art here in a moment, but it doesn't seem to get any better than 100 sampling staff. It tends to just. Devolve and does the samey kind of image. And then you can play around with your the temperature is one, but play around with that seed instead of using a random seed, if you use a, like a static seed.
+
+So you've got the image you want, you've got the detail level you want. What you want do is just play around with it just a little bit. So you either play with the temperature or that seed and you can get a little bit closer. But this is when you're really trying to create like a.
+
+Like a jpeg that you want to use as opposed to something that you're just using as inspo. So that's, I think that's a little bit different when you're looking at one versus the other. Go ahead. 
+
+<span class="transcript-timestamp">[00:20:07]</span> <span class="transcript-speaker">Jason Hand:</span> Would you mind going back to this, your screen? Of course. Yeah. The model that this is using Yes.
+
+Is that described right there? Yeah. So that's, to me, I'm not familiar with that, looking at that. So is that, that one of the stable diffusions, like standard. 
+
+<span class="transcript-timestamp">[00:20:23]</span> <span class="transcript-speaker">Ryan MacLean:</span> Gotcha. Yeah. Just pull up, I'll pull up the description of this one for sure. So it's 1.5, which again is a little bit old, but I should be able to pull up the model description here.
+
+Yeah, sorry, I'm just pulling up in stable diffusion. 
+
+<span class="transcript-timestamp">[00:20:38]</span> <span class="transcript-speaker">Jason Hand:</span> And is this one that requires some funding too? Like you, you'll need to. Fund, like a wallet or something. I don't make 
+
+<span class="transcript-timestamp">[00:20:48]</span> <span class="transcript-speaker">Ryan MacLean:</span> think so. Yeah, I think this one is pretty much open source is my understanding. Okay, I see. So this is it here? It's stable diffusion.
+
+Oh is, okay. Cool. Current MEA, but like this is where they all live. Again, note that it says legacy deprecated again I'm probably in the minority here, but I do the older models 'cause they're funny. But it. It is old. You probably want SDXL or SD at 2.0 or 2.1 is probably what you want.
+
+I do like these ones because it shows you what you need to do, basically in terms of positive and negative prompting and then thinking about the temperature and stuff like that. Some of this stuff is handled for you by default these days. I was trying to log in here so I could actually show people what it looks like in flux, but I'll see if I can bring up a flux one as well.
+
+But I do wanna compare, like there are different models and different yeah. I guess implementations, yeah, of the models that will generate different results. 
+
+<span class="transcript-timestamp">[00:21:38]</span> <span class="transcript-speaker">Jason Hand:</span> Okay. Yeah, that was gonna be my ne one of my next questions is why, ' cause I guess, for me, like example, my example earlier where I just came up with an idea real quick and I'm like, oh, if I can just add this to my slides, that'll help me paint the narrative.
+
+I'm telling that's how it works for me is I'll just have an idea and I'll see if Dolly or whatever I'm thinking of, whatever tools I wanna play with, I just. Just experiment, see what it can do. But outside of that, I don't really have a recurring use case for it.
+
+<span class="transcript-timestamp">[00:22:06]</span> <span class="transcript-speaker">Ryan MacLean:</span> Gotcha. 
+
+<span class="transcript-timestamp">[00:22:06]</span> <span class="transcript-speaker">Jason Hand:</span> So yeah, the question comes down to why choose this over one of the online services like through OpenAI or, Google, Gemini 'cause it's, the model's not necessarily local, right? You're still calling a, an open source one, but it's not running locally. 
+
+<span class="transcript-timestamp">[00:22:22]</span> <span class="transcript-speaker">Ryan MacLean:</span> The, these ones are running locally.
+
+Oh, they are? Oh, okay. For these ones On the stable diffusion side, you can do it either way with Grado. Okay. This one is local. I guess so, 
+
+<span class="transcript-timestamp">[00:22:31]</span> <span class="transcript-speaker">Jason Hand:</span> but it's one of the smaller ones that was just downloaded earlier in the process before you got it. Yeah, you got it. So this 
+
+<span class="transcript-timestamp">[00:22:36]</span> <span class="transcript-speaker">Ryan MacLean:</span> is the default just because this is what it was built to ship with.
+
+I think a lot of people would use this. I find it interesting as maybe like a historical kind of thing. So it, like maybe an art history kind of thing. So like in 2023 people thought this was this state of the art and here's how silly it looked. And that was only two years ago. So that's why I found it funny.
+
+I think in terms of using it offline, it might be more of like a. Let's say you signed up for an account to a WordPress blog, I don't know, 2016, and they generated like a gravita for you. It might be something like that where I want you to be able to sign up and get an image generated of you automatically, let's say with a top hat or something like that.
+
+Everybody gets a top hat. You upload an image, I put a top hat on you. That's part of how we do our user signup. What I want to do though is not pay per sign up. So the naive approach to this might be let's have Dowdy do it. Let's have Midjourney do it, that kind of thing. But then I realized my cost of acquisition of getting users in is higher because it has to make an API call.
+
+Or maybe the signup process is longer as a result. So maybe there's some things that I want to do locally. It could be on like a cloud instance or what have you. Or maybe it's some things that were. Due to security reasons. If the user uploads an image, I don't wanna send that off to a third party model just 'cause I don't want to display their image into something else and don't want to be trained by it.
+
+That kind of thing. I think there's also the argument where. Something like censorship might come around. I like, I don't wanna talk politics or anything like that, but it could be in different regions that some things that they just can't generate. Depending on the stuff that's out there might be some of that too.
+
+But I think more than anything, it's more about making sure that you're controlling that uptime as part of something that might be critical to your process when you're hosting a service that generates images. I think it's more like that. Or if you've got like a degraded kind of level. So let's say premium gets deli to or maybe, maybe mid journey EV for premium and then a free user gets deli and then maybe the user hasn't even signed up, just uses stable diffusion, and we let them know Hey, these are stable diffusion credits you're using. Obviously it's gonna look a lot better once you sign in. That kind of thing.
+
+It's more of that degradation, if that makes sense. Yeah. Yeah. Yeah. Yeah. Sorry. We're at 93% here. This is like watching Patriot so close. Is it coming? Is it coming in a little 
+
+<span class="transcript-timestamp">[00:24:47]</span> <span class="transcript-speaker">Jason Hand:</span> more clear? I think 
+
+<span class="transcript-timestamp">[00:24:48]</span> <span class="transcript-speaker">Ryan MacLean:</span> so. Yeah. It was blank a moment ago when I looked at it. Oh. Oh no. It's still blank. Yeah. We'll see.
+
+It's gonna be, do a 
+
+<span class="transcript-timestamp">[00:24:54]</span> <span class="transcript-speaker">Jason Hand:</span> big reveal. 
+
+<span class="transcript-timestamp">[00:24:55]</span> <span class="transcript-speaker">Ryan MacLean:</span> Yeah. Big reveal. Hopefully it's good. But I think in terms of image generation, that's the main thing that I'm looking for is more that. Ideation or coming up with something. A lot of times it would be like or the dream I guess for me is to mass tag something or help me with tagging with something, or if I've taken an image that's in a certain style, but I don't know how to describe it, I'll use the reverse to tell me like what that style was so I can go out there and maybe do like a series or something like that, or another artist that's related I might want to know about, do some research.
+
+
+<span class="transcript-timestamp">[00:25:22]</span> <span class="transcript-speaker">Jason Hand:</span> Do you know what, what would happen if you. And opened up another tab for your app and tried another one, run separately. Is that gonna crash the whole thing and melt your MacBook? 
+
+<span class="transcript-timestamp">[00:25:33]</span> <span class="transcript-speaker">Ryan MacLean:</span> I don't think it will, unfortunately. 
+
+<span class="transcript-timestamp">[00:25:36]</span> <span class="transcript-speaker">Jason Hand:</span> Not that I'm advocating for that. A little chaos monkeying around, but I'm just, yeah.
+
+I still thinking about how this thing, how this app, this radio app. Which talked, which you talked about previously, how it works behind the scenes. Oh boy. Here we go. 
+
+<span class="transcript-timestamp">[00:25:48]</span> <span class="transcript-speaker">Ryan MacLean:</span> So my understanding is that it's Oh. Oh, okay. 'cause before I don't think it did this, my understanding is that I've run both at the same time.
+
+It would actually be a problem. Yeah. I was hoping 
+
+<span class="transcript-timestamp">[00:25:57]</span> <span class="transcript-speaker">Jason Hand:</span> for a fight over the GPU. 
+
+<span class="transcript-timestamp">[00:25:59]</span> <span class="transcript-speaker">Ryan MacLean:</span> Yeah. Having done this in the past, that, that is what I noticed actually, and it was not good. This is pretty smart, so it must be reusing the backend in, in order to do which is great. So it's not all self-contained. But yes I've also done queuing 'cause you can put in multiple prompts and it will queue, which is pretty cool.
+
+Right on. I didn't realize in multiple tabs that we do that because I have made that mistake where I'm running two tabs at once and I've forgotten about it unfortunately. Or yeah, I think slow as a result, 
+
+<span class="transcript-timestamp">[00:26:22]</span> <span class="transcript-speaker">Jason Hand:</span> I lose tab, I like lose tabs or minimize something. So while we're on the screen, we haven't really looked into those other tabs there.
+
+The textual inversion. Any of them, is there anything interesting in those or have you looked through them? 
+
+<span class="transcript-timestamp">[00:26:34]</span> <span class="transcript-speaker">Ryan MacLean:</span> There is. I've only used a couple of these. Oh 
+
+<span class="transcript-timestamp">[00:26:35]</span> <span class="transcript-speaker">Jason Hand:</span> my. Oh my goodness. 
+
+<span class="transcript-timestamp">[00:26:38]</span> <span class="transcript-speaker">Ryan MacLean:</span> So this is Jason hand. That's certainly a hand. This is how it always goes. 
+
+<span class="transcript-timestamp">[00:26:42]</span> <span class="transcript-speaker">Jason Hand:</span> Oh man. Artists' jobs are, 
+
+<span class="transcript-timestamp">[00:26:45]</span> <span class="transcript-speaker">Ryan MacLean:</span> What happened here obviously is that this was in the queue and you saw how quickly it ran through.
+
+Like five, five by five is pretty easy for it. Oh wow. Oh. No, it got all the way to the end and it failed. The high res fix. I think you're right here. 
+
+<span class="transcript-timestamp">[00:26:58]</span> <span class="transcript-speaker">Jason Hand:</span> Is that because of us firing up a new thing? Or do you think there's no, no conflict at all? 
+
+<span class="transcript-timestamp">[00:27:03]</span> <span class="transcript-speaker">Ryan MacLean:</span> No. I think there's actually another issue, 
+
+<span class="transcript-timestamp">[00:27:05]</span> <span class="transcript-speaker">Jason Hand:</span> huh?
+
+Okay. 
+
+<span class="transcript-timestamp">[00:27:06]</span> <span class="transcript-speaker">Ryan MacLean:</span> Not enough precision here to give the picture. But again, we could do 10 ible steps here and we could see what was trying to do in color as opposed to. And again, the only difference between 10 and a hundred is we do more or less detail, but you can see how long it takes, I guess is the other thing I was trying to say.
+
+Okay. This is probably something similar to what it was working on, but not, 
+
+<span class="transcript-timestamp">[00:27:25]</span> <span class="transcript-speaker">Jason Hand:</span> I like this one the best for sure. It doesn't have any creepy people. 
+
+<span class="transcript-timestamp">[00:27:28]</span> <span class="transcript-speaker">Ryan MacLean:</span> I do find landscapes fair a lot better than anything to do with humans. I think our, maybe our forgiveness for how weird our landscape can look is just maybe a little bit more hobby, a lot better.
+
+Just gonna quickly test this I one just to make sure. Yeah. It like I feel like mountains are pretty easy for a lot of these old ones. Have we ever talked about Bryce before?
+
+Do you recall Bryce 3D? Does that ring a bell? 
+
+<span class="transcript-timestamp">[00:27:50]</span> <span class="transcript-speaker">Jason Hand:</span> I don't believe I have. 
+
+<span class="transcript-timestamp">[00:27:51]</span> <span class="transcript-speaker">Ryan MacLean:</span> Okay. So Bryce was a 3D image generating piece of software maybe in the late nineties, early two thousands. That would generate like a. Futuristic otherworldly kind of images. Okay. And it, this did fail again, so it's just step is No, that's fine.
+
+It's we've proven what the actual problem was. 
+
+But it does feel like that kind of area where you're thinking about alien landscapes, that kind of thing is maybe something where this could. Be handy with, 'cause I'm not, you're talking about video games, right?
+
+If I'm trying to imagine an alien landscape for a video game, that's not my subject, like I'm not an SME in this area. I'd probably have something else. Help me. Yeah. Maybe I could hire somebody. Maybe I get started with some. 
+
+<span class="transcript-timestamp">[00:28:29]</span> <span class="transcript-speaker">Jason Hand:</span> I see it as just the new way to doodle around. There's I, previously I would get my iPad out or some pad of paper or something and just come up with some ideas and just see what, what resonates with me.
+
+And this is a new way to come up with a bunch of ideas that you really just plant the seed, it's your brainchild and then, and something else takes it a good portion of it the rest of the way, or it's a collaborative thing, but it's still just as. I think just giving you more options to choose from and help you generate ideas.
+
+<span class="transcript-timestamp">[00:28:58]</span> <span class="transcript-speaker">Ryan MacLean:</span> Yes. Okay. So I think I've covered the local use case and I'll talk a little bit about what I've done in the past. Okay. So I'm just gonna quickly show what it did here. Oh, my apologies. That is me. So this is, again I just told it to make icons, for example, and it's made a few instead of one which is interesting.
+
+So we've got multiple different options here so we can look at them. So I think it's done five up, looks like four up. So it's done a few. Okay. I wouldn't say these are like icons. There's a red hat in this one, which is interesting. But the other options we can do is say, start with one of those images and generate another one in its style.
+
+The other thing we can do is go backwards. So if we're doing textual inversions, so we're going from one end to the other, I think is how that works. There's sketching, which I haven't necessarily done too much, but I did wanna talk about in painting a little bit here just because. Stable diffusion can be used as a plugin for Photoshop, and I'm not sure if you've used Photoshop in a minute, but Photoshop now has a generate let's say like my hair is messy today.
+
+Let's say I want to generate just the messy part like fist side portion. You can circle it in Photoshop and say, generate. And I'm not gonna say it's great. In fact, it's probably passable most of the time. But if you play with the opacity between what's generated and what you saw, you can typically get to something that's, that's okay.
+
+Believable. It's actually pretty handy. Yeah, and the fact that you can add stable diffusion, like exactly what we've just run now as a web UI endpoint for Photoshop in order to use this instead of using their credits can be pretty handy when you're going through like just a sample retouch kind of thing without, again, involving Photoshops credit system or whatever your creative.
+
+Cloud license is in order to get access to those features without burning through those credits that you might need to use. So that's one of the things that I've used it for in the past. Then I think they got a little bit faster and they gave me more credits. I think it made more sense. But I'm honestly just removing like dust specs and things like that a lot of the time, so it doesn't really matter in the quality, just so I can get rid of it kind of thing.
+
+So that's what I've used these kind of things for. And again, trying to use it for image tagging, but that's where I'm at with automatic 1111. Like it's an easy way to stand up a model. That I can use for Photoshop, that I can use for brainstorming. I can use it for, in painting. That's the primary use case I've had.
+
+I have used it for image to image before to some success, but a lot of times it's more for that brainstorming step. 
+
+<span class="transcript-timestamp">[00:31:16]</span> <span class="transcript-speaker">Jason Hand:</span> Awesome. Okay. , another check in the W column. What's the metaphor I'm looking for? For, for grado. 
+
+<span class="transcript-timestamp">[00:31:23]</span> <span class="transcript-speaker">Ryan MacLean:</span> In terms of being 
+
+<span class="transcript-timestamp">[00:31:24]</span> <span class="transcript-speaker">Jason Hand:</span> very useful for it, 
+
+<span class="transcript-timestamp">[00:31:25]</span> <span class="transcript-speaker">Ryan MacLean:</span> it seems pretty prevalent.
+
+You'll notice once you see this kind of UI, that there's quite a few tools. Like just haphazardly stuck together and you'll load off to the web. I'm not gonna say the gooey of this one's great. In fact, if you think about step one, two, and three, what you need to do, generate an image, feels like they should be in order as opposed to spread out across that page.
+
+But it's a free app, so it's hard to complain. 
+
+<span class="transcript-timestamp">[00:31:45]</span> <span class="transcript-speaker">Jason Hand:</span> There's a balance depending on who your audience is. Some people like a lot of control, especially when they're experimenting with things. And unlike Dolly and some of the other online providers like you, you don't have a lot of options that you can, not as many, it seems like that you can really twist, the knobs and try to dial in some things and be much more patient because it's not costing you a bunch of money, although time-wise, it still might take some time to generate, depending on your. Absolutely, 
+
+<span class="transcript-timestamp">[00:32:10]</span> <span class="transcript-speaker">Ryan MacLean:</span> and I didn't talk about monitoring this too much, but one of the things that you probably wanna do is look at the logs of what you're creating, which this, oh yeah, this will give you, and then the next is like how long it's taking with which models being used.
+
+I think it's maybe the key. So looking at the parameters. The model being used and then figure out like how long it's taking to create each one. Different models will have different steps. We had an error in here, which would be fun to track down. It says that we can disable not a number checking on Python, but that just sounds wrong to me.
+
+It's if you're trying to divide by zero, it sounds like you should probably fix something else. So those kind of problems you could probably get into. I'm assuming that's within Nan means or maybe you're trying to use a string as an int, which is a whole other problem. But those.
+
+Those sort of error checking kind of things would help if you're trying to help out on the automatic 1111 side to help them with their software. Obviously again, love the software, but there are some things in here that we could probably fix. I personally think if you deploy this to like a team of people, RUM would tell you pretty quickly where they're using the app, for example.
+
+And it might cause you to change the layout of the app. 
+
+<span class="transcript-timestamp">[00:33:11]</span> <span class="transcript-speaker">Jason Hand:</span> That's a good point. Yeah. Which again, I don't want 
+
+<span class="transcript-timestamp">[00:33:14]</span> <span class="transcript-speaker">Ryan MacLean:</span> Poo a free piece of software on their layout, but I do feel like it could be better, for example. 
+
+<span class="transcript-timestamp">[00:33:19]</span> <span class="transcript-speaker">Jason Hand:</span> Yeah. I guess that could be a fun little side quest here with these apps is to throw rum on there.
+
+'cause that's a pretty straightforward instrumentation. 
+
+<span class="transcript-timestamp">[00:33:27]</span> <span class="transcript-speaker">Ryan MacLean:</span> Yeah. At the very least, copy and paste the heat map. Yeah. Would typically tell you what you wanna know. The other is, when we talked about this, and maybe a bit in passing, but what normally is in terms of wait time, like 10 seconds feels like that's our appetite right now for a i three minutes is super long.
+
+Especially if you're iterating through and if you wanna approach that ten second target, then obviously you're gonna have to look at do I use a different model, different hardware or what have you. 
+
+<span class="transcript-timestamp">[00:33:50]</span> <span class="transcript-speaker">Jason Hand:</span> Yeah. Yeah I definitely can confirm that in my experiments with local models is like, there's lots of benefits for it running locally, but speed is not one.
+
+<span class="transcript-timestamp">[00:33:59]</span> <span class="transcript-speaker">Ryan MacLean:</span> That's correct. 
+
+<span class="transcript-timestamp">[00:34:00]</span> <span class="transcript-speaker">Jason Hand:</span> So trade offs somewhere. 
+
+<span class="transcript-timestamp">[00:34:02]</span> <span class="transcript-speaker">Ryan MacLean:</span> That's correct. 
+
+<span class="transcript-timestamp">[00:34:03]</span> <span class="transcript-speaker">Jason Hand:</span> Awesome. We're probably getting close to time for Indeed today. Indeed. Was there anything else we wanted to, we needed to share regarding automatic 1111? 
+
+<span class="transcript-timestamp">[00:34:10]</span> <span class="transcript-speaker">Ryan MacLean:</span> That's, I think the only other thing isn't, and listen, I realize this is prerecorded, but if we could get people letting us know tools that they've found interesting that, that would be amazing to me.
+
+I know it's gonna take a minute to get there, but as we socialize this, I think that's one of the main things. I'd like to see if there's other tools people are using or interested in, I would love to try them. 
+
+<span class="transcript-timestamp">[00:34:28]</span> <span class="transcript-speaker">Jason Hand:</span> Why don't I set up a I'll set up a form or something somewhere where we can point people to and see if they wanna suggest some stuff.
+
+I almost said that they could suggest some things in our repo as an issue or something, but. Yeah, we'll give some thought. We'll come up. Sorry to drop that on. You live there? No, I think that's that's where I'm at. We've already been saying it to everybody, so we might as well just give them like an official place to give us that feedback.
+
+We've got things. I don't know actually in the list. Yeah. So my next thing is Claude Code, which I actually started playing with today. Awesome. And I'm trying to build a little. App doing that. And I, I've got so many others but cloud code's gonna be the next one that I'm gonna try to talk about, although it may not be next week, we've decided, might have to.
+
+Get creative next week or do that. If 
+
+<span class="transcript-timestamp">[00:35:14]</span> <span class="transcript-speaker">Ryan MacLean:</span> anyone sees this, where are we gonna be next week? 
+
+<span class="transcript-timestamp">[00:35:16]</span> <span class="transcript-speaker">Jason Hand:</span> We will be at the NVIDIA's GTC conference. Which is a big, a lot of things, but big AI conference, so we're gonna be out there learning from. The other AI people in the space and in other spaces. Honestly, that's the kind of neat thing about this one that I like.
+
+It is, it's not our usual just web operations space. It's like absolutely a lot of industries and people who have no idea who Datadog is, which is refreshing. It's and yeah, so that's what we'll be our learning caps on. 
+
+<span class="transcript-timestamp">[00:35:47]</span> <span class="transcript-speaker">Ryan MacLean:</span> Alright folks. But then 
+
+<span class="transcript-timestamp">[00:35:48]</span> <span class="transcript-speaker">Jason Hand:</span> the next week maybe we'll talk about cloud code.
+
+<span class="transcript-timestamp">[00:35:50]</span> <span class="transcript-speaker">Ryan MacLean:</span> Absolutely. I am, I'm here for it. I can't wait. Yeah. 
+
+<span class="transcript-timestamp">[00:35:54]</span> <span class="transcript-speaker">Jason Hand:</span> Okie dokie. Good seeing you and we'll, great chatting. We'll talk to you all later. 
+
+<span class="transcript-timestamp">[00:35:59]</span> <span class="transcript-speaker">Ryan MacLean:</span> All right, folks. Bye-bye.
+                </pre>
+            </div>
+            
+            <script>
+                // Add a simple script to highlight speakers when clicked
+                document.addEventListener('DOMContentLoaded', function() {
+                    const speakers = document.querySelectorAll('.transcript-speaker');
+                    speakers.forEach(speaker => {
+                        speaker.addEventListener('click', function() {
+                            const speakerName = this.textContent;
+                            
+                            // First remove all highlights
+                            document.querySelectorAll('.transcript-speaker').forEach(s => {
+                                s.parentElement.style.backgroundColor = '';
+                            });
+                            
+                            // Then highlight all lines from this speaker
+                            document.querySelectorAll('.transcript-speaker').forEach(s => {
+                                if (s.textContent === speakerName) {
+                                    s.parentElement.style.backgroundColor = 'rgba(99, 44, 166, 0.1)';
+                                }
+                            });
+                        });
+                    });
+                });
+            </script>
+        </div>
+        
+        <!-- Episode Navigation -->
+        <div class="episode-navigation">
+            <div class="container">
+                <h2>Episode Navigation</h2>
+                <div class="episode-nav-links">
+                    <div class="nav-item">
+                        <span class="nav-direction">Previous Episode:</span>
+                        <div class="recording-card">
+                            <h3>Exploring Warp Terminal and Cursor for Productivity</h3>
+                            <div class="video-container">
+                                <a href='/pages/ep02'>
+                                    <img src="../images/thumbnails/ep02.png" alt="Episode 2 Thumbnail">
+                                </a>
+                            </div>
+                            <a class='btn' href='/pages/ep02'>View Notes</a>
+                        </div>
+                    </div>
+                    
+                    <div class="nav-item">
+                        <span class="nav-direction">Next Episode:</span>
+                        <div class="recording-card">
+                            <h3>Building a Secure Feedback Form with Datadog Logs with Claude Code</h3>
+                            <div class="video-container">
+                                <a href='/pages/ep04'>
+                                    <img src="../images/thumbnails/ep04.png" alt="Episode 4 Thumbnail">
+                                </a>
+                            </div>
+                            <a class='btn' href='/pages/ep04'>View Notes</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="../images/ai-tools-lab-logo.png" alt="AI Tools Lab Logo" class="footer-logo-img">
+                    <div>
+                        <h2>AI Tools Lab</h2>
+                        <p>Exploring the landscape of AI tools and technologies</p>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href='/pages/'>Home</a></li>
+                        <li><a href='/pages/resources'>Resources</a></li>
+                        <li><a href='/pages/observations'>Observations</a></li>
+                        <li><a href='/pages/about'>About</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 AI Tools Lab. All rights reserved. <span id="easter-egg" class="easter-egg">π</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Easter Egg Modal -->
+    <div id="easter-egg-modal" class="easter-egg-modal">
+        <div class="easter-egg-modal-content">
+            <span class="easter-egg-close">&times;</span>
+            <p>Sandy?</p>
+        </div>
+    </div>
+
+    <script src="../script.js"></script>
+</body>
+</html>
+
+

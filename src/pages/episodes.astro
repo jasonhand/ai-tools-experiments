@@ -1,0 +1,358 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+
+// Get all episodes using the recommended import.meta.glob instead of Astro.glob
+const episodeModules = await import.meta.glob('./episodes/*.mdx', { eager: true });
+
+// Define episode type based on the structure we need
+interface Episode {
+  frontmatter: {
+    Title: string;
+    Description: string;
+    HeroImg: string;
+    Date?: string;
+    Tags?: string[] | string;
+    [key: string]: any;
+  };
+  url: string;
+  file: string;
+  // Include any other properties that might be used
+  [key: string]: any;
+}
+
+// Convert the modules to our Episode type
+const episodes: Episode[] = Object.entries(episodeModules).map(([path, module]: [string, any]) => {
+  return {
+    ...module,
+    file: path
+  } as Episode;
+});
+
+// Extract episode number from the file path
+function getEpisodeNumber(episode: Episode): number {
+    const match = episode.file.match(/ep(\d+)\.mdx$/);
+    return match ? parseInt(match[1]) : 0;
+}
+
+// Sort episodes by episode number (latest first)
+episodes.sort((a, b) => {
+    return getEpisodeNumber(b) - getEpisodeNumber(a);
+});
+
+// Get newest episode (highest episode number)
+const newestEpisode = episodes[0];
+
+// Extract all unique tags from episodes
+const allTags = [...new Set(
+    episodes.flatMap(episode => {
+        // Handle Tags whether it's a string or array
+        if (!episode.frontmatter.Tags) return [];
+        
+        if (typeof episode.frontmatter.Tags === 'string') {
+            return episode.frontmatter.Tags.split(',').map((tag: string) => tag.trim());
+        } else if (Array.isArray(episode.frontmatter.Tags)) {
+            return episode.frontmatter.Tags;
+        }
+        
+        return [];
+    })
+)];
+---
+
+<MainLayout title="Episodes | AI Tools Lab">
+    <div class="filter-container">
+        <div class="container">
+            <div class="episodes-filters">
+                <div class="filter-group index-filter-group">
+                    <div class="tag-buttons">
+                        <button class="tag-filter active" data-tag="all">All Tags</button>
+                        {allTags.map((tag: string) => (
+                            <button class="tag-filter" data-tag={tag.toLowerCase()}>{tag}</button>
+                        ))}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <main class="container">
+        <!-- Featured/Newest Episode Section -->
+        <section id="featured-episode">
+            <h2>Newest Episode</h2>
+            <div class="featured-episode-container">
+                <div class="featured-episode-video">
+                    <a href={newestEpisode.url}>
+                        <img src={newestEpisode.frontmatter.HeroImg} alt={newestEpisode.frontmatter.Title}>
+                        <div class="play-button-overlay">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="#ffffff">
+                                <path d="M8 5v14l11-7z"/>
+                            </svg>
+                        </div>
+                    </a>
+                </div>
+                <div class="featured-episode-content">
+                    <h3>Latest Episode: {newestEpisode.frontmatter.Title.split(':')[0]}</h3>
+                    <h4>{newestEpisode.frontmatter.Title.includes(':') ? newestEpisode.frontmatter.Title.split(':')[1].trim() : ''}</h4>
+                    <p>{newestEpisode.frontmatter.Description}</p>
+                    <div class="featured-episode-meta">
+                        <span class="recording-date">{newestEpisode.frontmatter.Date}</span>
+                        <div class="featured-episode-tags">
+                            {newestEpisode.frontmatter.Tags && (
+                                typeof newestEpisode.frontmatter.Tags === 'string' ?
+                                newestEpisode.frontmatter.Tags.split(',').map((tag: string) => (
+                                    <span class="tag">{tag.trim()}</span>
+                                )) :
+                                Array.isArray(newestEpisode.frontmatter.Tags) && 
+                                newestEpisode.frontmatter.Tags.map((tag: string) => (
+                                    <span class="tag">{tag}</span>
+                                ))
+                            )}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="recordings">
+            <div class="episodes-intro">
+                <h2>All Episodes</h2>
+                <p>Browse through our complete collection of AI tools explorations and experiments. Use the tags above to filter episodes by topic.</p>
+            </div>
+            
+            <div class="recording-grid">
+                {episodes.map((episode) => (
+                    <div class="recording-card" data-category="exploration" data-tags={
+                        episode.frontmatter.Tags ? 
+                        (typeof episode.frontmatter.Tags === 'string' ? 
+                            episode.frontmatter.Tags.toLowerCase().replaceAll(' ', '') : 
+                            Array.isArray(episode.frontmatter.Tags) ? 
+                                episode.frontmatter.Tags.join(',').toLowerCase().replaceAll(' ', '') : 
+                                '') : 
+                        ''
+                    }>
+                        <a href={episode.url}>
+                            <div class="video-container">
+                                <img src={episode.frontmatter.HeroImg} alt={`${episode.frontmatter.Title} Thumbnail`}>
+                                {episode === newestEpisode && <span class="featured-badge">Newest</span>}
+                            </div>
+                            <div class="recording-card-content">
+                                <h3>{episode.frontmatter.Title}</h3>
+                                <p>{episode.frontmatter.Description}</p>
+                                <div class="recording-meta">
+                                    <span class="recording-date">{episode.frontmatter.Date}</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                ))}
+            </div>
+        </section>
+    </main>
+</MainLayout>
+
+<style>
+    /* Featured episode styles */
+    #featured-episode {
+        margin-bottom: 40px;
+        padding: 25px;
+        background: linear-gradient(145deg, #f0f7ff 0%, #e6f0ff 100%);
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0, 86, 210, 0.1);
+    }
+    
+    #featured-episode h2 {
+        margin-bottom: 20px;
+        font-size: 1.8rem;
+        color: #0066cc;
+        border-bottom: 2px solid #0066cc;
+        padding-bottom: 8px;
+        display: inline-block;
+    }
+    
+    .featured-episode-container {
+        display: flex;
+        gap: 25px;
+        align-items: flex-start;
+    }
+    
+    .featured-episode-video {
+        flex: 0 0 50%;
+        position: relative;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+    
+    .featured-episode-video img {
+        width: 100%;
+        display: block;
+        transition: transform 0.3s ease;
+    }
+    
+    .featured-episode-video:hover img {
+        transform: scale(1.03);
+    }
+    
+    .play-button-overlay {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: rgba(0, 102, 204, 0.8);
+        border-radius: 50%;
+        width: 70px;
+        height: 70px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0.9;
+        transition: all 0.3s ease;
+    }
+    
+    .featured-episode-video:hover .play-button-overlay {
+        background-color: rgba(0, 102, 204, 1);
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.1);
+    }
+    
+    .featured-episode-content {
+        flex: 1;
+    }
+    
+    .featured-episode-content h3 {
+        color: #0066cc;
+        font-size: 1.4rem;
+        margin-bottom: 5px;
+    }
+    
+    .featured-episode-content h4 {
+        font-size: 1.6rem;
+        margin-top: 0;
+        margin-bottom: 15px;
+    }
+    
+    .featured-episode-content p {
+        font-size: 1.05rem;
+        line-height: 1.6;
+        margin-bottom: 20px;
+    }
+    
+    .featured-episode-meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+    
+    .recording-date {
+        color: #666;
+        font-size: 0.9rem;
+    }
+    
+    .featured-episode-tags {
+        display: flex;
+        gap: 8px;
+    }
+    
+    .tag {
+        background-color: #0066cc;
+        color: white;
+        padding: 4px 10px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 500;
+    }
+
+    /* Episode grid styles */
+    .recording-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 30px;
+        margin-top: 30px;
+    }
+    
+    .recording-card {
+        background: white;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: transform 0.2s ease;
+    }
+    
+    .recording-card:hover {
+        transform: translateY(-5px);
+    }
+    
+    .video-container {
+        position: relative;
+    }
+    
+    .video-container img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+    }
+    
+    .recording-card-content {
+        padding: 20px;
+    }
+    
+    .recording-meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 15px;
+    }
+    
+    /* Featured badge styling */
+    .featured-badge {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background-color: #ff6b00;
+        color: white;
+        padding: 4px 10px;
+        border-radius: 4px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        z-index: 2;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+    
+    @media (max-width: 768px) {
+        .featured-episode-container {
+            flex-direction: column;
+        }
+        
+        .featured-episode-video {
+            flex: 0 0 100%;
+            margin-bottom: 20px;
+        }
+    }
+</style>
+
+<script>
+    // Tag filtering functionality
+    document.addEventListener('DOMContentLoaded', () => {
+        const tagButtons = document.querySelectorAll('.tag-filter');
+        const cards = document.querySelectorAll('.recording-card');
+
+        tagButtons.forEach((button: Element) => {
+            button.addEventListener('click', () => {
+                const tag = button.getAttribute('data-tag') || 'all';
+                
+                tagButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                cards.forEach((card: Element) => {
+                    const tags = card.getAttribute('data-tags') || '';
+                    if (tag === 'all' || tags.includes(tag)) {
+                        (card as HTMLElement).style.display = 'block';
+                    } else {
+                        (card as HTMLElement).style.display = 'none';
+                    }
+                });
+            });
+        });
+    });
+</script>

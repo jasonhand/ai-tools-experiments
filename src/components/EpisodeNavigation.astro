@@ -1,0 +1,209 @@
+---
+export interface Props {
+  currentEpisode: string;  // e.g. "ep01"
+}
+
+const { currentEpisode } = Astro.props;
+const currentEpNumber = parseInt(currentEpisode.replace("ep", ""));
+
+// Define interfaces for type safety
+interface EpisodeFile {
+  file: string;
+  url: string;
+  frontmatter: {
+    Title: string;
+    HeroImg: string;
+    VideoID: string;
+    EpisodeNumber: string;
+    [key: string]: any;
+  };
+}
+
+// Get all episode files using Astro's Glob import
+const allEpisodes = await Astro.glob('../pages/episodes/*.mdx') as EpisodeFile[];
+
+// Sort episodes by episode number
+const sortedEpisodes = allEpisodes.sort((a: EpisodeFile, b: EpisodeFile) => {
+  const aNumber = parseInt(a.file.split('/').pop()?.replace('ep', '').replace('.mdx', '') || '0');
+  const bNumber = parseInt(b.file.split('/').pop()?.replace('ep', '').replace('.mdx', '') || '0');
+  return aNumber - bNumber;
+});
+
+// Log for debugging
+console.log("Sorted episodes for navigation:");
+sortedEpisodes.forEach((ep: EpisodeFile) => {
+  const epNumber = ep.file.split('/').pop()?.replace('.mdx', '');
+  console.log(`${epNumber}: ${ep.frontmatter.Title}`);
+});
+
+// Find current episode index
+const currentIndex = sortedEpisodes.findIndex((ep: EpisodeFile) => 
+  ep.file.includes(`ep${currentEpNumber.toString().padStart(2, '0')}.mdx`)
+);
+
+// Determine previous and next episodes
+const prevEpisode = currentIndex > 0 ? sortedEpisodes[currentIndex - 1] : null;
+const nextEpisode = currentIndex < sortedEpisodes.length - 1 ? sortedEpisodes[currentIndex + 1] : null;
+---
+
+<div class="episode-navigation">
+  <div class="container">
+    <h2>Episode Navigation</h2>
+    <div class="episode-nav-links">
+      {prevEpisode ? (
+        <div class="nav-item">
+          <span class="nav-direction">Previous Episode:</span>
+          <div class="recording-card">
+            <h3>{prevEpisode.frontmatter.Title}</h3>
+            <div class="video-container">
+              <a href={`/episodes/${prevEpisode.file.split('/').pop()?.replace('.mdx', '') || ''}`}>
+                <img src={prevEpisode.frontmatter.HeroImg} alt={`${prevEpisode.frontmatter.Title} Thumbnail`}>
+                <span class="play-icon" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 0; height: 0; border-style: solid; border-width: 15px 0 15px 25px; border-color: transparent transparent transparent #6C756B; z-index: 10; opacity: 0.9;"></span>
+              </a>
+            </div>
+            <a class='btn' href={`/episodes/${prevEpisode.file.split('/').pop()?.replace('.mdx', '') || ''}`}>Watch Episode</a>
+          </div>
+        </div>
+      ) : (
+        <div class="nav-item">
+          <span class="nav-direction">This is the first episode</span>
+          <div class="recording-card latest-episode">
+            <h3>First Episode</h3>
+            <p>You're viewing the first episode in the series. Check out the next episode to continue your learning journey!</p>
+          </div>
+        </div>
+      )}
+      
+      {nextEpisode ? (
+        <div class="nav-item">
+          <span class="nav-direction">Next Episode:</span>
+          <div class="recording-card">
+            <h3>{nextEpisode.frontmatter.Title}</h3>
+            <div class="video-container">
+              <a href={`/episodes/${nextEpisode.file.split('/').pop()?.replace('.mdx', '') || ''}`}>
+                <img src={nextEpisode.frontmatter.HeroImg} alt={`${nextEpisode.frontmatter.Title} Thumbnail`}>
+                <span class="play-icon" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 0; height: 0; border-style: solid; border-width: 15px 0 15px 25px; border-color: transparent transparent transparent #6C756B; z-index: 10; opacity: 0.9;"></span>
+              </a>
+            </div>
+            <a class='btn' href={`/episodes/${nextEpisode.file.split('/').pop()?.replace('.mdx', '') || ''}`}>Watch Episode</a>
+          </div>
+        </div>
+      ) : (
+        <div class="nav-item">
+          <span class="nav-direction">This is the latest episode</span>
+          <div class="recording-card latest-episode">
+            <h3>Latest Episode</h3>
+            <p>You're viewing the latest episode in the series. Check back soon for new content!</p>
+          </div>
+        </div>
+      )}
+    </div>
+  </div>
+</div>
+
+<style>
+  .episode-navigation {
+    margin-top: 3rem;
+    padding: 2rem 0;
+    background-color: var(--color-background-accent, #f5f7fa);
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+  
+  .episode-nav-links {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+  
+  @media (max-width: 768px) {
+    .episode-nav-links {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  .nav-direction {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+  }
+  
+  .recording-card {
+    border: 1px solid var(--color-border, #e2e8f0);
+    border-radius: 8px;
+    padding: 1rem;
+    background-color: var(--color-card-bg, #ffffff);
+  }
+  
+  .latest-episode {
+    background-color: var(--color-card-bg-alt, #f8fafc);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .video-container {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%; /* 16:9 Aspect Ratio */
+    margin-bottom: 1rem;
+    overflow: hidden;
+    border-radius: 4px;
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+  
+  .video-container img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+  
+  .video-container:hover img {
+    transform: scale(1.05);
+  }
+  
+  .video-container::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50px;
+    height: 50px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    opacity: 0.8;
+    z-index: 2;
+  }
+  
+  h3 {
+    font-size: 1.25rem;
+    margin-top: 0;
+    margin-bottom: 1rem;
+  }
+  
+  .btn {
+    display: inline-block;
+    background-color: var(--color-primary, #0066cc);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    text-decoration: none;
+    margin-top: 1rem;
+    text-align: center;
+    transition: background-color 0.2s ease;
+  }
+  
+  .btn:hover {
+    background-color: var(--color-primary-dark, #0056b3);
+  }
+</style>

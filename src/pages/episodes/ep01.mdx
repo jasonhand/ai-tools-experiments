@@ -1,0 +1,185 @@
+---
+layout: ../../layouts/EpisodeLayout.astro
+Title: "Building Quick Web Interfaces for Machine Learning Models with Gradio"
+Author: "jasonhand24@gmail.com"
+HeroImg: "../images/thumbnails/ep01.png"
+VideoID: "hESEOJRZ-wc"
+Description: "Exploring how to build simple but effective web interfaces for machine learning models using Gradio, allowing non-technical users to interact with ML systems."
+EpisodeNumber: "1"
+Date: "2025-04-26"
+Tags: ["web-dev", "ml-models"]
+---
+import TranscriptSection from '../../components/TranscriptSection.astro';
+
+# Summary
+
+In this episode, Jason Hand and Ryan MacLean introduce their AI Lab Experiments project, explaining their goal to stay updated on AI tools and share their findings with the community. Ryan demonstrates Gradio, a Python library for quickly building web interfaces for machine learning models. He shows how to install Gradio in a virtual environment, import it, and create a simple demo by loading a Hugging Face space locally. They successfully create a question-answering interface and also run an image generation model through Gradio. Ryan explains that Gradio is particularly useful for backend developers who need to quickly create front-end interfaces without extensive JavaScript knowledge, making it easy to demonstrate ML features to others.
+
+## Jump To
+
+- [Introduction to AI Lab Experiments project](https://youtu.be/hESEOJRZ-wc?t=0)
+- [Jason sharing his process for tracking AI tools](https://youtu.be/hESEOJRZ-wc?t=66)
+- [Ryan explains his work with image generation models](https://youtu.be/hESEOJRZ-wc?t=149)
+- [Setting up a virtual environment and installing Gradio](https://youtu.be/hESEOJRZ-wc?t=303)
+- [Jason's thoughts on creating interfaces](https://youtu.be/hESEOJRZ-wc?t=462)
+- [Discussion about HuggingFace spaces](https://youtu.be/hESEOJRZ-wc?t=509)
+- [Testing image generation through Gradio](https://youtu.be/hESEOJRZ-wc?t=676)
+- [Why you would use Gradio](https://youtu.be/hESEOJRZ-wc?t=961)
+- [Wrapping up and plans for next tool exploration](https://youtu.be/hESEOJRZ-wc?t=1087)
+
+## Resources
+
+- [Gradio Quickstart](https://www.gradio.app/guides/quickstart)
+- [Gradio Install](https://github.com/gradio-app/gradio)
+- [Gradio Repository](https://github.com/gradio-app/gradio)
+- [Gradio `load`](https://www.gradio.app/docs/gradio/load)
+
+## Key Takeaways
+
+- Gradio is a very easy way to get a Huggingface Space locally (via `load`)
+- It provides a simple way to build frontends for ML applications
+- When installing, make sure to create a virtual environment first
+- Ensure to install Gradio in that environment after activation
+- Do not try to run your project in the `Gradio` repo by mistake
+- Gradio is particularly useful for quickly creating interfaces to demonstrate ML models
+
+{/* TRANSCRIPT SECTION - Full conversation text with timestamps */}
+<h2>Full Transcript</h2>
+
+<TranscriptSection transcriptContent={`
+[00:00:00] **Jason Hand:** We should probably explain a little bit about what this is. I'm Jason, and this is Ryan. We are on the advocacy team at Datadog, and have recently had some conversations around, best ways for us to both, Stay on top of the very rapidly changing AI space, which is part of what we do for work, but also help educate those around us within advocacy, within just engineering at Datadog, but maybe even in, broader sense, just helping developers at large on What we discover and what we learn about some of these AI tools, as we go through them and, take time to share that out with everybody instead of, hoarding that information.
+
+[00:00:59] **Ryan MacLean:** and people ask me questions about this stuff all the time. I feel like I've missed something if I haven't heard about the tool they're talking about, there's always surprises for me at least.
+
+[00:01:06] **Jason Hand:** Yeah. Every morning I spend time watching videos on YouTube and trying to just make sure I'm plugged in. And then I take a note. Of like an app or a new service that I've heard of and then that goes into my list of things. I want to eventually go make time to check out. This is that intentionality of okay, I'm going to set aside some time.
+
+I'm going to go through this list of tools and actually get my hands on keyboards and play with them so that I can form my own opinion and then help other people understand what they are. So actually, I've got a list here. I'll switch over to my screen. All right. Because, Ryan and I have, separate lists that we're gonna merge into this repo, which is just on github, dot com.
+
+If you go to my github, and then AI tools experiments. We'll update this with both of our stuff, but I've started putting in just a few things that I've heard about. And I've started categorizing a lot of them. Some of them are just AI, I'll say, adjacent.
+
+Whereas, some of the automation tools that I've played with or have heard about that I wanted to play with, they aren't AI tools by themselves, but they plug in and play well with others and, the agents, the agentic model of AI and LLMs and all that kind of stuff is where they're excelling right now.
+
+So long story short, we've got a great list of tools that we want to go play with. Ryan's got his. We're going to go over Ryan, his first tool today. You want to share anything else or just dive into the tool that you've picked out
+
+[00:02:29] **Ryan MacLean:** The long and the short of it is I've been working on, I guess you would call them image generation models. So multimodal in that you will typically give them text and the model will give you back an image. I've been working that in reverse in terms of I will Give them an image and expect text back.
+
+Be it something like, imagine you're trying to go through your Lightroom catalogue, and put those in the categories. Maybe they're by colour, or maybe it's like style, perhaps it's like landscapes, or you've got pictures of your family, that kind of stuff. And doing this manually can take a while.
+
+I've been trying to think about ways I can use this to give me a leg up on my photo processing stuff. Now, what I did notice is a lot of the GUIs I was working with were built with something called Gradio. It would say on the bottom, UI develops are brought to you by Gradio. And I was thinking, this is pretty handy.
+
+A lot of this, code, like the code that I'm working with, these code bases are in Python, which I can typically muddle my way through. It's not too bad. I know a little bit about Python so I can typically follow along. Where I get lost. So it was on the front end, and I've tried to make my own.
+
+I've been playing around a lot with Bun and Hono to do this kind of stuff. Can I quickly, rapidly make a text box that has an input, output, that kind of thing? And then I realized, maybe I should actually try Gradio, like all the other cool kids are using. What are they actually doing here? Now, Gradio, they say, will help you build and share delightful machine learning apps.
+
+I'm going to put a finer pin on this, in that, if the GUI that you're trying to build has something like an input field and then it's got like a submit response kind of thing and expects text or an image or something to go somewhere. This GUI might be perfect for that kind of thing.
+
+Now you can see there's radio buttons and sliders and stuff like that you can use. But the nice thing is it's just a library that you can actually install pretty quickly. So if we were to, Swift this to the side. The installation is something is I'll make this a little bit bigger. My apologies as a pip install, which actually makes it quite simple.
+
+Now there's one caveat here and that if you're using system python, you'll probably want to install this in a virtual environment, which is what I've done here. So to install in the virtual environment. We create a virtual environment. We called it Gradio Env.
+
+And then to source it, all I did was type source Gradio bin activate. And then within there, just a pip install Gradio. We'll actually get the package for you. Now you can see in this case, it's already been satisfied because I've already installed it. But one way to test that it's been installed is to type in Python or in my case, Python 3.
+
+And then what we can actually do is if we go through this quick start here, we can start importing Gradio. So if we do this. Import Gradio as GR, which I'm going to do. And this is just in the Python REPL. I think this is what I want. So from Gradio, what I want to get is the version. And if it's installed properly, this should return the version number. It does. I had 5. 16 installed. I've just gone up to 5. 18. I'm sorry, 5.
+
+17. I'm just going to exit here. So what we're going to do is create a first app. Jason, have you dealt with HuggingFace before? Oh yeah. Yeah. Hugging face is true. And what I noticed is part of this Gradio, the promise I guess is to be able to do things like take spaces like this that you might see in Hugging Space and deploy them locally, which is actually pretty interesting to me.
+
+Not only because I could have them on one computer in my household that's got like a graphics card on it or what have you, but also because I could share them to people outside of my own computer. So if I got something running that I thought was pretty cool, I might be able to send Jason a link and see if he can play around with it.
+
+So in that vein, I guess what we're going to do is grab one of these spaces here and create a quick sample page and see if we can't share it to Jason. Now what I noticed in this launch here is that there's actually a share equals true parameter that will allow us to share it around. And I noticed this in troubleshooting it, it actually said, Hey, if you want this GUI to be shared amongst multiple people and multiple computers.
+
+All you need to do is just change this at the bottom, which is pretty cool. So when you first launch it, it will give you that tip. What we're going to do is copy this code. And you can see that it's pointing to this question answering space. So if we go into here, and we change the space. 
+
+So we were looking at the diff text space. And what I'm going to do is just change it to this so we can see a preview of what we're trying to launch locally. So something like this. Now I've got this in dark mode. Of course, it could be in light mode as well. But we're going to try to launch this locally using this here.
+
+So I'm going to grab this code, and I'm going to pop it onto a Python file. I've made one already, but basically we just go into here, delete all this out, paste this in. And then I think all I need to do in here is sure equals uppercase true. And I believe this is it. This is my understanding.
+
+So Python 3, we'll do main. py. And when this runs, it should tell me that it's running locally, which is pretty handy. But also, it's running on this public URL, which is pretty interesting. So Jason, I'm going to pop this into my browser here, but also in the chat on our end. I'm going to send you a link and see if that works for you.
+
+You can see on my end it did load. So it loaded that public URL for my internal web server and that didn't take very long. I don't know, five minutes, that kind of thing, which is pretty impressive actually for me to do this.
+
+And something like Bonner Hondo would probably take me, I don't know, half an hour. I'm not that great with JavaScript, but, it takes me a little bit of time to get my head around front end stuff. 
+
+[00:07:42] **Jason Hand:** Yeah I feel like most times I have a use case for that where I need a front end, I'm definitely turning to.
+
+Chat, GPT co pilot something and just Hey, give me some quick HTML, to just basically capture something and then do something else with it. But now, yeah, there's other tools out there too, that help make interfaces just like a simple interface, but this is pretty cool.
+
+[00:08:03] **Ryan MacLean:** Hey, look at that. And yours is in light mode, so we know it's different. Now, if you hit submit, does that actually work? Oh, very interesting. Not bad. All right. Okay. So we give it some text, we give it a question and give us an answer.
+
+But this is just one of the spaces that we were looking at in hugging Face. Hugging Face. Which is great. We can use many. 
+
+[00:08:29] **Jason Hand:** Yeah, I feel like, to describe Hugging Face, I honestly think Hugging Space is going to turn into a really great source for a lot of the tools that we'll probably play with, or I know that I want to play with.
+
+Every time I go in there and browse around there's all kinds of stuff. It's like a, marketplace. It feels like that, doesn't it? 
+
+[00:08:46] **Ryan MacLean:** Yeah, there's leaderboards and some challenges and things like that too.
+
+You can upload your own models as well and see how they fare in like a fight against a whole bunch of other ones. What I find interesting is some of their, the way that they rate models is it's like double blind. So you won't know what you're rating. And the other person won't know either, but you're just rating the, what you thought of the response and as a result, maybe not double blind, maybe blind is what I'm looking for, but you're not aware of what you're rating for the rankings, which I think is pretty good.
+
+That way it's not like your emotions are involved, I guess is what I was looking for. 
+
+[00:09:18] **Jason Hand:** If you go into HuggingFace and just grab a completely different, what they're called, space. 
+
+[00:09:23] **Ryan MacLean:** Yep. 
+
+[00:09:24] **Jason Hand:** And inside the code, just replace that one little line of text. 
+
+In the Python with this other space, you'll get a completely different interface. 
+
+I think you might be right. Let's find it. So Gradio is who we want. Let's go back here. So this is from Greedio. Let's click into there. But even if you go into just, HuggingFace, I think, slash Spaces, right? That's where all the groups of spaces are. 
+
+[00:09:47] **Ryan MacLean:** Oh, My Abilities. Let's try this. Yeah, there we go. Okay, so if we look for something Let's look for Image Generation. FlexDev. Okay, this is pretty good. And it's running on zero, so you're saying, you think, that I can just grab this.
+
+[00:10:03] **Jason Hand:** Is how I understood
+
+[00:10:04] **Ryan MacLean:** 
+
+[00:10:04] **Jason Hand:** Which I think, to me, is like the big, selling point,
+
+[00:10:08] **Ryan MacLean:** I hear ya. And I'd actually only been using big radio spaces. I hadn't thought of what I could do if I did it this way.
+
+Okay, that's pretty interesting. Now, again, I'm going to use this just because I'm running this on a Linux box that is in fact under my desk. But let's hit this live one here. 
+
+Mandolin.
+
+Okay. I think this should be fine. So all I did was type in, my apologies, the prompt is pretty small here, but someone playing Mendolin in a field. And this is using that URL that I've exposed publicly. So if you're watching this recording within 72 hours, perhaps you could hit it too. It is starting up now.
+
+It is pretty slow. Now what we're using is Flux One Pro. I've used Dev before. It's actually a pretty good model for generating images. I've not used Pro, but I've heard it's quite good. 
+
+Okay. Who does it and think of it as kinda like a mid journey. Oh, wow. What I ne I typed in someone on purpose just to see what it would do here. This is okay. Now listen, I'm not an expert, but is that the right amount of strings? 
+
+have eight strings? 
+
+[00:11:12] **Jason Hand:** Have eight strings. 
+
+[00:11:13] **Ryan MacLean:** Now I can't count eight strings.
+
+[00:11:15] **Jason Hand:** It's more of a guitar. Okay. It looks like they're playing it with their fingers, which is not typical.
+
+[00:11:20] **Jason Hand:** The hands look strange. The left hand, the index fingers have a really big thumb.
+
+[00:11:24] **Ryan MacLean:** Yeah, maybe I'm playing too much Mandalorian.
+
+[00:11:27] **Ryan MacLean:** It's a very long thumb. In terms of sharing something though, I will say this is pretty fast.
+
+[00:11:32] **Jason Hand:** An app, basically in the past, I 
+
+[00:11:37] **Ryan MacLean:** probably used Bootstrap, if we're being serious here. Tailwind, just basically other tools that can help me get to a point that I like. And in fact, if it was just a form and response kind of thing, I probably can use that for everything.
+
+I'd use the same app for all the stuff. I wouldn't change it. Boilerplate, go through it. So the fact that somebody has done that part for me already is actually pretty interesting. So I don't have to do that myself.
+
+[00:11:58] **Jason Hand:** Can we inspect the code for one of these apps? Let's see what it looks like behind the scenes because in terms of instrumenting it, that's where my next thought goes.
+
+[00:12:09] **Ryan MacLean:** Sure. So I got a hint of Vite, at least when I was looking through the code, but I think that's just for bundling for JS?
+
+Okay, but I'll quickly go through the code here. What do we start with? There's a viewport.
+
+Bunch of text. I'm just looking for anything that sticks out. Not seeing any frameworks just yet or anything like that. It does have Google Analytics turned on, which is interesting. Or analytics anyway. Which I probably want to do too. It says there's radio analytics, okay. We're scrolling down a bit.
+
+Interesting. So I think what I'm noticing in here is that there's other properties that I'm not using, like a streamable, for example, instead of waiting for your text, you could have it stream through.
+
+A lot of this is just setting up the boilerplate. I'm just skipping through here to see if I see anything that sticks out.
+
+But a lot of this is just JSON setting up the boilerplate template. Using Google Fonts, something called iFrame Resizer. And this is maybe doing the heavy lifting right here is this JavaScript.
+
+[00:13:16] **Jason Hand:** You looked at, if you like, could do a diff between this scene and the other scene, oh, what's actually being changed each time.
+`} />

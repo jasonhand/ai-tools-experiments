@@ -1,0 +1,145 @@
+---
+layout: ../../layouts/EpisodeLayout.astro
+Title: "Exploring eBPF with AI Tools: Insights and Applications"
+Author: "jasonhand24@gmail.com"
+HeroImg: "../images/thumbnails/ep28.png"
+VideoID: "BuPf-qAzTJI"
+EpisodeNumber: "28"
+Date: "2025-05-08"
+Description: "In this session, Jason Hand and Scott Mabe delve into the intriguing world of eBPF (Extended Berkeley Packet Filter) and its integration with AI tools for learning and application development. The discussion begins with Scott explaining his approach to learning new technologies through experimentation, using eBPF as a case in point. They explore how eBPF interacts intimately with the operating system kernel, allowing users significant control over hardware for tasks such as memory access and network management. The conversation touches on Datadog's use of eBPF for enhancing observability through Universal Service Monitoring, Cloud Network Monitoring, and security tools. Scott shares an anecdote about encouraging cybersecurity students to learn about eBPF by looking it up on their phones during events. The dialogue transitions into a demonstration where Scott uses generative AI tools like ChatGPT to write a program monitoring changes to crucial Linux files like the shadow file, which is critical for user privilege configurations. Despite initial coding challenges resolved via GitHub Copilot, this process underscores the value of these AI tools in developing functional scripts swiftly without extensive manual research or coding expertise. Both participants acknowledge the iterative nature of using large language models across multiple platforms to achieve workable solutions while emphasizing that although not perfect initially, these technologies significantly expedite development processes by offering foundational code quickly."
+Tags: ["ebpf", "chatgpt", "github-copilot", "system-monitoring"]
+---
+import TranscriptSection from '../../components/TranscriptSection.astro';
+
+<p>In this session, Jason Hand and Scott Mabe delve into the intriguing world of eBPF (Extended Berkeley Packet Filter) and its integration with AI tools for learning and application development. The discussion begins with Scott explaining his approach to learning new technologies through experimentation, using eBPF as a case in point. They explore how eBPF interacts intimately with the operating system kernel, allowing users significant control over hardware for tasks such as memory access and network management. The conversation touches on Datadog's use of eBPF for enhancing observability through Universal Service Monitoring, Cloud Network Monitoring, and security tools. Scott shares an anecdote about encouraging cybersecurity students to learn about eBPF by looking it up on their phones during events.</p>
+
+<p>The dialogue transitions into a demonstration where Scott uses generative AI tools like ChatGPT to write a program monitoring changes to crucial Linux files like the shadow file, which is critical for user privilege configurations. Despite initial coding challenges resolved via GitHub Copilot, this process underscores the value of these AI tools in developing functional scripts swiftly without extensive manual research or coding expertise. Both participants acknowledge the iterative nature of using large language models across multiple platforms to achieve workable solutions while emphasizing that although not perfect initially, these technologies significantly expedite development processes by offering foundational code quickly.</p>
+
+## Jump To
+
+- [Introduction](https://youtu.be/BuPf-qAzTJI?t=0)
+- [Learning about eBPF](https://youtu.be/BuPf-qAzTJI?t=41)
+- [Overview of Operating System Kernel Interaction](https://youtu.be/BuPf-qAzTJI?t=120)
+- [Use Cases of eBPF at Datadog](https://youtu.be/BuPf-qAzTJI?t=225)
+- [Generative AI in Coding Demonstration](https://youtu.be/BuPf-qAzTJI?t=298)
+- [Initial Coding Challenges and Solutions](https://youtu.be/BuPf-qAzTJI?t=350)
+- [Exploring Various Tools Related to eBPF](https://youtu.be/BuPf-qAzTJI?t=426)
+- [Exploration of Networking Capabilities via eBPF Programs](https://youtu.be/BuPf-qAzTJI?t=549)
+- [Discussion on Presentation Focused on Promoting eBPF](https://youtu.be/BuPf-qAzTJI?t=611)
+- [Encouragements About Learning With AI Tools](https://youtu.be/BuPf-qAzTJI?t=670)
+
+## Resources
+
+- [eBPF Official Documentation](https://ebpf.io/)
+- [eBPF Overview - Datadog Knowledge Center](https://www.datadoghq.com/knowledge-center/ebpf/)
+- [ChatGPT](https://chat.openai.com/chat)
+- [GitHub Copilot](https://github.com/features/copilot)
+
+## Key Takeaways
+
+- eBPF allows deep interaction with OS kernels, providing significant control over hardware resources.
+- Generative AI tools like ChatGPT can aid non-developers in scripting tasks rapidly.
+- Datadog utilizes eBPF for enhancing system observability in various products.
+- AI tooling expedites coding by providing a basis upon which developers can build further.
+- Learning through hands-on experimentation fosters deeper understanding than theoretical study alone.
+
+{/* TRANSCRIPT SECTION - Full conversation text with timestamps */}
+<h2>Full Transcript</h2>
+
+<TranscriptSection transcriptContent={`
+[00:00:00] **Jason Hand:** So anyway to get right to it. What we wanted to talk about today is you and I recently had a conversation about eBPF, which is a subject that you've been doing a lot of work around preparing for some talks, I think some presentations and some content, that kind of thing and, one of the, one of the areas we haven't really explored a lot with the AI Tools Lab project just yet is using generative AI as a learning tool. I think we all know examples of how we're learning using it, but you have set out to actually specifically learn some things about eBPF and yeah, I thought we just have you on and show us what you figured out and maybe share with others. 
+
+[00:00:41] **Scott Mabe:** Yeah, the. Honestly, the best way that I learn anything is by trying something seeing if it breaks or if it actually works when I start. And for those not to know, eBPF (Extended Berkley Packet Filter). And it works very closely with the kernel of your operating [00:01:00] system or your computer itself, which controls how your computer uses hardware just to keep that really super duper short, and that's something that's incredibly fascinating to me is that how I can control, like how I access memory or the network or anything at all.
+
+It's really cool and I am guilty of being a little bit of a bully. At events and I, whenever it's a student that comes up to me and asks me about, \"Hey, I wanna break into cybersecurity. I wanna know how to do cool stuff, and I learn about cybersecurity\". I often will ask them if they know about eBPF and if they say no.
+
+The bully part of it comes in where I ask them to pull out their phone and then to look up eBPF and then, yeah. You're good. So with that covered very briefly what eBPF is, but you think we should jump in more? Yeah. And maybe get through, let's take a look at something good graphic of what this looks like here.
+
+Because we both work at Datadog we [00:02:00] have this really cool knowledge center that has straightaway. What is eBPF? We're defining it here. And of course that is the extended Berkeley packet filter.
+
+I really like applica or images like this because it helps us understand just at a glance like, yeah, this is where we usually live. That is where our. Web browsers and our code editors live, right? Application libraries. But when we think about the kernel, that's really how system calls are made, how things interact with down here, the hardware, which is really cool.
+
+And it's something that we can dive in deeper with, various programs that interact with eBPF. And if you're curious about some of the things that we could do with eBPF and why we, Datadog and myself are so interested in eBPF, it enables a lot of things around observability.
+
+It helps us [00:03:00] build products at Datadog and we use it internally to understand our own networking too. So there's things like Universal Service Monitoring, Cloud Network Monitoring, and the security tool aspect of it, which is probably my favorite piece. And with that. Because you mentioned talking about gen AI and making things happen, and I talked about how I followed the scientific method of \"Fool Around And Find Out\" out as a way of learning.
+
+I went to chat GPT and I asked it to make me a little program to say, monitor a file on the Linux operating system. And if you're not fairly familiar with the Linux operating system, there's everything is a file, which is in my idea, pretty cool. And there's also a file called the shadow file.
+
+And that shadow file, that's ultimately where [00:04:00] you can talk about who is a privileged user and can escalate and become an administrator. 
+
+So long story short, if someone edits that file and adds people to it without your knowledge, that's \"Bad News Bears\", and you obviously want to be able to know when that happens.
+
+So my curiosity was piqued. I have never really been a great programmer. I've always been more of an infra guy. I. And I decided to ask Chat GPT to write something for me that I could just run and just test out. Can I see if somebody changes this file, which is Etsy Shadow, which is where that resides.
+
+Nice. Yeah. 
+
+[00:04:47] **Jason Hand:** And would you say that it, are you able to demonstrate this for us or would you say that it like, got it right, right out of the, right out of the gate? Or did it have to give you a little, you have to do some work on it. 
+
+[00:04:58] **Scott Mabe:** So first [00:05:00] off yes, I can demonstrate two, did it get it right out of the gate, and that answer was nope.
+
+It needed some tweaks. But I was able to come here with Copilot and I could probably scroll through here and. Of course I was asking afterwards what does this code do? 
+
+[00:05:18] **Jason Hand:** Yeah. 
+
+[00:05:18] **Scott Mabe:** But there was an error that I was getting that was a bites like object is required, not string so. I asked Copilot why I'm getting this error, so it found it, it helped him resolve it.
+
+It gave me the area to fix here that I was able to copy and paste into below here this initialized \"bpf\" and basically, initially I wrote it to do, said doers file. And then when I tested it out, that was boring. But so I changed it to shadow and made another couple tweaks, but So was it perfect out of the box?
+
+No. Was I able to use another tool Copilot with GitHub and VS Studio Code to get it right? 100%. 
+
+[00:06:06] **Jason Hand:** Yeah. And now that's similar to my experience in some projects it takes, yeah, it takes a village of LLMs. I gotta get, gotta go work, talk to a few of them. 
+
+[00:06:18] **Scott Mabe:** And I think it's also that's real life though.
+
+Yeah. You're asking a machine to make a best guess of, Hey, I'm running a boom tu can you tell me how to do this? It's gonna try and gives you a, its best guess but some tweaking revising and it's still not the perfect utilization use case. It's really good. I'm happy with it. I can tweak it and probably do a lot more with it, but it still worked out.
+
+Okay. Cool. 
+
+[00:06:50] **Jason Hand:** So it sounds like some of the models, at least some of the recent ChatGPT models are familiar with eBPF and can at [00:07:00] least assist in some Python, which I felt, I feel is a, is one of the languages that most of them excel in already. 
+
+[00:07:06] **Scott Mabe:** Yes. Yes. And of course we see that these are some of the tools related to eBPF and yeah, it does a great job of automatically knowing or being able to tell me what I need.
+
+Of course, you know the BCC tools that are out there where eBPF, and we need to work with the Berkeley packet filter itself. Time that's important. And yeah, it did a great job, in my opinion, even though it wasn't 100% perfect. But then again you and I both play music, so when you do a first pass on trying to learn something, it's probably not gonna be great, or, yeah.
+
+[00:07:45] **Jason Hand:** And you have to put things into perspective, like when you say it did a great job. Are you saying it created the perfect script? No. What it did? The job that it did, yeah. Is that you didn't have to write it. 
+
+[00:07:57] **Scott Mabe:** Correct. I didn't have to go through a lot of [00:08:00] different books. I didn't have to go through GitHub.
+
+I didn't have to do a lot of searching through Stack Trace or other websites. Yeah. Which would've taken a lot more time, 
+
+[00:08:09] **Jason Hand:** And it's not, unless you can't or even wouldn't refuse 
+
+[00:08:12] **Scott Mabe:** to, it's just like, why? Yeah, honestly in less than an hour I was able to have something that worked.
+
+[00:08:19] **Jason Hand:** Yeah. That's great. And 
+
+[00:08:21] **Scott Mabe:** we could kick it off in a moment if you'd like. I would love, yeah, I would love to see it in action. All right. Are you ready? We can, let's do it. Do just that. 
+
+So all we have to do is just tell it to run. We are gonna get a couple warnings and a couple things that are generated there. So now it is doing, as it says, monitoring the file.
+
+And on my other screen where I am not going to show you what I'm doing, I'm just gonna go ahead and open up that shadow file. You can already see that I've opened it. Yeah. If I go ahead. I'm using Vim, so you know I'm living dangerously. I can go ahead [00:09:00] and write something silly in there and then \"w:q\" to write and quit actually wrote it, and then you see that I wrote it because that is the write attempt of shadow, so we know exactly that something happened that was immediate.
+
+It was very much right away and I can close that.
+
+Yeah. Straight away, we knew there was an issue. We knew someone may wrote to it and then we could find it right away that someone did that. I know straight away, and it's really. This much of what we can do with eBPF. And if you're doing a zoom in, not on me, I was pinching and zooming for very minuscule amount of stuff that we can do with eBPF there's obviously quite a lot more.
+
+Yeah. The other things I've played with have been to, look at networking, look at my DNS calls. Overall, that happened throughout my system and that's been [00:10:00] really interesting for when you're running a virtual machine on a cloud provider. You can see like who they're using for \"apt\" or \"apt get\", like where those are repositories and where you're pulling files from.
+
+You can trace every system call and see who's doing it, how and where. What exact command is someone running. It's actually really neat. There's also some scary things like some \"snoop\" programs that come in the tools package where you can do like a TTY Snoop and I can, if you were logged into the same machine, typing away doing your work, I could run TTY Snoop and see exactly everything that you're typing in there.
+
+But as it's happening, it's basically mirroring your connection. Very minimal of what eBPF can do, but it's a lot. It's powerful and I'm really psyched. It was really cool for just a couple prompts to be able to have something that worked like that [00:11:00] so I can test and kick the tires. 
+
+[00:11:02] **Jason Hand:** So what's the presentation you're working on is about eBPF or eBPF as part of that presentation.
+
+What's the core message from that talk? The 
+
+[00:11:10] **Scott Mabe:** core message of it is basically I'm really excited about eBPF. I want other people to be excited about eBPF and some of the things it can do. I just want more people to learn about it. I, of course, AI is like the big star of the moment, but this is a technology that we can gain so much insight and data about observability it's really cool to me. 
+
+[00:11:36] **Jason Hand:** And we can always use the gen ai tooling out there to educate ourselves on it and to understand more about it 
+
+[00:11:42] **Scott Mabe:** and to educate ourselves about it and to figure out ways to get hands on in a manner that if you're afraid of doing something, because you're not a developer such as me I'm not a developer.
+
+So how do I get into there? How do I get to manipulate things and [00:12:00] try something that I think is cool? I. 
+
+[00:12:03] **Jason Hand:** Yeah. Cool. Scott appreciate you making time and sharing that stuff with us and looking forward to chatting with you again in the future. Yes, sir. It was fun. Enjoy the rest of your day and we'll talk to you later.
+`} />

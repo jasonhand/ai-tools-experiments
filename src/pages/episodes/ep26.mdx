@@ -1,0 +1,122 @@
+---
+layout: ../../layouts/EpisodeLayout.astro
+Title: "Automating Content Transformation with N8N and Generative AI"
+Author: "jasonhand24@gmail.com"
+HeroImg: "../images/thumbnails/ep26.png"
+VideoID: "0jCd_Rcyl3I"
+EpisodeNumber: "26"
+Date: "2025-05-07"
+Description: "In this video, Jason Hand discusses his innovative use of automation tools, specifically N8N, to enhance productivity in AI content transformation. He details the process of creating workflows that automate various tasks related to AI Tools Lab projects he works on. Initially, he describes a workflow designed to generate a set of artifacts from a video and its transcript. This involves creating episode images, moving files, and utilizing agents for content manipulation. However, Jason shifts the focus to additional utility from the content by sending follow-up questions to interview guests, capturing their answers in Airtable, and using this data to produce more content."
+Tags: ["n8n", "automation", "airtable", "workflow"]
+---
+import TranscriptSection from '../../components/TranscriptSection.astro';
+
+<p>In this video, Jason Hand discusses his innovative use of automation tools, specifically N8N, to enhance productivity in AI content transformation. He details the process of creating workflows that automate various tasks related to AI Tools Lab projects he works on. Initially, he describes a workflow designed to generate a set of artifacts from a video and its transcript. This involves creating episode images, moving files, and utilizing agents for content manipulation. However, Jason shifts the focus to additional utility from the content by sending follow-up questions to interview guests, capturing their answers in Airtable, and using this data to produce more content.</p>
+
+<p>Jason elaborates on the automated systems that manage these tasks, including workflows that generate interview questions, send them to guests, and integrate their responses back into Airtable. From there, another system drafts a blog post combining transcript data and guest insights, stored in Google Drive, alongside a hero image. He demonstrates how tweaks, such as avoiding text in images, are addressed through prompt adjustments. Further efforts involve exploring different AI models like Gemini 2.0 and managing ongoing content requirements with markdown files in Astro. Through his walkthrough, Jason highlights the potential for automation in streamlining content production workflows.</p>
+
+## Jump To
+
+- [Introduction to N8N and AI Tools Lab](https://youtu.be/0jCd_Rcyl3I?t=0)
+- [Automating Content transformation](https://youtu.be/0jCd_Rcyl3I?t=60)
+- [Leveraging Airtable for Data Management](https://youtu.be/0jCd_Rcyl3I?t=120)
+- [Generating Interview Questions](https://youtu.be/0jCd_Rcyl3I?t=180)
+- [Processing Guest Responses](https://youtu.be/0jCd_Rcyl3I?t=240)
+- [Drafting Blog Posts from Interviews](https://youtu.be/0jCd_Rcyl3I?t=300)
+- [Image Generation and Customization](https://youtu.be/0jCd_Rcyl3I?t=360)
+- [Integration with Google Drive](https://youtu.be/0jCd_Rcyl3I?t=420)
+- [Exploring AI Models and Tools](https://youtu.be/0jCd_Rcyl3I?t=480)
+- [Planning Future Workflow Enhancements](https://youtu.be/0jCd_Rcyl3I?t=540)
+
+## Resources
+
+- [N8N Automation Tool](https://n8n.io/)
+- [Airtable](https://airtable.com/)
+- [OpenAI Models](https://openai.com/)
+- [Astro Markdown](https://astro.build/)
+- [Google Drive](https://www.google.com/drive/)
+
+## Key Takeaways
+
+- N8N automation can significantly streamline workflow processes in content transformation.
+- Using Airtable for tracking and managing data from interviews enhances the content's depth and accuracy.
+- Automation can help in maintaining consistency and quality in content output through structured frameworks.
+- Experimenting with different AI models can offer insights into performance and cost-effectiveness.
+- Continual workflow adjustments are crucial to meet evolving project needs and technological advancements.
+
+{/* TRANSCRIPT SECTION - Full conversation text with timestamps */}
+<h2>Full Transcript</h2>
+
+<TranscriptSection transcriptContent={`
+[00:00:00] **Jason Hand:** Okay, I'm gonna walk you through a few things that I've built here using automation and a tool called N8N. And there's a few things that are related to our AI tools lab project that I've been working on. The very first one here, I'm just gonna just show it. I'm not quite ready to run it yet 'cause I don't have any content to process.
+
+But this is essentially the workflow that creates a new set of artifacts based off of a transcript and a video that's been provided into a form, into Airtable. So it goes through, there's one agent that does some things here. We generate an image for our episode, move some files around, run another agent I.
+
+Again, create some new files. So I'll step through that in a different a different video. What I wanted to show though was more what happens [00:01:00] separate from creating that content. I had an idea to see if we can extract some more uses out of that, the content that we have in the transcript. And what I thought we could do is maybe send some follow up questions.
+
+To the person who was being interviewed, to the guest of the video, to the, like the main person on the video, sharing their thoughts, send them a few follow up questions, take that, take the answers that they provide from us, and then do something with that in terms of building additional content. And so what I've decided to do I've got this workflow here, which.
+
+I'll step through and explain, but essentially it's looking for something over in Airtable. We've got an agent that runs, it's building some interview questions and adding those back into Airtable and then sending that off to our guest. And then once the guest has [00:02:00] had a chance to, respond to the messages.
+
+There's another workflow in here that looks for the response. An agent then picks that up and then manipulates the data and then puts it back into Airtable, essentially taking the responses from the guest and putting them back into Airtable. And we can see all that. For example, here in Airtable, let me zoom, can I zoom in any, zoom in just a little bit here?
+
+We can. See I've got I'm using Airtable to track all of the episodes. And down here at the bottom, if we scroll over you can see some of the ones I've run previously where it's created some of these other assets for me. But over here all the way on the right are these questions and answers.
+
+And so these are the actual questions that were generated. Sent to the guest. And then over here in this a column are the answers. So we've got three questions, three answers. So that's more information that we've gotten straight from the source that is in addition to the [00:03:00] transcript and the video and all that kind of stuff.
+
+So we're gonna take that stuff and see if we can do more with it. So now that we've got some questions and some answers from our guests that are in addition to what we've got. I then have another workflow that looks to see if we've gotten all the information from our guests, and then it goes and grabs the transcript and then it begins to, I need to rename this agent here.
+
+That's not what actually happens here. Actually it is. Yeah. No, that's what happens here is we go ahead and start drafting a very early framework template of the blog based on the transcript. Based on the interview questions that we've got that's going into a variable and then this is going into Google Drive.
+
+Once we have that blog post, it's being saved into Google Drive, then we go ahead and create a new image. I wanted a hero image for each of these blog posts. And so we go out and grab some stuff outta [00:04:00] Airtable, set a prompt up to then send over to our image generator. Once we have the image, I have to convert it from Base 64 to a file that I can upload into Google Drive.
+
+We update Airtable with the information about where that image is found. So here under Blog Hero image. And so an example of one is, pop this open. I think it just likes to download it. Yeah. So we'll open this up. Now, one thing I am going to do is. Insist that it doesn't add any text anywhere.
+
+I just don't want text in my hero image, so I have to go in and specify that with my prompt, but I think that'll clear up that issue for me. But you can see here in Airtable we've got a record of where that file is saved, as well as the blog draft. So that's, that just takes me into Google Drive.
+
+But we can now go into here. And see [00:05:00] the blog that was created for us. So we're going to try to get this to run. I've got a episode in here. I'm gonna, I'm gonna process, so we've done a few of them already.
+
+You can see we've got the transcript already in Airtable. It's just a text file that's been uploaded. So I'm gonna come over here and check this interview checkbox in our interview column, and when I come over here into my automation. I'm gonna go into the follow-up interview.
+
+Now this is set to run automatically. I've got it set to active, but it's only gonna check I think every minute or something. For the sake of just timeliness, I'm gonna go ahead and hit test workflow just to kick it off and we can see what's going on here. Now it did see that there was an interview and it ran and it's already complete.
+
+That stage is done and if I go get into my email. Here's our email, [00:06:00] and you can see it comes with three questions at the bottom. The best way to do this to see, to make sure it works, is to actually just, put in some real responses here.
+
+So I'm gonna go ahead and do that. Alright. And I can say, thanks, it's been great. Okay. All right. So that's been sent off now and over in my workflow, the collect responses workflow. Again, this is set to run automatically, but I'm gonna go ahead and run it. And what the agents had done here is it went and looked at that email response that I got.
+
+And if we look here on this, in this record, on record 13, we scroll all the way over to the right. I'm just gonna open up the record. You can see the questions and responses for all of 'em. So here's Q1, Q2, Q3. These are the questions that I, that were asked.
+
+Here's our answers. That are [00:07:00] now stored into Airtable. So we've got all of that new information from the guest that they just provided us. Now if we go back into this "Draft Blog" workflow, like I said, it will create a draft and an image.
+
+But first, in order to trigger it, I need to come over into Airtable and check this "Draft Blog". So similar to the interview trigger, I've just got a draft blog trigger, and so N8N is gonna look for that and then do the rest. So we'll go ahead and trigger that here.
+
+And if we look, I've got 4 blog posts in this blog folder. No images yet, but I made a change to this flow and I believe if it works correctly, it should put both the image and the blog post into that same directory.
+
+Also, point [00:08:00] out I'm currently using, I. Open ai I believe 4.1 model. I've previously used Claude Sonnet 3.7. And so I'm trying a variety of different prompts, not seeing a huge difference in anything. I might experiment with Gemini 2.0 today just 'cause it's one of the, I believe, free ones and.
+
+I just thought I should compare the results between the free ones and the non-free ones. As we can see here in the process, it's currently generating our image. So far we haven't run into any problems. And I can usually without causing any kind of problem, come into each of these steps and see what's happening.
+
+So this is the step that creates the image generation prompt for the hero image, and we can review and see what that. What that actually says here, I'll open it up just a little bit bigger, but create, generate a high quality, eye-catching hero image of a modern, sleek workspace [00:09:00] showing a diverse team collaborating around a large digital display on the screen, and AI interface generating a web app layout from a simple, natural language prompt, visible, or modular templates, live preview of the app, customizable UI components.
+
+Code that is clean and organized around the workspace. Symbols of real-time feedback, version control integration and seamless export scene conveys speed. Collaboration between technical and non-technical users. Power of AI assisted wrap, rapid app development. And then I've also passed in like my style stuff.
+
+Anyway that's just give you an idea of what it's sending it. And it did generate the image. So actually instead of opening up here, why don't I just go back into the email and show you, this is the email response that's sent out.
+
+And so what it's done is it's just put the blog post straight into the body of the email here. And, it tells you that this is just a starting point. Feel free to edit this to your liking. It's already been put [00:10:00] into first person using, the idea is to make it sound as though this is, these are, this is you.
+
+Most of this is you. This is like your words based on the transcript and the interview. So it's already set up that way. But just to create some consistency and make sure that as the person goes and starts to edit this, it's already set up for that first person perspective but the blog post is in a specific framework that I've set in my prompt to make sure that it is written for the right audience.
+
+It does have a problem statement, really breaks down what was discussed in the video through the transcript. A lot of this is structured from Gen AI, but it's not necessarily created from Gen AI. You can see it even includes direct quotes from the person. And so it's really meant to not necessarily generate a blog post from the ground up from scratch, completely generative, but more take the text and the ideas and everything that we've already collected from the video and the transcript and the [00:11:00] follow-up interview questions to then structure something in a blog post format that follows a very specific framework.
+
+And I know in markdown it's difficult to see what this looks like, but I think if we were to see it in HTML in a site, it would look much better. It also includes some resources and things like that. And then here at the bottom is a link that. You as a user wouldn't be able to see.
+
+This is really just for me for testing. I'll probably remove it from this email that goes to the user. But this takes me to the hero image and so we can see what was created here in the background. And this isn't too bad. Like I said, I don't want text on any of my hero images, so I need to go back and adjust the prompt so it just explicitly does not do that.
+
+And but then if we go over into our. Google Drive. We can see we've got the blog post here
+
+and the hero image [00:12:00] is also included in there. So everything worked as expected, and that is where I am currently with the automation for the AI Tools Lab. Like I said, I'll in a different video, I will walk through this one, which creates the new episode pages for every new video and transcript that we have.
+
+However, I will be modifying this here shortly so that it also creates some markdown files, not just the HTML files because we're in the process of converting to Astro, and so we will be using markdown with front matter formatting. Rather than generating new HTML from scratch for every episode.
+
+That's all I wanted to show off in this video, and I will see you on the next one. Thanks.
+`} />

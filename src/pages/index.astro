@@ -1,6 +1,24 @@
 ---
-const indexHtml = await import.meta.glob('../content/pages/index.html', { query: '?raw', import: 'default' });
-const rawHtml = await Object.values(indexHtml)[0]();
----
+import fs from 'node:fs/promises';
+import path from 'node:path';
 
-<Fragment set:html={rawHtml} />
+const htmlContent = await fs.readFile(path.join(process.cwd(), 'public', 'pages', 'index.html'), 'utf-8');
+
+// Parse the content to remove doctype and html/body tags if present
+const contentWithoutDoctype = htmlContent.replace(/<!DOCTYPE[^>]*>/i, '')
+  .replace(/<\/?html[^>]*>/gi, '')
+  .replace(/<\/?body[^>]*>/gi, '');
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Tools Lab</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <Fragment set:html={contentWithoutDoctype} />
+    <script is:inline src="/scripts/script.js"></script>
+</body>
+</html>

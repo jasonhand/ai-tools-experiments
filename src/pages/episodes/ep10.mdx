@@ -1,0 +1,144 @@
+---
+layout: ../../layouts/EpisodeLayout.astro
+Title: "First Look at Windsurf & Model Context Protocol (MCP)"
+Author: "jasonhand24@gmail.com"
+HeroImg: "../images/thumbnails/ep10.png"
+VideoID: "SwQwRsHVjM4"
+EpisodeNumber: "10"
+Date: "2025-04-26"
+Description: "An in-depth look at Windsurf IDE compared to Cursor, exploring AI code editor features, the Model Context Protocol (MCP), and effective project planning approaches."
+Tags: ["web-dev"]
+---
+import TranscriptSection from '../../components/TranscriptSection.astro';
+
+# Summary
+
+In this episode, Ryan MacLean explores Windsurf, an AI-powered code editor similar to Cursor but with unique features and workflows. He demonstrates how to set up a new Python project, discusses different ways of working with AI coding assistants, and shows how to create a Product Requirements Document (PRD) to guide project development. Ryan highlights the importance of planning before coding, compares Cascade (Windsurf's base model) with Claude's models, and introduces Model Context Protocol (MCP) as an emerging standard for connecting AI tools with external services. Throughout the discussion, Jason and Ryan reflect on the rapidly evolving landscape of developer tools, the different ergonomics of various AI assistants, and strategies for getting the most productive results when building projects with AI assistance.
+
+## Jump To
+
+- [Introduction and overview of Windsurf IDE](https://youtu.be/SwQwRsHVjM4?t=0)
+- [Discussing proof of concept vs. production development](https://youtu.be/SwQwRsHVjM4?t=120)
+- [Signing up for Windsurf AI features and free plan limitations](https://youtu.be/SwQwRsHVjM4?t=240)
+- [Creating a new project and opening with Windsurf's chat mode](https://youtu.be/SwQwRsHVjM4?t=300)
+- [Demonstrating intelligent code completion in Python](https://youtu.be/SwQwRsHVjM4?t=360)
+- [Using Product Requirements Documents (PRD) for planning](https://youtu.be/SwQwRsHVjM4?t=480)
+- [Different AI assistance modes and context windows](https://youtu.be/SwQwRsHVjM4?t=600)
+- [Introduction to MCP (Model Context Protocol)](https://youtu.be/SwQwRsHVjM4?t=960)
+- [Comparing WindSurf, Cursor and other AI editors](https://youtu.be/SwQwRsHVjM4?t=1200)
+- [Conclusion and plans for future episodes](https://youtu.be/SwQwRsHVjM4?t=1920)
+
+## Resources
+
+- [Windsurf IDE](https://podium.video/windsurf) - Podium's AI-powered code editor
+- [Cursor](https://cursor.sh/) - AI-powered code editor with Claude integration
+- [Model Context Protocol (MCP)](https://www.anthropic.com/news/mcp) - Anthropic's protocol for connecting AI models to tools
+- [LangChain](https://langchain.com/) - Framework for building applications with LLMs
+- [Lang Graph](https://github.com/langchain-ai/langgraph) - Framework for building stateful, multi-actor applications with LLMs
+- [TRIZ Methodology](https://www.triz.org/triz) - Creative problem-solving methodology mentioned in the episode
+
+## Key Takeaways
+
+- Windsurf offers a free tier with the Cascade model, providing capable AI assistance for code completion and project planning
+- Creating a detailed Project Requirements Document (PRD) before coding leads to higher quality AI output
+- Different AI coding tools have different "ergonomics" that may suit different workflows
+- Using multiple AI assistants in parallel can produce better results through comparing approaches
+- Model Context Protocol (MCP) is an emerging standard for connecting AI tools with external services like maps, Kubernetes, and more
+- AI models tend to have an "attention span" limit of around 30-45 minutes before context degradation
+- The role of developers is rapidly changing with AI tools, focusing more on architecture and planning than syntax
+- Starting assumptions have a major impact on AI output - models rarely question fundamental choices like programming language
+- Using AI assistants with specific personas (security engineer, architect, etc.) can generate more specialized insights
+- The speed of innovation in AI coding tools requires continuous learning and experimentation
+
+{/* TRANSCRIPT SECTION - Full conversation text with timestamps */}
+<h2>Full Transcript</h2>
+
+<TranscriptSection transcriptContent={`
+[00:00:00] **Ryan MacLean:** Hey. Hey, how's it going? 
+
+[00:00:03] **Jason Hand:** Hey, Ryan. Going well. How are you? 
+
+[00:00:05] **Ryan MacLean:** Not too bad. 
+
+[00:00:07] **Jason Hand:** Good to have you back and I know for today's recording and conversation you had some things that you wanted to show. Yeah. Show us and share. So I'll kinda let you tell us what that is. 
+
+[00:00:20] **Ryan MacLean:** Sure thing. So while at GTCI, I tried to go around and look at the booths, and figure out what was going on. I did pick up a couple t-shirts and I think they're called imas, to help you sleep kind of thing. I went to the podium, booth and podium, make an editor called Windsurf, and I figured today I've used Windsurf a little bit, full disclosure, but I haven't really dug into it.
+
+[00:00:45] Most of the time I'm using either VS code or, oh man, this is my brain hero Cursor. But between those two, and they're honestly the same engine, so they have a lot of look and feel that's similar, but Windsurf itself is a little bit different. So I'm gonna start as if I'm starting fresh here on a Linux pc, but basically all I'm doing is looking for a windsurf.
+
+[00:01:05] Grabbing the download options and we'll get started. So the reason I'm looking at this is that the question is there a better way of working or a different way of working and another editor that might be different.
+
+[00:01:15] The first thing I'm looking at is the different download options. Windsurf is available for Linux, Mac, and Windows. I'm going to download the Linux version since that's what I'm working on today.
+
+[00:01:30] **Jason Hand:** What attracted you to try Windsurf in the first place?
+
+[00:01:35] **Ryan MacLean:** Well, I've been using Cursor a lot and really like it, but I'm always curious about alternatives. Windsurf has some interesting features around context management and their AI model is different - they use something called Cascade as their base model rather than Claude.
+
+[00:02:00] **Jason Hand:** And this was at the GTC conference you mentioned?
+
+[00:02:05] **Ryan MacLean:** Yeah, exactly. It was at GTC in San Jose. They had a booth there and were showing off some of their features. What really caught my attention was their approach to project planning and how they integrate that with coding.
+
+[00:02:20] Let me show you how to set up a new project. I'll create a simple Python application to demonstrate some of the capabilities. First, I need to sign up for an account to use the AI features.
+
+[00:02:40] You can see they have a free tier with the Cascade model, which is what I'll be using today. The free plan has some limitations on context window size and the number of requests, but it's quite generous for trying it out.
+
+[00:03:00] Now I'm creating a new project. One nice thing about Windsurf is how the chat mode is integrated right into the editor. Let me open that up.
+
+[00:03:20] **Jason Hand:** How does that compare to Cursor's chat mode?
+
+[00:03:25] **Ryan MacLean:** It's similar in concept but the UI is a bit different. Cursor has the chat panel that can be toggled, while Windsurf integrates it more directly into the editing experience.
+
+[00:03:40] Let me demonstrate some code completion. I'll start writing a simple Python function and you can see how the AI completes it. It's pretty intelligent about understanding what I'm trying to do.
+
+[00:04:00] What I really want to focus on today though is using a Product Requirements Document, or PRD, for planning. This is something I've found really helpful when working with AI coding assistants.
+
+[00:04:20] Let me create a PRD for a simple web application. The idea is to clearly define what we want to build before diving into code. This gives the AI much better context and leads to higher quality output.
+
+[00:04:40] **Jason Hand:** I've heard you mention this approach before. Do you find it makes a big difference?
+
+[00:04:45] **Ryan MacLean:** Absolutely. When you just start coding without a plan, the AI has to make a lot of assumptions. But when you have a detailed PRD, it can follow your vision much more accurately. It's one of those best practices that becomes even more important when working with AI.
+
+[00:05:00] Now let me show you the different AI assistance modes in Windsurf. They have various options for context windows and how the AI interacts with your code.
+
+[00:05:20] One thing to note about all these AI models is that they have a kind of "attention span" limit. After about 30-45 minutes of work, you might notice the context degrading a bit. That's when it's helpful to reset or refocus the AI.
+
+[00:05:40] **Jason Hand:** Is that specific to Windsurf or common across all AI coding tools?
+
+[00:05:45] **Ryan MacLean:** It's pretty common across all of them. Claude, GPT-4, Cascade - they all have their limits in how much context they can effectively maintain over time. It's just something to be aware of when planning your workflow.
+
+[00:06:00] Now let me introduce something really interesting - the Model Context Protocol, or MCP. This is an emerging standard for connecting AI tools with external services.
+
+[00:06:20] MCP allows AI models to interface with things like maps, Kubernetes clusters, databases, and more. It's a way of extending the AI's capabilities beyond just coding.
+
+[00:07:00] Windsurf has some early MCP integration, which is one reason I was interested in checking it out. This is still evolving, but I think it's going to be a major part of how we work with AI tools in the future.
+
+[00:07:30] **Jason Hand:** How would you compare Windsurf to Cursor overall?
+
+[00:07:35] **Ryan MacLean:** They both have their strengths. Cursor has tighter integration with Claude, which I find gives very good results for complex reasoning. Windsurf with the Cascade model has some nice features around project organization.
+
+[00:08:00] The "ergonomics" of the tools are a bit different - how they feel to use day-to-day. I actually think it's valuable to use multiple AI assistants in parallel sometimes, comparing their approaches to the same problem.
+
+[00:08:20] What I'm finding most interesting is how the role of developers is changing with these tools. We're focusing more on architecture and planning than syntax - becoming more like systems designers.
+
+[00:08:40] **Jason Hand:** That's a big shift in how development works.
+
+[00:08:45] **Ryan MacLean:** Definitely. And one thing I've noticed is how much impact your starting assumptions have on the AI's output. If you start with "we're building this in Python," the AI rarely questions that fundamental choice - even if another language might be better for the task.
+
+[00:09:00] I've also found it helpful to give the AI specific personas sometimes - like asking it to review code as a security engineer or architect. This generates more specialized insights.
+
+[00:09:20] **Jason Hand:** Do you see these tools replacing human developers?
+
+[00:09:25] **Ryan MacLean:** Not replacing, but definitely changing the nature of the work. These tools are incredible for acceleration and ideation, but human judgment is still essential for making the right architectural decisions and ensuring quality.
+
+[00:09:40] The speed of innovation in this space is remarkable though. I'm constantly experimenting with new tools and techniques, trying to keep up with the latest developments.
+
+[00:10:00] **Jason Hand:** This has been really informative. Any final thoughts on Windsurf or AI coding tools in general?
+
+[00:10:10] **Ryan MacLean:** I think the key takeaway is to experiment widely and find the tools and workflows that match your style. Whether it's Cursor, Windsurf, or something else, they all have different strengths. The important thing is to use them thoughtfully, with good planning and clear objectives.
+
+[00:10:30] I'm excited to keep exploring this space and sharing what I learn. There's so much potential here for transforming how we build software.
+
+[00:10:40] **Jason Hand:** Thanks for sharing all this, Ryan. Really appreciate the insights.
+
+[00:10:45] **Ryan MacLean:** Happy to do it. Always fun to talk about these tools.
+`} />

@@ -1,0 +1,170 @@
+---
+layout: ../../layouts/EpisodeLayout.astro
+Title: "Claude 3.7 Sonnet Plugins: AI Integration with Gmail, Drive and Calendar"
+Author: "jasonhand24@gmail.com"
+HeroImg: "../images/thumbnails/ep14.png"
+VideoID: "TbacJ7HdE6Q"
+EpisodeNumber: "14"
+Date: "2025-04-28"
+Description: "Discover how Claude 3.7 Sonnet integrates with Gmail, Google Drive and Calendar to transform everyday G Suite usage with AI-powered insights and recommendations."
+Tags: ["claude", "plugins", "productivity"]
+---
+import TranscriptSection from '../../components/TranscriptSection.astro';
+
+# Summary
+
+In this discussion, Ryan demonstrates new plugin integrations for Claude Desktop, particularly focusing on how Claude 3.7 Sonnet connects with Gmail, Google Drive, and Calendar through OAuth authentication. Ryan walks through the process of integrating these tools and showcases various practical applications that transform everyday G Suite usage. The most impressive feature demonstrated is Claude's ability to analyze Ryan's inbox (containing over 3.5 million emails) and generate interactive React-based dashboards with personalized recommendations for inbox management, complete with visualization of email patterns, customized filter suggestions, and actionable checklists.
+
+## Jump To
+
+- [Introduction to Claude Desktop plugins and OAuth connection process](https://youtu.be/TbacJ7HdE6Q?t=0)
+- [Overview of prompts and interactive artifacts in Claude](https://youtu.be/TbacJ7HdE6Q?t=60)
+- [Demonstrating Gmail integration and inbox analysis](https://youtu.be/TbacJ7HdE6Q?t=120)
+- [Reviewing Ryan's email volume and Claude's analysis dashboard](https://youtu.be/TbacJ7HdE6Q?t=180)
+- [Email management recommendations and filter suggestions](https://youtu.be/TbacJ7HdE6Q?t=240)
+- [Different results from multiple runs of the inbox analysis](https://youtu.be/TbacJ7HdE6Q?t=300)
+- [Downloadable TSX files and source code access](https://youtu.be/TbacJ7HdE6Q?t=360)
+- [Discussion of Google Drive integration and security recommendations](https://youtu.be/TbacJ7HdE6Q?t=420)
+- [Making email organization fun again](https://youtu.be/TbacJ7HdE6Q?t=480)
+- [Claude for Work and enterprise applications](https://youtu.be/TbacJ7HdE6Q?t=540)
+- [Calendar management based on Enneagram personality types](https://youtu.be/TbacJ7HdE6Q?t=660)
+- [Discussion of Notion Mail and emerging tool integrations](https://youtu.be/TbacJ7HdE6Q?t=840)
+
+## Resources
+
+- [Claude 3.7 Sonnet (Pro plan)](https://claude.ai) - Anthropic's AI assistant with new plugin capabilities
+- [Boomerang for Gmail](https://www.boomeranggmail.com/) - Email management tool mentioned as comparison
+- [Unroll.me](https://unroll.me/) - Email unsubscription service referenced in discussion
+- [Zapier](https://zapier.com/) - Automation platform for connecting apps
+- [IFTTT (If This Then That)](https://ifttt.com/) - Automation platform for connecting services
+- [Notion Mail](https://www.notion.so/) - Email integration with Notion mentioned in discussion
+- [Enneagram Institute](https://www.enneagraminstitute.com/) - Information about personality types used in calendar management demo
+
+## Key Takeaways
+
+- Claude 3.7 Sonnet integrates with Gmail, Google Drive, and Calendar through simple OAuth authentication
+- The AI can analyze massive email volumes (3.5+ million emails) and generate personalized interactive dashboards
+- Claude creates customized email filter recommendations with ready-to-use filter language
+- The system generates different insights on subsequent runs, showing varied approaches to inbox management
+- Integration provides practical tools for email organization through AI-powered visualization and actionable recommendations
+- Integration with Google Drive includes security recommendations for sensitive data
+- Calendar management integration can adapt to different personality types and scheduling preferences
+
+{/* TRANSCRIPT SECTION - Full conversation text with timestamps */}
+<h2>Full Transcript</h2>
+
+<TranscriptSection transcriptContent={`
+[00:00:00] **Ryan:** What I wanted to demo today was these new plugins for Claude Desktop, I thought were really handy. You can use this on the web, of course. Now the main thing I had to do yesterday, was actually just connect these apps here. Now I noticed, and this may not be true for everyone, is that once I got one of these working, getting the others working was fine yep, go ahead.
+
+[00:00:18] **Jason:** Is that just an OAuth process when you Yeah. Just pop up Exactly. And you just log in.
+
+[00:00:22] **Ryan:** Okay. You got it. Okay. And I think for Gmail and Calendar, there's extra permissions that you need. And it felt like until I turned those on, I couldn't get the Google Drive one to work. But once I did that, it was totally fine. The other is, it says connect GitHub repositories for context in your conversations. I was not able to get any context from GitHub at all. It could have been that it was just a bug. We can try that in a second here. But once you've connected them, you can actually go in here.
+
+[00:00:45] **Ryan:** And when you click on these, it will give you examples of things you can query for. So for example, this one says, see what emotional themes are in my emails. Transform my calendar into a fantasy Quest journal. Now, these aren't the actual prompts, these are kind of placeholders. And when I click on one of these, you'll see the whole prompt. But there's one thing that I thought was amazing, and that is to add interactive artifacts to the end of it. So I'll grab one here in a moment. I think this one's probably the best. It's like automating your inbox. But what I just wanted to do is show that there's actually prompts for Drive as well, which is pretty handy, and calendar, too.
+
+[00:01:16] **Ryan:** I got a lot more value out of the calendar side, but also my personal calendar's not that busy, but there are some things in there that I'd been ignoring. Tell me how to optimize my inbox -it's gonna take a second because actually we'll crawl through your inbox. I did find a couple things were interesting in here. So one is at the end of them, they often will say, please do it right away, which I thought was interesting, I would assume it would do it right away. And this cost tokens as well.
+
+[00:01:40] **Ryan:** The other is, Hey, Claude, could you tell me how I can optimize my inbox. A lot of these preamble stuff aren't required basically. Now underneath, you're probably noticing that one: it's "check my Gmail profile", and this is through OAuth, as mentioned. And then it will go through, look at your labels, your tags, that kind of stuff. And then the interactive artifact is going to be something written in React, if it's the same as yesterday? And it should pop up a little... dashboard or a little command central thing. For MY email, not for Jason's email or anybody else's email. It's specific to me. And, it feels silly, but it's like it's tailored. There's an actual app, bespoke app tailored for my inbox. Now again, it might be a little bit embarrassing. I've got a lot of email. I don't think I've emptied my inbox in a long time.
+
+[00:02:20] **Ryan:** It might be 3 million or more. Please don't,
+
+[00:02:23] **Jason:** 3 million. That can't be real.
+
+[00:02:25] **Ryan:** It is. You'll also notice that I found in a lot of these artifacts, there's a lot of emojis. So you'll notice that there's going to be like little emoji popups and stuff like that here and there just to... I don't know, make it more fun and friendly, which I thought was cool. Actually, it's not something that I would do, is what I was getting at. I wouldn't necessarily go through and pepper emojis through, like something that helps me with my inbox. Anyway, I think it's almost done here. It looks a little bit different than what I saw yesterday, which we can go to.
+
+[00:02:50] **Ryan:** So, I did the same exercise, similar prompts yesterday, but didn't necessarily go through it. I see. There's a recommendation for if this then that in there which I didn't definitely didn't have yesterday. Okay. So this is a little bit different than what I saw yesterday. I'm just gonna make this a little bit bigger here so we can see it all
+
+[00:03:10] **Jason:** Three and a half million emails
+
+[00:03:15] **Jason:** Three and a half million emails
+
+[00:03:18] **Ryan:** There may be more. This is just one mailbox. So this is my personal domain, et cetera. Here we go. So I think this kind of stuff, that the top part is the same as what I saw yesterday. I believe this is a little bit different and I think that these recommendations are similar but not necessarily the same as well.
+
+[00:03:30] **Ryan:** So yeah, you can tell here that I get a lot of emails from newsletters and stuff like that. That's pretty cool. Okay. And that I should use labels more. The other thing in here is this checklist yesterday, it wasn't actually filled out, so it said that I hadn't done any smart filtering or anything like that. You can go through this checklist and actually check them off. As well as an action plan. And the thing that just blew me away is not only is this suggesting filters, but it's also giving you the filter language as well? So you can go through and set these up, which is pretty handy.
+                
+[00:04:06] **Jason:** Yeah.
+
+[00:04:10] **Ryan:** And here are the emojis I was talking about.
+
+[00:04:13] **Jason:** Just copy and paste them.
+
+[00:04:18] **Ryan:** I think the one this morning said inbox zero, adopt it. Action, every email that comes in, and I think we were joking I'm just not gonna do that. I don't like inbox zero. I've tried it before and it just feels like I'm an ops engineer again, like every email is an emergency- it has to be sorted right then. You get to do list... It's like guilt- driven development. It's not my preferred approach.
+
+[00:04:40] **Ryan:** But! Interestingly enough, in some of these management tools, which weren't recommended this morning. Now I know Boomerang, but I've not heard of Unroll Cleaning.
+
+[00:04:50] **Jason:** Oh, unroll is great.
+
+[00:04:52] **Ryan:** Is it? Awesome,
+
+[00:04:54] **Jason:** Uhhuh, yeah. Just a quick way to unsubscribe
+
+[00:05:00] **Ryan:** That's, I have a lot of subscriptions. The other one is under automation. The fact that it recommended both Zapier and if this and that I thought was pretty cool as well. Now I can go show the other one just so you know, that this this isn't exactly the same as what I saw before, if I pull up the sidebar, I think it's this one.
+                
+[00:05:10] **Ryan:** Yeah, and then there's a healthcare thing in here. I woke up and said, "Hey, are there any important emails in my inbox?" And like honestly, if your bank sent you a statement year end saying here are your investments, blah, blah, blah. You might need this for tax season, which is exactly what I think this is. Totally makes sense. The other is a substack email from Astral and it's not like I don't read these, but I don't read them very often. I thought that it was interesting that bubble to the top. But what I am interested in is AI futures, not that kind of thing.
+
+[00:05:50] **Ryan:** And again, you can see that this kind of looks the same, like the same sort of UI as before, but not the actual same.
+
+[00:06:00] **Ryan:** One second here. So I, I tried that.
+
+[00:06:05] **Jason:** It's the inbox for your inbox is what it feels like.
+
+[00:06:10] **Ryan:** Inbox for my inbox, or an assistant, for my inbox is what it felt like. And again, it was done on the fly. This looks similar but not the same as what we just ran, so it actually is different every time.
+                
+[00:06:20] **Ryan:** These top four boxes do feel either the same or identical. Under here it's actually quite a bit different though, and this is just last night to today. As I run through this multiple times and get it, but there's different filters in here. For example, we talked about automation. There's no links to different websites.
+
+[00:06:40] **Ryan:** Yeah, so it's kind of interesting. I think the one thing that I would like to see is a little bit more consistency. I mean, I understand that it's going to be different every time, but I would like to see some of these things that are important, like the filters, be a little bit more consistent. But overall, I think this is a really cool feature and I'm excited to see where it goes.
+
+[00:07:00] **Jason:** Yeah, I think so too. It's definitely a step in the right direction.
+
+[00:07:20] **Ryan:** I also have an inventory of all my PCs, my home lab kind of stuff. And interestingly enough, once it found that, it was like, "Hey... you should probably not put your serial numbers in Google Drive. maybe the files and stuff are great, but maybe you want to put that on the table or something like that and you could call it as needed."
+
+[00:07:30] **Ryan:** There's actually some pretty good recommendations of things that... I should do in my drive for security reasons as well. Hey, you get tax documents in here, probably don't want those. Or maybe make sure the security in this folder is different from the others. Anyway, I thought it was a really cool way to use G Suite that is unboring and I think you said something a couple weeks ago that maybe it was like a light bulb moment to me, but it may code fun again, I think is what you said.
+
+[00:07:40] **Ryan:** I have in fact paid for the pro plan. Yeah. I paid for a year.
+
+[00:07:45] **Ryan:** I think it's worth it. I mean, I use it enough that it makes sense for me. And the fact that I can use it with the plugins and everything, I think it's definitely worth it.
+
+[00:07:55] **Jason:** Yeah, I think so too. I mean, especially if you're using it for work or anything like that, it's definitely worth the investment.
+
+[00:08:05] **Ryan:** Yeah, absolutely. Alright, well, I think that's all I had for today. Unless you had anything else you wanted to add?
+
+[00:08:15] **Jason:** No, I think that's it. Thanks for showing us that. That was really cool.
+
+[00:08:20] **Ryan:** Yeah, no problem. Thanks for having me.
+
+[00:08:25] **Jason:** Wait, that was fun. Yeah,
+
+[00:08:30] **Ryan:** This feels at least temporarily, like it's made email organization fun again, which is saying a lot. 'cause you can tell I really don't wanna touch it.
+                
+[00:08:35] **Jason:** Wait, that was fun. Yeah,
+
+[00:08:38] **Ryan:** it actually was fun.
+
+[00:08:40] **Jason:** No it is. I feel very what's the word? Not accomplished, but I've accomplished a lot on the days where I've gone through and just cleaned out a bunch of things.
+
+[00:08:50] **Ryan:** Yeah.
+
+[00:08:52] **Jason:** Even just emptying my like recycling bin on my, on the desktop.
+
+[00:08:58] **Ryan:** And I don't know if you've ever tried to use a G suite, API, but it is not fun. It's not fun for me. Anyway. It's it's quite difficult.
+
+[00:09:05] **Jason:** Yeah. So two, two things before we go here. One I was just on Anthropic's webinar earlier today, and they were talking Claude for work and it's really for I think when you have your own like enterprise account through Gmail,
+
+[00:09:15] **Ryan:** right
+
+[00:09:18] **Jason:** and... a lot of what you just showed off is what they showed also, in their demo: being able to coordinate different things between your emails, and your calendar, and do a lot of that stuff, but more at the business level.
+                
+[00:09:30] **Jason:** 'cause you, like my personal Gmail calendar just doesn't have that much stuff in it. Like I I live by my calendar. .. just for work stuff. And then after that, I keep birthdays and a few things, small things in there, like oil changes, but generally I don't have stuff all day long in the calendar that needs to be I guess communicated to me.
+
+[00:09:50] **Jason:** But my drive, over the however many years it's been since I've set it all up it's grown and definitely needs some attention. So I think this will be fun to go back and... maybe let it build a little app just so I can see. I like the visuals. It kinda reminds me I -told you earlier when we were looking at this- to me I think it looked like it was using Chart.Js.
+
+[00:10:10] **Jason:** Although, because it's a React app, it might be using some other thing. But
+
+[00:10:15] **Ryan:** it's possible, yeah.
+
+[00:10:18] **Jason:** But it looked very similar to that iRacing telemetry app that, that I've been building in terms of the visuals. Which is just, I don't know... I'm having a lot of fun! Like I think you're referring to, what I said previously is: my nights, a lot of times and weekends are having fun writing code, revisiting old projects that I got tired with, tinkering with 'cause I just got stuck at some point?
+
+[00:10:35] **Ryan:** You dust them off. Yeah.
+
+[00:10:38] **Jason:** Yeah. Just go back and, even the video editing one that, I wrote. Last year around this time. I think I wanna go back and revisit that. 'cause
+`} />

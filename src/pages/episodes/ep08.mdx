@@ -1,0 +1,63 @@
+---
+layout: ../../layouts/EpisodeLayout.astro
+Title: "Using Cursor and Claude to Fix CSS Layout Issues"
+Author: "jasonhand24@gmail.com"
+HeroImg: "../images/thumbnails/ep08.png"
+VideoID: "-yNJmVCR-nM"
+EpisodeNumber: "8"
+Date: "2025-04-26"
+Description: "A step-by-step walkthrough of diagnosing and resolving complicated CSS layout issues with the help of Cursor's AI-powered assistance and Claude."
+Tags: ["cursor", "claude", "debugging", "web-dev"]
+---
+import TranscriptSection from '../../components/TranscriptSection.astro';
+
+# Summary
+
+In this episode, Jason continues his exploration of using AI tools for debugging code by focusing on his "Ignite Karaoke" project, a web application that displays random images for users to improvise presentations around. After successfully fixing the search functionality in his Vinyl Viewer application in the previous episode, Jason now tackles a layout issue in Ignite Karaoke where images display with excessive space at the top of the screen. Using Cursor with Claude, Jason analyzes the CSS positioning problem and implements a solution by adjusting the margin and z-index settings. He demonstrates how the AI quickly identifies the root cause and suggests precise changes to fix the layout issue. Throughout the episode, Jason highlights how AI-assisted debugging tools like Cursor can efficiently solve specific coding problems, saving developers time and frustration when dealing with CSS and layout challenges.
+
+## Jump To
+
+- [Introduction to fixing CSS problems in the Ignite Karaoke project](https://youtu.be/-yNJmVCR-nM?t=0)
+- [Introduction to the Ignite Karaoke project](https://youtu.be/-yNJmVCR-nM?t=120)
+- [Explaining the concept of Ignite Karaoke and its features](https://youtu.be/-yNJmVCR-nM?t=180)
+- [Demonstrating the CSS gap issue with image display](https://youtu.be/-yNJmVCR-nM?t=240)
+- [Setting up the project in Cursor](https://youtu.be/-yNJmVCR-nM?t=300)
+- [Explaining the CSS positioning problem to Claude](https://youtu.be/-yNJmVCR-nM?t=420)
+- [Implementing first CSS changes to fix the space issue](https://youtu.be/-yNJmVCR-nM?t=540)
+- [Implementing z-index changes to fix button interactions](https://youtu.be/-yNJmVCR-nM?t=720)
+- [Adding final CSS fixes for footer links](https://youtu.be/-yNJmVCR-nM?t=840)
+- [Discussing image loading and potential dead links](https://youtu.be/-yNJmVCR-nM?t=960)
+
+## Resources
+
+- [Cursor](https://cursor.sh/)
+- [Ignite Karaoke GitHub Repository](https://github.com/jasonhand/ignite-karaoke)
+- [Vinyl Viewer GitHub Repository](https://github.com/jasonhand/vinyl-viewer)
+
+## Key Takeaways
+
+- Cursor with Claude effectively diagnoses and fixes complex CSS positioning issues
+- Fixing one CSS issue may create other problems due to dependencies between elements
+- Z-index conflicts are a common challenge when styling overlapping web elements
+- CSS debugging often requires multiple iterations to resolve all related issues
+- AI assistants can provide detailed explanations of CSS problems and solutions
+- Testing after each change is crucial to catch unintended side effects
+
+{/* TRANSCRIPT SECTION - Full conversation text with timestamps */}
+<h2>Full Transcript</h2>
+
+<TranscriptSection transcriptContent={`
+[00:00:00] **Jason Hand:** Okay, so in a previous video I was able to use Cursor to find a bug or bugs in a project I have that helps me keep track of and display, vinyl records that I own. And it worked great. It was a bug I had as part of a my code base for quite some time. And you should go watch the video.
+
+[00:00:30] **Jason Hand:** Just to give you a quick run through what it was, is this is just a site that you can view all of my records, although I'm zoomed in a little far here. It looks weird. And. Click on any of 'em. And it's mostly worked. However, used to have this problem that over here in the search bar, if you search for something, like I've got a bunch of Zappa records, and then you go to click on it
+
+[00:01:00] **Jason Hand:** it. This one seemed a little weird, but the rest of them it was always just the absolutely the wrong record. It was pointing to some other data and it would pull up just other records. So anyway I talked to Cursor and we worked out the problem and solution and deployed it. And everything's working great.
+
+[00:01:30] **Jason Hand:** And it got me thinking about some other bugs and other projects that I have that maybe we could go look at too. And it reminded me of one in particular that I want to take a look at and see if Cursor can help me solve for also. So in my GitHub repo the Vinyl Viewer project is what we did on the previous one.
+
+[00:02:00] **Jason Hand:** This next one I wanna look at is my Ignite Karaoke. And for those of you who aren't familiar with what Ignite Karaoke is it's often. Something that takes place at conferences and unconferences and events where just karaoke people go up in front of others and perform to a certain degree.
+
+[00:02:30] **Jason Hand:** And in this case, they're improvising. Really just a narrative for the image that is on the screen. People that are very creative and and can think on their feet do quite well with this. And it's really quite fun and impressive in a lot of ways. So anyway, I I put together this app to let people play Ignite Karaoke.
+
+[00:03:00] **Jason Hand:** You can put it in your own images, whatever. And it's all just done through a web, this web app. So you could host it yourself if you'd like, or, run it locally like this.
+`} />
