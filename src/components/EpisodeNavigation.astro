@@ -19,14 +19,15 @@ interface EpisodeFile {
   };
 }
 
-// Get all episode files using Astro's Glob import
-const allEpisodes = await Astro.glob('../pages/episodes/*.mdx') as EpisodeFile[];
-
-// Sort episodes by episode number
-const sortedEpisodes = allEpisodes.sort((a: EpisodeFile, b: EpisodeFile) => {
-  const aNumber = parseInt(a.file.split('/').pop()?.replace('ep', '').replace('.mdx', '') || '0');
-  const bNumber = parseInt(b.file.split('/').pop()?.replace('ep', '').replace('.mdx', '') || '0');
-  return aNumber - bNumber;
+// Get all episode files using Vite's import.meta.glob
+const allEpisodes = await import.meta.glob('../pages/episodes/*.mdx', { eager: true }) as Record<string, EpisodeFile>;
+const sortedEpisodes = Object.entries(allEpisodes).map(([path, module]) => ({
+  ...module,
+  file: path
+})).sort((a, b) => {
+  const aNum = parseInt(a.file.match(/ep(\d+)/)?.[1] || '0');
+  const bNum = parseInt(b.file.match(/ep(\d+)/)?.[1] || '0');
+  return bNum - aNum;
 });
 
 // Log for debugging
