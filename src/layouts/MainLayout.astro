@@ -5,9 +5,10 @@ import Footer from '../components/Footer.astro';
 interface Props {
     title: string;
     description?: string;
+    hideEpisodesLink?: boolean;
 }
 
-const { title, description = "AI Tools Lab - Exploring the landscape of AI tools and technologies" } = Astro.props;
+const { title, description = "AI Tools Lab - Exploring the landscape of AI tools and technologies", hideEpisodesLink = false } = Astro.props;
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -59,7 +60,7 @@ const { title, description = "AI Tools Lab - Exploring the landscape of AI tools
     </script>
 </head>
 <body>
-    <Header />
+    <Header hideEpisodesLink={hideEpisodesLink} />
     
     <slot />
     
@@ -67,6 +68,39 @@ const { title, description = "AI Tools Lab - Exploring the landscape of AI tools
     </main>
     
     <Footer />
-    <script src="/scripts/script.js" is:inline></script>
 </body>
+<script>
+    // Import the script functionality directly
+    document.addEventListener('DOMContentLoaded', function() {
+        // Make video containers clickable but don't interfere with actual links
+        const videoContainers = document.querySelectorAll('.video-container');
+        
+        videoContainers.forEach(container => {
+            const link = container.querySelector('a');
+            
+            if (link) {
+                // Only add click handler to areas that aren't the link itself
+                container.addEventListener('click', function(e) {
+                    // Don't interfere if the click is on the actual link or its children
+                    if (e.target.closest('a')) {
+                        // Let the normal link behavior happen
+                        return;
+                    }
+                    
+                    // Only handle clicks on container background
+                    if (e.target === container) {
+                        const linkHref = link.getAttribute('href');
+                        const linkTarget = link.getAttribute('target');
+                        
+                        if (linkTarget === '_blank') {
+                            window.open(linkHref, '_blank', 'noopener,noreferrer');
+                        } else {
+                            window.location.href = linkHref;
+                        }
+                    }
+                });
+            }
+        });
+    });
+</script>
 </html>

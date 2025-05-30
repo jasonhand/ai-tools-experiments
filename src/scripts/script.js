@@ -860,12 +860,18 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 // Make the entire container clickable
                 container.addEventListener('click', function(e) {
-                    // Only handle clicks directly on the container or the image, not on the link itself
-                    if (e.target === container || e.target.tagName === 'IMG') {
+                    // Don't interfere if the click is on the actual link or its children
+                    if (e.target.closest('a')) {
+                        // Let the normal link behavior happen
+                        return;
+                    }
+                    
+                    // Only handle clicks directly on the container or other elements (like images)
+                    if (e.target === container || e.target.tagName === 'IMG' || e.target.classList.contains('play-icon')) {
                         e.preventDefault();
                         // Open the link in the same way the anchor would
                         if (linkTarget === '_blank') {
-                            window.open(linkHref, '_blank');
+                            window.open(linkHref, '_blank', 'noopener,noreferrer');
                         } else {
                             window.location.href = linkHref;
                         }

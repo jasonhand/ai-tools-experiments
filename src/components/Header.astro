@@ -1,4 +1,9 @@
 ---
+interface Props {
+    hideEpisodesLink?: boolean;
+}
+
+const { hideEpisodesLink = false } = Astro.props;
 ---
 <header class="site-header">
     <div class="bubble"></div>
@@ -16,7 +21,7 @@
         <nav>
             <ul>
                 <li><a href='/'>Home</a></li>
-                <li><a href='/episodes'>Episodes</a></li>
+                {!hideEpisodesLink && <li><a href='/episodes'>Episodes</a></li>}
                 {/* <li><a href='/resources'>Resources</a></li> */}
                 <li><a href='/articles'>Articles</a></li>
                 <li><a href='/observations'>Observations</a></li>

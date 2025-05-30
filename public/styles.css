@@ -1640,24 +1640,19 @@ code {
     margin-bottom: 1.5rem;
 }
 
-/* Key Takeaways checkmark styling */
+/* Key Takeaways bullet styling */
 .episode-content h2 + ul.takeaways li,
 .episode-content ul.takeaways li {
-    list-style-type: none;
-    position: relative;
-    padding-left: 1.8rem;
+    list-style-type: disc;
+    margin-left: 1.5rem;
     margin-bottom: 0.8rem;
     line-height: 1.5;
 }
 
-.episode-content h2 + ul.takeaways li::before,
-.episode-content ul.takeaways li::before {
-    content: "✓";
-    position: absolute;
-    left: 0;
-    color: #4CAF50; /* Green checkmark */
-    font-weight: bold;
-    font-size: 1.2rem;
+.episode-content h2 + ul.takeaways,
+.episode-content ul.takeaways {
+    padding-left: 0;
+    margin-left: 0;
 }
 
 /* Episode Navigation Styles */

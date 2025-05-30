@@ -9,7 +9,7 @@ const pageTitle = headings.find((h: Heading) => h.depth === 1)?.text || 'Untitle
 // Extract current episode number from url (e.g. "ep01" from "/episodes/ep01")
 const currentEpisode = url.split('/').pop() || '';
 ---
-<MainLayout title={pageTitle}>
+<MainLayout title={pageTitle} hideEpisodesLink={true}>
     <main class="container">
         <div>
             <div class="episode-content">
@@ -31,10 +31,42 @@ const currentEpisode = url.split('/').pop() || '';
     <EpisodeNavigation currentEpisode={currentEpisode} />
 </MainLayout>
 
+<script>
+    // Ensure hero image link works properly
+    document.addEventListener('DOMContentLoaded', function() {
+        const heroLink = document.querySelector('.episode-content .video-container a');
+        if (heroLink) {
+            // Force the link to be clickable
+            heroLink.style.position = 'relative';
+            heroLink.style.zIndex = '10';
+            heroLink.style.display = 'block';
+            
+            // Add a click handler to ensure it works
+            heroLink.addEventListener('click', function(e) {
+                console.log('Hero link clicked:', this.href);
+                // Let the browser handle the normal link behavior
+            });
+        }
+    });
+</script>
+
 <style>
     .markdown-content {
         max-width: 800px;
         margin: 2rem auto;
         padding: 0 1rem;
+    }
+    
+    /* Fix for hero image link - ensure the link is clickable */
+    .episode-content .video-container a {
+        position: relative;
+        z-index: 5; /* Higher than the pseudo-elements */
+        display: block;
+    }
+    
+    /* Ensure pseudo-elements don't block clicks */
+    .episode-content .video-container::before,
+    .episode-content .video-container::after {
+        pointer-events: none;
     }
 </style>
