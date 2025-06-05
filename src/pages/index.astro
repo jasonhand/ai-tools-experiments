@@ -1,24 +1,213 @@
 ---
-import fs from 'node:fs/promises';
-import path from 'node:path';
+import MainLayout from '../layouts/MainLayout.astro';
+import EpisodeCard from '../components/EpisodeCard.astro';
+import { getAllEpisodes, getFeaturedEpisode } from '../utils/episodes';
 
-const htmlContent = await fs.readFile(path.join(process.cwd(), 'public', 'pages', 'index.html'), 'utf-8');
-
-// Parse the content to remove doctype and html/body tags if present
-const contentWithoutDoctype = htmlContent.replace(/<!DOCTYPE[^>]*>/i, '')
-  .replace(/<\/?html[^>]*>/gi, '')
-  .replace(/<\/?body[^>]*>/gi, '');
+// Get all episodes and featured episode
+const allEpisodes = await getAllEpisodes();
+const featuredEpisode = await getFeaturedEpisode();
 ---
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Tools Lab</title>
-    <link rel="stylesheet" href="/styles.css">
-</head>
-<body>
-    <Fragment set:html={contentWithoutDoctype} />
-    <script is:inline src="/script.js"></script>
-</body>
-</html>
+
+<MainLayout title="AI Tools Lab" description="Exploring the landscape of AI tools and technologies">
+    <main class="container">
+        <!-- Featured Episode Section -->
+        {featuredEpisode && (
+            <section class="featured-episode">
+                <h2>Newest Episode</h2>
+                <div class="featured-episode-container">
+                    <div class="featured-episode-video">
+                        <a href={`/episodes/ep${featuredEpisode.number}`}>
+                            <img src={featuredEpisode.heroImg} alt={featuredEpisode.title}>
+                            <div class="play-button-overlay">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="#ffffff">
+                                    <path d="M8 5v14l11-7z"/>
+                                </svg>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="featured-episode-content">
+                        <h3>Latest Episode: {featuredEpisode.title}</h3>
+                        <p>{featuredEpisode.description}</p>
+                        <div class="featured-episode-meta">
+                            <span class="episode-date">{new Date(featuredEpisode.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+                            <div class="featured-episode-tags">
+                                {featuredEpisode.tags?.slice(0, 4).map(tag => 
+                                    <span class="tag">{tag}</span>
+                                )}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        )}
+        
+        <!-- All Episodes Section -->
+        <section class="all-episodes">
+            <div class="episodes-intro">
+                <h2>All Videos</h2>
+                <p>Browse through our complete collection of AI tools explorations and experiments.</p>
+            </div>
+            
+            <div class="episodes-grid">
+                {allEpisodes.map((episode, index) => (
+                    <EpisodeCard 
+                        episode={episode} 
+                        showFeaturedBadge={index === 0}
+                    />
+                ))}
+            </div>
+        </section>
+    </main>
+</MainLayout>
+
+<style>
+    .featured-episode {
+        margin-bottom: 40px;
+        padding: 25px;
+        background: linear-gradient(145deg, #f0f7ff 0%, #e6f0ff 100%);
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0, 86, 210, 0.1);
+    }
+    
+    .featured-episode h2 {
+        margin-bottom: 20px;
+        font-size: 1.8rem;
+        color: #0066cc;
+        border-bottom: 2px solid #0066cc;
+        padding-bottom: 8px;
+        display: inline-block;
+    }
+    
+    .featured-episode-container {
+        display: flex;
+        gap: 25px;
+        align-items: flex-start;
+    }
+    
+    .featured-episode-video {
+        flex: 0 0 50%;
+        position: relative;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+    
+    .featured-episode-video img {
+        width: 100%;
+        display: block;
+        transition: transform 0.3s ease;
+    }
+    
+    .featured-episode-video:hover img {
+        transform: scale(1.03);
+    }
+    
+    .play-button-overlay {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: rgba(0, 102, 204, 0.8);
+        border-radius: 50%;
+        width: 70px;
+        height: 70px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0.9;
+        transition: all 0.3s ease;
+    }
+    
+    .featured-episode-video:hover .play-button-overlay {
+        background-color: rgba(0, 102, 204, 1);
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.1);
+    }
+    
+    .featured-episode-content {
+        flex: 1;
+    }
+    
+    .featured-episode-content h3 {
+        color: #0066cc;
+        font-size: 1.4rem;
+        margin-bottom: 15px;
+    }
+    
+    .featured-episode-content p {
+        font-size: 1.05rem;
+        line-height: 1.6;
+        margin-bottom: 20px;
+    }
+    
+    .featured-episode-meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 15px;
+    }
+    
+    .episode-date {
+        color: #666;
+        font-size: 0.9rem;
+    }
+    
+    .featured-episode-tags {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+    }
+    
+    .tag {
+        background-color: #0066cc;
+        color: white;
+        padding: 4px 10px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 500;
+    }
+    
+    .episodes-intro {
+        margin-bottom: 30px;
+    }
+    
+    .episodes-intro h2 {
+        font-size: 2.2rem;
+        margin-bottom: 10px;
+        color: #333;
+    }
+    
+    .episodes-intro p {
+        font-size: 1.1rem;
+        color: #666;
+        line-height: 1.6;
+    }
+    
+    .episodes-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 30px;
+        margin-top: 30px;
+    }
+    
+    @media (max-width: 768px) {
+        .featured-episode-container {
+            flex-direction: column;
+        }
+        
+        .featured-episode-video {
+            flex: 0 0 100%;
+            margin-bottom: 20px;
+        }
+        
+        .featured-episode-meta {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 10px;
+        }
+        
+        .episodes-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>

@@ -1,85 +1,245 @@
 ---
 import MainLayout from './MainLayout.astro';
-import EpisodeNavigation from '../components/EpisodeNavigation.astro';
 
-const { frontmatter, headings, url } = Astro.props;
-interface Heading { depth: number; text: string; }
-const pageTitle = headings.find((h: Heading) => h.depth === 1)?.text || 'Untitled';
+const { frontmatter } = Astro.props;
+const { Title, Description, HeroImg, VideoID, EpisodeNumber, Date, Tags } = frontmatter;
 
-// Extract current episode number from url (e.g. "ep01" from "/episodes/ep01")
-const currentEpisode = url.split('/').pop() || '';
+// Construct YouTube URL from VideoID
+const youtubeUrl = VideoID ? `https://youtu.be/${VideoID}` : '#';
 ---
-<MainLayout title={pageTitle} hideEpisodesLink={true}>
+
+<MainLayout title={Title} description={Description}>
     <main class="container">
-        <div>
-            <div class="episode-content">
-                <br />
+        <div class="episode-content">
+            <!-- VIDEO CONTAINER - YouTube embed with thumbnail -->
+            {VideoID && (
                 <div class="video-container">
-                    <a href={`https://www.youtube.com/watch?v=${frontmatter.VideoID}`} target="_blank" rel="noopener noreferrer" class="youtube-link">
-                        <img src={frontmatter.HeroImg} alt={`Episode ${frontmatter.EpisodeNumber} Thumbnail`} />
-                        <span class="play-icon" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 0; height: 0; border-style: solid; border-width: 15px 0 15px 25px; border-color: transparent transparent transparent #6C756B; z-index: 10; opacity: 0.9;"></span>
+                    <a href={youtubeUrl} target="_blank">
+                        <img src={HeroImg} alt={`Episode ${EpisodeNumber} Thumbnail`}>
+                        <span class="play-icon"></span>
                     </a>
                 </div>
-                <article class="markdown-content">
-                    <h1>{frontmatter.Title}</h1>
-                    <slot />
-                </article>            
-            </div>
+            )}
+            
+            <!-- EPISODE CONTENT -->
+            <article class="markdown-content">
+                <slot />
+            </article>
         </div>
     </main>
-    
-    <EpisodeNavigation currentEpisode={currentEpisode} />
 </MainLayout>
 
-<script>
-    // Ensure hero image link works properly
-    document.addEventListener('DOMContentLoaded', function() {
-        const heroLink = document.querySelector('.episode-content .video-container a');
-        if (heroLink) {
-            // Force the link to be clickable
-            heroLink.style.position = 'relative';
-            heroLink.style.zIndex = '10';
-            heroLink.style.display = 'block';
-            
-            // Add a click handler to ensure it works
-            heroLink.addEventListener('click', function(e) {
-                console.log('Hero link clicked:', this.href);
-                // Let the browser handle the normal link behavior
-            });
-        }
-    });
-</script>
-
 <style>
-    .markdown-content {
-        max-width: 800px;
-        margin: 2rem auto;
-        padding: 0 1rem;
+    .episode-content {
+        background-color: white;
+        border-radius: 8px;
+        padding: 2rem;
+        box-shadow: var(--shadow);
+        margin-top: 0;
+        margin-bottom: 2rem;
+        position: relative;
     }
-    
-    /* Ensure bullets show for Resources and Key Takeaways sections */
-    .markdown-content ul {
-        list-style-type: disc;
-        padding-left: 1.5rem;
-        margin-bottom: 1rem;
+
+    .episode-content h1 {
+        color: var(--primary-color);
+        margin-bottom: 1.5rem;
     }
-    
-    .markdown-content ul li {
+
+    .episode-content .video-container {
+        margin: 0 0 1.5rem 0;
+        position: relative;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .episode-content .video-container img {
+        width: 100%;
+        display: block;
+        transition: transform 0.3s ease;
+    }
+
+    .episode-content .video-container:hover img {
+        transform: scale(1.03);
+    }
+
+    .play-icon {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 0;
+        height: 0;
+        border-left: 30px solid rgba(255, 255, 255, 0.9);
+        border-top: 20px solid transparent;
+        border-bottom: 20px solid transparent;
+        border-radius: 3px;
+        transition: all 0.3s ease;
+    }
+
+    .episode-content .video-container:hover .play-icon {
+        border-left-color: white;
+        transform: translate(-50%, -50%) scale(1.1);
+    }
+
+    .episode-content h2 {
+        color: var(--secondary-color);
+        margin: 2rem 0 1rem;
+    }
+
+    .episode-content ul {
         list-style-type: disc;
+        padding-left: 2rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .episode-content ul li {
+        margin-bottom: 0.5rem;
+        line-height: 1.6;
+    }
+
+    /* Key Takeaways bullet styling */
+    .episode-content h2 + ul.takeaways li,
+    .episode-content ul.takeaways li {
+        list-style-type: disc;
+        margin-left: 1.5rem;
         margin-bottom: 0.8rem;
         line-height: 1.5;
     }
-    
-    /* Fix for hero image link - ensure the link is clickable */
-    .episode-content .video-container a {
-        position: relative;
-        z-index: 5; /* Higher than the pseudo-elements */
-        display: block;
+
+    .episode-content h2 + ul.takeaways,
+    .episode-content ul.takeaways {
+        padding-left: 0;
+        margin-left: 0;
     }
-    
-    /* Ensure pseudo-elements don't block clicks */
-    .episode-content .video-container::before,
-    .episode-content .video-container::after {
-        pointer-events: none;
+
+    /* Chapter markers styling */
+    .chapter-markers {
+        list-style: none;
+        padding-left: 0;
+    }
+
+    .chapter-markers li {
+        margin-bottom: 0.5rem;
+        padding: 0.5rem;
+        background-color: #f8f9fa;
+        border-radius: 4px;
+        border-left: 3px solid var(--primary-color);
+    }
+
+    .chapter-markers a {
+        text-decoration: none;
+        color: var(--primary-color);
+        font-weight: 500;
+    }
+
+    .chapter-markers a:hover {
+        text-decoration: underline;
+    }
+
+    .markdown-content {
+        max-width: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .markdown-content p {
+        margin-bottom: 1.5rem;
+        line-height: 1.7;
+    }
+
+    .markdown-content p:last-child {
+        margin-bottom: 0;
+    }
+
+    .episode-content .markdown-content ul {
+        list-style-type: disc !important;
+        padding-left: 2rem !important;
+        margin-bottom: 1.5rem !important;
+        list-style-position: outside !important;
+    }
+
+    .episode-content .markdown-content ul li {
+        margin-bottom: 0.5rem !important;
+        line-height: 1.6 !important;
+        display: list-item !important;
+        list-style-type: disc !important;
+    }
+
+    .episode-content .markdown-content ul li::marker {
+        color: var(--primary-color) !important;
+    }
+
+    /* Transcript styling */
+    .transcript {
+        background-color: #f8f9fa;
+        border: 1px solid #e9ecef;
+        border-radius: 8px;
+        padding: 1.5rem;
+        max-height: 400px;
+        overflow-y: auto;
+        font-family: var(--main-font);
+        font-size: 0.95rem;
+        line-height: 1.6;
+        white-space: pre-wrap;
+        color: #444;
+    }
+
+    .transcript-navigation {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+        padding: 0.5rem;
+        background-color: #f8f9fa;
+        border-radius: 4px;
+    }
+
+    .transcript-control {
+        background-color: var(--primary-color);
+        color: white;
+        border: none;
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 0.9rem;
+    }
+
+    .transcript-control:hover {
+        background-color: var(--secondary-color);
+    }
+
+    .timestamp-note {
+        background-color: #f0f7ff;
+        padding: 10px;
+        margin: 10px 0;
+        border-radius: 5px;
+        border-left: 4px solid #0066cc;
     }
 </style>
+
+<script>
+    // Make all external links in episode content open in new tabs
+    document.addEventListener('DOMContentLoaded', function() {
+        const episodeContent = document.querySelector('.episode-content');
+        if (episodeContent) {
+            const links = episodeContent.querySelectorAll('a');
+            
+            links.forEach(link => {
+                const href = link.getAttribute('href');
+                
+                // Check if it's an external link (starts with http/https or is a full URL)
+                // but exclude internal navigation links and anchors
+                if (href && 
+                    (href.startsWith('http://') || 
+                     href.startsWith('https://') || 
+                     href.startsWith('www.')) &&
+                    !href.includes(window.location.hostname)) {
+                    
+                    link.setAttribute('target', '_blank');
+                    link.setAttribute('rel', 'noopener noreferrer');
+                }
+            });
+        }
+    });
+</script> 

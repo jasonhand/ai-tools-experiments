@@ -6,8 +6,6 @@ todo.md
 /transcripts/
 /venv/
 /observations/
-update_episodes.ps1
-update_episodes.sh
 **/.claude/settings.local.json
 node_modules
 .env

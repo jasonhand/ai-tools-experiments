@@ -1,0 +1,200 @@
+---
+interface Props {
+    episode: {
+        number: number;
+        title: string;
+        description: string;
+        heroImg: string;
+        date: string;
+        tags: string[];
+        videoId?: string;
+    };
+    showFeaturedBadge?: boolean;
+    linkTarget?: string;
+}
+
+const { episode, showFeaturedBadge = false, linkTarget = "_self" } = Astro.props;
+const episodeUrl = `/episodes/ep${episode.number}`;
+---
+
+<div class="episode-card">
+    <a href={episodeUrl} target={linkTarget}>
+        <div class="episode-thumbnail">
+            <img src={episode.heroImg} alt={`Episode ${episode.number} Thumbnail`}>
+            {showFeaturedBadge && <span class="featured-badge">Newest</span>}
+            <div class="play-button-overlay">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="#ffffff">
+                    <path d="M8 5v14l11-7z"/>
+                </svg>
+            </div>
+        </div>
+        <div class="episode-content">
+            <div class="episode-header">
+                <span class="episode-number">Episode {episode.number}</span>
+                <h3>{episode.title}</h3>
+            </div>
+            <p class="episode-description">{episode.description}</p>
+            <div class="episode-meta">
+                <span class="episode-date">{new Date(episode.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+                <div class="episode-tags">
+                    {episode.tags?.slice(0, 3).map(tag => (
+                        <span class="tag">{tag}</span>
+                    ))}
+                </div>
+            </div>
+        </div>
+    </a>
+</div>
+
+<style>
+    .episode-card {
+        background: white;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .episode-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    .episode-card a {
+        text-decoration: none;
+        color: inherit;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+
+    .episode-thumbnail {
+        position: relative;
+        overflow: hidden;
+        height: 200px;
+    }
+
+    .episode-thumbnail img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+    }
+
+    .episode-card:hover .episode-thumbnail img {
+        transform: scale(1.05);
+    }
+
+    .play-button-overlay {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: rgba(0, 102, 204, 0.8);
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0.9;
+        transition: all 0.3s ease;
+    }
+
+    .episode-card:hover .play-button-overlay {
+        background-color: rgba(0, 102, 204, 1);
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.1);
+    }
+
+    .featured-badge {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background-color: #ff6b00;
+        color: white;
+        padding: 4px 10px;
+        border-radius: 4px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        z-index: 2;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    .episode-content {
+        padding: 20px;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .episode-header {
+        margin-bottom: 12px;
+    }
+
+    .episode-number {
+        color: #0066cc;
+        font-size: 0.9rem;
+        font-weight: 500;
+        margin-bottom: 5px;
+        display: block;
+    }
+
+    .episode-content h3 {
+        font-size: 1.3rem;
+        margin: 0 0 12px 0;
+        color: #333;
+        line-height: 1.4;
+    }
+
+    .episode-description {
+        color: #666;
+        line-height: 1.6;
+        margin-bottom: 15px;
+        font-size: 0.95rem;
+        flex-grow: 1;
+    }
+
+    .episode-meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        gap: 10px;
+        margin-top: auto;
+    }
+
+    .episode-date {
+        color: #888;
+        font-size: 0.9rem;
+    }
+
+    .episode-tags {
+        display: flex;
+        gap: 6px;
+        flex-wrap: wrap;
+    }
+
+    .tag {
+        background-color: #f0f0ff;
+        color: #4f46e5;
+        font-size: 0.75rem;
+        padding: 3px 8px;
+        border-radius: 12px;
+        white-space: nowrap;
+    }
+
+    @media (max-width: 768px) {
+        .episode-meta {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 8px;
+        }
+        
+        .episode-tags {
+            align-self: stretch;
+        }
+    }
+</style> 
