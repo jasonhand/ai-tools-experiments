@@ -4,46 +4,124 @@ import MainLayout from '../layouts/MainLayout.astro';
 // Static episode data for now - this ensures the page works
 const episodes = [
   {
-    number: 30,
-    title: "Episode 30 Title",
-    heroImg: "/images/ep30.jpg",
-    tags: ["AI", "Tools", "Productivity"],
+    number: 31,
+    title: "Building client-side URL-based state apps using Claude 4 and Lovable",
+    heroImg: "/images/thumbnails/ep31.png",
+    tags: ["Claude", "Lovable", "AI Development", "Developer Tools", "Productivity"],
     takeaways: [
-      "AI tools enhance productivity and learning",
-      "Experimentation leads to better understanding",
-      "Integration of multiple tools creates powerful workflows"
+      "AI tools can act as a 'second brain' for capturing fleeting ideas",
+      "Free plans with limitations can spark creativity through constraints",
+      "URL-based state management enables privacy-focused applications",
+      "Rapid prototyping with AI tools reduces cognitive load and speeds iteration"
     ],
-    tools: ["AI", "Tools", "Productivity"],
-    concepts: ["AI", "Tools", "Productivity"],
+    tools: ["Claude", "Lovable", "AI Development", "Developer Tools", "Productivity"],
+    concepts: ["URL State Management", "Privacy-First Design", "Rapid Prototyping", "AI-Assisted Development"],
+    path: "/episodes/ep31"
+  },  
+  {
+    number: 30,
+    title: "Maximizing AI with Cursor: Building MCP Servers for Seamless Workflow",
+    heroImg: "/images/thumbnails/ep30.png",
+    tags: ["MCP", "Cursor", "AI Development", "Developer Tools", "Documentation"],
+    takeaways: [
+      "MCP servers can automate engineering journal creation from Git commits and AI chats",
+      "Weekend 'vibe coding' can lead to solving real productivity problems",
+      "AI tools work best when they support rather than replace human thinking",
+      "Context preservation is crucial for effective AI-assisted development"
+    ],
+    tools: ["MCP", "Cursor", "AI Development", "Developer Tools", "Documentation"],
+    concepts: ["Model Context Protocol", "Engineering Journals", "Automated Documentation", "Developer Productivity"],
     path: "/episodes/ep30"
   },
   {
     number: 29,
-    title: "Episode 29 Title", 
-    heroImg: "/images/ep29.jpg",
-    tags: ["Development", "AI", "Automation"],
+    title: "Exploring Gemini 2.5 Pro: A New AI Frontier", 
+    heroImg: "/images/thumbnails/ep29.png",
+    tags: ["Gemini", "AI Development", "Coding", "Visualization"],
     takeaways: [
-      "Automation reduces repetitive tasks",
-      "AI assists in code generation and debugging",
-      "Development workflows benefit from AI integration"
+      "Gemini 2.5 Pro offers impressive million token context window capabilities",
+      "Context caching significantly aids in handling large projects",
+      "AI models can create sophisticated educational content blending math and programming",
+      "Speed of AI output generation continues to improve dramatically"
     ],
-    tools: ["Development", "AI", "Automation"],
-    concepts: ["Development", "AI", "Automation"],
+    tools: ["Gemini", "AI Development", "Coding", "Visualization"],
+    concepts: ["Large Context Windows", "Context Caching", "Educational AI", "Mathematical Visualization"],
     path: "/episodes/ep29"
   },
   {
     number: 28,
-    title: "Episode 28 Title",
-    heroImg: "/images/ep28.jpg", 
-    tags: ["Machine Learning", "Data", "Analysis"],
+    title: "Exploring eBPF with AI Tools: Insights and Applications",
+    heroImg: "/images/thumbnails/ep28.png", 
+    tags: ["eBPF", "ChatGPT", "GitHub Copilot", "System Monitoring"],
     takeaways: [
-      "Data analysis drives better decisions",
-      "Machine learning models improve over time",
-      "Proper data preparation is crucial"
+      "eBPF provides intimate control over operating system kernel functions",
+      "AI tools can accelerate learning of complex technologies like eBPF",
+      "Iterative development with multiple AI platforms improves code quality",
+      "AI significantly expedites development by providing foundational code quickly"
     ],
-    tools: ["Machine Learning", "Data", "Analysis"],
-    concepts: ["Machine Learning", "Data", "Analysis"],
+    tools: ["eBPF", "ChatGPT", "GitHub Copilot", "System Monitoring"],
+    concepts: ["Kernel Programming", "System Observability", "Security Monitoring", "AI-Assisted Learning"],
     path: "/episodes/ep28"
+  },
+  {
+    number: 27,
+    title: "Exploring Coding Efficiency: Utilizing Tmux and Claude Code for AI-Powered Ray Tracing",
+    heroImg: "/images/thumbnails/ep27.png",
+    tags: ["Tmux", "Claude Code", "Terminal", "Helix"],
+    takeaways: [
+      "Terminal multiplexers like Tmux enhance productivity in AI-assisted coding",
+      "High-level prompts can guide AI to develop complex projects autonomously",
+      "Thorough conceptual frameworks are essential before AI execution",
+      "AI tools integrate seamlessly into existing developer workflows"
+    ],
+    tools: ["Tmux", "Claude Code", "Terminal", "Helix"],
+    concepts: ["Terminal Multiplexing", "AI-Guided Development", "Ray Tracing", "Workflow Integration"],
+    path: "/episodes/ep27"
+  },
+  {
+    number: 26,
+    title: "Automating Content Transformation with N8N and Generative AI",
+    heroImg: "/images/thumbnails/ep26.png",
+    tags: ["N8N", "Automation", "Airtable", "Workflow"],
+    takeaways: [
+      "N8N workflows can automate complex content transformation tasks",
+      "AI agents can manipulate and enhance content systematically",
+      "Automation tools bridge the gap between content creation and distribution",
+      "Follow-up workflows can extract additional value from existing content"
+    ],
+    tools: ["N8N", "Automation", "Airtable", "Workflow"],
+    concepts: ["Content Automation", "Workflow Design", "AI Agents", "Content Transformation"],
+    path: "/episodes/ep26"
+  },
+  {
+    number: 24,
+    title: "Streamlining AI Report Analysis: Figma AI 2025 Insights",
+    heroImg: "/images/thumbnails/ep24.png",
+    tags: ["Claude", "State of AI", "Productivity"],
+    takeaways: [
+      "AI tools can efficiently summarize and analyze complex industry reports",
+      "Claude Desktop excels at extracting meaningful insights from PDFs",
+      "Comparing multiple reports provides comprehensive understanding of trends",
+      "Auto-generated summaries require careful validation in professional settings"
+    ],
+    tools: ["Claude", "State of AI", "Productivity"],
+    concepts: ["Report Analysis", "Trend Identification", "Information Synthesis", "Professional Validation"],
+    path: "/episodes/ep24"
+  },
+  {
+    number: 20,
+    title: "YOLO Coding: Migrating from Static HTML to Astro with AI Tools",
+    heroImg: "/images/thumbnails/ep20.png",
+    tags: ["Puppeteer", "MCP", "Gemini", "Claude", "Astro"],
+    takeaways: [
+      "YOLO Mode coding can lead to successful large-scale migrations",
+      "Multiple AI models with MCP tools provide complementary capabilities",
+      "Visual context through screenshots improves AI understanding",
+      "AI-assisted migrations require careful handling of complex assets"
+    ],
+    tools: ["Puppeteer", "MCP", "Gemini", "Claude", "Astro"],
+    concepts: ["Site Migration", "Multimodal AI", "Visual Context", "Framework Conversion"],
+    path: "/episodes/ep20"
   }
 ].sort((a, b) => b.number - a.number);
 
@@ -51,7 +129,7 @@ const episodes = [
 const allTools = [...new Set(episodes.flatMap(ep => ep.tools))].sort();
 ---
 
-<MainLayout title="Observations & Insights">
+<MainLayout title="Observations & Insights" hideEpisodesLink={true}>
     <main class="container about-section">
         <div class="about-header">
             <h1>Observations & Insights</h1>
