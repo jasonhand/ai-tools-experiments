@@ -28,12 +28,12 @@ With a background in Kubernetes and platform engineering—but not recent app de
 This episode offers a real-world look at how AI tooling can support—not replace—human thinking, and how to shape those tools into something genuinely useful and sustainable.
 
 ## Jump To
-- [🕒](https://youtu.be/z45LjlhyGyE?t=0) Introduction and Welcome
-- [🕒](https://youtu.be/z45LjlhyGyE?t=120) MCP Server Development Overview
-- [🕒](https://youtu.be/z45LjlhyGyE?t=230) Initial Coding Challenges
-- [🕒](https://youtu.be/z45LjlhyGyE?t=450) Task Management Tools
-- [🕒](https://youtu.be/z45LjlhyGyE?t=1200) Engineering Journal Vision
-- [🕒](https://youtu.be/z45LjlhyGyE?t=1500) Future Development Plans
+- [Introduction and Welcome](https://youtu.be/z45LjlhyGyE?t=0)
+- [MCP Server Development Overview](https://youtu.be/z45LjlhyGyE?t=120) 
+- [Initial Coding Challenges](https://youtu.be/z45LjlhyGyE?t=230)
+- [Task Management Tools](https://youtu.be/z45LjlhyGyE?t=450)
+- [Engineering Journal Vision](https://youtu.be/z45LjlhyGyE?t=1200)
+- [Future Development Plans](https://youtu.be/z45LjlhyGyE?t=1500)
 
 ## Resources
 - [Cursor](https://www.cursor.so/) - AI-powered code editor
@@ -57,36 +57,282 @@ This episode offers a real-world look at how AI tooling can support—not replac
 
 [00:00:04] **Jason Hand:** Awesome. It's great to have you here. So what kind of stuff are you gonna show us today? 
 
-[00:00:07] **Whitney Lee:** Oh, I have caught the AI bug in a big way. So I'm gonna talk about how I've sussed out my AI workflow and how I've been inspired to build an MCP server and what that looks like.
+[00:00:07] **Whitney Lee:** Oh, I have caught the AI bug in a big way. So I'm gonna talk about how I've sussed out my AI workflow and how I've been inspired to build an MCP server and what that looks like. 
 
-[00:00:20] **Jason Hand:** That's fantastic! Can you tell us a bit about your background and what led you to this project?
+Here's what I'm gonna set the stage a little bit.
 
-[00:00:25] **Whitney Lee:** Sure! My background is actually in Kubernetes and platform engineering. I haven't done much app development recently, but I got really interested in how AI could help with documentation and tracking technical decisions. I spent a weekend just playing around with Cursor - what I call 'vibe coding' - and that's when the idea for this MCP server started taking shape.
+Okay, 
 
-[00:00:45] **Jason Hand:** So what exactly does your MCP server do?
+[00:00:24] **Jason Hand:** good.
 
-[00:00:48] **Whitney Lee:** It's designed to automate the creation of engineering journal entries. It pulls together Git commits, AI chat history, and terminal commands to create a comprehensive record of what you're working on. The goal is to help engineers maintain better context and reflection about their work.
+[00:00:24] **Whitney Lee:** I was introduced to Cursor on a Friday and I immediately felt oh, this is gonna become big in my life. And I did know. About MCP servers, which are tools you can add on top of your AI agents that helps you with coding to do specific things. Yeah, but I hadn't played with any yet.
 
-[00:01:10] **Jason Hand:** That's really interesting. What made you start with just Cursor instead of jumping straight into using MCP tools?
+And also I was determined not to use any at first. So for my own learning, I wanted for the weekend to only play with cursor. Don't even consider an MCP server because I wanted to understand. What [00:01:00] cursor can do on its own before I start adding stuff on top of it. Okay. That's good. So that's the stage. And then for my, a bit about me, my background is more like Kubernetes Cloud DevOps kind of background and less app development background.
 
-[00:01:15] **Whitney Lee:** I wanted to understand the baseline experience first. When you start with raw Cursor, you quickly run into certain limitations - like the lack of persistent memory, unclear documentation sources, and difficulty staying focused on complex tasks. This helped me identify exactly what problems I needed to solve with my MCP server.
+So in terms of what to build, all I really need is like a funny, cute demo app. That I can show how I deploy it everywhere. Nice. So that's what I made during my vibe coding weekend. A little bit after that. And now you can share my screen. . Aha. There it is. My my very important business critical application. So it's a button. You press a spider, it adds a spider, it presses a spider. You took it away.
 
-[00:01:40] **Jason Hand:** And how did tools like Taskmaster and Memory help address those issues?
+And actually I got distracted. I, there's like a little Easter egg in here sometimes when you press it. Oh haha. There's a lot of spiders. And then I wanna change the text to say, ah, but I got distracted by building an MCP server. So this isn't quite, it happens, [00:02:00] fleshed out. But, so while I was building this very important super business critical application, I had some issues.
 
-[00:01:45] **Whitney Lee:** They were game-changers. Taskmaster helped break down complex tasks into manageable chunks, while Memory gave me that crucial persistent context I needed. But the real magic happened when I started thinking about how to combine these capabilities into something that could automatically generate daily, weekly, and monthly summaries of my work.
+So because I wasn't using an MCP server I had some problems. One is that I. Never really trusted that it was using current documentation when I was asking it what's good practice and what's looking stuff up. And so that problem I just solved manually by, over and over again asking it to do that.
 
-[00:02:10] **Jason Hand:** Can you tell us more about how you approached building the server?
+Yeah. Another problem I had was that I wanted it to remember like just preferences. So I just, so I ended up making this preferences empty file that I would refer it to all the time. 
 
-[00:02:15] **Whitney Lee:** I took a very methodical approach. I used AI-driven dialogue to validate my architecture decisions, implemented test-driven development from the start, and applied zero-trust principles throughout. The goal was to create something that wasn't just a cool demo, but a genuinely useful tool that could enhance how developers document and reflect on their work.
+I would just, I would say the preferences has stuff like if I have. If you're giving me a list of options, give them to me in an ordered way.
 
-[00:02:40] **Jason Hand:** This seems like a great example of using AI as a complement to human thinking rather than a replacement.
+And so I can reply by one this, so I can a number, not just ordered, but numbered, excuse me. So I can say yes to one, no to two. [00:03:00] And it makes communication a lot faster. That's a preference I have. And over time you gather quite a lot of these things, so it became a big doc. And I like also little workflows.
 
-[00:02:48] **Whitney Lee:** Exactly! It's about augmenting our capabilities, not replacing them. The AI helps capture and organize information, but the real value comes from how it enables better human reflection and decision-making. It's about creating tools that work with our natural workflow rather than forcing us to adapt to the tool.
+If I say. In the chat sync changes. I wanted to go through a specific, get workflow for me, that sort of thing. Always preserve image aspect ratios. Don't ever change that. So I ended up making this document. Another workaround I had, I. Another thing that's hard about AI in general, as you probably know, is just to keep it on task and really keep yourself on task.
 
-[00:03:05] **Jason Hand:** So what's next for the project?
+Because you'll ask it to do something and it'll maybe do that thing, but it'll also be like, or we can make it better by also doing this. Yeah. And then you're like, oh yeah, that sounds good. And then who even knows what you've made? Keeping it on task was an issue I had, and I ended up making this plan for the different components I wanted to build.
 
-[00:03:08] **Whitney Lee:** I'm working on making it more robust and user-friendly. I want to add better visualization of the data, improve the natural language processing for better summaries, and maybe even add some predictive features that can help identify patterns in how we work. But most importantly, I want to keep it focused on enhancing human capabilities rather than replacing them.
+And and so I could stay on the plan. So what's the next step in the plan? Always coming back to the plan when I'm [00:04:00] interacting with ai. So I ended up making this document, and then the third problem I was having is that like from, if I would go away for several hours and come back, it would lose some context.
 
-[00:03:30] **Jason Hand:** This has been fascinating, Whitney. Thanks for sharing your journey with us.
+I think a lot of this actually has been improved in the three weeks, just it within cursor in the three weeks since I've been playing with all of this. Yeah, because now there's this doc cursor file that wasn't there before. I'm pretty sure when I started I think that's a new thing and it keeps some it fixes some of these things, but, the last thing I wanted besides the plan was I wanted to give it recent context. And for my own learning and knowledge, I wanted to keep track of things at a high level.
 
-[00:03:34] **Whitney Lee:** Thank you!" />
+What am I doing at a high level and what decision, what technical decisions am I making along the way and when and why am I making those technical decisions? And maybe just, a little bit about how I feel, or I'm a big journaler in life. So what I wanted was an engineering journal and I tried to make that in this first [00:05:00] project.
+
+Okay. Where so I have an engineering journal. It's actually rather long. It's almost 600 lines and probably several entries. And then I ended up, honestly, when I was making the Spider Rainbows app, I spent a lot more time. Trying to figure out how to journal my progress than I did actually making progress.
+
+I think. Yeah. I like workflows and efficiency and reflection and learning. So I ended up coming up with these elaborate. Journal instructions, which of course didn't start out as elaborate, but every time it forgets something and I'm like, Hey, I told you that in the journal. What do we need to do so you don't make that mistake again?
+
+Then it will be like, okay, we're gonna put it in bold. We're gonna use all caps, and then we're going to make a checklist at the end. And but basically I was trying to make a workflow where I could say, make a journal entry, and then it would trigger the workflow, and then it would make a journal entry.
+
+In my engineering journal that I was building. So those were the problems I had after one weekend of Pure Cursor, [00:06:00] no adding MCP server tools on top. That's great. Thanks.
+
+So what happened from there is that I researched MCP servers to see how to fix these problems, and I was able to find MCP servers for three out of four of my problems.
+
+Sweet. And so there's an MCP server called memory that will save your preferences. And unlike when I had my preferences markdown document. The pre, the memory it just automatically loads in the, like it remembers. So you don't have to all the time say, look at the preferences doc. Look at the preferences doc.
+
+Or pin the preferences doc to the chat or whatever. So it's superior to the preferences, documentation, I. Context seven is the thing that helps it use current documentation for whatever tooling up to the minute documentation so you don't have that problem. And then taskmaster, I love taskmaster, and that is a tool to help you break your complex ideas into smaller tasks [00:07:00] and sub tasks and stay organized and communicate.
+
+Use your LLM to communicate. So it's, it helps you be a project manager. For your own project and it's amazing and a big part of my workflow for making the MCP server. But the thing that's missing from here is the engineering journal and I have something I looked up and I could find some journal tools, but.
+
+Even when I was trying to create the journal on here, I was like, Hey, you have three sources by you, the agent, I kind of use LLM and agent interchangeably, but Cursor the agent. 
+
+You have, and now I'm getting into the what I'm building, but you have the Git history, like anything you can get from Git, and you have the AI chat itself, and then you have terminal commands like.
+
+From these things, you should be able to piece together a story about what I'm doing and why I am doing it, and record that in a journal entry. 
+
+[00:07:56] **Jason Hand:** I see. 
+
+So, the journal itself is generated [00:08:00] post all the work that you've done. So this isn't like an ongoing log that it keeps updating?
+
+[00:08:05] **Whitney Lee:** No, it's something, it's an ongoing log. 
+
+[00:08:07] **Jason Hand:** Oh, really? So for each step within your tasks and all the things that you do, it then goes and adds an entry to the journal? Or is it more of a let me tell you everything I did today and dump it into the journal? 
+
+[00:08:19] **Whitney Lee:** Let's, the past is the past, so we won't talk about how I did it then.
+
+Let's talk about how I'm doing it now. Before I'm getting get into the implementation, I wanna talk about, so I have this idea to build an MCP server. I'm not a developer or I haven't been one for over five years. I. But I have a clear idea of what I want. I have a pretty clear idea of what LLM at least is good at.
+
+And I played a Cursor enough. I'm getting to understand its boundaries. So to suss out my idea and get it into a place where I can actually work on it. I I like this person, Harper Reed. I ran across their blog entry about their workflow at [00:09:00] the moment, which was actually back in February, just a few months ago.
+
+So it's wildly outdated, honestly. It is wildly outdated. And but I really like this idea of a conversational prompt. So ask me one question at a time so we can develop a thorough step-by-step specification. For my idea. Each question should build on previous answers, and our end goal is to have a detailed specification that I can hand off to a developer.
+
+So let's do it, it iteratively and dig into every detail and one question at a time. So I love that because it's conversational and they're like do you think it should go like this? And I'll be like, actually I don't. I don't know about. Whether it should persist state somewhere. What do you recommend?
+
+What do you think, and over again a thousand times every day. I'm always telling it simple. Be more simple. We don't need that. That's over engineering, over. That's a big part of working with AI, I think is having some opinions and just like bringing it down to earth. 
+
+[00:09:54] **Jason Hand:** Absolutely.
+
+[00:09:55] **Whitney Lee:** But, yeah. But this iterative idea, like it really just was a [00:10:00] game changer of how to think with, to work with ai. 'cause I hadn't thought of asking it to ask me questions before. And and it was really helpful for my min model. The rest of this is okay too, the rest of the blog posts. But honestly this one prompt is where I got, is the value I got from this blog post.
+
+[00:10:18] **Jason Hand:** Yeah. 
+
+[00:10:18] **Whitney Lee:** And so then I got that idea. Got it into an engineering specification, and I believe I got it in ChatGPT, and then I took it from ChatGPT and then gave it to Claude. And I was like, Hey, find some holes in the logic what's missing here? And asked me more questions, iterably, and then got it even more sussed out from there.
+
+[00:10:37] **Jason Hand:** Nice. 
+
+[00:10:38] **Whitney Lee:** And then from there I created a new project, just an empty repo. That is now the MCP commit story. And from there, now my engineering spec, every time I change something, I update it here. So it's become quite a beast of a thing. But but that's where I started. And then was able to use that task master to [00:11:00] say, Hey, here's my idea.
+
+Break it up into tasks, and then the LLM, the Cursor, and I will work on these tasks one at a time to figure it out. To actually build it. So then once I'm in a task, the task is it'll be, we're gonna, there you have taskmaster break a big task into subtasks. And then even with the subtask, I like to log a plan and talk about the plan to implement that task and then do the actual implementation.
+
+So there's it gets pretty granular, but I like that level of control and understanding and conversation really. Sometimes I hear even in this in Harper Reed's blog post Harper, Reed was like I use this technique to get an idea into something I can build in 15 minutes. And I was like, 15 minutes.
+
+Like it takes me a couple of hours. I think I'm a little more slow and thorough than most, but it is what it is. I'm learning a lot. Yeah.
+
+[00:11:56] **Jason Hand:** It's a spectrum and also like the the [00:12:00] functionality and the security and lots of things about your app are parts of that too. Like you, you can pump out a one shot app no problem.
+
+But. It, it's not all that complex. 
+
+[00:12:09] **Whitney Lee:** Yeah, that's true. I really went from like zero to a hundred in terms of the complexity of what I'm trying to build. 
+
+[00:12:15] **Jason Hand:** Yeah, you're, you have high ambition, which is what we love. Earlier I did a thing with Claude and created like a simple HTML demo, and I was pretty proud of that.
+
+Only because I had a hunch it could get it in one shot. Yeah. You have to one of the things, I think the takeaway I'm learning from you is like. Guardrails are so important between the rules files. Yeah. And like the requirements files and here's all the things I want you to do.
+
+And Uhhuh, you're, it's like a toddler. You're always saying, no, that's not what I want. Here's the instructions. Read the Docs. Yes. And but you find yourself like constantly. Constantly is probably not the right word, but doing it often enough where you're like, this is crazy.
+
+I, there's gotta be a better way. And so now you can see that people have come up with different ways and tools and MCP servers to basically put those guardrails in place. Yeah. So you [00:13:00] don't have to keep repeating yourself. And what you said, it's very common to start a project in one LLM, one agent, one environment one IDE, like Cursor.
+
+And then go somewhere else with it. Yeah, and you have to be able to transfer that context and all those rules 'cause we don't repeat yourself. That's our mantra and like this stuff is forcing us to really like hone those skills of, no, I'm done repeating myself. Yeah, instructions are right there.
+
+Go look and. 
+
+[00:13:29] **Whitney Lee:** And I have it actually so many ways, like task master as one way, but then also everything I'm doing is test driven development. Because I don't want to build on broken stuff. Yeah. And AI cannot be trusted. And also even with, test driven development, you still have to watch it because it'll just to make test pass, it'll just throw in some mock data in there and you're like, no, wait, whatcha doing?
+
+Don't do that. And then also, like in the preferences, it'll be like, don't just make stuff up. I have lots of anti hallucination rules all over the place. [00:14:00] Like I, I prefer fact. 
+
+And not fiction just then pitting LLMs against each other. What you were saying, like just this morning Cursor was telling me, I was like, this doesn't feel like the right way to do it.
+
+And Cursor was like, yeah, this is a great way to do it. And I'm like, and I took it in the quad and yeah, Claude's, like it's way better to break it up into smaller tasks that are more anyway. Yeah. I knew, but so 
+
+[00:14:25] **Jason Hand:** they're opinionated and some of 'em are just better, depending on what you're trying to do.
+
+[00:14:29] **Whitney Lee:** Yeah, so like taskmaster, test driven development, constant double checking, pitting, LMS against each other. There's a lot you can do and should do, honestly. Yeah, to keep it in check. 
+
+[00:14:40] **Jason Hand:** Zero Trust. 
+
+[00:14:41] **Whitney Lee:** Zero trust means something new now. 
+
+[00:14:46] **Jason Hand:** Zero trust Gen AI. Yeah, always human, human in the loop, multiple places.
+
+It's helping us speed up things and compressing time that it takes to get things done, but we still have to pay very close attention to what it's doing. 
+
+[00:14:59] **Whitney Lee:** [00:15:00] Absolutely. So let's talk a little bit about what I'm building. And then later I'll come back when it's actually built and talk about how it works.
+
+But an MCP server, it's late in the game to be defining it after we've been talking about it a while. But MCP stands for model context protocol. And the protocol best I can tell, I haven't implemented it yet is JSON and machine readable. But it's a way to wrangle.
+
+LLM, so you get a consistent expected output. And so MCP server is going to expose structured APIs, and it also manages context. You're managing the context you're giving and receiving from your. To your LLM tool. And then you're managing, you're giving it tools that it can use and sometimes those tools are gonna be like minor, create a journal entry or get context from here, but you're, those tools could call out to somewhere completely different.
+
+But basically LLMs are gonna perform better if they have [00:16:00] like context and they have structure and and they have tooling that they can use. So we can do way more complex things now than just text generation. Like we, yeah, like we thought it was for in the beginning. What have we done?
+
+So my MCP server, let's see. It takes in. It takes in information from those three places I talked about before. So it takes in information from whatever it can get from Git and your Git history and code changes. Not GitHub yet, just Git. Okay. It also takes in information from the AI chat itself, and then after some experimentation, it easily knows what terminal commands it ran, but it doesn't know the terminal commands I ran.
+
+So for now, we're just using the ones it can get because we're not. Overcomplicating things at the beginning. Okay. And then from that, what we want to make is one commit. There's a Git hook, so it, [00:17:00] a commit triggers a journal entry. And so a sample journal entry for a day is something like this.
+
+Right now I have a summary. What happened? I have accomplishments as a list, terminal commands that were run. I'm gonna make it so it's not just all get commands, that's boring. Discussion notes from chat, and then it's, I wanted to tell you tone and mood. So this these sample ones aren't.
+
+Indicative, like they aren't as high quality as I expect to get because this is just me. These sample ones are me in the AI chat saying, make a journal entry based on my engineering spec and not actually real stuff going on in the background. Okay, so the tone and mood is a little you don't know, I was satisfied.
+
+Like you're guessing at that, but I wanted to pick up if you're saying ugh, or if you're like finally, or you're giving. Indicators that you feel a certain way or maybe you want to record that you feel [00:18:00] a certain way. So you give those indicators on purpose. I want that to get captured.
+
+[00:18:04] **Jason Hand:** Yeah. I put that in my commit messages. Usually I say something like, finally, or last one I'm giving up after this. 
+
+[00:18:10] **Whitney Lee:** So it's looking at, it's looking at commit messages as well as AI chat to try to get a, an idea of what your mood is. And so it's triggered by get, commit and then it's looking back in AI chat as far as the last time the tool was called, or 150 messages, which whichever comes first.
+
+And then gathering all that source information and then using it to make this. But then in one day there are a lot of these. Then on the first commit of the next day, it'll automatically trigger a summary of the day before.
+
+[00:18:43] **Jason Hand:** Oh, wow. 
+
+[00:18:43] **Whitney Lee:** And then on the first commit of the next week, it'll automatically trigger a summary of your past week and similar monthly, weekly, yearly.
+
+I think I'll add a quarterly in there. So the idea is you can track your challenges. You can, without any work, like this [00:19:00] is all automatically triggered happening in the background. I imagine in your chat you'll have to run tool press that run tool button. But other than that you, this stuff should all be captured automatically without you thinking about it at all.
+
+And then you get more and more widely scoped summaries of what you've done. That you can use, like for self-reflection and growth and understanding your choices, but also for conference talks and blog post ideas ideas and implementation. I think I'm gonna have a blogify function where you can put in a date range or something in it all.
+
+We'll make it into a blog entry. We'll see. 
+
+Yeah. And yeah, and then like career progression or when you have to do retrospectives, like it'll make that sort of thing really easy. 
+
+[00:19:41] **Jason Hand:** Yeah, I think tracking that stuff super important. Things just move so fast and it's all, it's good to reflect, sometimes times, different times of the year when we have like performance reviews, you're often like looking for, I look on my calendar, yeah.
+
+Two months ago, I can't remember and this is perfect. It's just the capture it along the way. Yeah, it's given me some [00:20:00] ideas. I think we're doing something, trying to do something similar with the AI tools website where, like for example, you and I are talking and there'll be a, an episode page that comes with that and we've got some gen AI that will generate what it believes.
+
+The takeaways from our conversation is 
+
+[00:20:17] **Whitney Lee:** Uhhuh. 
+
+[00:20:18] **Jason Hand:** I would love to, and then another step I have is then taking those takeaways and bringing them all together into the observations. Part of the site. So it's one page, and I feel like maybe I could use this to collect all those observations and do them sort of age genetically in the background.
+
+For anyway. 
+
+[00:20:38] **Whitney Lee:** Yeah. 
+
+[00:20:38] **Jason Hand:** Gears are turning. Thank you. 
+
+[00:20:39] **Whitney Lee:** I would love the feedback and to use it. Yeah. It's not really ready for use yet, but it Okay. The way at the rate things are going with my my interest level through the roof. I, it's, we're making good progress. It's fun, right? Yeah. Yeah. It's so fun. I'm having a blast and I actually have never quoted in Python before and I'm Oh wow.
+
+Python, why not? 
+
+[00:20:58] **Jason Hand:** Most of them know Python. [00:21:00] Python really well. So yeah, it's been fun doing little Python projects in there and learning more about Python in the past few years than I have. Yeah. In a decade, 
+
+[00:21:08] **Whitney Lee:** right? It it makes like knowledge that kind of went stale or you don't quite have, it was so overwhelming.
+
+Like it was a big barrier of entry to get it back. And now with this in the mix, you're like, oh yeah, that makes, that's awesome. Yeah. I can make it happen. Another feature of my journal will be that you can at any time record a manual. Reflection. I'm just gonna call it reflection. Okay.
+
+So in AI chat you can say, add reflection. This part really sucked, or this was awesome. Remember this for later, and it goes into your journal. And when it's surfacing summaries and stuff, to always prioritize that reflection as something especially valuable. I love this and. Just for funsies, I wanna show you.
+
+So I've been working on the logic behind how to collect what data it collects. Okay. So I, we have content quality guidelines for the ai, focus on signal [00:22:00] versus noise. And whatever's different about an entry is what's exciting. Don't just keep saying test, test driven development over and over again.
+
+We got it. But what's interesting is like writing a function to to get the summary.
+
+Aha. Collect chat history and then that takes in since timestamp and last journal entry. But even then, anyway, yeah, and then it's just an a freaking AI prompt. There's no code in there.
+
+It's an AI prompt
+
+and checklist, and then return with the AI returns. I just thought there's something hilarious about that to me. Yeah. I think I will maybe try, it's on my list to research whether I want to give instruction about how the results should be the data, how it should be structured.
+
+I'll look into that later. 
+
+[00:22:44] **Jason Hand:** I can say for sure that's helped me in some of my projects ah, because I, because the, a next subsequent step expects the output in a certain format, my JSON has to be Okay. So yeah, it's made because, the LLMs. They're not always gonna give you exactly what you [00:23:00] asked for unless like you, you're saying Here, put all these guardrails in place.
+
+Like my output must be, yeah, it has to look like this. Otherwise the whole thing breaks. So yeah, that's been very helpful. 
+
+[00:23:11] **Whitney Lee:** I. Great. So I think I, I have that coming in quickly. And then so basically it's giving an AI prompt to get the, these three different AI prompts. One for each source, one for terminal, one for Git, one for AI chat, and then those are all inputs then to lots of different AI prompts to, to generate each of the sections in a day's worth of journal entry.
+
+I'll share. We can put this in the notes my get. Repo. If you have any thoughts or suggestions, I would love to hear about it. Okay. Right now, the read me is just sensational. This is awesome, and here's why. Because there's, since there isn't no need to have install instructions until there's something to install, 
+
+[00:23:56] **Jason Hand:** sure. You're like, a lot of the things we're doing, doing it all out in the public, [00:24:00] learning out loud. Figuring it out as you go, and that's genuine and authentic and transparent and. True to life. That's how we all learn. So that's, yeah, 
+
+[00:24:10] **Whitney Lee:** that's something I'd love to point out is the tasks are the task master tasks.
+
+These, I've made them public that naturally the tool tries to hide them and get ignored. Oh. But in a similar learn out loud way. Yeah, let's talk about it. Let's put 'em out there. so if you wanna look at the repo just to understand taskmaster a little bit better, or at least how I use task ma master, I'm in a.
+
+Vacuum. So I don't know how others do it. But you can see this task five is what I'm working on now. And here are the subtasks. And then for these, because I'm implementing a core logic of how AI chats being. How the data's being collected. I want a lot of control over what's happening.
+
+I don't want AI to just go crazy with this. Yeah. So I'm saying like, ask me questions about my preferences. And [00:25:00] then use that before you even think about what you want. Don't guess at what my preferences are. And then with these questions, I take that into Claude and I say, Hey, ask me one at a time and have a discussion with me just like I did back at the very beginning.
+
+To suss out the idea in the first place. 
+
+[00:25:16] **Jason Hand:** Yeah. You enjoy understanding how it works, like I do the models and the tools are getting the agents and all of them are getting so good. Have you heard about Codex? Have you seen any of the No. The latest stuff about, so Codex, I was just about to say Codex could probably take your project as it is and not need you anymore. Yeah. And just step through all these tasks and just take care of it. I may be exaggerating a little bit, but that's the gist I'm getting, is that Codex and some of the newer ones coming are meant to really be even more autonomous in that they can take these tasks, they can break them out, do all the reasoning, come up with a plan, and then execute the plan and, still have the human in the loop where you want the human in the loop to be, but.
+
+There's less of this like going back and forth. I'm [00:26:00] like, you, I'm in a place where I don't want to just get the thing done. Yeah. The whole, the point of doing the thing is for me to understand how we got from A to B. So I want you to stop and have this conversation together. Don't just do it for me.
+
+Yeah. Maybe that's just, the the independence in me, I was like, no, don't do it for me. I want to know how you did it. Show me how you did this because I want to know. And that's just, I think. This is a great example where you can make it do that. You don't have to hand over and whether you should or shouldn't, you don't have to.
+
+And you can make it tell you what it's doing and actually do some serious learning. 
+
+[00:26:34] **Whitney Lee:** It's so much learning. And then I feel like a real sense of ownership over this. Too, even though I have it written a line of code. Yeah. But yeah,
+
+[00:26:43] **Jason Hand:** it feels because it came from your head. 
+
+[00:26:45] **Whitney Lee:** Yeah, very much. And like I really.
+
+Even now I don't know, I guess I would have to experiment, experiment with Codex, but I can't imagine now that we're getting into the logic of what should go in a journal summary, what would AI make up for that? That [00:27:00] just feels like it's very human or 
+
+[00:27:02] **Jason Hand:** It's very subjective, right? Like it's subjective.
+
+It gets into the art part of your project. It's I know what I want it to look like and feel I can do. So I really do need to be involved with this project. You know what I mean?
+
+[00:27:11] **Whitney Lee:** I don't knock it till you try it, but it's that part's hard for me to imagine a tool being able to take my place for that.
+
+[00:27:18] **Jason Hand:** I think we're all looking at ai, gen, ai again, all these tools and agents and looking for the places where it can tackle the tasks and the things that we know. Need to be done. They make our life easier, they make development better. Like they're just things that are quote best practices and you just gotta get 'em done.
+
+They're not always the most enjoyable thing for a human to do. And yeah, some, and especially if it's repetitive and it feels like toil and like these are all the things that are ingrained in our head of. Tackle those things, get them outta the way because that frees you up to work on more important things.
+
+If I can let the AI tackle those things, like that's a great relationship. And I think that's where I usually lean into it is look, I know I gotta do this. Doing, month in bills is a good example. There's always like [00:28:00] expenses you gotta do and things, and that's such a drag.
+
+I hate doing 'em, yeah. There's nothing to 'em. It's simple. I just don't like doing, if I can make that easier for myself, that's the type of stuff I'm trying to. Tackle,
+
+[00:28:10] **Whitney Lee:** 100% don't, not the fun thinking stuff, don't, 
+
+[00:28:13] **Jason Hand:** yeah, no that's me. That you can't take that from me. I'll just go do it somewhere else.
+
+[00:28:18] **Whitney Lee:** Yeah, that's a good point. Yeah. If you take it from me, I'll just go camp. 
+
+[00:28:24] **Jason Hand:** Yeah, exactly.
+
+[00:28:25] **Whitney Lee:** Find some new new maps, new trails to, to discover. I'll get that energy out somewhere. 
+
+[00:28:30] **Jason Hand:** Exactly. 
+
+[00:28:32] **Whitney Lee:** This has been a joy. Thank you for letting me share. I've been, 
+
+[00:28:35] **Jason Hand:** yeah. I can't wait to see the progress and see how it, looks once you're ready to share more of it and thanks so much for sharing with it.
+
+[00:28:42] **Whitney Lee:** Awesome. I'll come back when I have it put together when I'm ready for some tests, subjects. Perfect. 
+
+[00:28:48] **Jason Hand:** All right. Sounds good. We'll see you later. 
+
+[00:28:51] **Whitney Lee:** Bye. Thank you. Bye." />

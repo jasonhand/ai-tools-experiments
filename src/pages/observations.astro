@@ -1,7 +1,7 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
 
-// Static episode data for now - this ensures the page works
+// Complete episode data for all episodes
 const episodes = [
   {
     number: 31,
@@ -122,6 +122,261 @@ const episodes = [
     tools: ["Puppeteer", "MCP", "Gemini", "Claude", "Astro"],
     concepts: ["Site Migration", "Multimodal AI", "Visual Context", "Framework Conversion"],
     path: "/episodes/ep20"
+  },
+  {
+    number: 17,
+    title: "The State of AI 2025: Exploring Developer Tools, Models, and Industry Trends",
+    heroImg: "/images/thumbnails/ep17.png",
+    tags: ["State of AI", "Notebook LM", "Claude", "ChatGPT"],
+    takeaways: [
+      "State of AI reports provide valuable insights into developer tool adoption",
+      "Notebook LM excels at synthesizing information from multiple sources",
+      "AI tool popularity varies significantly across different developer segments",
+      "Pain points in AI tools often center around context and consistency"
+    ],
+    tools: ["State of AI", "Notebook LM", "Claude", "ChatGPT"],
+    concepts: ["Industry Analysis", "Tool Adoption", "Developer Preferences", "Market Trends"],
+    path: "/episodes/ep17"
+  },
+  {
+    number: 16,
+    title: "Enhancing CSS Editing with LLMs: Using Puppeteer for Visual Context",
+    heroImg: "/images/thumbnails/ep16.png",
+    tags: ["Puppeteer", "MCP", "Gemini", "CSS"],
+    takeaways: [
+      "Visual context through screenshots dramatically improves CSS editing with AI",
+      "Puppeteer MCP integration creates a virtuous cycle for design improvements",
+      "Large CSS codebases benefit from AI assistance with visual feedback",
+      "Modern CSS syntax can be challenging for developers familiar with older versions"
+    ],
+    tools: ["Puppeteer", "MCP", "Gemini", "CSS"],
+    concepts: ["Visual Context", "CSS Editing", "Design Feedback", "Code Visualization"],
+    path: "/episodes/ep16"
+  },
+  {
+    number: 15,
+    title: "AI Tools in Action: Exploring Sora Image Generation and Lovable App Builder",
+    heroImg: "/images/thumbnails/ep15.png",
+    tags: ["Lovable", "Sora", "Image Generation", "AI Development"],
+    takeaways: [
+      "Sora has significantly improved text rendering in generated images",
+      "AI image generation now produces professional-looking fonts with proper kerning",
+      "Generative AI quality has reached a point where 'AI slop' is less common",
+      "Y2K aesthetic and 3D cartoon styles work particularly well with current AI tools"
+    ],
+    tools: ["Lovable", "Sora", "Image Generation", "AI Development"],
+    concepts: ["Text Rendering", "Font Quality", "Aesthetic Styles", "Visual Quality"],
+    path: "/episodes/ep15"
+  },
+  {
+    number: 14,
+    title: "Claude 3.7 Sonnet Plugins: AI Integration with Gmail, Drive and Calendar",
+    heroImg: "/images/thumbnails/ep14.png",
+    tags: ["Claude", "Plugins", "Productivity"],
+    takeaways: [
+      "Claude Desktop integrates seamlessly with Gmail, Google Drive, and Calendar",
+      "AI can analyze massive email volumes and generate personalized dashboards",
+      "Interactive React-based artifacts provide customized productivity tools",
+      "Email management becomes engaging when gamified through AI assistance"
+    ],
+    tools: ["Claude", "Plugins", "Productivity"],
+    concepts: ["Email Management", "Calendar Integration", "Productivity Dashboards", "OAuth Integration"],
+    path: "/episodes/ep14"
+  },
+  {
+    number: 13,
+    title: "Exploring Bolt: Rapid App Development with AI-Powered Templates",
+    heroImg: "/images/thumbnails/ep13.png",
+    tags: ["Bolt", "AI Development"],
+    takeaways: [
+      "Bolt enables rapid prototyping through template-based development",
+      "'Vibe coding' allows quick concept visualization before deeper development",
+      "Browser-based AI development tools excel at exploration and experimentation",
+      "Screenshot-based programming can quickly recreate interfaces from images"
+    ],
+    tools: ["Bolt", "AI Development"],
+    concepts: ["Rapid Prototyping", "Template Development", "Vibe Coding", "Browser-Based IDEs"],
+    path: "/episodes/ep13"
+  },
+  {
+    number: 12,
+    title: "Cursor Rules, Firebase Studio, and the Evolving IDE Landscape",
+    heroImg: "/images/thumbnails/ep12.png",
+    tags: ["Cursor", "ML Models", "Productivity", "Firebase"],
+    takeaways: [
+      "Cursor Rules help combat 'AI amnesia' by preserving context between sessions",
+      "Project requirement documents reduce repetitive instructions in AI coding",
+      "Firebase Studio represents cloud providers' move into AI-powered IDEs",
+      "Context preservation is crucial for effective AI-assisted development workflows"
+    ],
+    tools: ["Cursor", "ML Models", "Productivity", "Firebase"],
+    concepts: ["Context Preservation", "AI Amnesia", "Cloud IDEs", "Development Workflows"],
+    path: "/episodes/ep12"
+  },
+  {
+    number: 11,
+    title: "Exploring Llama 4, OpenRouter, and Model Comparison Tools",
+    heroImg: "/images/thumbnails/ep11.png",
+    tags: ["Cursor", "ML Models", "Productivity"],
+    takeaways: [
+      "Llama 4's massive context window may reduce the need for RAG systems",
+      "Large context windows enable more detailed system prompts and guardrails",
+      "Model comparison platforms help identify unexpected high-performing models",
+      "OpenRouter and LM Arena provide valuable tools for testing AI models side by side"
+    ],
+    tools: ["Cursor", "ML Models", "Productivity"],
+    concepts: ["Context Windows", "Model Comparison", "RAG Systems", "Prompt Engineering"],
+    path: "/episodes/ep11"
+  },
+  {
+    number: 10,
+    title: "First Look at Windsurf & Model Context Protocol (MCP)",
+    heroImg: "/images/thumbnails/ep10.png",
+    tags: ["Web Development"],
+    takeaways: [
+      "Windsurf offers unique AI coding workflows compared to Cursor",
+      "Product Requirements Documents (PRDs) improve AI project planning",
+      "Model Context Protocol (MCP) is emerging as a standard for AI tool integration",
+      "Planning before coding leads to better results with AI assistants"
+    ],
+    tools: ["Web Development"],
+    concepts: ["AI Workflows", "Project Planning", "Protocol Standards", "Development Planning"],
+    path: "/episodes/ep10"
+  },
+  {
+    number: 9,
+    title: "From GTC to Website Building with AI Tools",
+    heroImg: "/images/thumbnails/ep09.png",
+    tags: ["Web Development"],
+    takeaways: [
+      "NVIDIA's GTC conference showcases cutting-edge AI advancements",
+      "AI tools can be applied to practical website development tasks",
+      "Conference insights translate into actionable development techniques",
+      "Staying current with AI developments informs better tool selection"
+    ],
+    tools: ["Web Development"],
+    concepts: ["Conference Insights", "AI Advancements", "Practical Applications", "Tool Selection"],
+    path: "/episodes/ep09"
+  },
+  {
+    number: 8,
+    title: "Using Cursor and Claude to Fix CSS Layout Issues",
+    heroImg: "/images/thumbnails/ep08.png",
+    tags: ["Cursor", "Claude", "Debugging", "Web Development"],
+    takeaways: [
+      "AI-powered debugging can quickly identify complex CSS layout problems",
+      "Cursor's AI assistance excels at systematic problem-solving approaches",
+      "Visual debugging with AI reduces time spent on layout troubleshooting",
+      "Step-by-step AI guidance helps understand the root causes of CSS issues"
+    ],
+    tools: ["Cursor", "Claude", "Debugging", "Web Development"],
+    concepts: ["CSS Debugging", "Layout Problems", "Visual Debugging", "Systematic Problem-Solving"],
+    path: "/episodes/ep08"
+  },
+  {
+    number: 7,
+    title: "Using Cursor and Claude to Solve Record Search Bugs",
+    heroImg: "/images/thumbnails/ep07.png",
+    tags: ["Cursor", "Claude", "Debugging"],
+    takeaways: [
+      "AI debugging sessions can systematically identify complex search functionality bugs",
+      "Cursor IDE provides effective tools for collaborative AI problem-solving",
+      "Record management systems benefit from AI-assisted debugging approaches",
+      "Complex bugs often require iterative AI assistance to fully resolve"
+    ],
+    tools: ["Cursor", "Claude", "Debugging"],
+    concepts: ["Bug Identification", "Search Functionality", "Record Management", "Iterative Debugging"],
+    path: "/episodes/ep07"
+  },
+  {
+    number: 6,
+    title: "Using Claude Code to Make Changes to My Personal Website",
+    heroImg: "/images/thumbnails/ep06.png",
+    tags: ["Web Development", "Claude"],
+    takeaways: [
+      "Claude Code can handle substantial website changes from planning to execution",
+      "Personal website modifications provide good testing grounds for AI tools",
+      "AI assistance helps with both implementation and troubleshooting phases",
+      "Real-world projects reveal both capabilities and limitations of AI coding tools"
+    ],
+    tools: ["Web Development", "Claude"],
+    concepts: ["Website Modification", "Personal Projects", "Implementation Planning", "Real-World Testing"],
+    path: "/episodes/ep06"
+  },
+  {
+    number: 5,
+    title: "Using Claude Code for Automated HTML Updates and Styling",
+    heroImg: "/images/thumbnails/ep05.png",
+    tags: ["Web Development", "Claude"],
+    takeaways: [
+      "Claude Code can automate repetitive HTML updates across multiple pages",
+      "Consistent styling application becomes efficient with AI assistance",
+      "Automated updates improve website maintainability and reduce manual errors",
+      "AI tools excel at applying systematic changes across large codebases"
+    ],
+    tools: ["Web Development", "Claude"],
+    concepts: ["HTML Automation", "Consistent Styling", "Website Maintenance", "Systematic Updates"],
+    path: "/episodes/ep05"
+  },
+  {
+    number: 4,
+    title: "Building a Secure Feedback Form with Datadog Logs with Claude Code",
+    heroImg: "/images/thumbnails/ep04.png",
+    tags: ["Web Development", "Claude"],
+    takeaways: [
+      "AI can help build secure forms with proper validation and logging",
+      "Datadog integration provides robust logging solutions for user feedback",
+      "Security considerations are important when building user-facing forms",
+      "Claude Code assists with both frontend and backend implementation"
+    ],
+    tools: ["Web Development", "Claude"],
+    concepts: ["Form Security", "User Feedback", "Logging Integration", "Full-Stack Development"],
+    path: "/episodes/ep04"
+  },
+  {
+    number: 3,
+    title: "Automatic1111 and Local Text-to-Image Generation",
+    heroImg: "/images/thumbnails/ep03.png",
+    tags: ["Image Generation"],
+    takeaways: [
+      "Automatic1111 provides powerful local text-to-image generation capabilities",
+      "Local generation offers privacy and control over image creation processes",
+      "Prompt engineering techniques significantly impact image quality and accuracy",
+      "Extensions like ControlNet provide additional control over image generation"
+    ],
+    tools: ["Image Generation"],
+    concepts: ["Local Generation", "Prompt Engineering", "Image Control", "Privacy-First AI"],
+    path: "/episodes/ep03"
+  },
+  {
+    number: 2,
+    title: "Exploring Warp Terminal and Cursor for Productivity",
+    heroImg: "/images/thumbnails/ep02.png",
+    tags: ["Productivity", "Cursor"],
+    takeaways: [
+      "Warp Terminal enhances developer productivity with AI-powered features",
+      "Cursor IDE significantly boosts coding efficiency through AI assistance",
+      "AI-enhanced tools integrate seamlessly into existing developer workflows",
+      "Terminal and IDE improvements compound to create substantial productivity gains"
+    ],
+    tools: ["Productivity", "Cursor"],
+    concepts: ["Developer Productivity", "AI-Enhanced Tools", "Workflow Integration", "Terminal Enhancement"],
+    path: "/episodes/ep02"
+  },
+  {
+    number: 1,
+    title: "Building Quick Web Interfaces for Machine Learning Models",
+    heroImg: "/images/thumbnails/ep01.png",
+    tags: ["Web Development", "ML Models"],
+    takeaways: [
+      "Gradio enables rapid web interface creation for ML models",
+      "Non-technical users can interact with complex ML systems through simple interfaces",
+      "Backend developers can create frontends without extensive JavaScript knowledge",
+      "Quick prototyping of ML features becomes accessible through Gradio"
+    ],
+    tools: ["Web Development", "ML Models"],
+    concepts: ["ML Interfaces", "Rapid Prototyping", "User Accessibility", "Backend-to-Frontend"],
+    path: "/episodes/ep01"
   }
 ].sort((a, b) => b.number - a.number);
 
@@ -161,18 +416,6 @@ const allTools = [...new Set(episodes.flatMap(ep => ep.tools))].sort();
                     </div>
                 </div>
                 
-                <div class="filter-group">
-                    <h3>Episodes</h3>
-                    <div class="filters-container" id="episode-filters">
-                        {episodes.map(episode => (
-                            <div class="filter-item" data-filter="episode" data-value={episode.number.toString()}>
-                                <span>Episode {episode.number}</span>
-                                <span class="count">1</span>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-                
                 <button class="reset-filters" id="reset-filters">Reset All Filters</button>
             </div>
             
@@ -185,11 +428,13 @@ const allTools = [...new Set(episodes.flatMap(ep => ep.tools))].sort();
                              data-tools={episode.tools.map(t => t.toLowerCase()).join(',')} 
                              data-concepts={episode.concepts.map(c => c.toLowerCase()).join(',')}>
                             <div class="takeaway-card-header">
-                                <img src={episode.heroImg} alt={`Episode ${episode.number} Thumbnail`}>
-                                <div class="takeaway-card-header-content">
-                                    <div class="episode-number">Episode {episode.number}</div>
-                                    <h3>{episode.title}</h3>
-                                </div>
+                                <a href={episode.path} class="header-link">
+                                    <img src={episode.heroImg} alt={`Episode ${episode.number} Thumbnail`}>
+                                    <div class="takeaway-card-header-content">
+                                        <div class="episode-number">Episode {episode.number}</div>
+                                        <h3>{episode.title}</h3>
+                                    </div>
+                                </a>
                             </div>
                             <div class="takeaway-card-body">
                                 <div class="takeaway-card-tags">
@@ -373,6 +618,15 @@ const allTools = [...new Set(episodes.flatMap(ep => ep.tools))].sort();
         height: 140px;
         position: relative;
         overflow: hidden;
+    }
+    
+    .takeaway-card-header .header-link {
+        display: block;
+        width: 100%;
+        height: 100%;
+        text-decoration: none;
+        color: inherit;
+        cursor: pointer;
     }
     
     .takeaway-card-header img {
@@ -570,8 +824,7 @@ const allTools = [...new Set(episodes.flatMap(ep => ep.tools))].sort();
         
         let activeFilters = {
             search: '',
-            tools: [] as string[],
-            episodes: [] as string[]
+            tools: [] as string[]
         };
         
         // Search functionality
@@ -594,12 +847,6 @@ const allTools = [...new Set(episodes.flatMap(ep => ep.tools))].sort();
                     } else {
                         activeFilters.tools = activeFilters.tools.filter(t => t !== filterValue);
                     }
-                } else if (filterType === 'episode' && filterValue) {
-                    if (this.classList.contains('active')) {
-                        activeFilters.episodes.push(filterValue);
-                    } else {
-                        activeFilters.episodes = activeFilters.episodes.filter(e => e !== filterValue);
-                    }
                 }
                 
                 filterCards();
@@ -608,7 +855,7 @@ const allTools = [...new Set(episodes.flatMap(ep => ep.tools))].sort();
         
         // Reset filters
         resetButton?.addEventListener('click', function() {
-            activeFilters = { search: '', tools: [], episodes: [] };
+            activeFilters = { search: '', tools: [] };
             if (searchInput) searchInput.value = '';
             filterItems.forEach(item => item.classList.remove('active'));
             filterCards();
@@ -636,14 +883,6 @@ const allTools = [...new Set(episodes.flatMap(ep => ep.tools))].sort();
                         cardTools.some(cardTool => cardTool.includes(tool))
                     );
                     if (!hasMatchingTool) {
-                        shouldShow = false;
-                    }
-                }
-                
-                // Episode filter
-                if (activeFilters.episodes.length > 0) {
-                    const cardEpisode = card.dataset.episode || '';
-                    if (!activeFilters.episodes.includes(cardEpisode)) {
                         shouldShow = false;
                     }
                 }

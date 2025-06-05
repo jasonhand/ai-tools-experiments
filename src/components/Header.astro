@@ -4,7 +4,27 @@ interface Props {
 }
 
 const { hideEpisodesLink = false } = Astro.props;
+
+// Centralized navigation configuration (matches navigation.js) - removed Articles
+const navigationItems = [
+    { href: '/', label: 'Home', id: 'home' },
+    { href: '/observations', label: 'Observations', id: 'observations' },
+    { href: '/about', label: 'About', id: 'about' }
+];
+
+// Add Episodes link if not hidden (for main pages that show it)
+const navItems = hideEpisodesLink 
+    ? navigationItems 
+    : [
+        navigationItems[0], // Home
+        { href: '/episodes', label: 'Episodes', id: 'episodes' },
+        ...navigationItems.slice(1) // Rest of the items
+    ];
+
+// Get current path for active state
+const currentPath = Astro.url.pathname;
 ---
+
 <header class="site-header">
     <div class="bubble"></div>
     <div class="bubble"></div>
@@ -20,12 +40,9 @@ const { hideEpisodesLink = false } = Astro.props;
         </div>
         <nav>
             <ul>
-                <li><a href='/'>Home</a></li>
-                {!hideEpisodesLink && <li><a href='/episodes'>Episodes</a></li>}
-                {/* <li><a href='/resources'>Resources</a></li> */}
-                <li><a href='/articles'>Articles</a></li>
-                <li><a href='/observations'>Observations</a></li>
-                <li><a href='/about'>About</a></li>
+                {navItems.map(item => (
+                    <li><a href={item.href} class={currentPath === item.href ? 'active' : ''}>{item.label}</a></li>
+                ))}
             </ul>
         </nav>
     </div>
