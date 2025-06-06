@@ -24,43 +24,28 @@ const allTools = getAllTags(allEpisodes);
 
 <MainLayout title="Observations & Insights">
     <main class="container about-section">
-        <div class="about-header">
-            <h1>Observations & Insights</h1>
-            <p>Discover patterns, insights, and key takeaways from our AI tools exploration journey. Filter by tools, technologies, or concepts to focus on specific areas of interest.</p>
-        </div>
         
-        <!-- Mobile search section -->
-        <div class="mobile-search-section">
-            <div class="filter-group">
-                <h3>Search</h3>
-                <input type="text" class="filter-search" placeholder="Search takeaways..." id="search-input">
-            </div>
-        </div>
+
         
-        <div class="observations-layout">
-            <!-- Sidebar with filters -->
-            <div class="observations-sidebar">
-                <div class="filter-group desktop-search">
-                    <h3>Search</h3>
-                    <input type="text" class="filter-search" placeholder="Search takeaways..." id="search-input-desktop">
-                </div>
-                
-                <div class="filter-group">
-                    <h3>Tools & Technologies</h3>
-                    <div class="filters-container" id="tools-filters">
-                        {allTools.map(tool => (
-                            <div class="filter-item" data-filter="tool" data-value={tool.toLowerCase()}>
-                                <span>{tool}</span>
-                                <span class="count">{episodesWithTakeaways.filter(ep => ep.tags.some(t => t.toLowerCase() === tool.toLowerCase())).length}</span>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-                
-                <button class="reset-filters" id="reset-filters">Reset All Filters</button>
+        <!-- Compact horizontal filters -->
+        <div class="filters-bar">
+            <div class="search-container">
+                <input type="text" class="compact-search" placeholder="Search takeaways..." id="search-input-main">
             </div>
             
-            <!-- Main content area -->
+            <div class="tools-filter-container">
+                <select class="tools-dropdown" id="tools-dropdown">
+                    <option value="">All Tools & Technologies</option>
+                    {allTools.map(tool => (
+                        <option value={tool.toLowerCase()}>{tool} ({episodesWithTakeaways.filter(ep => ep.tags.some(t => t.toLowerCase() === tool.toLowerCase())).length})</option>
+                    ))}
+                </select>
+            </div>
+            
+            <button class="reset-filters-compact" id="reset-filters-main">Reset</button>
+        </div>
+
+        <div class="observations-layout">
             <div class="observations-content">
                 <div class="takeaway-cards" id="takeaway-cards">
                     {episodesWithTakeaways.map(episode => (
@@ -105,149 +90,116 @@ const allTools = getAllTags(allEpisodes);
                 </div>
             </div>
         </div>
-        
-        <!-- Mobile filters section at bottom -->
-        <div class="mobile-filters-section">
-            <div class="filter-group">
-                <h3>Tools & Technologies</h3>
-                <div class="filters-container" id="tools-filters-mobile">
-                    {allTools.map(tool => (
-                        <div class="filter-item" data-filter="tool" data-value={tool.toLowerCase()}>
-                            <span>{tool}</span>
-                            <span class="count">{episodesWithTakeaways.filter(ep => ep.tags.some(t => t.toLowerCase() === tool.toLowerCase())).length}</span>
-                        </div>
-                    ))}
-                </div>
-            </div>
-            
-            <button class="reset-filters" id="reset-filters-mobile">Reset All Filters</button>
-        </div>
+
     </main>
 </MainLayout>
 
 <style>
+    /* Observations page container styling to match episode pages */
+    .about-section {
+        background-color: white;
+        border-radius: 8px;
+        padding: 2rem;
+        box-shadow: var(--shadow);
+        margin-top: -1rem;
+        margin-bottom: 2rem;
+        position: relative;
+        max-width: 1200px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    /* Compact horizontal filters bar */
+    .filters-bar {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        background: linear-gradient(135deg, var(--light-color) 0%, var(--highlight-color) 30%, var(--accent-color) 100%);
+        border-radius: 16px;
+        padding: 1.5rem 2rem;
+        margin-bottom: 2rem;
+        box-shadow: 0 8px 32px rgba(169, 211, 255, 0.2), 0 4px 16px rgba(169, 211, 255, 0.15);
+        flex-wrap: wrap;
+    }
+    
+    .search-container {
+        flex: 1;
+        min-width: 250px;
+    }
+    
+    .compact-search {
+        width: 100%;
+        padding: 0.75rem 1rem;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        border-radius: 12px;
+        font-size: 1rem;
+        background: rgba(255, 255, 255, 0.9);
+        color: var(--primary-color);
+        backdrop-filter: blur(15px);
+        transition: all 0.3s ease;
+    }
+    
+    .compact-search:focus {
+        outline: none;
+        border-color: rgba(255, 255, 255, 0.8);
+        box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.2);
+        background: white;
+    }
+    
+    .tools-filter-container {
+        min-width: 200px;
+    }
+    
+    .tools-dropdown {
+        width: 100%;
+        padding: 0.75rem 1rem;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        border-radius: 12px;
+        font-size: 1rem;
+        background: rgba(255, 255, 255, 0.9);
+        color: var(--primary-color);
+        backdrop-filter: blur(15px);
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    
+    .tools-dropdown:focus {
+        outline: none;
+        border-color: rgba(255, 255, 255, 0.8);
+        box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.2);
+        background: white;
+    }
+    
+    .reset-filters-compact {
+        padding: 0.75rem 1.5rem;
+        background: rgba(255, 255, 255, 0.9);
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        border-radius: 12px;
+        color: var(--primary-color);
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(15px);
+        white-space: nowrap;
+    }
+    
+    .reset-filters-compact:hover {
+        background: white;
+        border-color: rgba(255, 255, 255, 0.8);
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    
     /* Main layout improvements */
     .observations-layout {
-        display: grid;
-        grid-template-columns: 260px 1fr;
-        gap: 30px;
         position: relative;
-    }
-    
-    /* Sidebar styling */
-    .observations-sidebar {
-        position: sticky;
-        top: 20px;
-        height: calc(100vh - 100px);
-        overflow-y: auto;
-        padding-right: 15px;
-        scrollbar-width: thin;
-    }
-    
-    .observations-sidebar::-webkit-scrollbar {
-        width: 6px;
-    }
-    
-    .observations-sidebar::-webkit-scrollbar-thumb {
-        background-color: #ddd;
-        border-radius: 6px;
     }
     
     .observations-content {
         min-height: 500px;
     }
     
-    /* Filter group styling */
-    .filter-group {
-        margin-bottom: 25px;
-        background: #f8f9ff;
-        border-radius: 12px;
-        padding: 15px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-    }
-    
-    .filter-group h3 {
-        margin-top: 0;
-        margin-bottom: 12px;
-        font-size: 1rem;
-        color: #333;
-        border-bottom: 1px solid #e5e7eb;
-        padding-bottom: 8px;
-    }
-    
-    /* Tool filters */
-    .filters-container {
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-        max-height: 300px;
-        overflow-y: auto;
-        padding-right: 5px;
-    }
-    
-    .filter-item {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        padding: 8px 10px;
-        border-radius: 6px;
-        cursor: pointer;
-        transition: all 0.2s ease;
-        font-size: 0.9rem;
-    }
-    
-    .filter-item:hover {
-        background-color: #f0f0ff;
-    }
-    
-    .filter-item.active {
-        background-color: #e6e6ff;
-        font-weight: 500;
-    }
-    
-    .filter-item .count {
-        margin-left: auto;
-        background-color: #e2e2fe;
-        border-radius: 12px;
-        padding: 2px 8px;
-        font-size: 0.75rem;
-        color: #4f46e5;
-    }
-    
-    /* Search styling */
-    .filter-search {
-        width: 100%;
-        padding: 8px 12px;
-        border: 1px solid #ddd;
-        border-radius: 6px;
-        margin-bottom: 10px;
-        font-size: 0.9rem;
-    }
-    
-    .filter-search:focus {
-        outline: none;
-        border-color: #7c4dff;
-        box-shadow: 0 0 0 2px rgba(124, 77, 255, 0.2);
-    }
-    
-    /* Reset filters button */
-    .reset-filters {
-        display: block;
-        width: 100%;
-        padding: 8px;
-        background-color: #f8f8f8;
-        border: 1px solid #e0e0e0;
-        border-radius: 6px;
-        text-align: center;
-        margin-top: 10px;
-        cursor: pointer;
-        transition: all 0.2s ease;
-        font-size: 0.9rem;
-    }
-    
-    .reset-filters:hover {
-        background-color: #e8e8e8;
-    }
+
     
     /* Takeaway cards styling */
     .takeaway-cards {
@@ -273,7 +225,7 @@ const allTools = getAllTags(allEpisodes);
     }
     
     .takeaway-card-header {
-        height: 140px;
+        height: 280px;
         position: relative;
         overflow: hidden;
     }
@@ -417,62 +369,22 @@ const allTools = getAllTags(allEpisodes);
         margin: 0 auto;
     }
     
-    /* Mobile search and filters sections */
-    .mobile-search-section {
-        display: none;
-        margin-bottom: 20px;
-    }
-    
-    .mobile-filters-section {
-        display: none;
-        margin-top: 30px;
-        padding-top: 20px;
-        border-top: 2px solid #e5e7eb;
-    }
-    
-    .desktop-search {
-        display: block;
-    }
-    
     /* Mobile responsive */
     @media (max-width: 768px) {
-        /* Show mobile sections, hide desktop sidebar */
-        .mobile-search-section {
-            display: block;
+        .filters-bar {
+            flex-direction: column;
+            gap: 1rem;
+            padding: 1.5rem;
         }
         
-        .mobile-filters-section {
-            display: block;
-        }
-        
-        .observations-sidebar {
-            display: none;
-        }
-        
-        .observations-layout {
-            grid-template-columns: 1fr;
-        }
-        
-        .observations-content {
-            margin-bottom: 0;
+        .search-container,
+        .tools-filter-container {
+            min-width: auto;
+            width: 100%;
         }
         
         .takeaway-cards {
             grid-template-columns: 1fr;
-        }
-        
-        /* Mobile search styling */
-        .mobile-search-section .filter-group {
-            margin-bottom: 0;
-        }
-        
-        /* Mobile filters styling */
-        .mobile-filters-section .filter-group {
-            margin-bottom: 20px;
-        }
-        
-        .mobile-filters-section .filters-container {
-            max-height: 200px;
         }
     }
 </style>
@@ -480,82 +392,39 @@ const allTools = getAllTags(allEpisodes);
 <script>
     // Filter functionality
     document.addEventListener('DOMContentLoaded', function() {
-        const searchInputMobile = document.getElementById('search-input') as HTMLInputElement;
-        const searchInputDesktop = document.getElementById('search-input-desktop') as HTMLInputElement;
-        const filterItems = document.querySelectorAll('.filter-item');
+        const searchInput = document.getElementById('search-input-main') as HTMLInputElement;
+        const toolsDropdown = document.getElementById('tools-dropdown') as HTMLSelectElement;
         const takeawayCards = document.querySelectorAll('.takeaway-card') as NodeListOf<HTMLElement>;
         const emptyState = document.getElementById('empty-state') as HTMLElement;
-        const resetButtonDesktop = document.getElementById('reset-filters') as HTMLElement;
-        const resetButtonMobile = document.getElementById('reset-filters-mobile') as HTMLElement;
+        const resetButton = document.getElementById('reset-filters-main') as HTMLElement;
         
         let activeFilters = {
             search: '',
-            tools: [] as string[]
+            tool: ''
         };
         
-        // Search functionality for both inputs
-        function handleSearchInput(value: string) {
-            activeFilters.search = value.toLowerCase();
-            // Sync both search inputs
-            if (searchInputMobile && searchInputMobile.value !== value) {
-                searchInputMobile.value = value;
-            }
-            if (searchInputDesktop && searchInputDesktop.value !== value) {
-                searchInputDesktop.value = value;
-            }
+        // Search functionality
+        searchInput?.addEventListener('input', function() {
+            activeFilters.search = this.value.toLowerCase();
             filterCards();
-        }
-        
-        searchInputMobile?.addEventListener('input', function() {
-            handleSearchInput(this.value);
         });
         
-        searchInputDesktop?.addEventListener('input', function() {
-            handleSearchInput(this.value);
-        });
-        
-        // Filter item clicks
-        filterItems.forEach(item => {
-            item.addEventListener('click', function() {
-                const filterType = (this as HTMLElement).dataset.filter;
-                const filterValue = (this as HTMLElement).dataset.value;
-                
-                // Toggle all matching filter items (desktop and mobile)
-                const allMatchingItems = document.querySelectorAll(`[data-filter="${filterType}"][data-value="${filterValue}"]`);
-                const isActive = this.classList.contains('active');
-                
-                allMatchingItems.forEach(matchingItem => {
-                    if (isActive) {
-                        matchingItem.classList.remove('active');
-                    } else {
-                        matchingItem.classList.add('active');
-                    }
-                });
-                
-                if (filterType === 'tool' && filterValue) {
-                    if (!isActive) {
-                        activeFilters.tools.push(filterValue);
-                    } else {
-                        activeFilters.tools = activeFilters.tools.filter(t => t !== filterValue);
-                    }
-                }
-                
-                filterCards();
-            });
+        // Tools dropdown functionality
+        toolsDropdown?.addEventListener('change', function() {
+            activeFilters.tool = this.value;
+            filterCards();
         });
         
         // Reset filters function
         function resetAllFilters() {
-            activeFilters = { search: '', tools: [] };
-            if (searchInputMobile) searchInputMobile.value = '';
-            if (searchInputDesktop) searchInputDesktop.value = '';
-            filterItems.forEach(item => item.classList.remove('active'));
+            activeFilters = { search: '', tool: '' };
+            if (searchInput) searchInput.value = '';
+            if (toolsDropdown) toolsDropdown.value = '';
             filterCards();
         }
         
-        // Reset filters for both buttons
-        resetButtonDesktop?.addEventListener('click', resetAllFilters);
-        resetButtonMobile?.addEventListener('click', resetAllFilters);
+        // Reset button
+        resetButton?.addEventListener('click', resetAllFilters);
         
         // Filter cards based on active filters
         function filterCards() {
@@ -573,10 +442,10 @@ const allTools = getAllTags(allEpisodes);
                 }
                 
                 // Tools filter
-                if (activeFilters.tools.length > 0) {
+                if (activeFilters.tool) {
                     const cardTools = (card.dataset.tools || '').split(',');
-                    const hasMatchingTool = activeFilters.tools.some(tool => 
-                        cardTools.some(cardTool => cardTool.includes(tool))
+                    const hasMatchingTool = cardTools.some(cardTool => 
+                        cardTool.includes(activeFilters.tool)
                     );
                     if (!hasMatchingTool) {
                         shouldShow = false;

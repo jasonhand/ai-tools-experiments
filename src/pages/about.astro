@@ -3,25 +3,25 @@ import MainLayout from '../layouts/MainLayout.astro';
 ---
 
 <MainLayout title="About" description="Learn more about AI Tools Lab and our mission to explore AI tools and technologies">
-    <main class="container about-section">        
+    <main class="container">
         <div class="about-content">
-            <section class="about-section-block">
-                <h2>What is AI Tools Lab?</h2>
-                <div style="display: flex; align-items: center; gap: 30px;">
-                    <div style="flex: 3;">
-                        <p>
-                            AI Tools Lab consists of 30-40 minute recorded technical demonstrations of hands-on (early or first) 
-                            experiences with AI-related tooling for developers. Each episode explores different aspects of 
-                            AI tools and their practical applications in software development.
-                        </p>
-                    </div>
-                    <div style="flex: 2; text-align: right;">
-                        <img src="/images/ai-tools-lab-logo.png" alt="AI Tools Lab" style="width: 250px; height: auto;">
-                    </div>
+            <!-- What is AI Tools Lab Section -->
+            <div class="section-what-is">
+                <div class="logo-container">
+                    <img src="/images/ai-tools-lab-logo.png" alt="AI Tools Lab" class="about-logo">
                 </div>
-            </section>
+                <div class="content-container">
+                    <h2>What is AI Tools Lab?</h2>
+                    <p>
+                        AI Tools Lab consists of 30-40 minute recorded technical demonstrations of hands-on (early or first) 
+                        experiences with AI-related tooling for developers. Each episode explores different aspects of 
+                        AI tools and their practical applications in software development.
+                    </p>
+                </div>
+            </div>
             
-            <section class="about-section-block">
+            <!-- Why AI Tools Lab Section -->
+            <div class="section-why">
                 <h2>Why AI Tools Lab?</h2>
                 <p>
                     Our goal is to help teams navigate the AI era by leading discussions, demos, and observations 
@@ -32,11 +32,12 @@ import MainLayout from '../layouts/MainLayout.astro';
                     What it means to be a developer is changing rapidly. Therefore, what it means to be a developer 
                     advocate is changing rapidly as well. Through AI Tools Lab, we explore these changes together.
                 </p>
-            </section>
+            </div>
             
-            <section class="about-section-block">
+            <!-- Our Goals Section -->
+            <div class="section-goals">
                 <h2>Our Goals</h2>
-                <ol class="goals-list">
+                <ul class="goals-list">
                     <li>
                         <strong>Education and Opinion Formation:</strong> To educate ourselves and form opinions on new 
                         (AI-related) technologies, tools, and processes in order to better understand today's challenges, 
@@ -52,10 +53,266 @@ import MainLayout from '../layouts/MainLayout.astro';
                     <li>
                         <strong>Collaboration:</strong> Foster collaboration with teammates.
                     </li>
-                </ol>
-            </section>
+                </ul>
+            </div>
         </div>
     </main>
     
     <script is:inline src="/script.js"></script>
-</MainLayout> 
+</MainLayout>
+
+<style>
+    /* About page container styling to match episode pages */
+    .about-content {
+        background-color: white;
+        border-radius: 8px;
+        padding: 2rem;
+        box-shadow: var(--shadow);
+        margin-top: -1rem;
+        margin-bottom: 2rem;
+        position: relative;
+        max-width: 1200px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* What is AI Tools Lab Section - Special layout with logo */
+    .section-what-is {
+        background: linear-gradient(135deg, var(--light-color) 0%, #ffffff 100%) !important;
+        border-left: 6px solid var(--accent-color) !important;
+        padding: 0 !important;
+        margin: 2rem 0 !important;
+        border-radius: 16px !important;
+        box-shadow: 0 12px 40px rgba(108, 117, 107, 0.15), 0 4px 16px rgba(108, 117, 107, 0.1) !important;
+        position: relative !important;
+        overflow: hidden !important;
+        transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+        display: flex !important;
+        align-items: stretch !important;
+    }
+
+    .section-what-is:hover {
+        transform: translateY(-2px) !important;
+        box-shadow: 0 16px 48px rgba(108, 117, 107, 0.2), 0 6px 20px rgba(108, 117, 107, 0.15) !important;
+    }
+
+    .logo-container {
+        background: linear-gradient(145deg, #3a1c71, #d76d77, #ffaf7b) !important;
+        position: relative !important;
+        padding: 2.5rem !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        min-width: 300px !important;
+        flex-shrink: 0 !important;
+    }
+
+    .logo-container::before {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        background-color: rgba(58, 28, 113, 0.6);
+        z-index: 1;
+        pointer-events: none;
+    }
+
+    .about-logo {
+        width: 200px !important;
+        height: auto !important;
+        position: relative !important;
+        z-index: 2 !important;
+        filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3)) !important;
+    }
+
+    .content-container {
+        padding: 2.5rem !important;
+        flex: 1 !important;
+    }
+
+    .content-container h2 {
+        color: var(--primary-color) !important;
+        margin: 0 0 1.5rem 0 !important;
+        font-size: 1.8rem !important;
+        font-weight: 600 !important;
+        border-bottom: 2px solid var(--accent-color) !important;
+        padding-bottom: 0.5rem !important;
+    }
+
+    .content-container p {
+        font-size: 1.15rem !important;
+        line-height: 1.8 !important;
+        margin-bottom: 0 !important;
+        color: #555 !important;
+    }
+
+    /* Why AI Tools Lab Section */
+    .section-why {
+        background: linear-gradient(135deg, var(--light-color) 0%, var(--secondary-color) 50%, var(--primary-color) 100%) !important;
+        border-radius: 16px !important;
+        padding: 2.5rem !important;
+        margin: 0 0 2rem 0 !important;
+        box-shadow: 0 12px 40px rgba(147, 172, 181, 0.2), 0 4px 16px rgba(147, 172, 181, 0.15) !important;
+        position: relative !important;
+        transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+    }
+
+    .section-why:hover {
+        transform: translateY(-2px) !important;
+        box-shadow: 0 16px 48px rgba(147, 172, 181, 0.25), 0 6px 20px rgba(147, 172, 181, 0.2) !important;
+    }
+
+    .section-why h2 {
+        color: white !important;
+        margin: 0 0 1.5rem 0 !important;
+        font-size: 1.3rem !important;
+        font-weight: 600 !important;
+        text-transform: uppercase !important;
+        letter-spacing: 1px !important;
+        background: rgba(255, 255, 255, 0.1) !important;
+        padding: 1rem 1.5rem !important;
+        border-radius: 12px !important;
+        backdrop-filter: blur(15px) !important;
+    }
+
+    .section-why p {
+        background: rgba(255, 255, 255, 0.95) !important;
+        margin: 1rem 0 !important;
+        padding: 1.2rem 1.8rem !important;
+        border-radius: 12px !important;
+        border-left: 5px solid var(--secondary-color) !important;
+        transition: all 0.3s ease !important;
+        backdrop-filter: blur(15px) !important;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05) !important;
+        font-size: 1.05rem !important;
+        line-height: 1.7 !important;
+        color: var(--primary-color) !important;
+    }
+
+    .section-why p:hover {
+        transform: translateX(8px) !important;
+        box-shadow: 0 8px 24px rgba(147, 172, 181, 0.2) !important;
+        background: white !important;
+    }
+
+    /* Our Goals Section */
+    .section-goals {
+        background: linear-gradient(135deg, var(--light-color) 0%, var(--highlight-color) 30%, var(--accent-color) 100%) !important;
+        border-radius: 16px !important;
+        padding: 2.5rem !important;
+        margin: 0 0 2rem 0 !important;
+        box-shadow: 0 12px 40px rgba(169, 211, 255, 0.2), 0 4px 16px rgba(169, 211, 255, 0.15) !important;
+        position: relative !important;
+        transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+    }
+
+    .section-goals:hover {
+        transform: translateY(-2px) !important;
+        box-shadow: 0 16px 48px rgba(169, 211, 255, 0.25), 0 6px 20px rgba(169, 211, 255, 0.2) !important;
+    }
+
+    .section-goals h2 {
+        color: white !important;
+        margin: 0 0 1.5rem 0 !important;
+        font-size: 1.3rem !important;
+        font-weight: 600 !important;
+        text-transform: uppercase !important;
+        letter-spacing: 1px !important;
+        background: rgba(255, 255, 255, 0.1) !important;
+        padding: 1rem 1.5rem !important;
+        border-radius: 12px !important;
+        backdrop-filter: blur(15px) !important;
+    }
+
+    .goals-list {
+        list-style: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    .goals-list li {
+        background: rgba(255, 255, 255, 0.95) !important;
+        margin: 1rem 0 !important;
+        padding: 1.2rem 1.8rem !important;
+        border-radius: 12px !important;
+        border-left: 5px solid var(--accent-color) !important;
+        transition: all 0.3s ease !important;
+        backdrop-filter: blur(15px) !important;
+        color: var(--primary-color) !important;
+        font-weight: 500 !important;
+        line-height: 1.6 !important;
+        position: relative !important;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05) !important;
+        font-size: 1.05rem !important;
+    }
+
+    .goals-list li::before {
+        content: "✨" !important;
+        margin-right: 0.8rem !important;
+        font-size: 1.1rem !important;
+        color: var(--accent-color) !important;
+    }
+
+    .goals-list li:hover {
+        transform: translateX(8px) !important;
+        box-shadow: 0 8px 24px rgba(169, 211, 255, 0.2) !important;
+        background: white !important;
+    }
+
+    .goals-list li strong {
+        color: var(--primary-color) !important;
+        font-weight: 700 !important;
+    }
+
+    /* Responsive design */
+    @media (max-width: 768px) {
+        .about-content {
+            padding: 1.5rem;
+        }
+
+        .section-what-is {
+            flex-direction: column !important;
+        }
+
+        .logo-container {
+            min-width: auto !important;
+            padding: 2rem !important;
+        }
+
+        .about-logo {
+            width: 150px !important;
+        }
+
+        .content-container {
+            padding: 2rem !important;
+        }
+
+        .content-container h2 {
+            font-size: 1.5rem !important;
+        }
+
+        .section-why,
+        .section-goals {
+            padding: 1.5rem !important;
+        }
+
+        .section-why h2,
+        .section-goals h2 {
+            font-size: 1rem !important;
+            padding: 0.8rem 1rem !important;
+        }
+
+        .section-why p,
+        .goals-list li {
+            padding: 0.8rem 1rem !important;
+            font-size: 1rem !important;
+        }
+
+        .section-why p:hover,
+        .goals-list li:hover {
+            transform: translateX(4px) !important;
+        }
+    }
+</style> 
