@@ -1,5 +1,6 @@
-/* Roboto Font Import */
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+/* Noto Sans and Roboto Mono Font Imports - Matching Datadog */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&display=swap');
 
 :root {
     --primary-color: #6C756B;
@@ -10,7 +11,8 @@
     --highlight-color: #A9D3FF;
     --shadow: 0 2px 10px rgba(108, 117, 107, 0.1);
     --soft-shadow: 0 4px 15px rgba(108, 117, 107, 0.15);
-    --main-font: 'Roboto', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    --main-font: 'Noto Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    --mono-font: 'Roboto Mono', 'Consolas', 'Liberation Mono', 'Menlo', 'Courier', monospace;
 }
 
 /* Reset and Base Styles */
@@ -47,13 +49,810 @@ a:hover {
     text-decoration: underline;
 }
 
+/* Remove bullets from navigation and UI lists, but keep them for content lists */
 ul {
     list-style: none;
+}
+
+/* Restore bullets for content lists */
+.about-content ul,
+.goals-list,
+.structure-list,
+article ul,
+.content ul,
+.post-content ul,
+.page-content ul,
+main ul:not(.takeaway-content ul):not(.site-header nav ul):not(.footer-links ul),
+.container ul:not(.takeaway-content ul):not(.site-header nav ul):not(.footer-links ul):not(.takeaway-card-tags):not(.filters-container) {
+    list-style: disc;
+    padding-left: 1.5rem;
+}
+
+.about-content ul li,
+.goals-list li,
+.structure-list li,
+article ul li,
+.content ul li,
+.post-content ul li,
+.page-content ul li {
+    margin-bottom: 0.5rem;
 }
 
 img {
     max-width: 100%;
     height: auto;
+}
+
+/* Code and monospace elements - using Datadog's Roboto Mono */
+code, pre, .monospace, .code-block {
+    font-family: var(--mono-font);
+}
+
+/* EPISODE PAGE SECTION STYLING */
+
+/* Summary Section */
+.section-summary {
+    background: linear-gradient(135deg, var(--light-color) 0%, #ffffff 100%) !important;
+    border-left: 6px solid var(--accent-color) !important;
+    padding: 2.5rem !important;
+    margin: 2rem 0 !important;
+    border-radius: 16px !important;
+    box-shadow: 0 12px 40px rgba(108, 117, 107, 0.15), 0 4px 16px rgba(108, 117, 107, 0.1) !important;
+    position: relative !important;
+    overflow: hidden !important;
+    transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+/* Summary paragraphs inside the container */
+.section-summary p {
+    font-size: 1.15rem !important;
+    line-height: 1.8 !important;
+    margin-bottom: 1.5rem !important;
+}
+
+.section-summary p:last-child {
+    margin-bottom: 0 !important;
+}
+
+.section-summary:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 16px 48px rgba(108, 117, 107, 0.2), 0 6px 20px rgba(108, 117, 107, 0.15) !important;
+}
+
+/* Remove the summary badge */
+
+/* Section Headers */
+.section-transcript-header {
+    color: white !important;
+    margin: 3rem 0 1.5rem !important;
+    font-size: 1.3rem !important;
+    font-weight: 600 !important;
+    position: relative !important;
+    padding: 1.8rem 2.5rem !important;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%) !important;
+    border-radius: 16px !important;
+    box-shadow: 0 12px 40px rgba(108, 117, 107, 0.25), 0 4px 16px rgba(108, 117, 107, 0.15) !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1px !important;
+    transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+.section-transcript-header:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 16px 48px rgba(108, 117, 107, 0.3), 0 6px 20px rgba(108, 117, 107, 0.2) !important;
+}
+
+/* Jump To Section */
+.section-jump-to {
+    background: linear-gradient(135deg, var(--light-color) 0%, var(--highlight-color) 50%, var(--accent-color) 100%) !important;
+    border-radius: 16px !important;
+    padding: 2.5rem !important;
+    margin: 0 0 2rem 0 !important;
+    box-shadow: 0 12px 40px rgba(150, 197, 247, 0.2), 0 4px 16px rgba(150, 197, 247, 0.15) !important;
+    list-style: none !important;
+    position: relative !important;
+    transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+.section-jump-to:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 16px 48px rgba(150, 197, 247, 0.25), 0 6px 20px rgba(150, 197, 247, 0.2) !important;
+}
+
+/* Remove the clock badge */
+
+.section-jump-to li {
+    background: rgba(255, 255, 255, 0.95) !important;
+    margin: 1rem 0 !important;
+    padding: 1.2rem 1.8rem !important;
+    border-radius: 12px !important;
+    border-left: 5px solid var(--accent-color) !important;
+    transition: all 0.3s ease !important;
+    backdrop-filter: blur(15px) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05) !important;
+}
+
+.section-jump-to li:hover {
+    transform: translateX(8px) !important;
+    box-shadow: 0 8px 24px rgba(150, 197, 247, 0.2) !important;
+    background: white !important;
+}
+
+.section-jump-to li a {
+    color: var(--primary-color) !important;
+    text-decoration: none !important;
+    font-weight: 500 !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.8rem !important;
+}
+
+.section-jump-to li a::before {
+    content: "▶" !important;
+    color: var(--accent-color) !important;
+    font-size: 0.9rem !important;
+}
+
+.section-jump-to li a:hover {
+    color: var(--dark-color) !important;
+}
+
+/* Resources Section */
+.section-resources {
+    background: linear-gradient(135deg, var(--light-color) 0%, var(--secondary-color) 50%, var(--primary-color) 100%) !important;
+    border-radius: 16px !important;
+    padding: 2.5rem !important;
+    margin: 0 0 2rem 0 !important;
+    box-shadow: 0 12px 40px rgba(147, 172, 181, 0.2), 0 4px 16px rgba(147, 172, 181, 0.15) !important;
+    list-style: none !important;
+    position: relative !important;
+    transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+.section-resources:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 16px 48px rgba(147, 172, 181, 0.25), 0 6px 20px rgba(147, 172, 181, 0.2) !important;
+}
+
+/* Remove the chain badge */
+
+.section-resources li {
+    background: rgba(255, 255, 255, 0.95) !important;
+    margin: 1rem 0 !important;
+    padding: 1.2rem 1.8rem !important;
+    border-radius: 12px !important;
+    border-left: 5px solid var(--secondary-color) !important;
+    transition: all 0.3s ease !important;
+    backdrop-filter: blur(15px) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05) !important;
+}
+
+.section-resources li:hover {
+    transform: translateX(8px) !important;
+    box-shadow: 0 8px 24px rgba(147, 172, 181, 0.2) !important;
+    background: white !important;
+}
+
+.section-resources li a {
+    color: var(--primary-color) !important;
+    text-decoration: none !important;
+    font-weight: 500 !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.8rem !important;
+}
+
+.section-resources li a::before {
+    content: "🌐" !important;
+    font-size: 1.1rem !important;
+}
+
+.section-resources li a:hover {
+    color: var(--dark-color) !important;
+}
+
+/* Key Takeaways Section */
+.section-takeaways {
+    background: linear-gradient(135deg, var(--light-color) 0%, var(--highlight-color) 30%, var(--accent-color) 100%) !important;
+    border-radius: 16px !important;
+    padding: 2.5rem !important;
+    margin: 0 0 2rem 0 !important;
+    box-shadow: 0 12px 40px rgba(169, 211, 255, 0.2), 0 4px 16px rgba(169, 211, 255, 0.15) !important;
+    list-style: none !important;
+    position: relative !important;
+    transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+.section-takeaways:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 16px 48px rgba(169, 211, 255, 0.25), 0 6px 20px rgba(169, 211, 255, 0.2) !important;
+}
+
+/* Remove the light bulb badge */
+
+.section-takeaways li {
+    background: rgba(255, 255, 255, 0.95) !important;
+    margin: 1rem 0 !important;
+    padding: 1.2rem 1.8rem !important;
+    border-radius: 12px !important;
+    border-left: 5px solid var(--accent-color) !important;
+    transition: all 0.3s ease !important;
+    backdrop-filter: blur(15px) !important;
+    color: var(--primary-color) !important;
+    font-weight: 500 !important;
+    line-height: 1.6 !important;
+    position: relative !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05) !important;
+}
+
+.section-takeaways li::before {
+    content: "✨" !important;
+    margin-right: 0.8rem !important;
+    font-size: 1.1rem !important;
+    color: var(--accent-color) !important;
+}
+
+.section-takeaways li:hover {
+    transform: translateX(8px) !important;
+    box-shadow: 0 8px 24px rgba(169, 211, 255, 0.2) !important;
+    background: white !important;
+}
+
+/* MODERN TRANSCRIPT INTERFACE */
+
+/* Transcript Container - Collapsible Design */
+.section-transcript {
+    background: linear-gradient(135deg, var(--light-color) 0%, #ffffff 100%) !important;
+    border: 2px solid var(--secondary-color) !important;
+    border-radius: 16px !important;
+    margin: 0 0 2rem 0 !important;
+    box-shadow: 0 8px 24px rgba(108, 117, 107, 0.1) !important;
+    overflow: hidden !important;
+    transition: all 0.3s ease !important;
+}
+
+/* Transcript Header - Always Visible */
+.transcript-header {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%) !important;
+    color: white !important;
+    padding: 1.5rem 2rem !important;
+    cursor: pointer !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    transition: all 0.3s ease !important;
+    border-radius: 16px 16px 0 0 !important;
+}
+
+.transcript-header:hover {
+    background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 100%) !important;
+}
+
+.transcript-header h3 {
+    margin: 0 !important;
+    font-size: 1.2rem !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+}
+
+.transcript-toggle {
+    font-size: 1.5rem !important;
+    transition: transform 0.3s ease !important;
+    user-select: none !important;
+}
+
+.transcript-collapsed .transcript-toggle {
+    transform: rotate(180deg) !important;
+}
+
+.transcript-collapsed .transcript-header {
+    border-radius: 16px !important;
+}
+
+/* Transcript Content - Expandable */
+.transcript-content {
+    max-height: 0 !important;
+    overflow: hidden !important;
+    transition: max-height 0.4s ease !important;
+}
+
+.transcript-expanded .transcript-content {
+    max-height: none !important;
+    overflow: visible !important;
+}
+
+/* Transcript Controls */
+.transcript-controls {
+    padding: 1.5rem 2rem 1rem !important;
+    background: rgba(108, 117, 107, 0.03) !important;
+    border-bottom: 1px solid rgba(108, 117, 107, 0.1) !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+
+.transcript-search {
+    width: 400px !important;
+    max-width: 90% !important;
+    padding: 0.6rem 1rem !important;
+    border: 2px solid var(--secondary-color) !important;
+    border-radius: 8px !important;
+    font-size: 0.95rem !important;
+    background: white !important;
+    transition: border-color 0.3s ease !important;
+}
+
+.transcript-search:focus {
+    outline: none !important;
+    border-color: var(--accent-color) !important;
+    box-shadow: 0 0 0 3px rgba(150, 197, 247, 0.2) !important;
+}
+
+
+
+/* Transcript Text Content */
+.transcript-text {
+    padding: 2rem !important;
+    font-family: var(--main-font) !important;
+    font-size: 1.05rem !important;
+    line-height: 1.6 !important;
+    color: #374151 !important;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+    white-space: normal !important;
+    max-height: 500px !important;
+    overflow-y: auto !important;
+    scrollbar-width: thin !important;
+    scrollbar-color: var(--secondary-color) rgba(147, 172, 181, 0.2) !important;
+}
+
+/* Custom scrollbar styling for transcript text */
+.transcript-text::-webkit-scrollbar {
+    width: 12px !important;
+    background: rgba(147, 172, 181, 0.1) !important;
+}
+
+.transcript-text::-webkit-scrollbar-track {
+    background: rgba(147, 172, 181, 0.2) !important;
+    border-radius: 6px !important;
+    margin: 4px !important;
+}
+
+.transcript-text::-webkit-scrollbar-thumb {
+    background: var(--secondary-color) !important;
+    border-radius: 6px !important;
+    border: 2px solid rgba(147, 172, 181, 0.1) !important;
+    min-height: 30px !important;
+}
+
+.transcript-text::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-color) !important;
+}
+
+/* Conversation Bubbles Style */
+.transcript-bubble-mode .transcript-entry {
+    display: flex !important;
+    margin-bottom: 1.5rem !important;
+    align-items: flex-start !important;
+    gap: 1rem !important;
+    padding: 1rem !important;
+    background: rgba(255, 255, 255, 0.5) !important;
+    border-radius: 12px !important;
+    border: 1px solid rgba(108, 117, 107, 0.1) !important;
+    transition: all 0.2s ease !important;
+}
+
+.transcript-bubble-mode .transcript-entry:hover {
+    background: rgba(255, 255, 255, 0.8) !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+}
+
+.transcript-bubble-mode .timestamp {
+    flex-shrink: 0 !important;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)) !important;
+    color: white !important;
+    padding: 0.5rem 0.8rem !important;
+    border-radius: 20px !important;
+    font-size: 0.8rem !important;
+    font-weight: 600 !important;
+    min-width: 70px !important;
+    text-align: center !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    font-family: var(--mono-font) !important;
+    box-shadow: 0 2px 8px rgba(108, 117, 107, 0.2) !important;
+    border: 2px solid transparent !important;
+    position: relative !important;
+}
+
+.transcript-bubble-mode .timestamp::before {
+    content: "▶" !important;
+    margin-right: 0.3rem !important;
+    font-size: 0.6rem !important;
+    opacity: 0.8 !important;
+}
+
+.transcript-bubble-mode .timestamp:hover {
+    background: linear-gradient(135deg, var(--accent-color), var(--highlight-color)) !important;
+    transform: scale(1.05) translateY(-1px) !important;
+    box-shadow: 0 4px 12px rgba(150, 197, 247, 0.3) !important;
+    border-color: var(--accent-color) !important;
+}
+
+.transcript-bubble-mode .timestamp:hover::before {
+    opacity: 1 !important;
+    transform: scale(1.1) !important;
+}
+
+.transcript-bubble-mode .speech-bubble {
+    flex: 1 !important;
+    background: rgba(255, 255, 255, 0.9) !important;
+    padding: 1rem 1.5rem !important;
+    border-radius: 16px !important;
+    border: 1px solid rgba(108, 117, 107, 0.1) !important;
+    position: relative !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05) !important;
+    transition: all 0.2s ease !important;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+}
+
+.transcript-bubble-mode .speech-bubble:hover {
+    background: white !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+    transform: translateY(-1px) !important;
+}
+
+.transcript-bubble-mode .speech-bubble::before {
+    content: '' !important;
+    position: absolute !important;
+    left: -8px !important;
+    top: 20px !important;
+    width: 0 !important;
+    height: 0 !important;
+    border-top: 8px solid transparent !important;
+    border-bottom: 8px solid transparent !important;
+    border-right: 8px solid rgba(255, 255, 255, 0.9) !important;
+}
+
+/* Paragraph Mode (Default) */
+.transcript-paragraph-mode .transcript-text {
+    columns: 1 !important;
+    column-gap: 2rem !important;
+}
+
+.transcript-paragraph-mode .transcript-entry {
+    margin-bottom: 1.2rem !important;
+    padding: 1.2rem 1.5rem !important;
+    background: rgba(255, 255, 255, 0.8) !important;
+    border-radius: 10px !important;
+    border-left: 4px solid var(--accent-color) !important;
+    transition: all 0.2s ease !important;
+    break-inside: avoid !important;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05) !important;
+}
+
+.transcript-paragraph-mode .transcript-entry:hover {
+    background: rgba(255, 255, 255, 0.95) !important;
+    transform: translateX(4px) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+}
+
+.transcript-paragraph-mode .timestamp {
+    display: inline-block !important;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)) !important;
+    color: white !important;
+    padding: 0.5rem 1rem !important;
+    border-radius: 16px !important;
+    font-size: 0.85rem !important;
+    font-weight: 600 !important;
+    margin-right: 1rem !important;
+    margin-bottom: 0.8rem !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    font-family: var(--mono-font) !important;
+    box-shadow: 0 2px 8px rgba(108, 117, 107, 0.2) !important;
+    border: 2px solid transparent !important;
+    position: relative !important;
+}
+
+.transcript-paragraph-mode .timestamp::before {
+    content: "▶" !important;
+    margin-right: 0.5rem !important;
+    font-size: 0.7rem !important;
+    opacity: 0.8 !important;
+}
+
+.transcript-paragraph-mode .timestamp:hover {
+    background: linear-gradient(135deg, var(--accent-color), var(--highlight-color)) !important;
+    transform: scale(1.05) translateY(-1px) !important;
+    box-shadow: 0 4px 12px rgba(150, 197, 247, 0.3) !important;
+    border-color: var(--accent-color) !important;
+}
+
+.transcript-paragraph-mode .timestamp:hover::before {
+    opacity: 1 !important;
+    transform: scale(1.1) !important;
+}
+
+/* Speaker name styling */
+.speaker-name {
+    color: var(--primary-color) !important;
+    font-weight: 700 !important;
+    margin-right: 0.5rem !important;
+    font-size: 1.05rem !important;
+    display: inline-block !important;
+}
+
+/* Search highlighting */
+.transcript-text mark {
+    background: var(--highlight-color) !important;
+    color: var(--primary-color) !important;
+    padding: 0.1rem 0.3rem !important;
+    border-radius: 3px !important;
+    font-weight: 600 !important;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .transcript-search {
+        width: 100% !important;
+    }
+    
+    .transcript-bubble-mode .transcript-entry {
+        flex-direction: column !important;
+        gap: 0.5rem !important;
+    }
+    
+    .transcript-bubble-mode .timestamp {
+        align-self: flex-start !important;
+    }
+}
+
+
+
+/* EPISODE NAVIGATION STYLES */
+
+.episode-navigation {
+    background: linear-gradient(135deg, var(--light-color) 0%, #ffffff 100%);
+    border-top: 3px solid var(--accent-color);
+    margin: 3rem 0 0 0;
+    padding: 3rem 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.episode-navigation::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent 0%, rgba(150, 197, 247, 0.03) 50%, transparent 100%);
+    pointer-events: none;
+}
+
+.episode-navigation h2 {
+    text-align: center;
+    color: var(--primary-color);
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 2.5rem;
+    position: relative;
+    z-index: 2;
+}
+
+.episode-navigation h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(135deg, var(--accent-color), var(--secondary-color));
+    border-radius: 2px;
+}
+
+.episode-nav-links {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    position: relative;
+    z-index: 2;
+}
+
+.episode-nav-links .nav-item {
+    position: relative;
+}
+
+.nav-direction {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--secondary-color);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.episode-nav-links .recording-card {
+    background: white;
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: 0 8px 32px rgba(108, 117, 107, 0.1);
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    position: relative;
+    overflow: hidden;
+}
+
+.episode-nav-links .recording-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(135deg, var(--accent-color), var(--secondary-color));
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.episode-nav-links .recording-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 16px 48px rgba(108, 117, 107, 0.15);
+    border-color: var(--accent-color);
+}
+
+.episode-nav-links .recording-card:hover::before {
+    transform: scaleX(1);
+}
+
+.episode-nav-links .recording-card h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    line-height: 1.4;
+    text-align: center;
+    min-height: 2.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.episode-nav-links .video-container {
+    margin-bottom: 1.5rem;
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.episode-nav-links .video-container:hover {
+    transform: scale(1.02);
+}
+
+.episode-nav-links .video-container img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.episode-nav-links .video-container:hover img {
+    transform: scale(1.05);
+}
+
+.episode-nav-links .play-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 0;
+    height: 0;
+    border-left: 20px solid rgba(255, 255, 255, 0.9);
+    border-top: 14px solid transparent;
+    border-bottom: 14px solid transparent;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+    opacity: 0.8;
+}
+
+.episode-nav-links .video-container:hover .play-icon {
+    border-left-color: white;
+    transform: translate(-50%, -50%) scale(1.1);
+    opacity: 1;
+}
+
+.episode-nav-links .btn {
+    display: block;
+    width: 100%;
+    padding: 0.8rem 1.5rem;
+    background: linear-gradient(135deg, var(--accent-color), var(--secondary-color));
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    text-align: center;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.episode-nav-links .btn:hover {
+    background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(150, 197, 247, 0.3);
+    text-decoration: none;
+}
+
+/* Navigation arrows */
+.episode-nav-links .nav-item:first-child .recording-card::after {
+    content: '←';
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    font-size: 1.5rem;
+    color: var(--accent-color);
+    font-weight: bold;
+    opacity: 0.7;
+}
+
+.episode-nav-links .nav-item:last-child .recording-card::after {
+    content: '→';
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 1.5rem;
+    color: var(--accent-color);
+    font-weight: bold;
+    opacity: 0.7;
+}
+
+/* Single episode navigation (when only prev or next exists) */
+.episode-nav-links.single-nav {
+    grid-template-columns: 1fr;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .episode-nav-links {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .episode-navigation h2 {
+        font-size: 1.5rem;
+        margin-bottom: 2rem;
+    }
+    
+    .episode-nav-links .recording-card {
+        padding: 1rem;
+    }
+    
+    .episode-nav-links .recording-card h3 {
+        font-size: 1rem;
+        min-height: auto;
+    }
+    
+    .episode-nav-links .nav-item:first-child .recording-card::after,
+    .episode-nav-links .nav-item:last-child .recording-card::after {
+        display: none;
+    }
 }
 
 /* Header Styles */

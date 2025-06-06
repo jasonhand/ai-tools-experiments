@@ -11,7 +11,7 @@ Tags: ["web-dev", "claude"]
 ---
 import TranscriptSection from '../../components/TranscriptSection.astro';
 
-# Summary
+## 
 
 In this episode, Jason Hand explores how to use Cursor with Claude to diagnose and fix a bug in his weekend project "Vinyl Viewer," a web application that displays his record collection. The application has a search functionality that correctly filters records but incorrectly displays record details when users click on search results. Jason demonstrates how Cursor with Claude quickly identifies the root cause: when filtering records, the application creates a filtered data array, but the click handler incorrectly references the original data array instead of the filtered data. After implementing Claude's suggested fix, Jason successfully resolves the bug that had persisted for ten months, enabling proper display of record details from search results.
 
@@ -43,7 +43,7 @@ In this episode, Jason Hand explores how to use Cursor with Claude to diagnose a
 - AI assistants can help debug code even on projects that haven't been maintained for months
 
 {/* TRANSCRIPT SECTION - Full conversation text with timestamps */}
-<h2>Full Transcript</h2>
+
 
 <TranscriptSection transcriptContent={`
 [00:00:00] **Jason Hand:** Hi everyone. In a previous video, I went into a tool called Cursor and explored what you could do with that came up some really fun and interesting things, and you should go watch that video. You can go check that out here at the AI Labs experiments and related tools page that we've set up. I will include a link to this site that you can go look that all up.

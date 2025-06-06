@@ -1,0 +1,92 @@
+---
+// Episode Navigation Component
+const { currentEpisode } = Astro.props;
+
+// Convert episode number to integer for calculations
+const currentEpNum = parseInt(currentEpisode);
+
+// Calculate previous and next episode numbers
+const prevEpNum = currentEpNum > 1 ? currentEpNum - 1 : null;
+const nextEpNum = currentEpNum < 31 ? currentEpNum + 1 : null; // Adjust max episode as needed
+
+// Episode data - this could be moved to a separate data file later
+const episodeData = {
+    1: { title: "Getting Started with AI Tools and Cursor", hasVideo: false },
+    2: { title: "Exploring Warp Terminal and Cursor for Productivity", hasVideo: false },
+    3: { title: "Automatic1111 and Local Text-to-Image Generation", hasVideo: false },
+    4: { title: "Building a Secure Feedback Form with Datadog Logs with Claude Code", hasVideo: false },
+    5: { title: "Using Claude Code for Automated HTML Updates and Styling", hasVideo: false },
+    6: { title: "Using Claude Code for Automated HTML Updates and Styling", hasVideo: false },
+    7: { title: "Using Cursor and Claude to Solve Record Search Bugs", hasVideo: false },
+    8: { title: "Using Cursor and Claude to Fix CSS Layout Issues", hasVideo: false },
+    9: { title: "From GTC to Website Building with AI Tools", hasVideo: false },
+    10: { title: "First Look at Windsurf & Model Context Protocol (MCP)", hasVideo: false },
+    11: { title: "Exploring Llama 4, OpenRouter, and Model Comparison Tools", hasVideo: false },
+    12: { title: "Cursor Rules, Firebase Studio and the Evolving IDE Landscape", hasVideo: true },
+    13: { title: "Exploring Bolt: Rapid App Development with AI-Powered Templates", hasVideo: true },
+    14: { title: "Claude 3.7 Sonnet Plugins: AI Integration with Gmail, Drive and Calendar", hasVideo: true },
+    15: { title: "AI Tools in Action: Exploring Sora Image Generation and Lovable App Builder", hasVideo: true },
+    16: { title: "Enhancing CSS Editing with LLMs: Using Puppeteer for Visual Context", hasVideo: true },
+    17: { title: "The State of AI 2025: Exploring Developer Tools, Models, and Industry Trends", hasVideo: true },
+    20: { title: "YOLO Coding: Migrating from Static HTML to Astro with AI Tools", hasVideo: true },
+    24: { title: "Building a Feedback System with Astro, Supabase, and AI", hasVideo: true },
+    26: { title: "Exploring Windsurf IDE: Features, Workflows, and AI Integration", hasVideo: true },
+    27: { title: "Building Dynamic Web Components with Astro and AI Assistance", hasVideo: true },
+    28: { title: "Advanced Astro Development: Collections, Dynamic Routing, and Component Architecture", hasVideo: true },
+    29: { title: "Exploring AI Development Tools: From Cursor to Windsurf and Beyond", hasVideo: true },
+    30: { title: "Maximizing AI with Cursor: Building MCP Servers for Seamless Workflow", hasVideo: true },
+    31: { title: "Building AI-Powered Applications: From Concept to Deployment", hasVideo: true }
+};
+
+// Get episode info for previous and next
+const prevEpisode = prevEpNum ? episodeData[prevEpNum] : null;
+const nextEpisode = nextEpNum ? episodeData[nextEpNum] : null;
+
+// Format episode number with leading zero
+const formatEpNum = (num) => num.toString().padStart(2, '0');
+---
+
+{(prevEpisode || nextEpisode) && (
+    <div class="episode-navigation">
+        <div class="container">
+            <h2>Episode Navigation</h2>
+            <div class={`episode-nav-links ${(!prevEpisode || !nextEpisode) ? 'single-nav' : ''}`}>
+                {prevEpisode && (
+                    <div class="nav-item">
+                        <span class="nav-direction">Previous Episode:</span>
+                        <div class="recording-card">
+                            <h3>{prevEpisode.title}</h3>
+                            <div class="video-container">
+                                <a href={`/episodes/ep${formatEpNum(prevEpNum)}`}>
+                                    <img src={`/images/thumbnails/ep${formatEpNum(prevEpNum)}.png`} alt={`Episode ${prevEpNum} Thumbnail`} />
+                                    {prevEpisode.hasVideo && <span class="play-icon"></span>}
+                                </a>
+                            </div>
+                            <a class="btn" href={`/episodes/ep${formatEpNum(prevEpNum)}`}>
+                                {prevEpisode.hasVideo ? 'Watch Episode' : 'View Notes'}
+                            </a>
+                        </div>
+                    </div>
+                )}
+                
+                {nextEpisode && (
+                    <div class="nav-item">
+                        <span class="nav-direction">Next Episode:</span>
+                        <div class="recording-card">
+                            <h3>{nextEpisode.title}</h3>
+                            <div class="video-container">
+                                <a href={`/episodes/ep${formatEpNum(nextEpNum)}`}>
+                                    <img src={`/images/thumbnails/ep${formatEpNum(nextEpNum)}.png`} alt={`Episode ${nextEpNum} Thumbnail`} />
+                                    {nextEpisode.hasVideo && <span class="play-icon"></span>}
+                                </a>
+                            </div>
+                            <a class="btn" href={`/episodes/ep${formatEpNum(nextEpNum)}`}>
+                                {nextEpisode.hasVideo ? 'Watch Episode' : 'View Notes'}
+                            </a>
+                        </div>
+                    </div>
+                )}
+            </div>
+        </div>
+    </div>
+)} 

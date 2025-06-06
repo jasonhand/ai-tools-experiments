@@ -1,5 +1,6 @@
 ---
 import MainLayout from './MainLayout.astro';
+import EpisodeNavigation from '../components/EpisodeNavigation.astro';
 
 const { frontmatter } = Astro.props;
 const { Title, Description, HeroImg, VideoID, EpisodeNumber, Date, Tags } = frontmatter;
@@ -27,6 +28,20 @@ const youtubeUrl = VideoID ? `https://youtu.be/${VideoID}` : '#';
             </article>
         </div>
     </main>
+    
+    <!-- Episode Navigation -->
+    <EpisodeNavigation currentEpisode={EpisodeNumber} />
+    
+    <!-- Auto-apply section classes based on content -->
+    <script src="/episode-sections.js" is:inline></script>
+    
+    <!-- Pass VideoID to transcript interface -->
+    <script is:inline define:vars={{videoId: VideoID}}>
+        window.episodeVideoID = videoId;
+    </script>
+    
+    <!-- Modern transcript interface -->
+    <script src="/transcript-interface.js" is:inline></script>
 </MainLayout>
 
 <style>
@@ -43,14 +58,23 @@ const youtubeUrl = VideoID ? `https://youtu.be/${VideoID}` : '#';
     .episode-content h1 {
         color: var(--primary-color);
         margin-bottom: 1.5rem;
+        font-size: 2.5rem;
+        font-weight: 700;
+        line-height: 1.2;
     }
 
     .episode-content .video-container {
-        margin: 0 0 1.5rem 0;
+        margin: 0 0 2rem 0;
         position: relative;
-        border-radius: 8px;
+        border-radius: 12px;
         overflow: hidden;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .episode-content .video-container:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 48px rgba(0, 0, 0, 0.18);
     }
 
     .episode-content .video-container img {
@@ -60,7 +84,7 @@ const youtubeUrl = VideoID ? `https://youtu.be/${VideoID}` : '#';
     }
 
     .episode-content .video-container:hover img {
-        transform: scale(1.03);
+        transform: scale(1.02);
     }
 
     .play-icon {
@@ -82,15 +106,290 @@ const youtubeUrl = VideoID ? `https://youtu.be/${VideoID}` : '#';
         transform: translate(-50%, -50%) scale(1.1);
     }
 
-    .episode-content h2 {
-        color: var(--secondary-color);
-        margin: 2rem 0 1rem;
+    /* SECTION CONTAINERS - New striking visual design */
+    
+    /* Summary Section */
+    .episode-content > .markdown-content > p:first-of-type,
+    .episode-content > .markdown-content > p:nth-of-type(2) {
+        background: linear-gradient(135deg, var(--light-color) 0%, #ffffff 100%);
+        border-left: 6px solid var(--accent-color);
+        padding: 2.5rem;
+        margin: 2rem 0;
+        border-radius: 16px;
+        box-shadow: 0 12px 40px rgba(108, 117, 107, 0.15), 0 4px 16px rgba(108, 117, 107, 0.1);
+        font-size: 1.15rem;
+        line-height: 1.8;
+        position: relative;
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
+    .episode-content > .markdown-content > p:first-of-type:hover,
+    .episode-content > .markdown-content > p:nth-of-type(2):hover {
+        transform: translateY(-2px);
+        box-shadow: 0 16px 48px rgba(108, 117, 107, 0.2), 0 6px 20px rgba(108, 117, 107, 0.15);
+    }
+
+    .episode-content > .markdown-content > p:first-of-type::before {
+        content: "📝 Summary";
+        position: absolute;
+        top: -12px;
+        left: 2.5rem;
+        background: linear-gradient(135deg, var(--accent-color), var(--secondary-color));
+        color: white;
+        padding: 0.6rem 1.2rem;
+        border-radius: 25px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Section Headers with Icons */
+    .episode-content h2 {
+        color: white;
+        margin: 3rem 0 1.5rem;
+        font-size: 1.3rem;
+        font-weight: 600;
+        position: relative;
+        padding: 1.8rem 2.5rem;
+        background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+        border-radius: 16px;
+        box-shadow: 0 12px 40px rgba(108, 117, 107, 0.25), 0 4px 16px rgba(108, 117, 107, 0.15);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .episode-content h2:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 16px 48px rgba(108, 117, 107, 0.3), 0 6px 20px rgba(108, 117, 107, 0.2);
+    }
+
+    /* Jump To Section */
+    .section-jump-to {
+        background: linear-gradient(135deg, var(--light-color) 0%, var(--highlight-color) 50%, var(--accent-color) 100%);
+        border-radius: 16px;
+        padding: 2.5rem;
+        margin: 0 0 2rem 0;
+        box-shadow: 0 12px 40px rgba(150, 197, 247, 0.2), 0 4px 16px rgba(150, 197, 247, 0.15);
+        list-style: none;
+        position: relative;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .section-jump-to:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 16px 48px rgba(150, 197, 247, 0.25), 0 6px 20px rgba(150, 197, 247, 0.2);
+    }
+
+    /* Remove the clock badge */
+
+    .section-jump-to li {
+        background: rgba(255, 255, 255, 0.95);
+        margin: 1rem 0;
+        padding: 1.2rem 1.8rem;
+        border-radius: 12px;
+        border-left: 5px solid var(--accent-color);
+        transition: all 0.3s ease;
+        backdrop-filter: blur(15px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    .section-jump-to li:hover {
+        transform: translateX(8px);
+        box-shadow: 0 8px 24px rgba(150, 197, 247, 0.2);
+        background: white;
+    }
+
+    .section-jump-to li a {
+        color: var(--primary-color);
+        text-decoration: none;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+    }
+
+    .section-jump-to li a::before {
+        content: "▶";
+        color: var(--accent-color);
+        font-size: 0.9rem;
+    }
+
+    .section-jump-to li a:hover {
+        color: var(--dark-color);
+    }
+
+    /* Resources Section */
+    .section-resources {
+        background: linear-gradient(135deg, var(--light-color) 0%, var(--secondary-color) 50%, var(--primary-color) 100%);
+        border-radius: 16px;
+        padding: 2.5rem;
+        margin: 0 0 2rem 0;
+        box-shadow: 0 12px 40px rgba(147, 172, 181, 0.2), 0 4px 16px rgba(147, 172, 181, 0.15);
+        list-style: none;
+        position: relative;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .section-resources:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 16px 48px rgba(147, 172, 181, 0.25), 0 6px 20px rgba(147, 172, 181, 0.2);
+    }
+
+    /* Remove the chain badge */
+
+    .section-resources li {
+        background: rgba(255, 255, 255, 0.95);
+        margin: 1rem 0;
+        padding: 1.2rem 1.8rem;
+        border-radius: 12px;
+        border-left: 5px solid var(--secondary-color);
+        transition: all 0.3s ease;
+        backdrop-filter: blur(15px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    .section-resources li:hover {
+        transform: translateX(8px);
+        box-shadow: 0 8px 24px rgba(147, 172, 181, 0.2);
+        background: white;
+    }
+
+    .section-resources li a {
+        color: var(--primary-color);
+        text-decoration: none;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+    }
+
+    .section-resources li a::before {
+        content: "🌐";
+        font-size: 1.1rem;
+    }
+
+    .section-resources li a:hover {
+        color: var(--dark-color);
+    }
+
+    /* Key Takeaways Section */
+    .section-takeaways {
+        background: linear-gradient(135deg, var(--light-color) 0%, var(--highlight-color) 30%, var(--accent-color) 100%);
+        border-radius: 16px;
+        padding: 2.5rem;
+        margin: 0 0 2rem 0;
+        box-shadow: 0 12px 40px rgba(169, 211, 255, 0.2), 0 4px 16px rgba(169, 211, 255, 0.15);
+        list-style: none;
+        position: relative;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .section-takeaways:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 16px 48px rgba(169, 211, 255, 0.25), 0 6px 20px rgba(169, 211, 255, 0.2);
+    }
+
+    /* Remove the light bulb badge */
+
+    .section-takeaways li {
+        background: rgba(255, 255, 255, 0.95);
+        margin: 1rem 0;
+        padding: 1.2rem 1.8rem;
+        border-radius: 12px;
+        border-left: 5px solid var(--accent-color);
+        transition: all 0.3s ease;
+        backdrop-filter: blur(15px);
+        color: var(--primary-color);
+        font-weight: 500;
+        line-height: 1.6;
+        position: relative;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    .section-takeaways li::before {
+        content: "✨";
+        margin-right: 0.8rem;
+        font-size: 1.1rem;
+        color: var(--accent-color);
+    }
+
+    .section-takeaways li:hover {
+        transform: translateX(8px);
+        box-shadow: 0 8px 24px rgba(169, 211, 255, 0.2);
+        background: white;
+    }
+
+    /* Full Transcript Section - Updated to match global styles */
+    .section-transcript-header {
+        background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+        color: white;
+    }
+
+    .section-transcript {
+        background: linear-gradient(135deg, var(--light-color) 0%, #ffffff 100%);
+        border: 3px solid var(--secondary-color);
+        border-radius: 16px;
+        padding: 2.5rem;
+        margin: 0 0 2rem 0;
+        box-shadow: 0 12px 40px rgba(108, 117, 107, 0.15), 0 4px 16px rgba(108, 117, 107, 0.1);
+        position: relative;
+        max-height: 500px;
+        overflow-y: scroll;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        scrollbar-width: thin;
+        scrollbar-color: var(--secondary-color) rgba(147, 172, 181, 0.2);
+    }
+
+    /* Custom scrollbar styling for transcript */
+    .section-transcript::-webkit-scrollbar {
+        width: 14px;
+        background: rgba(147, 172, 181, 0.1);
+    }
+
+    .section-transcript::-webkit-scrollbar-track {
+        background: rgba(147, 172, 181, 0.2);
+        border-radius: 8px;
+        margin: 8px;
+    }
+
+    .section-transcript::-webkit-scrollbar-thumb {
+        background: var(--secondary-color);
+        border-radius: 8px;
+        border: 2px solid rgba(147, 172, 181, 0.1);
+        min-height: 40px;
+    }
+
+    .section-transcript::-webkit-scrollbar-thumb:hover {
+        background: var(--primary-color);
+    }
+
+    .section-transcript:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 16px 48px rgba(108, 117, 107, 0.2), 0 6px 20px rgba(108, 117, 107, 0.15);
+    }
+
+    /* Remove the document badge */
+
+    /* Transcript content styling - Updated font */
+    .transcript {
+        background: transparent !important;
+        border: none !important;
+        padding: 0 !important;
+        max-height: none !important;
+        font-family: var(--main-font) !important;
+        font-size: 1rem !important;
+        line-height: 1.8 !important;
+        color: #374151 !important;
+    }
+
+    /* General list improvements */
     .episode-content ul {
-        list-style-type: disc;
-        padding-left: 2rem;
-        margin-bottom: 1.5rem;
+        list-style: none;
+        padding-left: 0;
     }
 
     .episode-content ul li {
@@ -98,45 +397,7 @@ const youtubeUrl = VideoID ? `https://youtu.be/${VideoID}` : '#';
         line-height: 1.6;
     }
 
-    /* Key Takeaways bullet styling */
-    .episode-content h2 + ul.takeaways li,
-    .episode-content ul.takeaways li {
-        list-style-type: disc;
-        margin-left: 1.5rem;
-        margin-bottom: 0.8rem;
-        line-height: 1.5;
-    }
-
-    .episode-content h2 + ul.takeaways,
-    .episode-content ul.takeaways {
-        padding-left: 0;
-        margin-left: 0;
-    }
-
-    /* Chapter markers styling */
-    .chapter-markers {
-        list-style: none;
-        padding-left: 0;
-    }
-
-    .chapter-markers li {
-        margin-bottom: 0.5rem;
-        padding: 0.5rem;
-        background-color: #f8f9fa;
-        border-radius: 4px;
-        border-left: 3px solid var(--primary-color);
-    }
-
-    .chapter-markers a {
-        text-decoration: none;
-        color: var(--primary-color);
-        font-weight: 500;
-    }
-
-    .chapter-markers a:hover {
-        text-decoration: underline;
-    }
-
+    /* Markdown content improvements */
     .markdown-content {
         max-width: none;
         margin: 0;
@@ -152,69 +413,38 @@ const youtubeUrl = VideoID ? `https://youtu.be/${VideoID}` : '#';
         margin-bottom: 0;
     }
 
-    .episode-content .markdown-content ul {
-        list-style-type: disc !important;
-        padding-left: 2rem !important;
-        margin-bottom: 1.5rem !important;
-        list-style-position: outside !important;
-    }
+    /* Responsive design */
+    @media (max-width: 768px) {
+        .episode-content {
+            padding: 1.5rem;
+        }
 
-    .episode-content .markdown-content ul li {
-        margin-bottom: 0.5rem !important;
-        line-height: 1.6 !important;
-        display: list-item !important;
-        list-style-type: disc !important;
-    }
+        .episode-content h1 {
+            font-size: 2rem;
+        }
 
-    .episode-content .markdown-content ul li::marker {
-        color: var(--primary-color) !important;
-    }
+        .episode-content h2 {
+            font-size: 1rem;
+            padding: 1rem 1.5rem;
+        }
 
-    /* Transcript styling */
-    .transcript {
-        background-color: #f8f9fa;
-        border: 1px solid #e9ecef;
-        border-radius: 8px;
-        padding: 1.5rem;
-        max-height: 400px;
-        overflow-y: auto;
-        font-family: var(--main-font);
-        font-size: 0.95rem;
-        line-height: 1.6;
-        white-space: pre-wrap;
-        color: #444;
-    }
+        .section-jump-to,
+        .section-resources,
+        .section-takeaways {
+            padding: 1.5rem;
+        }
 
-    .transcript-navigation {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 1rem;
-        padding: 0.5rem;
-        background-color: #f8f9fa;
-        border-radius: 4px;
-    }
+        .section-jump-to li,
+        .section-resources li,
+        .section-takeaways li {
+            padding: 0.8rem 1rem;
+        }
 
-    .transcript-control {
-        background-color: var(--primary-color);
-        color: white;
-        border: none;
-        padding: 0.5rem 1rem;
-        border-radius: 4px;
-        cursor: pointer;
-        font-size: 0.9rem;
-    }
-
-    .transcript-control:hover {
-        background-color: var(--secondary-color);
-    }
-
-    .timestamp-note {
-        background-color: #f0f7ff;
-        padding: 10px;
-        margin: 10px 0;
-        border-radius: 5px;
-        border-left: 4px solid #0066cc;
+        .section-jump-to li:hover,
+        .section-resources li:hover,
+        .section-takeaways li:hover {
+            transform: translateX(4px);
+        }
     }
 </style>
 

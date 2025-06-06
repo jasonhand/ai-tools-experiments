@@ -11,13 +11,13 @@ Tags: ["mcp", "cursor", "ai-development", "developer-tools", "documentation"]
 ---
 import TranscriptSection from '../../components/TranscriptSection.astro';
 
-## Summary
+### 
 
 In this in-depth conversation, Whitney Lee shares how a weekend of "vibe coding" with Cursor spiraled into building her own MCP (Model Context Protocol) server—designed to automate the creation of engineering journal entries from Git commits, AI chats, and terminal commands.
 
 With a background in Kubernetes and platform engineering—but not recent app development—Whitney walks through the creative and technical decisions behind her playful demo app and the real problem it helped her solve: tracking her technical progress and decisions with context, clarity, and reflection.
 
-**She explores:**
+She explores:
 
 - Why she started with raw Cursor and deliberately held off on using MCP tools
 - The specific challenges she encountered—like lack of memory, unclear documentation sourcing, and staying on task
@@ -47,11 +47,9 @@ This episode offers a real-world look at how AI tooling can support—not replac
 - **Structured Problem Solving**: Breaking down tasks into smaller units aids in maintaining organization within complex projects
 - **Dynamic Documentation**: Keeping comprehensive records of project flows enhances both personal learning and project continuity
 
-
-
 {/* TRANSCRIPT SECTION - Full conversation text with timestamps */}
 
-<TranscriptSection transcriptContent="[00:00:00] **Jason Hand:** Hey, Whitney, how's it going? 
+<TranscriptSection transcriptContent={`[00:00:00] **Jason Hand:** Hey, Whitney, how's it going? 
 
 [00:00:01] **Whitney Lee:** So great. I'm so happy to be here. 
 
@@ -201,7 +199,7 @@ So my MCP server, let's see. It takes in. It takes in information from those thr
 
 So for now, we're just using the ones it can get because we're not. Overcomplicating things at the beginning. Okay. And then from that, what we want to make is one commit. There's a Git hook, so it, [00:17:00] a commit triggers a journal entry. And so a sample journal entry for a day is something like this.
 
-Right now I have a summary. What happened? I have accomplishments as a list, terminal commands that were run. I'm gonna make it so it's not just all get commands, that's boring. Discussion notes from chat, and then it's, I wanted to tell you tone and mood. So this these sample ones aren't.
+Right now I have a . What happened? I have accomplishments as a list, terminal commands that were run. I'm gonna make it so it's not just all get commands, that's boring. Discussion notes from chat, and then it's, I wanted to tell you tone and mood. So this these sample ones aren't.
 
 Indicative, like they aren't as high quality as I expect to get because this is just me. These sample ones are me in the AI chat saying, make a journal entry based on my engineering spec and not actually real stuff going on in the background. Okay, so the tone and mood is a little you don't know, I was satisfied.
 
@@ -211,11 +209,11 @@ Like you're guessing at that, but I wanted to pick up if you're saying ugh, or i
 
 [00:18:10] **Whitney Lee:** So it's looking at, it's looking at commit messages as well as AI chat to try to get a, an idea of what your mood is. And so it's triggered by get, commit and then it's looking back in AI chat as far as the last time the tool was called, or 150 messages, which whichever comes first.
 
-And then gathering all that source information and then using it to make this. But then in one day there are a lot of these. Then on the first commit of the next day, it'll automatically trigger a summary of the day before.
+And then gathering all that source information and then using it to make this. But then in one day there are a lot of these. Then on the first commit of the next day, it'll automatically trigger a  of the day before.
 
 [00:18:43] **Jason Hand:** Oh, wow. 
 
-[00:18:43] **Whitney Lee:** And then on the first commit of the next week, it'll automatically trigger a summary of your past week and similar monthly, weekly, yearly.
+[00:18:43] **Whitney Lee:** And then on the first commit of the next week, it'll automatically trigger a  of your past week and similar monthly, weekly, yearly.
 
 I think I'll add a quarterly in there. So the idea is you can track your challenges. You can, without any work, like this [00:19:00] is all automatically triggered happening in the background. I imagine in your chat you'll have to run tool press that run tool button. But other than that you, this stuff should all be captured automatically without you thinking about it at all.
 
@@ -255,7 +253,7 @@ So in AI chat you can say, add reflection. This part really sucked, or this was 
 
 So I've been working on the logic behind how to collect what data it collects. Okay. So I, we have content quality guidelines for the ai, focus on signal [00:22:00] versus noise. And whatever's different about an entry is what's exciting. Don't just keep saying test, test driven development over and over again.
 
-We got it. But what's interesting is like writing a function to to get the summary.
+We got it. But what's interesting is like writing a function to to get the .
 
 Aha. Collect chat history and then that takes in since timestamp and last journal entry. But even then, anyway, yeah, and then it's just an a freaking AI prompt. There's no code in there.
 
@@ -299,7 +297,7 @@ And you can make it tell you what it's doing and actually do some serious learni
 
 [00:26:45] **Whitney Lee:** Yeah, very much. And like I really.
 
-Even now I don't know, I guess I would have to experiment, experiment with Codex, but I can't imagine now that we're getting into the logic of what should go in a journal summary, what would AI make up for that? That [00:27:00] just feels like it's very human or 
+Even now I don't know, I guess I would have to experiment, experiment with Codex, but I can't imagine now that we're getting into the logic of what should go in a journal , what would AI make up for that? That [00:27:00] just feels like it's very human or 
 
 [00:27:02] **Jason Hand:** It's very subjective, right? Like it's subjective.
 
@@ -335,4 +333,5 @@ I hate doing 'em, yeah. There's nothing to 'em. It's simple. I just don't like d
 
 [00:28:48] **Jason Hand:** All right. Sounds good. We'll see you later. 
 
-[00:28:51] **Whitney Lee:** Bye. Thank you. Bye." />
+[00:28:51] **Whitney Lee:** Bye. Thank you. Bye.
+`} />
