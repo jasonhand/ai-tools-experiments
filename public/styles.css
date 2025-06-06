@@ -103,6 +103,8 @@ code, pre, .monospace, .code-block {
     transition: transform 0.3s ease, box-shadow 0.3s ease !important;
 }
 
+
+
 /* Summary paragraphs inside the container */
 .section-summary p {
     font-size: 1.15rem !important;
@@ -114,12 +116,33 @@ code, pre, .monospace, .code-block {
     margin-bottom: 0 !important;
 }
 
+/* Summary lists inside the container */
+.section-summary ul {
+    list-style: none !important;
+    padding-left: 0 !important;
+    margin: 1.5rem 0 !important;
+}
+
+.section-summary ul li {
+    margin-bottom: 0.8rem !important;
+    padding-left: 1.5rem !important;
+    position: relative !important;
+    line-height: 1.6 !important;
+}
+
+.section-summary ul li::before {
+    content: "•" !important;
+    color: var(--accent-color) !important;
+    font-weight: bold !important;
+    position: absolute !important;
+    left: 0 !important;
+    font-size: 1.2rem !important;
+}
+
 .section-summary:hover {
     transform: translateY(-2px) !important;
     box-shadow: 0 16px 48px rgba(108, 117, 107, 0.2), 0 6px 20px rgba(108, 117, 107, 0.15) !important;
 }
-
-/* Remove the summary badge */
 
 /* Section Headers */
 .section-transcript-header {

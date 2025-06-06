@@ -1,12 +1,9 @@
 // Automatically apply section classes to episode content based on headings
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('Episode sections script loaded');
-    
     // Wait a moment for content to fully render
     setTimeout(() => {
         // Find ALL h2 elements on the page (not just in episode-content)
         const headings = document.querySelectorAll('h2');
-        console.log('Found headings:', headings.length);
         
         headings.forEach((heading, index) => {
             const headingText = heading.textContent.toLowerCase().trim();
@@ -17,24 +14,18 @@ document.addEventListener('DOMContentLoaded', function() {
                 nextElement = nextElement.nextElementSibling;
             }
             
-            console.log(`Heading ${index}: "${headingText}", Next element:`, nextElement?.tagName);
-            
             // Apply classes based on heading content
             if (headingText.includes('jump to') && nextElement && nextElement.tagName === 'UL') {
                 nextElement.classList.add('section-jump-to');
-                console.log('✅ Applied section-jump-to class');
             }
             else if (headingText.includes('resources') && nextElement && nextElement.tagName === 'UL') {
                 nextElement.classList.add('section-resources');
-                console.log('✅ Applied section-resources class');
             }
             else if ((headingText.includes('key takeaways') || headingText.includes('takeaways')) && nextElement && nextElement.tagName === 'UL') {
                 nextElement.classList.add('section-takeaways');
-                console.log('✅ Applied section-takeaways class');
             }
             else if (headingText.includes('full transcript')) {
                 heading.classList.add('section-transcript-header');
-                console.log('✅ Applied section-transcript-header class');
                 
                 // Look for transcript content
                 let transcriptElement = nextElement;
@@ -48,7 +39,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 if (transcriptElement && (transcriptElement.classList.contains('transcript') || transcriptElement.tagName === 'DIV')) {
                     transcriptElement.classList.add('section-transcript');
-                    console.log('✅ Applied section-transcript class');
                 }
             }
         });
@@ -58,8 +48,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const jumpToHeader = Array.from(headings).find(h => h.textContent.toLowerCase().includes('jump to'));
         
         if (summaryHeader && jumpToHeader) {
-            console.log('Found Summary and Jump To headers, collecting content between them');
-            
             const summaryElements = [];
             let currentElement = summaryHeader.nextElementSibling;
             
@@ -85,35 +73,46 @@ document.addEventListener('DOMContentLoaded', function() {
                 summaryElements.forEach(element => {
                     summaryContainer.appendChild(element);
                 });
-                
-                console.log(`✅ Created summary container with ${summaryElements.length} elements`);
             }
         } else {
-            console.log('Could not find both Summary and Jump To headers, trying to find summary content automatically...');
             
             // Try to find summary content automatically
             // Look for the first few paragraphs in the episode content that might be summary
             const episodeContent = document.querySelector('.episode-content .markdown-content');
             if (episodeContent) {
-                const jumpToList = episodeContent.querySelector('.section-jump-to');
-                if (jumpToList) {
-                    console.log('Found Jump To list, looking for content before it...');
-                    
+                // First, try to find Jump To section by looking for h2 with "Jump To" text
+                const jumpToHeader = Array.from(episodeContent.querySelectorAll('h2')).find(h => 
+                    h.textContent.toLowerCase().includes('jump to')
+                );
+                
+                let jumpToElement = null;
+                if (jumpToHeader) {
+                    // Look for the UL that follows the Jump To header
+                    let nextElement = jumpToHeader.nextElementSibling;
+                    while (nextElement && nextElement.nodeType === 3) {
+                        nextElement = nextElement.nextElementSibling;
+                    }
+                    if (nextElement && nextElement.tagName === 'UL') {
+                        jumpToElement = nextElement;
+                    }
+                }
+                
+                // If we found the Jump To element, look for content before it
+                if (jumpToElement) {
                     const summaryElements = [];
                     let currentElement = episodeContent.firstElementChild;
                     
-                    // Collect paragraphs before the Jump To section
-                    while (currentElement && !currentElement.classList.contains('section-jump-to')) {
-                        if (currentElement.tagName === 'P' && currentElement.textContent.trim().length > 50) {
+                    // Collect paragraphs and lists before the Jump To section
+                    while (currentElement && currentElement !== jumpToHeader) {
+                        if ((currentElement.tagName === 'P' && currentElement.textContent.trim().length > 10) ||
+                            (currentElement.tagName === 'UL' && currentElement.textContent.trim().length > 20)) {
                             summaryElements.push(currentElement);
                         }
                         currentElement = currentElement.nextElementSibling;
                     }
                     
                     // Only create summary container if we found substantial content
-                    if (summaryElements.length > 0 && summaryElements.length <= 3) {
-                        console.log(`Found ${summaryElements.length} potential summary paragraphs`);
-                        
+                    if (summaryElements.length > 0 && summaryElements.length <= 5) {
                         // Create a wrapper container for summary content
                         const summaryContainer = document.createElement('div');
                         summaryContainer.classList.add('section-summary');
@@ -126,8 +125,36 @@ document.addEventListener('DOMContentLoaded', function() {
                         summaryElements.forEach(element => {
                             summaryContainer.appendChild(element);
                         });
+                    }
+                } else {
+                    
+                    // Fallback: look for first few content elements that might be summary
+                    const summaryElements = [];
+                    let currentElement = episodeContent.firstElementChild;
+                    let elementCount = 0;
+                    
+                    while (currentElement && elementCount < 5) {
+                        if ((currentElement.tagName === 'P' && currentElement.textContent.trim().length > 10) ||
+                            (currentElement.tagName === 'UL' && currentElement.textContent.trim().length > 20)) {
+                            summaryElements.push(currentElement);
+                            elementCount++;
+                        }
+                        currentElement = currentElement.nextElementSibling;
+                    }
+                    
+                    if (summaryElements.length > 0 && summaryElements.length <= 3) {
+                        // Create a wrapper container for summary content
+                        const summaryContainer = document.createElement('div');
+                        summaryContainer.classList.add('section-summary');
                         
-                        console.log(`✅ Created automatic summary container with ${summaryElements.length} elements`);
+                        // Insert the container before the first summary element
+                        const firstElement = summaryElements[0];
+                        firstElement.parentNode.insertBefore(summaryContainer, firstElement);
+                        
+                        // Move summary elements into the container
+                        summaryElements.forEach(element => {
+                            summaryContainer.appendChild(element);
+                        });
                     }
                 }
             }
@@ -136,7 +163,6 @@ document.addEventListener('DOMContentLoaded', function() {
         // If no transcript header was found, try to find transcript content directly
         const existingTranscript = document.querySelector('.section-transcript');
         if (!existingTranscript) {
-            console.log('No transcript header found, searching for transcript content...');
             const allElements = document.querySelectorAll('div, pre, code');
             
             for (let element of allElements) {
@@ -149,13 +175,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     !element.querySelector('h1, h2, h3, .section-jump-to, .section-resources')) { // Don't select other sections
                     
                     element.classList.add('section-transcript');
-                    console.log('✅ Found and marked transcript content without header:', element);
-                    console.log('Content preview:', text.substring(0, 150) + '...');
                     break;
                 }
             }
         }
-        
-        console.log('🎉 Episode sections styling complete!');
     }, 500); // Wait 500ms for content to fully load
 }); 

@@ -1,25 +1,18 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
-import { getAllEpisodes, getAllTags } from '../utils/episodes';
+import { getAllTags } from '../utils/episodes';
+import { getAllEpisodesWithTakeaways } from '../utils/episodes';
 
-// Get all episodes and extract takeaways
-const allEpisodes = await getAllEpisodes();
-
-// Create episode data with takeaways for observations
-const episodesWithTakeaways = allEpisodes.map(episode => ({
-    ...episode,
-    takeaways: [
-        // These would ideally come from the MDX content, but for now we'll use placeholder takeaways
-        // In a real implementation, you'd extract these from the episode content
-        `Episode ${episode.number} explores ${episode.tags.slice(0, 2).join(' and ')} technologies`,
-        `Demonstrates practical applications of ${episode.tags[0] || 'AI tools'} in development workflows`,
-        `Provides insights into modern developer productivity and tool adoption`,
-        `Shows real-world examples of AI-assisted development processes`
-    ]
-}));
+// Get all episodes with real takeaways extracted from MDX content
+const episodesWithTakeaways = await getAllEpisodesWithTakeaways();
 
 // Get unique tools for filters
-const allTools = getAllTags(allEpisodes);
+const allTools = getAllTags(episodesWithTakeaways);
+
+// Function to parse markdown-style bold formatting
+function parseMarkdownBold(text: string): string {
+    return text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+}
 ---
 
 <MainLayout title="Observations & Insights">
@@ -71,7 +64,7 @@ const allTools = getAllTags(allEpisodes);
                                 <div class="takeaway-content">
                                     <ul>
                                         {episode.takeaways.map(takeaway => (
-                                            <li>{takeaway}</li>
+                                            <li set:html={parseMarkdownBold(takeaway)}></li>
                                         ))}
                                     </ul>
                                 </div>

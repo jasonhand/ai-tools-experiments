@@ -108,9 +108,8 @@ const youtubeUrl = VideoID ? `https://youtu.be/${VideoID}` : '#';
 
     /* SECTION CONTAINERS - New striking visual design */
     
-    /* Summary Section */
-    .episode-content > .markdown-content > p:first-of-type,
-    .episode-content > .markdown-content > p:nth-of-type(2) {
+    /* Summary Section - Updated to use .section-summary class */
+    .section-summary {
         background: linear-gradient(135deg, var(--light-color) 0%, #ffffff 100%);
         border-left: 6px solid var(--accent-color);
         padding: 2.5rem;
@@ -124,27 +123,68 @@ const youtubeUrl = VideoID ? `https://youtu.be/${VideoID}` : '#';
         transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
-    .episode-content > .markdown-content > p:first-of-type:hover,
-    .episode-content > .markdown-content > p:nth-of-type(2):hover {
+    .section-summary:hover {
         transform: translateY(-2px);
         box-shadow: 0 16px 48px rgba(108, 117, 107, 0.2), 0 6px 20px rgba(108, 117, 107, 0.15);
     }
 
-    .episode-content > .markdown-content > p:first-of-type::before {
-        content: "📝 Summary";
-        position: absolute;
-        top: -12px;
-        left: 2.5rem;
-        background: linear-gradient(135deg, var(--accent-color), var(--secondary-color));
-        color: white;
-        padding: 0.6rem 1.2rem;
-        border-radius: 25px;
-        font-size: 0.9rem;
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+
+
+    /* Summary content styling */
+    .section-summary p {
+        margin-bottom: 1.5rem;
+        line-height: 1.8;
     }
+
+    .section-summary p:last-child {
+        margin-bottom: 0;
+    }
+
+    .section-summary ul {
+        list-style: none;
+        padding-left: 0;
+        margin: 1.5rem 0;
+    }
+
+    .section-summary ul li {
+        margin-bottom: 0.8rem;
+        padding-left: 1.5rem;
+        position: relative;
+        line-height: 1.6;
+    }
+
+    .section-summary ul li::before {
+        content: "•";
+        color: var(--accent-color);
+        font-weight: bold;
+        position: absolute;
+        left: 0;
+        font-size: 1.2rem;
+    }
+
+    /* Fallback for episodes without .section-summary class */
+    .episode-content > .markdown-content > p:first-of-type:not(.section-summary *),
+    .episode-content > .markdown-content > p:nth-of-type(2):not(.section-summary *) {
+        background: linear-gradient(135deg, var(--light-color) 0%, #ffffff 100%);
+        border-left: 6px solid var(--accent-color);
+        padding: 2.5rem;
+        margin: 2rem 0;
+        border-radius: 16px;
+        box-shadow: 0 12px 40px rgba(108, 117, 107, 0.15), 0 4px 16px rgba(108, 117, 107, 0.1);
+        font-size: 1.15rem;
+        line-height: 1.8;
+        position: relative;
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .episode-content > .markdown-content > p:first-of-type:not(.section-summary *):hover,
+    .episode-content > .markdown-content > p:nth-of-type(2):not(.section-summary *):hover {
+        transform: translateY(-2px);
+        box-shadow: 0 16px 48px rgba(108, 117, 107, 0.2), 0 6px 20px rgba(108, 117, 107, 0.15);
+    }
+
+
 
     /* Section Headers with Icons */
     .episode-content h2 {
