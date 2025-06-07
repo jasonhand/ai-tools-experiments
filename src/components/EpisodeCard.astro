@@ -14,7 +14,7 @@ interface Props {
 }
 
 const { episode, showFeaturedBadge = false, linkTarget = "_self" } = Astro.props;
-const episodeUrl = `/episodes/ep${episode.number}`;
+const episodeUrl = `/episodes/ep${episode.number.toString().padStart(2, '0')}`;
 ---
 
 <div class="episode-card">

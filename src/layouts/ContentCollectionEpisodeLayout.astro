@@ -1,0 +1,699 @@
+---
+import { type CollectionEntry, getCollection } from 'astro:content';
+import MainLayout from './MainLayout.astro';
+import KeyTakeaways from '../components/KeyTakeaways.astro';
+import Resources from '../components/Resources.astro';
+
+export interface Props {
+  episode: CollectionEntry<'episodes'>;
+}
+
+const { episode } = Astro.props;
+const { data, render } = episode;
+const { Content } = await render();
+
+// Get all episodes for navigation
+const allEpisodes = await getCollection('episodes');
+const sortedEpisodes = allEpisodes.sort((a, b) => a.data.episodeNumber - b.data.episodeNumber);
+
+// Find previous and next episodes
+const currentIndex = sortedEpisodes.findIndex(ep => ep.data.episodeNumber === data.episodeNumber);
+const prevEpisode = currentIndex > 0 ? sortedEpisodes[currentIndex - 1] : null;
+const nextEpisode = currentIndex < sortedEpisodes.length - 1 ? sortedEpisodes[currentIndex + 1] : null;
+
+// Format date for display
+const formatDate = (dateString: string) => {
+  return new Date(dateString).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  });
+};
+
+// Generate YouTube embed URL
+const getYouTubeEmbedUrl = (videoId: string) => {
+  return `https://www.youtube.com/embed/${videoId}`;
+};
+---
+
+<MainLayout 
+  title={data.title}
+  description={data.description}
+>
+  <main class="episode-page">
+    <!-- Hero Image Section -->
+    {data.heroImg && (
+      <section class="hero-section">
+        <div class="hero-container">
+          <img 
+            src={data.heroImg} 
+            alt={`${data.title} - Episode ${data.episodeNumber}`}
+            class="hero-image"
+            loading="eager"
+          />
+        </div>
+      </section>
+    )}
+
+    <div class="episode-container">
+      <!-- Episode Header -->
+      <header class="episode-header">
+        <h1 class="episode-title">{data.title}</h1>
+        
+        <div class="episode-meta-line">
+          <span class="episode-number">Episode {data.episodeNumber}</span>
+          <time class="episode-date" datetime={data.date}>
+            {formatDate(data.date)}
+          </time>
+          <div class="episode-tags">
+            {data.tags.map(tag => (
+              <span class="tag">{tag}</span>
+            ))}
+          </div>
+        </div>
+      </header>
+
+      <!-- Main Content -->
+      <div class="episode-content">
+        <Content />
+      </div>
+
+      <!-- Video Section -->
+      {data.videoId && (
+        <section class="video-section">
+          <div class="video-container">
+            <iframe
+              id="youtube-player"
+              src={`${getYouTubeEmbedUrl(data.videoId)}?enablejsapi=1`}
+              title={`${data.title} - Episode ${data.episodeNumber}`}
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+              loading="lazy"
+            ></iframe>
+          </div>
+        </section>
+      )}
+
+      <!-- Jump To Navigation -->
+      {data.jumpTo && data.jumpTo.length > 0 && (
+        <section class="jump-to-section">
+          <h2>Jump To</h2>
+          <nav class="jump-to-nav">
+            <ul>
+              {data.jumpTo.map(item => (
+                <li>
+                  <button 
+                    class="jump-to-button" 
+                    data-timestamp={item.timestamp}
+                    data-url={item.url}
+                  >
+                    {item.timestamp && <span class="timestamp">{item.timestamp}</span>}
+                    {item.title}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </section>
+      )}
+
+      <!-- Key Takeaways Component -->
+      <KeyTakeaways 
+        takeaways={data.takeaways}
+        episodeNumber={data.episodeNumber}
+      />
+
+      <!-- Resources Component -->
+      <Resources 
+        resources={data.resources}
+        episodeNumber={data.episodeNumber}
+      />
+
+      <!-- Episode Navigation -->
+      <section class="episode-navigation">
+        <div class="nav-container">
+          {prevEpisode ? (
+            <a href={`/episodes/ep${prevEpisode.data.episodeNumber.toString().padStart(2, '0')}`} class="nav-item prev-episode">
+              <span class="nav-label">Previous Episode</span>
+              <div class="nav-content">
+                <span class="nav-number">Episode {prevEpisode.data.episodeNumber}</span>
+                <span class="nav-title">{prevEpisode.data.title}</span>
+              </div>
+            </a>
+          ) : (
+            <div class="nav-item prev-episode disabled">
+              <span class="nav-label">Previous Episode</span>
+              <div class="nav-content">
+                <span class="nav-number">—</span>
+                <span class="nav-title">No previous episode</span>
+              </div>
+            </div>
+          )}
+          
+          <div class="nav-divider"></div>
+          
+          {nextEpisode ? (
+            <a href={`/episodes/ep${nextEpisode.data.episodeNumber.toString().padStart(2, '0')}`} class="nav-item next-episode">
+              <span class="nav-label">Next Episode</span>
+              <div class="nav-content">
+                <span class="nav-number">Episode {nextEpisode.data.episodeNumber}</span>
+                <span class="nav-title">{nextEpisode.data.title}</span>
+              </div>
+            </a>
+          ) : (
+            <div class="nav-item next-episode disabled">
+              <span class="nav-label">Next Episode</span>
+              <div class="nav-content">
+                <span class="nav-number">—</span>
+                <span class="nav-title">Coming Soon</span>
+              </div>
+            </div>
+          )}
+        </div>
+      </section>
+    </div>
+  </main>
+</MainLayout>
+
+<style>
+  .episode-page {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+  }
+
+  .hero-section {
+    position: relative;
+    width: 100%;
+    height: 60vh;
+    min-height: 500px;
+    overflow: hidden;
+    margin-bottom: 0;
+  }
+
+  .hero-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+  .hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.3s ease;
+  }
+
+  .hero-section:hover .hero-image {
+    transform: scale(1.02);
+  }
+
+  .episode-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+
+  .episode-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding: 3rem 0 2rem 0;
+  }
+
+  .episode-title {
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--primary-color);
+    margin: 0 0 2rem 0;
+    line-height: 1.2;
+  }
+
+
+
+  .episode-meta-line {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .episode-number {
+    background: var(--accent-color);
+    color: white;
+    padding: 0.5rem 1.5rem;
+    border-radius: 25px;
+    font-weight: 600;
+    font-size: 1.1rem;
+  }
+
+  .episode-date {
+    color: var(--secondary-color);
+    font-size: 1.1rem;
+    font-weight: 500;
+  }
+
+  .episode-tags {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .tag {
+    background: var(--light-color);
+    color: var(--primary-color);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    border: 2px solid var(--accent-color);
+    transition: all 0.3s ease;
+  }
+
+  .tag:hover {
+    background: var(--accent-color);
+    color: white;
+    transform: translateY(-2px);
+  }
+
+
+
+  .video-section {
+    margin: 3rem 0;
+  }
+
+  .video-container {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+  }
+
+  .video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+
+
+  .jump-to-section {
+    background: white;
+    border-radius: 16px;
+    padding: 2rem;
+    margin: 3rem 0;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  }
+
+  .jump-to-section h2 {
+    color: var(--primary-color);
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin: 0 0 1.5rem 0;
+  }
+
+  .jump-to-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1rem;
+  }
+
+  .jump-to-nav li {
+    list-style: none;
+    background: var(--light-color);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+  }
+
+  .jump-to-nav li:hover {
+    background: var(--accent-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .jump-to-button {
+    display: block;
+    width: 100%;
+    padding: 1.5rem;
+    background: none;
+    border: none;
+    color: var(--primary-color);
+    font-weight: 500;
+    font-size: inherit;
+    font-family: inherit;
+    text-align: left;
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
+
+  .jump-to-nav li:hover .jump-to-button {
+    color: white;
+  }
+
+  .timestamp {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--secondary-color);
+    margin-bottom: 0.5rem;
+    font-weight: 400;
+  }
+
+  .jump-to-nav li:hover .timestamp {
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  .episode-content {
+    background: white;
+    border-radius: 16px;
+    padding: 3rem;
+    margin: 3rem 0;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    line-height: 1.8;
+  }
+
+  .episode-content :global(h2) {
+    color: var(--primary-color);
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 2rem 0 1rem 0;
+  }
+
+  .episode-content :global(h3) {
+    color: var(--secondary-color);
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 1.5rem 0 1rem 0;
+  }
+
+  .episode-content :global(p) {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    color: var(--dark-color);
+  }
+
+  .episode-content :global(strong) {
+    color: var(--primary-color);
+    font-weight: 600;
+  }
+
+  .episode-content :global(a) {
+    color: var(--secondary-color);
+    text-decoration: none;
+    border-bottom: 2px solid var(--accent-color);
+    transition: all 0.3s ease;
+  }
+
+  .episode-content :global(a:hover) {
+    color: var(--primary-color);
+    border-bottom-color: var(--primary-color);
+  }
+
+  .episode-navigation {
+    background: linear-gradient(135deg, var(--light-color) 0%, #ffffff 100%);
+    border-radius: 16px;
+    padding: 2rem;
+    margin: 3rem 0;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    border-left: 6px solid var(--accent-color);
+  }
+
+  .nav-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+
+  .nav-item {
+    flex: 1;
+    text-align: center;
+    padding: 1.5rem;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.7);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: 2px solid transparent;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+
+  .nav-item:hover:not(.disabled) {
+    background: rgba(255, 255, 255, 1);
+    border-color: var(--accent-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .nav-item.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background: rgba(255, 255, 255, 0.4);
+  }
+
+  .prev-episode {
+    text-align: left;
+  }
+
+  .next-episode {
+    text-align: right;
+  }
+
+  .nav-label {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--secondary-color);
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .nav-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .nav-number {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--primary-color);
+  }
+
+  .nav-title {
+    font-size: 0.95rem;
+    color: var(--dark-color);
+    font-style: italic;
+    line-height: 1.4;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+
+  .nav-divider {
+    width: 2px;
+    height: 60px;
+    background: linear-gradient(to bottom, transparent, var(--accent-color), transparent);
+    flex-shrink: 0;
+  }
+
+  /* Responsive design */
+  @media (max-width: 768px) {
+    .hero-section {
+      height: 50vh;
+      min-height: 400px;
+    }
+
+    .episode-container {
+      padding: 1rem;
+    }
+
+    .episode-title {
+      font-size: 2rem;
+    }
+
+    .episode-meta-line {
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .episode-tags {
+      justify-content: center;
+    }
+
+    .jump-to-nav ul {
+      grid-template-columns: 1fr;
+    }
+
+    .episode-content {
+      padding: 2rem;
+    }
+
+    .episode-navigation {
+      padding: 1.5rem;
+    }
+
+    .nav-container {
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .nav-divider {
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(to right, transparent, var(--accent-color), transparent);
+    }
+
+    .prev-episode,
+    .next-episode {
+      text-align: center;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .hero-section {
+      height: 40vh;
+      min-height: 350px;
+    }
+
+    .episode-title {
+      font-size: 1.5rem;
+    }
+
+    .episode-content {
+      padding: 1.5rem;
+    }
+  }
+</style>
+
+<script>
+  // Add any episode-specific JavaScript functionality here
+  document.addEventListener('DOMContentLoaded', () => {
+    // Function to convert timestamp to seconds
+    function timestampToSeconds(timestamp) {
+      if (!timestamp) return 0;
+      
+      const parts = timestamp.split(':');
+      let seconds = 0;
+      
+      if (parts.length === 3) {
+        // HH:MM:SS format
+        seconds = parseInt(parts[0]) * 3600 + parseInt(parts[1]) * 60 + parseInt(parts[2]);
+      } else if (parts.length === 2) {
+        // MM:SS format
+        seconds = parseInt(parts[0]) * 60 + parseInt(parts[1]);
+      } else if (parts.length === 1) {
+        // SS format
+        seconds = parseInt(parts[0]);
+      }
+      
+      return seconds;
+    }
+
+    // Function to extract video ID from YouTube URL
+    function extractVideoId(url) {
+      const match = url.match(/[?&]v=([^&]+)/);
+      return match ? match[1] : null;
+    }
+
+    // Function to extract timestamp from YouTube URL
+    function extractTimestamp(url) {
+      const match = url.match(/[?&]t=([^&]+)/);
+      return match ? match[1] : null;
+    }
+
+    // Handle jump-to buttons
+    const jumpToButtons = document.querySelectorAll('.jump-to-button');
+    const youtubePlayer = document.getElementById('youtube-player') as HTMLIFrameElement;
+    
+    jumpToButtons.forEach(button => {
+      button.addEventListener('click', (e) => {
+        e.preventDefault();
+        
+        const buttonElement = button as HTMLButtonElement;
+        const timestamp = buttonElement.dataset.timestamp;
+        const url = buttonElement.dataset.url;
+        
+        if (youtubePlayer && url) {
+          // Extract timestamp from URL or use the provided timestamp
+          let timeInSeconds = 0;
+          const urlTimestamp = extractTimestamp(url);
+          
+          if (urlTimestamp) {
+            // Handle URL timestamp format (could be in seconds like "123s" or "123")
+            timeInSeconds = parseInt(urlTimestamp.replace('s', ''));
+          } else if (timestamp) {
+            // Convert MM:SS or HH:MM:SS format to seconds
+            timeInSeconds = timestampToSeconds(timestamp);
+          }
+          
+          // Update the iframe src with the new timestamp
+          const currentSrc = youtubePlayer.src;
+          const baseUrl = currentSrc.split('?')[0];
+          const videoId = baseUrl.split('/').pop();
+          
+          // Construct new URL with timestamp
+          const newSrc = `${baseUrl}?enablejsapi=1&start=${timeInSeconds}&autoplay=1`;
+          youtubePlayer.src = newSrc;
+          
+          // Scroll to video player
+          youtubePlayer.scrollIntoView({
+            behavior: 'smooth',
+            block: 'center'
+          });
+        }
+      });
+    });
+
+    // Smooth scrolling for any remaining anchor links
+    const anchorLinks = document.querySelectorAll('a[href^="#"]');
+    anchorLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetId = link.getAttribute('href')?.substring(1);
+        const targetElement = document.getElementById(targetId || '');
+        if (targetElement) {
+          targetElement.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // Add reading progress indicator
+    const progressBar = document.createElement('div');
+    progressBar.className = 'reading-progress';
+    progressBar.style.cssText = `
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 4px;
+      background: var(--accent-color);
+      z-index: 1000;
+      transition: width 0.3s ease;
+    `;
+    document.body.appendChild(progressBar);
+
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.pageYOffset;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollPercent = (scrollTop / docHeight) * 100;
+      progressBar.style.width = scrollPercent + '%';
+    });
+  });
+</script> 

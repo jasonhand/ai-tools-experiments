@@ -16,7 +16,7 @@ const featuredEpisode = await getFeaturedEpisode();
                 <h2>Newest Episode</h2>
                 <div class="featured-episode-container">
                     <div class="featured-episode-video">
-                        <a href={`/episodes/ep${featuredEpisode.number}`}>
+                        <a href={`/episodes/ep${featuredEpisode.number.toString().padStart(2, '0')}`}>
                             <img src={featuredEpisode.heroImg} alt={featuredEpisode.title}>
                             <div class="play-button-overlay">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="#ffffff">

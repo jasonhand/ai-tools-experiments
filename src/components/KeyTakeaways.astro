@@ -1,0 +1,109 @@
+---
+export interface Takeaway {
+  text: string;
+  category?: 'technical' | 'strategic' | 'workflow' | 'productivity' | 'accessibility';
+  tools?: string[];
+  priority?: 'high' | 'medium' | 'low';
+}
+
+export interface Props {
+  takeaways: Takeaway[];
+  episodeNumber?: number;
+  showFilters?: boolean;
+}
+
+const { takeaways, episodeNumber } = Astro.props;
+---
+
+<section class="key-takeaways" data-episode={episodeNumber}>
+  <h2>Key Takeaways</h2>
+  
+  <ul class="takeaways-list">
+    {takeaways.map((takeaway) => (
+      <li class="takeaway-item">
+        <div class="takeaway-text" set:html={takeaway.text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')} />
+      </li>
+    ))}
+  </ul>
+</section>
+
+<style>
+  .key-takeaways {
+    background: linear-gradient(135deg, var(--light-color) 0%, #ffffff 100%);
+    border-left: 6px solid var(--accent-color);
+    padding: 2rem;
+    margin: 2rem 0;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(108, 117, 107, 0.1);
+  }
+
+  .key-takeaways h2 {
+    margin: 0 0 1.5rem 0;
+    color: var(--primary-color);
+    font-size: 1.8rem;
+    font-weight: 700;
+  }
+
+  .takeaways-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 1rem;
+  }
+
+  .takeaway-item {
+    list-style: none;
+    padding: 1rem 1.5rem;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 8px;
+    border-left: 3px solid var(--accent-color);
+    transition: all 0.3s ease;
+  }
+
+  .takeaway-item:hover {
+    background: rgba(255, 255, 255, 1);
+    transform: translateX(2px);
+    box-shadow: 0 2px 8px rgba(108, 117, 107, 0.1);
+  }
+
+  .takeaway-text {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--dark-color);
+    margin: 0;
+  }
+
+  .takeaway-text :global(strong) {
+    color: var(--primary-color);
+    font-weight: 600;
+  }
+
+  .takeaway-text :global(b) {
+    color: var(--primary-color);
+    font-weight: 600;
+  }
+
+  .takeaway-text :global(code) {
+    background: rgba(108, 117, 107, 0.1);
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+  }
+
+  /* Responsive design */
+  @media (max-width: 768px) {
+    .key-takeaways {
+      padding: 1.5rem;
+    }
+
+    .takeaway-item {
+      padding: 0.8rem 1rem;
+    }
+
+    .takeaway-text {
+      font-size: 0.95rem;
+    }
+  }
+</style> 

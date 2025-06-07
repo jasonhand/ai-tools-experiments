@@ -1,0 +1,156 @@
+---
+export interface Resource {
+  name: string;
+  url: string;
+  description?: string;
+  type: 'tool' | 'documentation' | 'article' | 'video' | 'repository' | 'platform';
+  featured?: boolean;
+}
+
+export interface Props {
+  resources: Resource[];
+  episodeNumber?: number;
+  showFilters?: boolean;
+}
+
+const { resources, episodeNumber } = Astro.props;
+---
+
+<section class="resources" data-episode={episodeNumber}>
+  <h2>Resources</h2>
+  
+  <div class="resources-grid">
+    {resources.map(resource => (
+      <div class="resource-card">
+        <h3 class="resource-name">
+          <a href={resource.url} target="_blank" rel="noopener noreferrer">
+            {resource.name}
+          </a>
+        </h3>
+        {resource.description && (
+          <p class="resource-description">{resource.description}</p>
+        )}
+        <div class="resource-actions">
+          <a 
+            href={resource.url} 
+            target="_blank" 
+            rel="noopener noreferrer"
+            class="resource-link"
+            aria-label={`Visit ${resource.name}`}
+          >
+            Visit →
+          </a>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
+
+<style>
+  .resources {
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+    border-left: 6px solid var(--secondary-color);
+    padding: 2rem;
+    margin: 2rem 0;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(108, 117, 107, 0.1);
+  }
+
+  .resources h2 {
+    margin: 0 0 1.5rem 0;
+    color: var(--primary-color);
+    font-size: 1.8rem;
+    font-weight: 700;
+  }
+
+  .resources-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .resource-card {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+  }
+
+  .resource-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    border-color: var(--accent-color);
+  }
+
+  .resource-name {
+    margin: 0 0 1rem 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+
+  .resource-name a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .resource-name a:hover {
+    color: var(--secondary-color);
+    text-decoration: underline;
+  }
+
+  .resource-description {
+    color: var(--dark-color);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+
+  .resource-actions {
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .resource-link {
+    background: var(--secondary-color);
+    color: white;
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .resource-link:hover {
+    background: var(--primary-color);
+    transform: translateX(2px);
+  }
+
+  /* Responsive design */
+  @media (max-width: 768px) {
+    .resources {
+      padding: 1.5rem;
+    }
+
+    .resources-grid {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    .resource-card {
+      padding: 1.2rem;
+    }
+
+    .resource-link {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+</style> 

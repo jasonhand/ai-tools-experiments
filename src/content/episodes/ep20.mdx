@@ -1,0 +1,77 @@
+---
+title: "YOLO Coding: Migrating from Static HTML to Astro with AI Tools"
+description: "In this episode, Ryan MacLean shares his weekend experiment with 'YOLO Mode' (You Only Live Once) in AI-assisted coding, where he migrated the ai-tools-lab.com website from static HTML to Astro. Ryan discusses his approach of using multiple AI models with Model Context Protocol (MCP) tools, particularly highlighting how he combined Gemini 2.5 Pro's multimodal capabilities with Claude Sonnet 3.7's web search functionality to tackle different aspects of the project."
+heroImg: "../images/thumbnails/ep20.png"
+videoId: "qgTu6hv6Hys"
+episodeNumber: 20
+date: "2025-05-05T00:00:00.000Z"
+author: "jasonhand24@gmail.com"
+tags: ["puppeteer", "mcp", "gemini", "claude", "astro"]
+
+takeaways:
+  - text: "AI 'YOLO Mode' can significantly accelerate website migrations, but requires constant human supervision to prevent security risks and unwanted changes"
+    tools: ["AI Assistants", "YOLO Mode"]
+  - text: "Combining different AI models (like Gemini 2.5 Pro for multimodal tasks and Claude Sonnet 3.7 for web searches) creates a more effective development workflow"
+    tools: ["Gemini", "Claude", "Multimodal AI"]
+  - text: "Model Context Protocol (MCP) tools like Puppeteer and Sequential Thinking in Windsurf enable AI to interact with websites and execute multi-step processes"
+    tools: ["MCP", "Puppeteer", "Windsurf"]
+  - text: "AI models struggle with large files (like CSS) and special formats (like Base64), requiring workarounds or alternative approaches"
+    tools: ["AI Models", "CSS", "Base64"]
+  - text: "Long AI sessions face context window limitations; creating checkpoints and to-do lists helps maintain progress across multiple sessions"
+    tools: ["AI Context", "Project Management"]
+
+resources:
+  - name: "AI Tools Lab Website"
+    url: "https://ai-tools-lab.com"
+    description: "The website that was migrated from static HTML to Astro"
+  - name: "Astro Documentation"
+    url: "https://astro.build"
+    description: "Static site generator used for the migration"
+  - name: "Context7 Documentation Repository"
+    url: "https://context7.ai"
+    description: "Tool for accessing documentation within AI workflows"
+  - name: "Vitest Testing Framework"
+    url: "https://vitest.dev"
+    description: "Testing framework mentioned for automated testing"
+  - name: "Puppeteer MCP"
+    url: "https://github.com/puppeteer/puppeteer"
+    description: "Model Context Protocol tool for browser automation"
+
+jumpTo:
+  - title: "Introduction and YOLO Mode Coding"
+    url: "https://www.youtube.com/watch?v=qgTu6hv6Hys?t=0"
+    timestamp: "00:00:00"
+  - title: "Overview of the HTML to Astro Migration Project"
+    url: "https://www.youtube.com/watch?v=qgTu6hv6Hys?t=60"
+    timestamp: "00:01:00"
+  - title: "Visual Comparison Challenges and CSS Issues"
+    url: "https://www.youtube.com/watch?v=qgTu6hv6Hys?t=180"
+    timestamp: "00:03:00"
+  - title: "Switching Between AI Models for Different Tasks"
+    url: "https://www.youtube.com/watch?v=qgTu6hv6Hys?t=300"
+    timestamp: "00:05:00"
+  - title: "Setting Up MCPs in Windsurf (Puppeteer and Sequential Thinking)"
+    url: "https://www.youtube.com/watch?v=qgTu6hv6Hys?t=420"
+    timestamp: "00:07:00"
+  - title: "Safety Concerns with AI Auto-Approving Commands"
+    url: "https://www.youtube.com/watch?v=qgTu6hv6Hys?t=660"
+    timestamp: "00:11:00"
+  - title: "Memory Management and Context Windows"
+    url: "https://www.youtube.com/watch?v=qgTu6hv6Hys?t=900"
+    timestamp: "00:15:00"
+  - title: "Using Context7 for Documentation Access"
+    url: "https://www.youtube.com/watch?v=qgTu6hv6Hys?t=1080"
+    timestamp: "00:18:00"
+  - title: "Maintaining To-Do Lists and Progress Tracking"
+    url: "https://www.youtube.com/watch?v=qgTu6hv6Hys?t=1320"
+    timestamp: "00:22:00"
+  - title: "Final Thoughts on AI-Assisted Site Migration"
+    url: "https://www.youtube.com/watch?v=qgTu6hv6Hys?t=1620"
+    timestamp: "00:27:00"
+
+summary: "In this episode, Ryan MacLean shares his weekend experiment with 'YOLO Mode' (You Only Live Once) in AI-assisted coding, where he migrated the ai-tools-lab.com website from static HTML to Astro. Ryan discusses his approach of using multiple AI models with Model Context Protocol (MCP) tools, particularly highlighting how he combined Gemini 2.5 Pro's multimodal capabilities with Claude Sonnet 3.7's web search functionality to tackle different aspects of the project. Ryan explains the challenges he faced, including models struggling with large CSS files and Base64-encoded graphics, and reveals his workflow using Puppeteer and Sequential Thinking MCPs in Windsurf to compare and migrate the site effectively. Throughout the conversation, Ryan emphasizes the importance of vigilant oversight when allowing AI tools to execute commands, especially around version control and API keys. He demonstrates how to set up MCPs in Windsurf, add Context7 for documentation access, and use to-do lists to checkpoint progress across lengthy AI sessions. Despite some visual discrepancies in the migrated site, Ryan found the process incredibly educational, allowing him to simultaneously learn Astro, improve his testing methodology with Vitest, automate deployments with Netlify, and enhance his work with Claude. Jason Hand, who initially suggested using AI for the migration, expresses excitement about how quickly they've been able to move from a static HTML site to a more maintainable content management system using these AI-powered development approaches."
+---
+
+In this episode, Ryan MacLean shares his weekend experiment with 'YOLO Mode' (You Only Live Once) in AI-assisted coding, where he migrated the ai-tools-lab.com website from static HTML to Astro. Ryan discusses his approach of using multiple AI models with Model Context Protocol (MCP) tools, particularly highlighting how he combined Gemini 2.5 Pro's multimodal capabilities with Claude Sonnet 3.7's web search functionality to tackle different aspects of the project. Ryan explains the challenges he faced, including models struggling with large CSS files and Base64-encoded graphics, and reveals his workflow using Puppeteer and Sequential Thinking MCPs in Windsurf to compare and migrate the site effectively. 
+
+Throughout the conversation, Ryan emphasizes the importance of vigilant oversight when allowing AI tools to execute commands, especially around version control and API keys. He demonstrates how to set up MCPs in Windsurf, add Context7 for documentation access, and use to-do lists to checkpoint progress across lengthy AI sessions. Despite some visual discrepancies in the migrated site, Ryan found the process incredibly educational, allowing him to simultaneously learn Astro, improve his testing methodology with Vitest, automate deployments with Netlify, and enhance his work with Claude. Jason Hand, who initially suggested using AI for the migration, expresses excitement about how quickly they've been able to move from a static HTML site to a more maintainable content management system using these AI-powered development approaches. 

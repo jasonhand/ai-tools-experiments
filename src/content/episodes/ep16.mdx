@@ -1,0 +1,83 @@
+---
+title: "Enhancing CSS Editing with LLMs: Using Puppeteer for Visual Context"
+description: "Ryan demonstrates how to leverage Puppeteer's screenshot capabilities through MCP to provide visual context for LLMs, creating a virtuous cycle for CSS editing and design improvements."
+heroImg: "../images/thumbnails/ep16.png"
+videoId: "duMkcV7d_wo"
+episodeNumber: 16
+date: "2025-04-30T00:00:00.000Z"
+author: "jasonhand24@gmail.com"
+tags: ["puppeteer", "mcp", "gemini", "css"]
+
+takeaways:
+  - text: "Using visual context through screenshots helps LLMs make better CSS editing decisions than relying on text alone"
+    tools: ["Puppeteer", "LLMs"]
+  - text: "Puppeteer integration with LLMs creates a virtuous feedback cycle for quickly iterating on design changes"
+    tools: ["Puppeteer", "MCP"]
+  - text: "The MCP (Model Control Protocol) server is essential for allowing LLMs to interact with local development environments"
+    tools: ["MCP", "Puppeteer"]
+  - text: "Working in a test branch provides a safe environment for experimenting with AI-suggested CSS changes"
+    tools: ["Git", "CSS"]
+  - text: "Despite requiring manual approval for screenshots, the workflow with Gemini 2.5 Pro is fast enough to create an efficient development experience"
+    tools: ["Gemini", "Puppeteer"]
+
+resources:
+  - name: "Puppeteer"
+    url: "https://pptr.dev/"
+    description: "Headless browser automation library for taking screenshots of websites"
+  - name: "Model Control Protocol (MCP)"
+    url: "https://github.com/google/model-control-protocol"
+    description: "Protocol for connecting AI models to external tools like Puppeteer"
+  - name: "Gemini 2.5 Pro"
+    url: "https://ai.google.dev/gemini"
+    description: "Google's LLM used in the demonstration for CSS suggestions"
+  - name: "PHP local server"
+    url: "https://www.php.net/manual/en/features.commandline.webserver.php"
+    description: "Used to serve static website files locally for testing"
+  - name: "CSS documentation"
+    url: "https://developer.mozilla.org/en-US/docs/Web/CSS"
+    description: "Mozilla's comprehensive guide to CSS properties and syntax"
+
+jumpTo:
+  - title: "Introduction to editing CSS with LLMs"
+    url: "https://youtu.be/duMkcV7d_wo?t=0"
+    timestamp: "00:00:00"
+  - title: "Challenges with CSS complexity and versioning"
+    url: "https://youtu.be/duMkcV7d_wo?t=45"
+    timestamp: "00:00:45"
+  - title: "Examining the AI tools lab website and its extensive CSS"
+    url: "https://youtu.be/duMkcV7d_wo?t=75"
+    timestamp: "00:01:15"
+  - title: "Introduction to using Puppeteer for visual context"
+    url: "https://youtu.be/duMkcV7d_wo?t=105"
+    timestamp: "00:01:45"
+  - title: "Setting up PHP to serve the static website locally"
+    url: "https://youtu.be/duMkcV7d_wo?t=150"
+    timestamp: "00:02:30"
+  - title: "First attempt at querying without Puppeteer enabled"
+    url: "https://youtu.be/duMkcV7d_wo?t=180"
+    timestamp: "00:03:00"
+  - title: "Enabling Puppeteer in the MCP server settings"
+    url: "https://youtu.be/duMkcV7d_wo?t=240"
+    timestamp: "00:04:00"
+  - title: "Dealing with screenshot approval requirements"
+    url: "https://youtu.be/duMkcV7d_wo?t=270"
+    timestamp: "00:04:30"
+  - title: "Getting CSS suggestions based on the screenshot"
+    url: "https://youtu.be/duMkcV7d_wo?t=330"
+    timestamp: "00:05:30"
+  - title: "Testing CSS changes in a safe test branch"
+    url: "https://youtu.be/duMkcV7d_wo?t=390"
+    timestamp: "00:06:30"
+  - title: "Handling stalled screenshots and retrying"
+    url: "https://youtu.be/duMkcV7d_wo?t=435"
+    timestamp: "00:07:15"
+  - title: "Reviewing the implemented header style changes"
+    url: "https://youtu.be/duMkcV7d_wo?t=465"
+    timestamp: "00:07:45"
+
+summary: "In this presentation, Ryan explores a practical approach to editing CSS with Large Language Models (LLMs), focusing on creating a virtuous cycle of design improvements. He highlights the challenges of working with CSS, particularly for developers familiar with older versions who may struggle with modern CSS syntax and styles. Ryan points out that CSS can be complex, with styles defined in multiple locations, making it difficult to track changes and understand their impact across large codebases that may contain thousands of lines of code spread across numerous files. Ryan demonstrates an innovative solution using Puppeteer through an MCP (Model Control Protocol) server to take screenshots of local websites. This approach allows the LLM to see the visual representation of the site, providing crucial context for making informed CSS recommendations. Throughout the demonstration, Ryan shows how to set up and configure the MCP server, start a local PHP server to host the test site, and use Gemini 2.5 Pro to suggest and implement CSS changes. Despite some workflow challenges such as needing to approve screenshot captures manually, Ryan emphasizes the speed advantages of this approach, noting that the quick feedback cycle creates an efficient workflow that almost mimics real-time browser editing but with AI assistance. The demonstration concludes with a successful modification to the header styling, illustrating the potential of this visual-context approach to AI-assisted CSS editing."
+---
+
+In this presentation, Ryan explores a practical approach to editing CSS with Large Language Models (LLMs), focusing on creating a virtuous cycle of design improvements. He highlights the challenges of working with CSS, particularly for developers familiar with older versions who may struggle with modern CSS syntax and styles. Ryan points out that CSS can be complex, with styles defined in multiple locations, making it difficult to track changes and understand their impact across large codebases that may contain thousands of lines of code spread across numerous files.
+
+Ryan demonstrates an innovative solution using Puppeteer through an MCP (Model Control Protocol) server to take screenshots of local websites. This approach allows the LLM to see the visual representation of the site, providing crucial context for making informed CSS recommendations. Throughout the demonstration, Ryan shows how to set up and configure the MCP server, start a local PHP server to host the test site, and use Gemini 2.5 Pro to suggest and implement CSS changes. Despite some workflow challenges such as needing to approve screenshot captures manually, Ryan emphasizes the speed advantages of this approach, noting that the quick feedback cycle creates an efficient workflow that almost mimics real-time browser editing but with AI assistance. The demonstration concludes with a successful modification to the header styling, illustrating the potential of this visual-context approach to AI-assisted CSS editing. 

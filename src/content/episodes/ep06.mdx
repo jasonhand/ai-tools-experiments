@@ -1,0 +1,69 @@
+---
+title: "Using Cursor and Claude to Solve Record Search Bugs"
+description: "Following the journey of using Claude Code to implement substantial changes to a personal website, from planning to execution and troubleshooting."
+heroImg: "../images/thumbnails/ep06.png"
+videoId: "OxHCfE1bFBs"
+episodeNumber: 6
+date: "2025-04-26T00:00:00.000Z"
+author: "jasonhand24@gmail.com"
+tags: ["web-dev", "claude"]
+
+takeaways:
+  - text: "Cursor with Claude can quickly identify and fix complex bugs in web applications"
+    tools: ["Cursor", "Claude"]
+  - text: "The Vinyl Viewer bug occurred because the click handler used the original data array instead of the filtered array"
+    tools: ["Cursor", "Claude"]
+  - text: "Claude was able to diagnose the issue without requiring extensive prompting"
+    tools: ["Claude"]
+  - text: "Cursor provides a more integrated experience than standard chat interfaces for coding tasks"
+    tools: ["Cursor"]
+  - text: "AI assistants can help debug code even on projects that haven't been maintained for months"
+    tools: ["Cursor", "Claude"]
+
+resources:
+  - name: "Cursor"
+    url: "https://cursor.sh/"
+    description: "AI-enhanced code editor built on VSCode for improved development workflow"
+  - name: "Vinyl Viewer GitHub Repository"
+    url: "https://github.com/jasonhand/vinyl-viewer"
+    description: "Source code for the vinyl record collection viewer application"
+  - name: "Vinyl Viewer Live Demo"
+    url: "https://jasonhand.github.io/vinyl-viewer/"
+    description: "Live demonstration of the vinyl record collection application"
+
+jumpTo:
+  - title: "Introduction to using Claude Code for website updates"
+    url: "https://youtu.be/OxHCfE1bFBs?t=0"
+    timestamp: "00:00:00"
+  - title: "Introducing the Vinyl Viewer weekend project"
+    url: "https://youtu.be/OxHCfE1bFBs?t=42"
+    timestamp: "00:00:42"
+  - title: "Discovering the search functionality bug with Frank Zappa records"
+    url: "https://youtu.be/OxHCfE1bFBs?t=118"
+    timestamp: "00:01:58"
+  - title: "Setting up the Cursor environment and connecting to the project"
+    url: "https://youtu.be/OxHCfE1bFBs?t=170"
+    timestamp: "00:02:50"
+  - title: "Describing the bug precisely to Claude"
+    url: "https://youtu.be/OxHCfE1bFBs?t=240"
+    timestamp: "00:04:00"
+  - title: "Sharing the index and script.js files with Claude"
+    url: "https://youtu.be/OxHCfE1bFBs?t=368"
+    timestamp: "00:06:08"
+  - title: "Claude identifies the filtered data array issue"
+    url: "https://youtu.be/OxHCfE1bFBs?t=429"
+    timestamp: "00:07:09"
+  - title: "Applying Claude's code fix to the script file"
+    url: "https://youtu.be/OxHCfE1bFBs?t=490"
+    timestamp: "00:08:10"
+  - title: "Investigating why the fix didn't work and making adjustments"
+    url: "https://youtu.be/OxHCfE1bFBs?t=782"
+    timestamp: "00:13:02"
+  - title: "Testing again with the new build and confirming the fix works"
+    url: "https://youtu.be/OxHCfE1bFBs?t=954"
+    timestamp: "00:15:54"
+
+summary: "In this episode, Jason Hand explores how to use Cursor with Claude to diagnose and fix a bug in his weekend project \"Vinyl Viewer,\" a web application that displays his record collection. The application has a search functionality that correctly filters records but incorrectly displays record details when users click on search results. Jason demonstrates how Cursor with Claude quickly identifies the root cause: when filtering records, the application creates a filtered data array, but the click handler incorrectly references the original data array instead of the filtered data. After implementing Claude's suggested fix, Jason successfully resolves the bug that had persisted for ten months, enabling proper display of record details from search results."
+---
+
+In this episode, Jason Hand explores how to use Cursor with Claude to diagnose and fix a bug in his weekend project "Vinyl Viewer," a web application that displays his record collection. The application has a search functionality that correctly filters records but incorrectly displays record details when users click on search results. Jason demonstrates how Cursor with Claude quickly identifies the root cause: when filtering records, the application creates a filtered data array, but the click handler incorrectly references the original data array instead of the filtered data. After implementing Claude's suggested fix, Jason successfully resolves the bug that had persisted for ten months, enabling proper display of record details from search results. 

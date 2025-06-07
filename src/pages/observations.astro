@@ -47,7 +47,7 @@ function parseMarkdownBold(text: string): string {
                              data-tools={episode.tags.map(t => t.toLowerCase()).join(',')} 
                              data-concepts={episode.tags.map(c => c.toLowerCase()).join(',')}>
                             <div class="takeaway-card-header">
-                                <a href={`/episodes/ep${episode.number}`} class="header-link">
+                                <a href={`/episodes/ep${episode.number.toString().padStart(2, '0')}`} class="header-link">
                                     <img src={episode.heroImg} alt={`Episode ${episode.number} Thumbnail`}>
                                     <div class="takeaway-card-header-content">
                                         <div class="episode-number">Episode {episode.number}</div>
@@ -70,7 +70,7 @@ function parseMarkdownBold(text: string): string {
                                 </div>
                             </div>
                             <div class="takeaway-card-footer">
-                                <a href={`/episodes/ep${episode.number}`} target='_blank'>View Full Episode →</a>
+                                <a href={`/episodes/ep${episode.number.toString().padStart(2, '0')}`} target='_blank'>View Full Episode →</a>
                             </div>
                         </div>
                     ))}

@@ -1,3 +1,5 @@
+import { getCollection, type CollectionEntry } from 'astro:content';
+
 export interface Episode {
     number: number;
     title: string;
@@ -93,88 +95,76 @@ function parseFrontmatter(frontmatterContent: string): any {
     return frontmatter;
 }
 
-// New function to get episodes with real takeaways
-export async function getAllEpisodesWithTakeaways(): Promise<EpisodeWithTakeaways[]> {
-    // Get all episode MDX files with raw content
-    const episodeFiles = await import.meta.glob('../pages/episodes/*.mdx', { 
-        query: '?raw', 
-        import: 'default' 
-    });
+// Convert content collection episode to Episode interface
+function convertToEpisode(episode: CollectionEntry<'episodes'>): Episode {
+    return {
+        number: episode.data.episodeNumber,
+        title: episode.data.title,
+        description: episode.data.description,
+        heroImg: episode.data.heroImg,
+        date: episode.data.date,
+        tags: episode.data.tags,
+        videoId: episode.data.videoId,
+        author: episode.data.author
+    };
+}
+
+// Convert content collection episode to EpisodeWithTakeaways interface
+function convertToEpisodeWithTakeaways(episode: CollectionEntry<'episodes'>): EpisodeWithTakeaways {
+    const baseEpisode = convertToEpisode(episode);
+    const takeaways = episode.data.takeaways?.map(t => t.text) || [];
     
-    const episodes: EpisodeWithTakeaways[] = [];
+    return {
+        ...baseEpisode,
+        takeaways
+    };
+}
 
-    for (const path in episodeFiles) {
-        try {
-            // Get the raw content
-            const rawContent = await episodeFiles[path]() as string;
-            
-            // Extract frontmatter
-            const frontmatterMatch = rawContent.match(/^---\n([\s\S]*?)\n---/);
-            if (!frontmatterMatch) continue;
-            
-            // Parse frontmatter
-            const frontmatter = parseFrontmatter(frontmatterMatch[1]);
-            
-            if (frontmatter.EpisodeNumber) {
-                // Extract takeaways from the content
-                const takeaways = extractTakeawaysFromContent(rawContent);
-                
-                episodes.push({
-                    number: parseInt(frontmatter.EpisodeNumber),
-                    title: frontmatter.Title || '',
-                    description: frontmatter.Description || '',
-                    heroImg: frontmatter.HeroImg || '',
-                    date: frontmatter.Date || '',
-                    tags: frontmatter.Tags || [],
-                    videoId: frontmatter.VideoID,
-                    author: frontmatter.Author,
-                    takeaways: takeaways
-                });
-            }
-        } catch (error) {
-            console.error(`Error processing episode file ${path}:`, error);
-        }
+// Get episodes with real takeaways from content collections
+export async function getAllEpisodesWithTakeaways(): Promise<EpisodeWithTakeaways[]> {
+    try {
+        const episodes = await getCollection('episodes');
+        const episodesWithTakeaways = episodes.map(convertToEpisodeWithTakeaways);
+        
+        // Sort by episode number (descending - newest first)
+        return episodesWithTakeaways.sort((a, b) => b.number - a.number);
+    } catch (error) {
+        console.error('Error getting episodes with takeaways:', error);
+        return [];
     }
-
-    // Sort by episode number (descending - newest first)
-    return episodes.sort((a, b) => b.number - a.number);
 }
 
 export async function getAllEpisodes(): Promise<Episode[]> {
-    // Get all episode MDX files
-    const episodeFiles = await import.meta.glob('../pages/episodes/*.mdx');
-    const episodes: Episode[] = [];
-
-    for (const path in episodeFiles) {
-        const module = await episodeFiles[path]() as any;
-        const frontmatter = module.frontmatter;
+    try {
+        const episodes = await getCollection('episodes');
+        const convertedEpisodes = episodes.map(convertToEpisode);
         
-        if (frontmatter && frontmatter.EpisodeNumber) {
-            episodes.push({
-                number: parseInt(frontmatter.EpisodeNumber),
-                title: frontmatter.Title,
-                description: frontmatter.Description,
-                heroImg: frontmatter.HeroImg,
-                date: frontmatter.Date,
-                tags: frontmatter.Tags || [],
-                videoId: frontmatter.VideoID,
-                author: frontmatter.Author
-            });
-        }
+        // Sort by episode number (descending - newest first)
+        return convertedEpisodes.sort((a, b) => b.number - a.number);
+    } catch (error) {
+        console.error('Error getting all episodes:', error);
+        return [];
     }
-
-    // Sort by episode number (descending - newest first)
-    return episodes.sort((a, b) => b.number - a.number);
 }
 
 export async function getFeaturedEpisode(): Promise<Episode | null> {
-    const episodes = await getAllEpisodes();
-    return episodes.length > 0 ? episodes[0] : null;
+    try {
+        const episodes = await getAllEpisodes();
+        return episodes.length > 0 ? episodes[0] : null;
+    } catch (error) {
+        console.error('Error getting featured episode:', error);
+        return null;
+    }
 }
 
 export async function getEpisodeByNumber(episodeNumber: number): Promise<Episode | null> {
-    const episodes = await getAllEpisodes();
-    return episodes.find(ep => ep.number === episodeNumber) || null;
+    try {
+        const episodes = await getAllEpisodes();
+        return episodes.find(ep => ep.number === episodeNumber) || null;
+    } catch (error) {
+        console.error('Error getting episode by number:', error);
+        return null;
+    }
 }
 
 export function getAllTags(episodes: Episode[]): string[] {

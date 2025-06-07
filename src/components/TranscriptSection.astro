@@ -5,48 +5,177 @@ export interface Props {
 }
 
 const { transcriptContent } = Astro.props;
+
+// Simple function to split transcript into segments and generate HTML
+function generateTranscriptHTML(content: string) {
+  if (!content || content.trim() === '') {
+    return '<p>No transcript content available.</p>';
+  }
+
+  const lines = content.split('\n');
+  let html = '';
+  let currentSegment = null;
+
+  for (const line of lines) {
+    // Check if line matches pattern: [00:00:00] **Speaker Name:**
+    const match = line.match(/^\[(\d{2}:\d{2}:\d{2})\]\s*\*\*(.*?):\*\*(.*)$/);
+    
+    if (match) {
+      // Close previous segment if it exists
+      if (currentSegment) {
+        html += `
+          <div class="segment">
+            <div class="segment-header">
+              <span class="timestamp">${currentSegment.timestamp}</span>
+              <span class="speaker">${currentSegment.speaker}</span>
+            </div>
+            <div class="segment-text">${currentSegment.content}</div>
+          </div>
+        `;
+      }
+      
+      // Start new segment
+      currentSegment = {
+        timestamp: match[1],
+        speaker: match[2].trim(),
+        content: match[3].trim()
+      };
+    } else if (currentSegment && line.trim()) {
+      // Add content to current segment
+      currentSegment.content += ' ' + line.trim();
+    }
+  }
+
+  // Add the last segment
+  if (currentSegment) {
+    html += `
+      <div class="segment">
+        <div class="segment-header">
+          <span class="timestamp">${currentSegment.timestamp}</span>
+          <span class="speaker">${currentSegment.speaker}</span>
+        </div>
+        <div class="segment-text">${currentSegment.content}</div>
+      </div>
+    `;
+  }
+
+  return html || '<p>No transcript segments found.</p>';
+}
+
+const transcriptHTML = generateTranscriptHTML(transcriptContent);
 ---
 
-
-<div class='transcript-navigation'>
-    <button class='transcript-control' onclick='document.querySelector(".transcript").scrollTop = 0'>Top</button>
-    <span>Scroll or use controls to navigate</span>
-    <button class='transcript-control' onclick='document.querySelector(".transcript").scrollTop = document.querySelector(".transcript").scrollHeight'>Bottom</button>
-</div>
-
-<div class='transcript'>
-    <pre set:html={transcriptContent} />
-</div>
+<section class="transcript-section">
+  <h2>Transcript</h2>
+  
+  <div class="transcript-content" set:html={transcriptHTML}>
+  </div>
+</section>
 
 <style>
-  .transcript {
-    max-height: 500px;
+  .transcript-section {
+    background: white;
+    border-radius: 16px;
+    padding: 2rem;
+    margin: 2rem 0;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    border-left: 6px solid var(--dark-color);
+  }
+
+  .transcript-section h2 {
+    margin: 0 0 1.5rem 0;
+    color: var(--primary-color);
+    font-size: 1.8rem;
+    font-weight: 700;
+  }
+
+  .transcript-content {
+    max-height: 600px;
     overflow-y: auto;
-    border: 1px solid #ddd;
-    padding: 15px;
-    margin-bottom: 20px;
-    background-color: #f9f9f9;
-    border-radius: 5px;
+    border: 1px solid #e9ecef;
+    border-radius: 12px;
+    background: #f8f9fa;
+  }
+
+  .transcript-content .segment {
+    border-bottom: 1px solid #e9ecef;
+    padding: 1.5rem;
+  }
+
+  .transcript-content .segment:last-child {
+    border-bottom: none;
+  }
+
+  .transcript-content .segment:hover {
+    background: rgba(108, 117, 107, 0.02);
+  }
+
+  .transcript-content .segment-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .transcript-content .timestamp {
+    background: var(--dark-color);
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
     font-family: monospace;
   }
-  
-  .transcript-navigation {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
+
+  .transcript-content .speaker {
+    color: var(--primary-color);
+    font-weight: 700;
+    font-size: 1rem;
   }
-  
-  .transcript-control {
-    background-color: #0066cc;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 3px;
-    cursor: pointer;
+
+  .transcript-content .segment-text {
+    color: var(--dark-color);
+    line-height: 1.6;
+    font-size: 0.95rem;
   }
-  
-  .transcript-control:hover {
-    background-color: #0055aa;
+
+  /* Custom scrollbar */
+  .transcript-content::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .transcript-content::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+  }
+
+  .transcript-content::-webkit-scrollbar-thumb {
+    background: var(--accent-color);
+    border-radius: 4px;
+  }
+
+  .transcript-content::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-color);
+  }
+
+  /* Responsive design */
+  @media (max-width: 768px) {
+    .transcript-section {
+      padding: 1.5rem;
+    }
+
+    .transcript-content {
+      max-height: 500px;
+    }
+
+    .transcript-content .segment {
+      padding: 1rem;
+    }
+
+    .transcript-content .segment-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
   }
 </style>
