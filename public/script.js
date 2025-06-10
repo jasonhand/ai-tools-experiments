@@ -17,6 +17,9 @@ document.addEventListener('DOMContentLoaded', function() {
     if (form) {
         initializeFeedbackForm(form);
     }
+    
+    // Initialize easter egg functionality
+    initializeEasterEgg();
 });
 
 function initializeExternalLinks() {
@@ -348,5 +351,195 @@ function clearForm() {
     const form = document.getElementById('datadog-form');
     if (form) {
         form.reset();
+    }
+}
+
+function initializeEasterEgg() {
+    const easterEggTrigger = document.getElementById('easter-egg');
+    if (!easterEggTrigger) return;
+    
+    // Get current state from localStorage (false = normal, true = alternate)
+    let isAlternateMode = localStorage.getItem('heroImageMode') === 'alternate';
+    
+    // Apply current state on page load
+    if (isAlternateMode) {
+        toggleHeroImages(true);
+        toggleTheme(true);
+    }
+    
+    // Add click handler to pi symbol
+    easterEggTrigger.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        // Toggle the mode
+        isAlternateMode = !isAlternateMode;
+        
+        // Save to localStorage
+        localStorage.setItem('heroImageMode', isAlternateMode ? 'alternate' : 'normal');
+        
+        // Apply the toggles
+        toggleHeroImages(isAlternateMode);
+        toggleTheme(isAlternateMode);
+        
+        // Visual feedback
+        showEasterEggFeedback(easterEggTrigger, isAlternateMode);
+    });
+}
+
+function toggleTheme(useAlternate) {
+    const body = document.body;
+    
+    if (useAlternate) {
+        body.classList.add('alt-theme');
+    } else {
+        body.classList.remove('alt-theme');
+    }
+}
+
+function showEasterEggFeedback(element, isAlternate) {
+    // Enhanced visual pulse effect with theme-aware colors
+    element.style.transform = isAlternate ? 'scale(1.5) rotate(10deg)' : 'scale(1.5)';
+    element.style.transition = 'transform 0.3s ease';
+    
+    if (isAlternate) {
+        element.style.background = 'linear-gradient(45deg, #EC4899, #F97316, #FDE047)';
+        element.style.color = '#FFFFFF';
+        element.style.boxShadow = '0 0 20px rgba(236, 72, 153, 0.6)';
+    } else {
+        element.style.background = 'rgba(0, 102, 204, 0.3)';
+        element.style.color = '#0066cc';
+        element.style.boxShadow = '0 0 10px rgba(0, 102, 204, 0.3)';
+    }
+    
+    setTimeout(() => {
+        element.style.transform = 'scale(1)';
+        setTimeout(() => {
+            element.style.transform = '';
+            element.style.transition = '';
+            element.style.background = '';
+            element.style.color = '';
+            element.style.boxShadow = '';
+        }, 300);
+    }, 300);
+    
+    // Enhanced notification messages
+    const messages = {
+        alternate: 'Alternative universe activated! 🌈✨',
+        normal: 'Back to reality! 📺🎯'
+    };
+    
+    showEasterEggNotification(isAlternate ? messages.alternate : messages.normal);
+}
+
+function showEasterEggNotification(message) {
+    // Create notification element
+    const notification = document.createElement('div');
+    notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: rgba(0, 0, 0, 0.8);
+        color: white;
+        padding: 12px 20px;
+        border-radius: 8px;
+        font-size: 14px;
+        z-index: 10000;
+        opacity: 0;
+        transform: translateY(-20px);
+        transition: all 0.3s ease;
+        pointer-events: none;
+    `;
+    notification.textContent = message;
+    
+    document.body.appendChild(notification);
+    
+    // Animate in
+    setTimeout(() => {
+        notification.style.opacity = '1';
+        notification.style.transform = 'translateY(0)';
+    }, 100);
+    
+    // Animate out and remove
+    setTimeout(() => {
+        notification.style.opacity = '0';
+        notification.style.transform = 'translateY(-20px)';
+        setTimeout(() => {
+            document.body.removeChild(notification);
+        }, 300);
+    }, 2500);
+}
+
+function toggleHeroImages(useAlternate) {
+    // Handle all images with thumbnail paths
+    const selectors = [
+        'img[src*="/images/thumbnails/"]',
+        'img[src*="/images/alt-thumbnails/"]',
+        'img[src*="../images/thumbnails/"]',
+        'img[src*="../images/alt-thumbnails/"]'
+    ];
+    
+    const heroImages = document.querySelectorAll(selectors.join(', '));
+    
+    heroImages.forEach(img => {
+        let currentSrc = img.getAttribute('src');
+        let newSrc = getToggledImagePath(currentSrc, useAlternate);
+        
+        if (newSrc && newSrc !== currentSrc) {
+            // Preload the new image before switching
+            const tempImg = new Image();
+            tempImg.onload = function() {
+                img.setAttribute('src', newSrc);
+            };
+            tempImg.onerror = function() {
+                console.warn(`Alternate image not found: ${newSrc}`);
+            };
+            tempImg.src = newSrc;
+        }
+    });
+    
+    // Handle CSS background images
+    const elementsWithBgImages = document.querySelectorAll('[style*="background-image"]');
+    elementsWithBgImages.forEach(element => {
+        const currentStyle = element.getAttribute('style');
+        if (currentStyle && (currentStyle.includes('/thumbnails/') || currentStyle.includes('/alt-thumbnails/'))) {
+            const newStyle = toggleBackgroundImagePaths(currentStyle, useAlternate);
+            if (newStyle !== currentStyle) {
+                element.setAttribute('style', newStyle);
+            }
+        }
+    });
+}
+
+function getToggledImagePath(currentPath, useAlternate) {
+    if (!currentPath) return null;
+    
+    if (useAlternate) {
+        // Switch to alt-thumbnails
+        if (currentPath.includes('/images/thumbnails/')) {
+            return currentPath.replace('/images/thumbnails/', '/images/alt-thumbnails/');
+        } else if (currentPath.includes('../images/thumbnails/')) {
+            return currentPath.replace('../images/thumbnails/', '../images/alt-thumbnails/');
+        }
+    } else {
+        // Switch to normal thumbnails
+        if (currentPath.includes('/images/alt-thumbnails/')) {
+            return currentPath.replace('/images/alt-thumbnails/', '/images/thumbnails/');
+        } else if (currentPath.includes('../images/alt-thumbnails/')) {
+            return currentPath.replace('../images/alt-thumbnails/', '../images/thumbnails/');
+        }
+    }
+    
+    return currentPath; // No change needed
+}
+
+function toggleBackgroundImagePaths(styleString, useAlternate) {
+    if (useAlternate) {
+        return styleString
+            .replace(/\/images\/thumbnails\//g, '/images/alt-thumbnails/')
+            .replace(/\.\.\/images\/thumbnails\//g, '../images/alt-thumbnails/');
+    } else {
+        return styleString
+            .replace(/\/images\/alt-thumbnails\//g, '/images/thumbnails/')
+            .replace(/\.\.\/images\/alt-thumbnails\//g, '../images/thumbnails/');
     }
 } 
