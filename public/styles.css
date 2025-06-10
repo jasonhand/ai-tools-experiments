@@ -38,6 +38,8 @@ p {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
+    position: relative;
+    z-index: 10;
 }
 
 a {
@@ -929,6 +931,21 @@ code, pre, .monospace, .code-block {
     z-index: 1;
     pointer-events: none;
     object-fit: contain;
+}
+
+/* Main content should be above header to hide logo overflow */
+main {
+    position: relative;
+    z-index: 10;
+    background: var(--light-color);
+}
+
+/* Featured episode and hero sections should be above header */
+.featured-episode,
+.hero-section,
+.episode-page {
+    position: relative;
+    z-index: 10;
 }
 
 /* Floating bubble animations */

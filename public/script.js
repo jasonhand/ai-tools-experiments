@@ -1,4 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Initialize external link handling for all pages
+    initializeExternalLinks();
+    
     // Initialize observations page filtering if on observations page
     if (window.location.pathname.includes('/observations')) {
         initializeObservationsFiltering();
@@ -15,6 +18,100 @@ document.addEventListener('DOMContentLoaded', function() {
         initializeFeedbackForm(form);
     }
 });
+
+function initializeExternalLinks() {
+    // Get current domain
+    const currentDomain = window.location.hostname;
+    
+    // Function to check if a URL is external
+    function isExternalLink(url) {
+        try {
+            // Handle relative URLs (they're internal)
+            if (url.startsWith('/') || url.startsWith('#') || url.startsWith('?')) {
+                return false;
+            }
+            
+            // Handle protocol-relative URLs
+            if (url.startsWith('//')) {
+                url = window.location.protocol + url;
+            }
+            
+            // Handle URLs without protocol
+            if (!url.includes('://')) {
+                // If it doesn't contain a protocol and doesn't start with /, it might be a relative URL
+                return false;
+            }
+            
+            const linkDomain = new URL(url).hostname;
+            return linkDomain !== currentDomain;
+        } catch (e) {
+            // If URL parsing fails, assume it's internal
+            return false;
+        }
+    }
+    
+    // Function to update a link for external behavior
+    function updateExternalLink(link) {
+        link.setAttribute('target', '_blank');
+        link.setAttribute('rel', 'noopener noreferrer');
+        
+        // Add visual indicator (optional)
+        if (!link.querySelector('.external-link-icon')) {
+            const icon = document.createElement('span');
+            icon.className = 'external-link-icon';
+            icon.innerHTML = ' ↗';
+            icon.style.fontSize = '0.8em';
+            icon.style.opacity = '0.7';
+            link.appendChild(icon);
+        }
+    }
+    
+    // Process existing links
+    function processLinks() {
+        const links = document.querySelectorAll('a[href]');
+        links.forEach(link => {
+            const href = link.getAttribute('href');
+            if (href && isExternalLink(href)) {
+                updateExternalLink(link);
+            }
+        });
+    }
+    
+    // Initial processing
+    processLinks();
+    
+    // Set up mutation observer to handle dynamically added links
+    const observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+            mutation.addedNodes.forEach(function(node) {
+                if (node.nodeType === Node.ELEMENT_NODE) {
+                    // Check if the added node is a link
+                    if (node.tagName === 'A' && node.hasAttribute('href')) {
+                        const href = node.getAttribute('href');
+                        if (href && isExternalLink(href)) {
+                            updateExternalLink(node);
+                        }
+                    }
+                    
+                    // Check for links within the added node
+                    const links = node.querySelectorAll ? node.querySelectorAll('a[href]') : [];
+                    links.forEach(link => {
+                        const href = link.getAttribute('href');
+                        if (href && isExternalLink(href)) {
+                            updateExternalLink(link);
+                        }
+                    });
+                }
+            });
+        });
+    });
+    
+    // Start observing
+    observer.observe(document.body, {
+        childList: true,
+        subtree: true
+    });
+}
 
 function initializeObservationsFiltering() {
     const searchInputs = document.querySelectorAll('.filter-search');

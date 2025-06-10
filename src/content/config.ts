@@ -36,6 +36,7 @@ const episodes = defineCollection({
     episodeNumber: z.number(),
     date: z.string(),
     author: z.string(),
+    participants: z.array(z.string()).optional(),
     
     // Tags for categorization
     tags: z.array(z.string()),

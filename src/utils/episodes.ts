@@ -9,6 +9,7 @@ export interface Episode {
     tags: string[];
     videoId?: string;
     author?: string;
+    participants?: string[];
 }
 
 export interface EpisodeWithTakeaways extends Episode {
@@ -105,7 +106,8 @@ function convertToEpisode(episode: CollectionEntry<'episodes'>): Episode {
         date: episode.data.date,
         tags: episode.data.tags,
         videoId: episode.data.videoId,
-        author: episode.data.author
+        author: episode.data.author,
+        participants: episode.data.participants
     };
 }
 

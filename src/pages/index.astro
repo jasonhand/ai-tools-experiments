@@ -15,9 +15,13 @@ const featuredEpisode = await getFeaturedEpisode();
             <section class="featured-episode">
                 <h2>Newest Episode</h2>
                 <div class="featured-episode-container">
-                    <div class="featured-episode-video">
+                    <div class="featured-episode-hero">
                         <a href={`/episodes/ep${featuredEpisode.number.toString().padStart(2, '0')}`}>
                             <img src={featuredEpisode.heroImg} alt={featuredEpisode.title}>
+                            <div class="hero-overlay"></div>
+                            <div class="hero-content">
+                                <h3 class="hero-title">{featuredEpisode.title}</h3>
+                            </div>
                             <div class="play-button-overlay">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="#ffffff">
                                     <path d="M8 5v14l11-7z"/>
@@ -26,15 +30,23 @@ const featuredEpisode = await getFeaturedEpisode();
                         </a>
                     </div>
                     <div class="featured-episode-content">
-                        <h3>Latest Episode: {featuredEpisode.title}</h3>
+                        <div class="episode-meta-info">
+                            <span class="content-episode-number">Episode {featuredEpisode.number}</span>
+                            <span class="content-date">{new Date(featuredEpisode.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+                            {featuredEpisode.participants && featuredEpisode.participants.length > 0 && (
+                                <div class="content-participants">
+                                    <span class="participants-label">Featuring:</span>
+                                    <span class="participants-list">
+                                        {featuredEpisode.participants.join(', ')}
+                                    </span>
+                                </div>
+                            )}
+                        </div>
                         <p>{featuredEpisode.description}</p>
-                        <div class="featured-episode-meta">
-                            <span class="episode-date">{new Date(featuredEpisode.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
-                            <div class="featured-episode-tags">
-                                {featuredEpisode.tags?.slice(0, 4).map(tag => 
-                                    <span class="tag">{tag}</span>
-                                )}
-                            </div>
+                        <div class="featured-episode-tags">
+                            {featuredEpisode.tags?.slice(0, 4).map(tag => 
+                                <span class="tag">{tag}</span>
+                            )}
                         </div>
                     </div>
                 </div>
@@ -43,16 +55,12 @@ const featuredEpisode = await getFeaturedEpisode();
         
         <!-- All Episodes Section -->
         <section class="all-episodes">
-            <div class="episodes-intro">
-                <h2>All Videos</h2>
-                <p>Browse through our complete collection of AI tools explorations and experiments.</p>
-            </div>
             
             <div class="episodes-grid">
-                {allEpisodes.map((episode, index) => (
+                {allEpisodes.slice(1).map((episode) => (
                     <EpisodeCard 
                         episode={episode} 
-                        showFeaturedBadge={index === 0}
+                        showFeaturedBadge={false}
                     />
                 ))}
             </div>
@@ -84,22 +92,119 @@ const featuredEpisode = await getFeaturedEpisode();
         align-items: flex-start;
     }
     
-    .featured-episode-video {
-        flex: 0 0 50%;
+    .featured-episode-hero {
+        flex: 0 0 60%;
         position: relative;
-        border-radius: 8px;
+        border-radius: 16px;
         overflow: hidden;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        height: 400px;
     }
     
-    .featured-episode-video img {
-        width: 100%;
+    .featured-episode-hero a {
         display: block;
+        width: 100%;
+        height: 100%;
+        text-decoration: none;
+        color: inherit;
+    }
+    
+    .featured-episode-hero img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
         transition: transform 0.3s ease;
     }
     
-    .featured-episode-video:hover img {
-        transform: scale(1.03);
+    .featured-episode-hero:hover img {
+        transform: scale(1.02);
+    }
+    
+    .hero-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+            to bottom,
+            rgba(0, 0, 0, 0.3) 0%,
+            rgba(0, 0, 0, 0.5) 50%,
+            rgba(0, 0, 0, 0.7) 100%
+        );
+        z-index: 1;
+    }
+    
+    .hero-content {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 2rem;
+        z-index: 2;
+        text-align: center;
+        background: linear-gradient(
+            to top,
+            rgba(0, 0, 0, 0.8) 0%,
+            rgba(0, 0, 0, 0.4) 70%,
+            transparent 100%
+        );
+    }
+    
+    .hero-title {
+        font-size: 2rem;
+        font-weight: 800;
+        color: white;
+        margin: 0 0 1rem 0;
+        line-height: 1.2;
+        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+    }
+    
+    .episode-meta-info {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        align-items: center;
+        margin-bottom: 1.5rem;
+        padding-bottom: 1rem;
+        border-bottom: 2px solid #e6f0ff;
+    }
+    
+    .content-episode-number {
+        background: var(--accent-color);
+        color: white;
+        padding: 0.4rem 1rem;
+        border-radius: 20px;
+        font-weight: 700;
+        font-size: 0.85rem;
+        box-shadow: 0 2px 8px rgba(0, 102, 204, 0.2);
+    }
+    
+    .content-date {
+        color: var(--secondary-color);
+        font-size: 0.9rem;
+        font-weight: 600;
+    }
+    
+    .content-participants {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    
+    .participants-label {
+        color: var(--secondary-color);
+        font-size: 0.8rem;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+    
+    .participants-list {
+        color: var(--primary-color);
+        font-size: 0.9rem;
+        font-weight: 600;
     }
     
     .play-button-overlay {
@@ -116,9 +221,10 @@ const featuredEpisode = await getFeaturedEpisode();
         justify-content: center;
         opacity: 0.9;
         transition: all 0.3s ease;
+        z-index: 3;
     }
     
-    .featured-episode-video:hover .play-button-overlay {
+    .featured-episode-hero:hover .play-button-overlay {
         background-color: rgba(0, 102, 204, 1);
         opacity: 1;
         transform: translate(-50%, -50%) scale(1.1);
@@ -126,30 +232,14 @@ const featuredEpisode = await getFeaturedEpisode();
     
     .featured-episode-content {
         flex: 1;
-    }
-    
-    .featured-episode-content h3 {
-        color: #0066cc;
-        font-size: 1.4rem;
-        margin-bottom: 15px;
+        padding-top: 1rem;
     }
     
     .featured-episode-content p {
         font-size: 1.05rem;
         line-height: 1.6;
         margin-bottom: 20px;
-    }
-    
-    .featured-episode-meta {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 15px;
-    }
-    
-    .episode-date {
-        color: #666;
-        font-size: 0.9rem;
+        color: #333;
     }
     
     .featured-episode-tags {
@@ -166,6 +256,8 @@ const featuredEpisode = await getFeaturedEpisode();
         font-size: 0.8rem;
         font-weight: 500;
     }
+    
+
     
     .episodes-intro {
         margin-bottom: 30px;
@@ -195,15 +287,24 @@ const featuredEpisode = await getFeaturedEpisode();
             flex-direction: column;
         }
         
-        .featured-episode-video {
+        .featured-episode-hero {
             flex: 0 0 100%;
+            height: 300px;
             margin-bottom: 20px;
         }
         
-        .featured-episode-meta {
+        .hero-content {
+            padding: 1.5rem;
+        }
+        
+        .hero-title {
+            font-size: 1.5rem;
+        }
+        
+        .episode-meta-info {
             flex-direction: column;
             align-items: flex-start;
-            gap: 10px;
+            gap: 0.75rem;
         }
         
         .episodes-grid {

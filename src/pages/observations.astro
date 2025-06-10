@@ -49,9 +49,10 @@ function parseMarkdownBold(text: string): string {
                             <div class="takeaway-card-header">
                                 <a href={`/episodes/ep${episode.number.toString().padStart(2, '0')}`} class="header-link">
                                     <img src={episode.heroImg} alt={`Episode ${episode.number} Thumbnail`}>
-                                    <div class="takeaway-card-header-content">
-                                        <div class="episode-number">Episode {episode.number}</div>
-                                        <h3>{episode.title}</h3>
+                                    <div class="hero-overlay"></div>
+                                    <div class="hero-content">
+                                        <div class="hero-episode-number">Episode {episode.number}</div>
+                                        <h3 class="hero-title">{episode.title}</h3>
                                     </div>
                                 </a>
                             </div>
@@ -236,34 +237,64 @@ function parseMarkdownBold(text: string): string {
         width: 100%;
         height: 100%;
         object-fit: cover;
+        object-position: center;
         transition: transform 0.3s ease;
     }
     
     .takeaway-card:hover .takeaway-card-header img {
-        transform: scale(1.05);
+        transform: scale(1.02);
     }
     
-    .takeaway-card-header-content {
+    .hero-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+            to bottom,
+            rgba(0, 0, 0, 0.3) 0%,
+            rgba(0, 0, 0, 0.5) 50%,
+            rgba(0, 0, 0, 0.7) 100%
+        );
+        z-index: 1;
+    }
+    
+    .hero-content {
         position: absolute;
         bottom: 0;
         left: 0;
         right: 0;
-        padding: 12px 16px;
-        background: linear-gradient(0deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%);
-        color: white;
+        padding: 1rem;
+        z-index: 2;
+        text-align: center;
+        background: linear-gradient(
+            to top,
+            rgba(0, 0, 0, 0.8) 0%,
+            rgba(0, 0, 0, 0.4) 70%,
+            transparent 100%
+        );
     }
     
-    .takeaway-card-header h3 {
+    .hero-title {
         margin: 0;
         font-size: 1rem;
-        font-weight: 600;
-        text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+        font-weight: 700;
+        color: white;
+        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+        line-height: 1.2;
     }
     
-    .takeaway-card-header .episode-number {
-        font-size: 0.8rem;
-        margin-bottom: 4px;
-        text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+    .hero-episode-number {
+        background: var(--accent-color);
+        color: white;
+        padding: 0.25rem 0.75rem;
+        border-radius: 15px;
+        font-weight: 700;
+        font-size: 0.75rem;
+        margin-bottom: 0.5rem;
+        display: inline-block;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
     }
     
     .takeaway-card-body {

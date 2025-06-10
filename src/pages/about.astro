@@ -1,5 +1,42 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
+import { getCollection } from 'astro:content';
+
+// Get all episodes to extract participants data
+const allEpisodes = await getCollection('episodes');
+
+// Process participants data
+const participantsMap = new Map();
+
+allEpisodes.forEach(episode => {
+    if (episode.data.participants && episode.data.participants.length > 0) {
+        episode.data.participants.forEach(participant => {
+            if (!participantsMap.has(participant)) {
+                participantsMap.set(participant, {
+                    name: participant,
+                    episodes: [],
+                    count: 0
+                });
+            }
+            
+            const participantData = participantsMap.get(participant);
+            participantData.episodes.push({
+                number: episode.data.episodeNumber,
+                title: episode.data.title,
+                slug: `ep${episode.data.episodeNumber.toString().padStart(2, '0')}`
+            });
+            participantData.count++;
+        });
+    }
+});
+
+// Convert to array and sort by episode count (descending)
+const participants = Array.from(participantsMap.values()).sort((a, b) => b.count - a.count);
+
+// Sort episodes for each participant by episode number
+participants.forEach(participant => {
+    participant.episodes.sort((a, b) => a.number - b.number);
+});
 ---
 
 <MainLayout title="About" description="Learn more about AI Tools Lab and our mission to explore AI tools and technologies">
@@ -55,6 +92,45 @@ import MainLayout from '../layouts/MainLayout.astro';
                     </li>
                 </ul>
             </div>
+            
+            <!-- Participants Section -->
+            {participants.length > 0 && (
+                <div class="section-participants">
+                    <h2>Our Contributors</h2>
+                    <p class="participants-intro">
+                        Meet the amazing people who have shared their expertise and insights across our episodes.
+                    </p>
+                    <div class="participants-grid">
+                        {participants.map(participant => (
+                            <div class="participant-card">
+                                <div class="participant-header">
+                                    <h3 class="participant-name">{participant.name}</h3>
+                                    <div class="participant-stats">
+                                        <span class="episode-count">
+                                            {participant.count} episode{participant.count !== 1 ? 's' : ''}
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="participant-episodes">
+                                    <h4>Episodes:</h4>
+                                    <div class="episode-links">
+                                        {participant.episodes.map(episode => (
+                                            <a 
+                                                href={`/episodes/${episode.slug}`}
+                                                class="episode-link"
+                                                title={episode.title}
+                                            >
+                                                <span class="episode-number">#{episode.number}</span>
+                                                <span class="episode-title">{episode.title}</span>
+                                            </a>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            )}
         </div>
     </main>
     
@@ -266,6 +342,153 @@ import MainLayout from '../layouts/MainLayout.astro';
         font-weight: 700 !important;
     }
 
+    /* Participants Section */
+    .section-participants {
+        background: linear-gradient(135deg, var(--light-color) 0%, #f8f9fa 50%, var(--highlight-color) 100%) !important;
+        border-radius: 16px !important;
+        padding: 2.5rem !important;
+        margin: 2rem 0 !important;
+        box-shadow: 0 12px 40px rgba(169, 211, 255, 0.15), 0 4px 16px rgba(169, 211, 255, 0.1) !important;
+        position: relative !important;
+        transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+    }
+
+    .section-participants:hover {
+        transform: translateY(-2px) !important;
+        box-shadow: 0 16px 48px rgba(169, 211, 255, 0.2), 0 6px 20px rgba(169, 211, 255, 0.15) !important;
+    }
+
+    .section-participants h2 {
+        color: var(--primary-color) !important;
+        margin: 0 0 1rem 0 !important;
+        font-size: 2rem !important;
+        font-weight: 700 !important;
+        text-align: center !important;
+        background: linear-gradient(135deg, var(--primary-color), var(--accent-color)) !important;
+        -webkit-background-clip: text !important;
+        -webkit-text-fill-color: transparent !important;
+        background-clip: text !important;
+    }
+
+    .participants-intro {
+        text-align: center !important;
+        font-size: 1.1rem !important;
+        color: var(--secondary-color) !important;
+        margin-bottom: 2.5rem !important;
+        font-weight: 500 !important;
+    }
+
+    .participants-grid {
+        display: grid !important;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)) !important;
+        gap: 1.5rem !important;
+    }
+
+    .participant-card {
+        background: white !important;
+        border-radius: 12px !important;
+        padding: 1.5rem !important;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08) !important;
+        transition: all 0.3s ease !important;
+        border: 2px solid transparent !important;
+        position: relative !important;
+        overflow: hidden !important;
+    }
+
+    .participant-card::before {
+        content: '' !important;
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        height: 4px !important;
+        background: linear-gradient(90deg, var(--accent-color), var(--highlight-color)) !important;
+    }
+
+    .participant-card:hover {
+        transform: translateY(-4px) !important;
+        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12) !important;
+        border-color: var(--accent-color) !important;
+    }
+
+    .participant-header {
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        margin-bottom: 1.5rem !important;
+        padding-bottom: 1rem !important;
+        border-bottom: 2px solid var(--light-color) !important;
+    }
+
+    .participant-name {
+        color: var(--primary-color) !important;
+        font-size: 1.3rem !important;
+        font-weight: 700 !important;
+        margin: 0 !important;
+    }
+
+    .participant-stats {
+        background: var(--accent-color) !important;
+        color: white !important;
+        padding: 0.4rem 1rem !important;
+        border-radius: 20px !important;
+        font-size: 0.9rem !important;
+        font-weight: 600 !important;
+    }
+
+    .participant-episodes h4 {
+        color: var(--secondary-color) !important;
+        font-size: 1rem !important;
+        font-weight: 600 !important;
+        margin: 0 0 1rem 0 !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.5px !important;
+    }
+
+    .episode-links {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 0.75rem !important;
+    }
+
+    .episode-link {
+        display: flex !important;
+        align-items: center !important;
+        gap: 0.75rem !important;
+        padding: 0.75rem !important;
+        background: var(--light-color) !important;
+        border-radius: 8px !important;
+        text-decoration: none !important;
+        transition: all 0.3s ease !important;
+        border-left: 3px solid transparent !important;
+    }
+
+    .episode-link:hover {
+        background: var(--highlight-color) !important;
+        border-left-color: var(--accent-color) !important;
+        transform: translateX(4px) !important;
+    }
+
+    .episode-number {
+        background: var(--primary-color) !important;
+        color: white !important;
+        padding: 0.25rem 0.6rem !important;
+        border-radius: 12px !important;
+        font-size: 0.8rem !important;
+        font-weight: 700 !important;
+        min-width: 2.5rem !important;
+        text-align: center !important;
+        flex-shrink: 0 !important;
+    }
+
+    .episode-title {
+        color: var(--primary-color) !important;
+        font-weight: 500 !important;
+        font-size: 0.95rem !important;
+        line-height: 1.4 !important;
+        flex: 1 !important;
+    }
+
     /* Responsive design */
     @media (max-width: 768px) {
         .about-content {
@@ -313,6 +536,37 @@ import MainLayout from '../layouts/MainLayout.astro';
         .section-why p:hover,
         .goals-list li:hover {
             transform: translateX(4px) !important;
+        }
+
+        .section-participants {
+            padding: 1.5rem !important;
+        }
+
+        .section-participants h2 {
+            font-size: 1.5rem !important;
+        }
+
+        .participants-grid {
+            grid-template-columns: 1fr !important;
+            gap: 1rem !important;
+        }
+
+        .participant-card {
+            padding: 1rem !important;
+        }
+
+        .participant-header {
+            flex-direction: column !important;
+            align-items: flex-start !important;
+            gap: 0.75rem !important;
+        }
+
+        .participant-name {
+            font-size: 1.1rem !important;
+        }
+
+        .episode-link:hover {
+            transform: translateX(2px) !important;
         }
     }
 </style> 

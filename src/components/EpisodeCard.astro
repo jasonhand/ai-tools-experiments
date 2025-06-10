@@ -22,6 +22,11 @@ const episodeUrl = `/episodes/ep${episode.number.toString().padStart(2, '0')}`;
         <div class="episode-thumbnail">
             <img src={episode.heroImg} alt={`Episode ${episode.number} Thumbnail`}>
             {showFeaturedBadge && <span class="featured-badge">Newest</span>}
+            <div class="episode-number-overlay">Episode {episode.number}</div>
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+                <h3 class="hero-title">{episode.title}</h3>
+            </div>
             <div class="play-button-overlay">
                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="#ffffff">
                     <path d="M8 5v14l11-7z"/>
@@ -29,15 +34,11 @@ const episodeUrl = `/episodes/ep${episode.number.toString().padStart(2, '0')}`;
             </div>
         </div>
         <div class="episode-content">
-            <div class="episode-header">
-                <span class="episode-number">Episode {episode.number}</span>
-                <h3>{episode.title}</h3>
-            </div>
             <p class="episode-description">{episode.description}</p>
             <div class="episode-meta">
                 <span class="episode-date">{new Date(episode.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
                 <div class="episode-tags">
-                    {episode.tags?.slice(0, 3).map(tag => (
+                    {episode.tags?.slice(0, 3).map((tag: string) => (
                         <span class="tag">{tag}</span>
                     ))}
                 </div>
@@ -81,11 +82,52 @@ const episodeUrl = `/episodes/ep${episode.number.toString().padStart(2, '0')}`;
         width: 100%;
         height: 100%;
         object-fit: cover;
+        object-position: center;
         transition: transform 0.3s ease;
     }
 
     .episode-card:hover .episode-thumbnail img {
-        transform: scale(1.05);
+        transform: scale(1.02);
+    }
+
+    .hero-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+            to bottom,
+            rgba(0, 0, 0, 0.3) 0%,
+            rgba(0, 0, 0, 0.5) 50%,
+            rgba(0, 0, 0, 0.7) 100%
+        );
+        z-index: 1;
+    }
+
+    .hero-content {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 1rem;
+        z-index: 2;
+        text-align: center;
+        background: linear-gradient(
+            to top,
+            rgba(0, 0, 0, 0.8) 0%,
+            rgba(0, 0, 0, 0.4) 70%,
+            transparent 100%
+        );
+    }
+
+    .hero-title {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: white;
+        margin: 0;
+        line-height: 1.2;
+        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
     }
 
     .play-button-overlay {
@@ -102,6 +144,7 @@ const episodeUrl = `/episodes/ep${episode.number.toString().padStart(2, '0')}`;
         justify-content: center;
         opacity: 0.9;
         transition: all 0.3s ease;
+        z-index: 3;
     }
 
     .episode-card:hover .play-button-overlay {
@@ -120,7 +163,7 @@ const episodeUrl = `/episodes/ep${episode.number.toString().padStart(2, '0')}`;
         border-radius: 4px;
         font-size: 0.8rem;
         font-weight: 600;
-        z-index: 2;
+        z-index: 4;
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     }
 
@@ -131,30 +174,11 @@ const episodeUrl = `/episodes/ep${episode.number.toString().padStart(2, '0')}`;
         flex-direction: column;
     }
 
-    .episode-header {
-        margin-bottom: 12px;
-    }
-
-    .episode-number {
-        color: #0066cc;
-        font-size: 0.9rem;
-        font-weight: 500;
-        margin-bottom: 5px;
-        display: block;
-    }
-
-    .episode-content h3 {
-        font-size: 1.3rem;
-        margin: 0 0 12px 0;
-        color: #333;
-        line-height: 1.4;
-    }
-
     .episode-description {
         color: #666;
         line-height: 1.6;
         margin-bottom: 15px;
-        font-size: 0.95rem;
+        font-size: 1.05rem;
         flex-grow: 1;
     }
 
@@ -168,7 +192,7 @@ const episodeUrl = `/episodes/ep${episode.number.toString().padStart(2, '0')}`;
 
     .episode-date {
         color: #888;
-        font-size: 0.9rem;
+        font-size: 1rem;
     }
 
     .episode-tags {
@@ -180,10 +204,24 @@ const episodeUrl = `/episodes/ep${episode.number.toString().padStart(2, '0')}`;
     .tag {
         background-color: #f0f0ff;
         color: #4f46e5;
-        font-size: 0.75rem;
+        font-size: 0.85rem;
         padding: 3px 8px;
         border-radius: 12px;
         white-space: nowrap;
+    }
+
+    .episode-number-overlay {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        background: var(--accent-color);
+        color: white;
+        padding: 0.4rem 0.8rem;
+        border-radius: 15px;
+        font-weight: 700;
+        font-size: 0.85rem;
+        box-shadow: 0 2px 8px rgba(0, 102, 204, 0.3);
+        z-index: 4;
     }
 
     @media (max-width: 768px) {

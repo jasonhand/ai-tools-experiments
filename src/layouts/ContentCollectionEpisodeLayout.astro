@@ -41,7 +41,7 @@ const getYouTubeEmbedUrl = (videoId: string) => {
   description={data.description}
 >
   <main class="episode-page">
-    <!-- Hero Image Section -->
+    <!-- Hero Image Section with Title Overlay -->
     {data.heroImg && (
       <section class="hero-section">
         <div class="hero-container">
@@ -51,28 +51,29 @@ const getYouTubeEmbedUrl = (videoId: string) => {
             class="hero-image"
             loading="eager"
           />
+          <div class="hero-overlay"></div>
+          <div class="hero-content">
+            <h1 class="hero-title">{data.title}</h1>
+            <div class="hero-meta">
+              <span class="hero-episode-number">Episode {data.episodeNumber}</span>
+              <time class="hero-date" datetime={data.date}>
+                {formatDate(data.date)}
+              </time>
+              {data.participants && data.participants.length > 0 && (
+                <div class="hero-participants">
+                  <span class="participants-label">Featuring:</span>
+                  <span class="participants-list">
+                    {data.participants.join(', ')}
+                  </span>
+                </div>
+              )}
+            </div>
+          </div>
         </div>
       </section>
     )}
 
     <div class="episode-container">
-      <!-- Episode Header -->
-      <header class="episode-header">
-        <h1 class="episode-title">{data.title}</h1>
-        
-        <div class="episode-meta-line">
-          <span class="episode-number">Episode {data.episodeNumber}</span>
-          <time class="episode-date" datetime={data.date}>
-            {formatDate(data.date)}
-          </time>
-          <div class="episode-tags">
-            {data.tags.map(tag => (
-              <span class="tag">{tag}</span>
-            ))}
-          </div>
-        </div>
-      </header>
-
       <!-- Main Content -->
       <div class="episode-content">
         <Content />
@@ -101,7 +102,7 @@ const getYouTubeEmbedUrl = (videoId: string) => {
           <h2>Jump To</h2>
           <nav class="jump-to-nav">
             <ul>
-              {data.jumpTo.map(item => (
+              {data.jumpTo.map((item: any) => (
                 <li>
                   <button 
                     class="jump-to-button" 
@@ -209,77 +210,100 @@ const getYouTubeEmbedUrl = (videoId: string) => {
     transform: scale(1.02);
   }
 
-  .episode-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 2rem;
+  .hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.3) 0%,
+      rgba(0, 0, 0, 0.5) 50%,
+      rgba(0, 0, 0, 0.7) 100%
+    );
+    z-index: 1;
   }
 
-  .episode-header {
+  .hero-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 4rem 2rem 3rem 2rem;
+    z-index: 2;
     text-align: center;
-    margin-bottom: 3rem;
-    padding: 3rem 0 2rem 0;
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.8) 0%,
+      rgba(0, 0, 0, 0.4) 70%,
+      transparent 100%
+    );
   }
 
-  .episode-title {
-    font-size: 3rem;
-    font-weight: 800;
-    color: var(--primary-color);
-    margin: 0 0 2rem 0;
-    line-height: 1.2;
+  .hero-title {
+    font-size: 3.5rem;
+    font-weight: 900;
+    color: white;
+    margin: 0 0 1.5rem 0;
+    line-height: 1.1;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+    letter-spacing: -0.02em;
   }
 
-
-
-  .episode-meta-line {
+  .hero-meta {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 2rem;
-    margin-top: 2rem;
     flex-wrap: wrap;
   }
 
-  .episode-number {
+  .hero-episode-number {
     background: var(--accent-color);
     color: white;
-    padding: 0.5rem 1.5rem;
+    padding: 0.75rem 1.5rem;
     border-radius: 25px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+
+  .hero-date {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.2rem;
     font-weight: 600;
-    font-size: 1.1rem;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
   }
 
-  .episode-date {
-    color: var(--secondary-color);
-    font-size: 1.1rem;
-    font-weight: 500;
-  }
-
-  .episode-tags {
+  .hero-participants {
     display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 1rem;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
   }
 
-  .tag {
-    background: var(--light-color);
-    color: var(--primary-color);
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
+  .participants-label {
+    color: rgba(255, 255, 255, 0.8);
     font-size: 0.9rem;
     font-weight: 500;
-    border: 2px solid var(--accent-color);
-    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
   }
 
-  .tag:hover {
-    background: var(--accent-color);
+  .participants-list {
     color: white;
-    transform: translateY(-2px);
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
   }
 
-
+  .episode-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem 2rem 2rem;
+  }
 
   .video-section {
     margin: 3rem 0;
@@ -302,8 +326,6 @@ const getYouTubeEmbedUrl = (videoId: string) => {
     width: 100%;
     height: 100%;
   }
-
-
 
   .jump-to-section {
     background: white;
@@ -377,7 +399,7 @@ const getYouTubeEmbedUrl = (videoId: string) => {
     background: white;
     border-radius: 16px;
     padding: 3rem;
-    margin: 3rem 0;
+    margin: 0 0 3rem 0;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
     line-height: 1.8;
   }
@@ -417,6 +439,31 @@ const getYouTubeEmbedUrl = (videoId: string) => {
   .episode-content :global(a:hover) {
     color: var(--primary-color);
     border-bottom-color: var(--primary-color);
+  }
+
+  .episode-content :global(ul) {
+    font-size: 1.1rem;
+    color: var(--dark-color);
+    margin: 1.5rem 0;
+    padding-left: 2rem;
+  }
+
+  .episode-content :global(ol) {
+    font-size: 1.1rem;
+    color: var(--dark-color);
+    margin: 1.5rem 0;
+    padding-left: 2rem;
+  }
+
+  .episode-content :global(li) {
+    font-size: 1.1rem;
+    color: var(--dark-color);
+    margin-bottom: 0.75rem;
+    line-height: 1.8;
+  }
+
+  .episode-content :global(li:last-child) {
+    margin-bottom: 0;
   }
 
   .episode-navigation {
@@ -517,21 +564,25 @@ const getYouTubeEmbedUrl = (videoId: string) => {
       min-height: 400px;
     }
 
-    .episode-container {
-      padding: 1rem;
+    .hero-content {
+      padding: 3rem 1.5rem 2rem 1.5rem;
     }
 
-    .episode-title {
-      font-size: 2rem;
+    .hero-title {
+      font-size: 2.5rem;
     }
 
-    .episode-meta-line {
+    .hero-meta {
       flex-direction: column;
       gap: 1rem;
     }
 
-    .episode-tags {
-      justify-content: center;
+    .hero-participants {
+      text-align: center;
+    }
+
+    .episode-container {
+      padding: 1rem;
     }
 
     .jump-to-nav ul {
@@ -569,8 +620,21 @@ const getYouTubeEmbedUrl = (videoId: string) => {
       min-height: 350px;
     }
 
-    .episode-title {
-      font-size: 1.5rem;
+    .hero-content {
+      padding: 2rem 1rem 1.5rem 1rem;
+    }
+
+    .hero-title {
+      font-size: 2rem;
+    }
+
+    .hero-episode-number {
+      font-size: 1rem;
+      padding: 0.5rem 1rem;
+    }
+
+    .hero-date {
+      font-size: 1rem;
     }
 
     .episode-content {
