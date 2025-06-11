@@ -1,0 +1,284 @@
+{
+  "questions": [
+    {
+      "question": "What is the title of the episode described as: \"AI-powered rapid application development platform\"?",
+      "options": [
+        "Efficiently summarizing large reports can save time and reveal essential insights",
+        "Building client-side URL-based state apps using Claude 4 and Lovable",
+        "Maximizing AI with Cursor: Building MCP Servers for Seamless Workflow",
+        "Streamlining AI Report Analysis: Figma AI 2025 Insights"
+      ],
+      "correctAnswer": 1,
+      "type": "multiple-choice",
+      "episode": "31",
+      "tools": ["Claude", "Lovable"],
+      "explanation": "This episode focused on building client-side URL-based state apps using Claude 4 and Lovable as an AI-powered rapid application development platform."
+    },
+    {
+      "question": "Which of the following is a key takeaway from one of the episodes?",
+      "options": [
+        "Efficiently summarizing large reports can save time and reveal essential insights",
+        "Maximizing AI with Cursor: Building MCP Servers for Seamless Workflow",
+        "Streamlining AI Report Analysis: Figma AI 2025 Insights",
+        "Using AI like Claude and Lovable can act as a notebook or second brain for capturing fleeting ideas."
+      ],
+      "correctAnswer": 3,
+      "type": "multiple-choice",
+      "episode": "31",
+      "tools": ["Claude", "Lovable"],
+      "explanation": "This takeaway emphasizes how AI tools can serve as external memory systems for developers."
+    },
+    {
+      "question": "What is the title of the episode described as: \"Source code for the vinyl record collection viewer application\"?",
+      "options": [
+        "Efficiently summarizing large reports can save time and reveal essential insights",
+        "Maximizing AI with Cursor: Building MCP Servers for Seamless Workflow",
+        "Streamlining AI Report Analysis: Figma AI 2025 Insights",
+        "Using Cursor and Claude to Fix CSS Layout Issues"
+      ],
+      "correctAnswer": 3,
+      "type": "multiple-choice",
+      "episode": "30",
+      "tools": ["Cursor", "Claude"],
+      "explanation": "This episode demonstrated fixing CSS layout issues in a vinyl record collection application."
+    },
+    {
+      "question": "Which of the following is a key takeaway from one of the episodes?",
+      "options": [
+        "Efficiently summarizing large reports can save time and reveal essential insights",
+        "Cursor with Claude can quickly identify and fix CSS positioning issues",
+        "Maximizing AI with Cursor: Building MCP Servers for Seamless Workflow",
+        "Streamlining AI Report Analysis: Figma AI 2025 Insights"
+      ],
+      "correctAnswer": 1,
+      "type": "multiple-choice",
+      "episode": "30",
+      "tools": ["Cursor", "Claude"],
+      "explanation": "This takeaway highlights the effectiveness of using Cursor with Claude for CSS debugging."
+    },
+    {
+      "question": "What is the title of the episode described as: \"AI-enhanced code editor built on VSCode for improved development workflow\"?",
+      "options": [
+        "Efficiently summarizing large reports can save time and reveal essential insights",
+        "Exploring Warp Terminal and Cursor for Productivity",
+        "Maximizing AI with Cursor: Building MCP Servers for Seamless Workflow",
+        "Streamlining AI Report Analysis: Figma AI 2025 Insights"
+      ],
+      "correctAnswer": 1,
+      "type": "multiple-choice",
+      "episode": "29",
+      "tools": ["Warp Terminal", "Cursor"],
+      "explanation": "This episode explored productivity tools including Warp Terminal and the Cursor AI-enhanced code editor."
+    },
+    {
+      "question": "Which of the following is a key takeaway from one of the episodes?",
+      "options": [
+        "Efficiently summarizing large reports can save time and reveal essential insights",
+        "Maximizing AI with Cursor: Building MCP Servers for Seamless Workflow",
+        "Streamlining AI Report Analysis: Figma AI 2025 Insights",
+        "Warp Terminal offers a more intuitive terminal experience compared to traditional terminals"
+      ],
+      "correctAnswer": 3,
+      "type": "multiple-choice",
+      "episode": "29",
+      "tools": ["Warp Terminal"],
+      "explanation": "Warp Terminal provides modern features that improve upon traditional terminal experiences."
+    },
+    {
+      "question": "Which of the following is a key takeaway from one of the episodes?",
+      "options": [
+        "Efficiently summarizing large reports can save time and reveal essential insights",
+        "Cursor with Claude effectively diagnoses and fixes complex CSS positioning issues",
+        "Maximizing AI with Cursor: Building MCP Servers for Seamless Workflow",
+        "Streamlining AI Report Analysis: Figma AI 2025 Insights"
+      ],
+      "correctAnswer": 1,
+      "type": "multiple-choice",
+      "episode": "30",
+      "tools": ["Cursor", "Claude"],
+      "explanation": "This demonstrates the power of AI-assisted debugging for complex layout problems."
+    },
+    {
+      "question": "What is the title of the episode described as: \"Source code repository for the AI Tools Lab website\"?",
+      "options": [
+        "Efficiently summarizing large reports can save time and reveal essential insights",
+        "Maximizing AI with Cursor: Building MCP Servers for Seamless Workflow",
+        "Streamlining AI Report Analysis: Figma AI 2025 Insights",
+        "Using Claude Code for Automated HTML Updates and Styling"
+      ],
+      "correctAnswer": 3,
+      "type": "multiple-choice",
+      "episode": "28",
+      "tools": ["Claude Code"],
+      "explanation": "This episode demonstrated using Claude Code for automated website updates and styling improvements."
+    },
+    {
+      "question": "Which of the following is a key takeaway from one of the episodes?",
+      "options": [
+        "Efficiently summarizing large reports can save time and reveal essential insights",
+        "Claude Code can efficiently update HTML/CSS without requiring manual coding",
+        "Maximizing AI with Cursor: Building MCP Servers for Seamless Workflow",
+        "Streamlining AI Report Analysis: Figma AI 2025 Insights"
+      ],
+      "correctAnswer": 1,
+      "type": "multiple-choice",
+      "episode": "28",
+      "tools": ["Claude Code"],
+      "explanation": "Claude Code's ability to automate HTML/CSS updates reduces manual development work."
+    },
+    {
+      "question": "What is the title of the episode described as: \"Information about personality types used in calendar management demo\"?",
+      "options": [
+        "Efficiently summarizing large reports can save time and reveal essential insights",
+        "Claude 3.7 Sonnet Plugins: AI Integration with Gmail, Drive and Calendar",
+        "Maximizing AI with Cursor: Building MCP Servers for Seamless Workflow",
+        "Streamlining AI Report Analysis: Figma AI 2025 Insights"
+      ],
+      "correctAnswer": 1,
+      "type": "multiple-choice",
+      "episode": "27",
+      "tools": ["Claude", "Gmail", "Google Drive", "Calendar"],
+      "explanation": "This episode showcased Claude 3.7 Sonnet's integration capabilities with Google services."
+    },
+    {
+      "question": "Which of the following is a key takeaway from one of the episodes?",
+      "options": [
+        "Efficiently summarizing large reports can save time and reveal essential insights",
+        "Claude 3.7 Sonnet integrates with Gmail, Google Drive, and Calendar through simple OAuth authentication",
+        "Maximizing AI with Cursor: Building MCP Servers for Seamless Workflow",
+        "Streamlining AI Report Analysis: Figma AI 2025 Insights"
+      ],
+      "correctAnswer": 1,
+      "type": "multiple-choice",
+      "episode": "27",
+      "tools": ["Claude", "OAuth"],
+      "explanation": "This demonstrates how modern AI can seamlessly integrate with existing productivity tools."
+    },
+    {
+      "question": "What is the title of the episode described as: \"Cloud storage service for file storage and collaboration\"?",
+      "options": [
+        "Efficiently summarizing large reports can save time and reveal essential insights",
+        "Automating Content Transformation with N8N and Generative AI",
+        "Maximizing AI with Cursor: Building MCP Servers for Seamless Workflow",
+        "Streamlining AI Report Analysis: Figma AI 2025 Insights"
+      ],
+      "correctAnswer": 1,
+      "type": "multiple-choice",
+      "episode": "26",
+      "tools": ["N8N", "AI"],
+      "explanation": "This episode focused on automating content workflows using N8N and generative AI technologies."
+    },
+    {
+      "question": "Which of the following is a key takeaway from one of the episodes?",
+      "options": [
+        "Efficiently summarizing large reports can save time and reveal essential insights",
+        "N8N automation can significantly streamline workflow processes in content transformation",
+        "Maximizing AI with Cursor: Building MCP Servers for Seamless Workflow",
+        "Streamlining AI Report Analysis: Figma AI 2025 Insights"
+      ],
+      "correctAnswer": 1,
+      "type": "multiple-choice",
+      "episode": "26",
+      "tools": ["N8N"],
+      "explanation": "N8N's automation capabilities can dramatically improve content workflow efficiency."
+    },
+    {
+      "question": "What is the title of the episode described as: \"Web interface for accessing and experimenting with Gemini models\"?",
+      "options": [
+        "Efficiently summarizing large reports can save time and reveal essential insights",
+        "Building a Lissajous Animation Using Gemini 2.5 Pro",
+        "Maximizing AI with Cursor: Building MCP Servers for Seamless Workflow",
+        "Streamlining AI Report Analysis: Figma AI 2025 Insights"
+      ],
+      "correctAnswer": 1,
+      "type": "multiple-choice",
+      "episode": "24",
+      "tools": ["Gemini"],
+      "explanation": "This episode demonstrated creative coding with Gemini 2.5 Pro to build mathematical animations."
+    },
+    {
+      "question": "Which of the following is a key takeaway from one of the episodes?",
+      "options": [
+        "Efficiently summarizing large reports can save time and reveal essential insights",
+        "Gemini 2.5 Pro features a million token context window, enabling better handling of large projects without context loss.",
+        "Maximizing AI with Cursor: Building MCP Servers for Seamless Workflow",
+        "Streamlining AI Report Analysis: Figma AI 2025 Insights"
+      ],
+      "correctAnswer": 1,
+      "type": "multiple-choice",
+      "episode": "24",
+      "tools": ["Gemini"],
+      "explanation": "Gemini's large context window is a significant advantage for complex development projects."
+    },
+    {
+      "question": "What is the title of the episode described as: \"Digital writing tablets for handwritten notes\"?",
+      "options": [
+        "Efficiently summarizing large reports can save time and reveal essential insights",
+        "Claude Code findings with Rust, TypeScript through Ray Tracing projects",
+        "Maximizing AI with Cursor: Building MCP Servers for Seamless Workflow",
+        "Streamlining AI Report Analysis: Figma AI 2025 Insights"
+      ],
+      "correctAnswer": 1,
+      "type": "multiple-choice",
+      "episode": "32",
+      "tools": ["Claude Code", "Rust", "TypeScript"],
+      "explanation": "This episode explored Claude Code's capabilities through ray tracing projects in multiple programming languages."
+    },
+    {
+      "question": "Which of the following is a key takeaway from one of the episodes?",
+      "options": [
+        "Efficiently summarizing large reports can save time and reveal essential insights",
+        "Generative coding assistants like Claude Code can produce surprisingly correct, compiler-validated architecture when given clear conversational guidance",
+        "Maximizing AI with Cursor: Building MCP Servers for Seamless Workflow",
+        "Streamlining AI Report Analysis: Figma AI 2025 Insights"
+      ],
+      "correctAnswer": 1,
+      "type": "multiple-choice",
+      "episode": "32",
+      "tools": ["Claude Code"],
+      "explanation": "This highlights the impressive accuracy of AI-generated code when provided with proper context."
+    },
+    {
+      "question": "What is the title of the episode described as: \"Mozilla's comprehensive guide to CSS properties and syntax\"?",
+      "options": [
+        "Efficiently summarizing large reports can save time and reveal essential insights",
+        "Enhancing CSS Editing with LLMs: Using Puppeteer for Visual Context",
+        "Maximizing AI with Cursor: Building MCP Servers for Seamless Workflow",
+        "Streamlining AI Report Analysis: Figma AI 2025 Insights"
+      ],
+      "correctAnswer": 1,
+      "type": "multiple-choice",
+      "episode": "20",
+      "tools": ["LLMs", "Puppeteer"],
+      "explanation": "This episode demonstrated how visual context can improve AI-assisted CSS editing."
+    },
+    {
+      "question": "Which of the following is a key takeaway from one of the episodes?",
+      "options": [
+        "Efficiently summarizing large reports can save time and reveal essential insights",
+        "Maximizing AI with Cursor: Building MCP Servers for Seamless Workflow",
+        "Streamlining AI Report Analysis: Figma AI 2025 Insights",
+        "Using visual context through screenshots helps LLMs make better CSS editing decisions than relying on text alone"
+      ],
+      "correctAnswer": 3,
+      "type": "multiple-choice",
+      "episode": "20",
+      "tools": ["LLMs"],
+      "explanation": "Visual context significantly improves the accuracy of AI-assisted web development."
+    },
+    {
+      "question": "What is the title of the episode described as: \"Real-time documentation and context retrieval for development\"?",
+      "options": [
+        "Efficiently summarizing large reports can save time and reveal essential insights",
+        "Generative coding assistants like Claude Code can produce surprisingly correct, compiler-validated architecture when given clear conversational guidance",
+        "Maximizing AI with Cursor: Building MCP Servers for Seamless Workflow",
+        "Streamlining AI Report Analysis: Figma AI 2025 Insights"
+      ],
+      "correctAnswer": 2,
+      "type": "multiple-choice",
+      "episode": "17",
+      "tools": ["Cursor", "MCP"],
+      "explanation": "This episode focused on maximizing AI effectiveness with Cursor and building MCP servers for improved workflows."
+    }
+  ]
+}

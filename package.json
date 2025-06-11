@@ -6,12 +6,15 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "quiz:update": "node update-quiz-dataset.js update",
+    "quiz:watch": "node update-quiz-dataset.js watch"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
     "@astrojs/mdx": "^4.3.0",
     "astro": "^5.8.0",
+    "js-yaml": "^4.1.0",
     "typescript": "^5.8.3"
   },
   "description": "```sh npm create astro@latest -- --template basics ```",

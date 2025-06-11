@@ -536,6 +536,34 @@ footer::before {
     transform: scale(0.95);
 }
 
+/* Quiz Easter Egg Styling */
+.quiz-easter-egg {
+    text-decoration: none;
+    cursor: pointer;
+    padding: 2px 6px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    font-size: 14px;
+    color: #666;
+    user-select: none;
+    margin-left: 4px;
+    opacity: 0.7;
+    display: inline-block;
+}
+
+.quiz-easter-egg:hover {
+    background-color: rgba(255, 193, 7, 0.1);
+    color: #ff6b35;
+    transform: scale(1.2) rotate(10deg);
+    opacity: 1;
+    box-shadow: 0 2px 8px rgba(255, 107, 53, 0.3);
+    text-decoration: none;
+}
+
+.quiz-easter-egg:active {
+    transform: scale(0.9) rotate(-5deg);
+}
+
 /* ========================================
    ALTERNATIVE THEME STYLES (Easter Egg)
    ======================================== */
@@ -570,26 +598,101 @@ body.alt-theme .site-header .logo a {
 }
 
 body.alt-theme .site-header nav ul li a {
-    color: #FFFFFF !important;
+    color: rgba(255, 255, 255, 0.8) !important;
     font-weight: 700;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
     padding: 12px 20px;
     border-radius: 25px;
-    background: rgba(255, 255, 255, 0.15) !important;
-    backdrop-filter: blur(15px);
+    background: rgba(255, 255, 255, 0.1) !important;
     border: 2px solid rgba(255, 255, 255, 0.3);
-    box-shadow: 0 4px 15px rgba(139, 92, 246, 0.2);
-    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+/* Liquid fill effect */
+body.alt-theme .site-header nav ul li a::before {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 0;
+    background: linear-gradient(45deg, #EC4899, #F97316);
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+    z-index: -1;
+    border-radius: 0 0 25px 25px;
+}
+
+/* Liquid bubble effects */
+body.alt-theme .site-header nav ul li a::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 8px;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: all 0.4s ease;
+    z-index: 2;
+}
+
+/* Hover state - liquid fills from bottom */
+body.alt-theme .site-header nav ul li a:hover::before {
+    top: 0;
+    height: 100%;
+    border-radius: 25px;
+    animation: liquidWave 2s ease-in-out infinite;
+}
+
+/* Bubble animation on hover */
+body.alt-theme .site-header nav ul li a:hover::after {
+    opacity: 1;
+    animation: bubbleFloat 1.5s ease-in-out infinite;
 }
 
 body.alt-theme .site-header nav ul li a:hover,
 body.alt-theme .site-header nav ul li a.active {
-    color: #1F2937 !important; /* Dark text for contrast */
-    background: rgba(253, 224, 71, 0.9) !important; /* Bright yellow background */
-    transform: translateY(-3px) scale(1.08);
-    text-shadow: none;
-    border-color: rgba(236, 72, 153, 0.8);
-    box-shadow: 0 8px 25px rgba(253, 224, 71, 0.4);
+    color: #FFFFFF !important;
+    transform: translateY(-3px) scale(1.05);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 8px 25px rgba(236, 72, 153, 0.4);
+    border-color: rgba(236, 72, 153, 0.6);
+    backdrop-filter: blur(15px);
+}
+
+/* Liquid wave animation */
+@keyframes liquidWave {
+    0%, 100% {
+        clip-path: polygon(0% 100%, 100% 100%, 100% 85%, 0% 95%);
+    }
+    25% {
+        clip-path: polygon(0% 100%, 100% 100%, 100% 90%, 0% 80%);
+    }
+    50% {
+        clip-path: polygon(0% 100%, 100% 100%, 100% 75%, 0% 85%);
+    }
+    75% {
+        clip-path: polygon(0% 100%, 100% 100%, 100% 80%, 0% 90%);
+    }
+}
+
+/* Floating bubble animation */
+@keyframes bubbleFloat {
+    0%, 100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.3;
+    }
+    50% {
+        transform: translate(-50%, -70%) scale(1.5);
+        opacity: 0.8;
+    }
 }
 
 body.alt-theme .site-header nav ul li a::before {
@@ -671,6 +774,26 @@ body.alt-theme .easter-egg:hover {
     box-shadow: 0 4px 15px rgba(236, 72, 153, 0.4);
 }
 
+/* Enhanced Quiz Easter Egg styling for alt theme */
+body.alt-theme .quiz-easter-egg {
+    color: #FDE047 !important; /* Bright yellow for game emoji */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+    background: linear-gradient(45deg, rgba(34, 197, 94, 0.2), rgba(59, 130, 246, 0.2)) !important;
+    border: 2px solid rgba(34, 197, 94, 0.5);
+    border-radius: 6px;
+    font-weight: 900;
+    opacity: 1;
+}
+
+body.alt-theme .quiz-easter-egg:hover {
+    background: linear-gradient(45deg, rgba(34, 197, 94, 0.3), rgba(59, 130, 246, 0.3)) !important;
+    color: #FFFFFF !important;
+    border-color: rgba(34, 197, 94, 0.8);
+    transform: scale(1.3) rotate(15deg);
+    box-shadow: 0 4px 15px rgba(34, 197, 94, 0.4);
+    text-decoration: none;
+}
+
 /* Alternative Mobile Navigation - styles for Header component */
 body.alt-theme .hamburger-menu {
     background: linear-gradient(45deg, rgba(236, 72, 153, 0.3), rgba(249, 115, 22, 0.3)) !important;
@@ -740,3 +863,4 @@ body.alt-theme .btn:hover {
     box-shadow: 0 6px 20px rgba(249, 115, 22, 0.4);
     color: #000000 !important; /* Dark text on bright yellow hover */
 } 
+

@@ -1,0 +1,235 @@
+---
+// AI Tools Lab Quiz Challenge
+const title = "AI Tools Lab Quiz Challenge";
+const description = "Test your knowledge of AI tools and development practices";
+---
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{title}</title>
+    <meta name="description" content={description}>
+    <link rel="stylesheet" href="/quiz-game.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <!-- Marquee Lights -->
+            <div class="marquee-lights">
+                <!-- Top Lights (12 lights evenly spaced) -->
+                <ul class="lights-top">
+                    <li class="light-red" style="left: 8.33%;"></li>
+                    <li class="light-orange" style="left: 16.67%;"></li>
+                    <li class="light-yellow" style="left: 25%;"></li>
+                    <li class="light-green" style="left: 33.33%;"></li>
+                    <li class="light-blue" style="left: 41.67%;"></li>
+                    <li class="light-purple" style="left: 50%;"></li>
+                    <li class="light-pink" style="left: 58.33%;"></li>
+                    <li class="light-cyan" style="left: 66.67%;"></li>
+                    <li class="light-red" style="left: 75%;"></li>
+                    <li class="light-orange" style="left: 83.33%;"></li>
+                    <li class="light-yellow" style="left: 91.67%;"></li>
+                </ul>
+                
+                <!-- Right Lights (4 lights evenly spaced) -->
+                <ul class="lights-right">
+                    <li class="light-green" style="top: 20%;"></li>
+                    <li class="light-blue" style="top: 40%;"></li>
+                    <li class="light-purple" style="top: 60%;"></li>
+                    <li class="light-pink" style="top: 80%;"></li>
+                </ul>
+                
+                <!-- Bottom Lights (12 lights evenly spaced, right to left) -->
+                <ul class="lights-bottom">
+                    <li class="light-cyan" style="left: 91.67%;"></li>
+                    <li class="light-red" style="left: 83.33%;"></li>
+                    <li class="light-orange" style="left: 75%;"></li>
+                    <li class="light-yellow" style="left: 66.67%;"></li>
+                    <li class="light-green" style="left: 58.33%;"></li>
+                    <li class="light-blue" style="left: 50%;"></li>
+                    <li class="light-purple" style="left: 41.67%;"></li>
+                    <li class="light-pink" style="left: 33.33%;"></li>
+                    <li class="light-cyan" style="left: 25%;"></li>
+                    <li class="light-red" style="left: 16.67%;"></li>
+                    <li class="light-orange" style="left: 8.33%;"></li>
+                </ul>
+                
+                <!-- Left Lights (4 lights evenly spaced, bottom to top) -->
+                <ul class="lights-left">
+                    <li class="light-yellow" style="top: 80%;"></li>
+                    <li class="light-green" style="top: 60%;"></li>
+                    <li class="light-blue" style="top: 40%;"></li>
+                    <li class="light-purple" style="top: 20%;"></li>
+                </ul>
+            </div>
+            
+            <div class="header-nav">
+                <a href="/" class="home-btn" title="Back to AI Tools Lab">
+                    <img src="/images/ai-tools-lab-logo.png" alt="AI Tools Lab Logo" class="home-logo">
+                    <span class="home-text">AI Tools Lab</span>
+                </a>
+            </div>
+            <h1>AI Tools Lab Quiz Challenge</h1>
+            <div class="game-stats">
+                <div class="stat">
+                    <span class="stat-label">Score:</span>
+                    <span id="current-score" class="stat-value">0</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">Question:</span>
+                    <span id="question-counter" class="stat-value">1/5</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">Time:</span>
+                    <span id="timer" class="stat-value">30</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Start Screen -->
+        <div id="start-screen" class="screen active">
+            <div class="welcome-content">
+                <h2>Test Your AI Tools Knowledge!</h2>
+                <p>Challenge yourself with 5 multiple choice questions based on key takeaways from AI Tools Lab episodes. You'll have 30 seconds per question.</p>
+                
+                <div class="name-entry">
+                    <label for="player-name-start">Enter your name to get started:</label>
+                    <input 
+                        type="text" 
+                        id="player-name-start" 
+                        placeholder="Your name (shown as first letter + emoji on leaderboard)" 
+                        maxlength="50"
+                        required>
+                </div>
+                
+                <button id="start-game" class="btn btn-primary">Start Quiz</button>
+                <button id="view-leaderboard" class="btn btn-secondary">View Leaderboard</button>
+            </div>
+        </div>
+
+        <!-- Game Screen -->
+        <div id="game-screen" class="screen">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill"></div>
+            </div>
+            
+            <div class="timer-display">
+                <div class="timer-circle">
+                    <span id="timer-countdown">30</span>
+                </div>
+            </div>
+            
+            <div class="question-content">
+                <div class="question-meta">
+                    <span class="episode-tag" id="episode-tag">Episode 1</span>
+                    <span class="question-type" id="question-type">Multiple Choice</span>
+                </div>
+                
+                <h3 id="question-text" class="question-text">
+                    Loading question...
+                </h3>
+                
+                <div id="answer-options" class="answer-options">
+                    <!-- Answer options will be populated here -->
+                </div>
+            </div>
+            
+            <div class="question-tools" id="question-tools">
+                <!-- Related tools will be shown here -->
+            </div>
+        </div>
+
+        <!-- Results Screen -->
+        <div id="results-screen" class="screen">
+            <div class="results-content">
+                <h2>Quiz Complete!</h2>
+                
+                <div class="final-stats">
+                    <div class="stat-card">
+                        <div class="stat-number" id="final-score">0</div>
+                        <div class="stat-label">Final Score</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="correct-answers">0</div>
+                        <div class="stat-label">Correct Answers</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="accuracy">0%</div>
+                        <div class="stat-label">Accuracy</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="time-bonus">0</div>
+                        <div class="stat-label">Time Bonus</div>
+                    </div>
+                </div>
+                
+                
+                <div class="results-actions">
+                    <button id="play-again" class="btn btn-primary">Play Again</button>
+                    <button id="view-leaderboard-results" class="btn btn-secondary">View Leaderboard</button>
+                </div>
+                
+                <div class="performance-breakdown" id="performance-breakdown">
+                    <!-- Detailed performance stats will go here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Leaderboard Screen -->
+        <div id="leaderboard-screen" class="screen">
+            <div class="leaderboard-content">
+                <h2>Leaderboard</h2>
+                
+                <div class="leaderboard-filters">
+                    <button class="filter-btn active" data-filter="all">All Time</button>
+                    <button class="filter-btn" data-filter="today">Today</button>
+                    <button class="filter-btn" data-filter="week">This Week</button>
+                </div>
+                
+                <div class="leaderboard-table">
+                    <table id="leaderboard-table">
+                        <thead>
+                            <tr>
+                                <th>Rank</th>
+                                <th>Name</th>
+                                <th>Score</th>
+                                <th>Accuracy</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody id="leaderboard-body">
+                            <!-- Leaderboard entries will be populated here -->
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="leaderboard-actions">
+                    <button id="back-to-menu" class="btn btn-secondary">Back to Menu</button>
+                    <button id="clear-leaderboard" class="btn btn-danger">Clear Leaderboard</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Answer Feedback Modal -->
+        <div id="feedback-modal" class="modal">
+            <div class="modal-content">
+                <div class="feedback-header">
+                    <span id="feedback-result" class="feedback-result">Correct!</span>
+                    <span id="feedback-points" class="feedback-points">+100 points</span>
+                </div>
+                <div class="feedback-explanation">
+                    <p id="feedback-text">Explanation will appear here...</p>
+                </div>
+                <div class="feedback-tools" id="feedback-tools">
+                    <!-- Related tools will appear here -->
+                </div>
+                <button id="next-question" class="btn btn-primary">Next Question</button>
+            </div>
+        </div>
+    </div>
+    
+    <script is:inline src="/quiz-game.js"></script>
+</body>
+</html>
