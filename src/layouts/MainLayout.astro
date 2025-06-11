@@ -77,6 +77,15 @@ const { title, description = "AI Tools Lab - Exploring the landscape of AI tools
     <div class="floating-bubble bubble-24"></div>
     <div class="floating-bubble bubble-25"></div>
 
+    <!-- Mobile Navigation - Direct children of body for root stacking context -->
+    <div class="mobile-nav-overlay"></div>
+    <div class="mobile-nav">
+        <ul>
+            <li><a href="/" class={Astro.url.pathname === '/' ? 'active' : ''}>Home</a></li>
+            <li><a href="/observations" class={Astro.url.pathname === '/observations' ? 'active' : ''}>Observations</a></li>
+            <li><a href="/about" class={Astro.url.pathname === '/about' ? 'active' : ''}>About</a></li>
+        </ul>
+    </div>
     
     <Header />
     <slot />
@@ -84,5 +93,6 @@ const { title, description = "AI Tools Lab - Exploring the landscape of AI tools
     
     <!-- Clean JavaScript -->
     <script is:inline src="/script.js"></script>
+    <script is:inline src="/bubble-scroll.js"></script>
 </body>
 </html>
