@@ -5,9 +5,12 @@ import Footer from '../components/Footer.astro';
 interface Props {
     title: string;
     description?: string;
+    ogImage?: string;
 }
 
-const { title, description = "AI Tools Lab - Exploring the landscape of AI tools and technologies" } = Astro.props;
+const { title, description = "AI Tools Lab - Exploring the landscape of AI tools and technologies", ogImage } = Astro.props;
+const defaultOgImage = "/images/ai-tools-lab-logo.png";
+const finalOgImage = ogImage || defaultOgImage;
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -21,7 +24,7 @@ const { title, description = "AI Tools Lab - Exploring the landscape of AI tools
     <meta property="og:title" content={`${title} | AI Tools Lab`}>
     <meta property="og:description" content={description}>
     <meta property="og:type" content="website">
-    <meta property="og:image" content="/images/ai-tools-lab-logo.png">
+    <meta property="og:image" content={finalOgImage}>
     
     <!-- Favicon -->
     <link rel="icon" href="/images/ai-tools-lab-logo.png" type="image/png">

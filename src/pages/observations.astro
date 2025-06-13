@@ -9,6 +9,9 @@ const episodesWithTakeaways = await getAllEpisodesWithTakeaways();
 // Get unique tools for filters
 const allTools = getAllTags(episodesWithTakeaways);
 
+// Initial display count for pagination
+const initialDisplayCount = 9;
+
 // Function to parse markdown-style bold formatting
 function parseMarkdownBold(text: string): string {
     return text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
@@ -41,7 +44,7 @@ function parseMarkdownBold(text: string): string {
         <div class="observations-layout">
             <div class="observations-content">
                 <div class="takeaway-cards" id="takeaway-cards">
-                    {episodesWithTakeaways.map(episode => (
+                    {episodesWithTakeaways.slice(0, initialDisplayCount).map(episode => (
                         <div class="takeaway-card" 
                              data-episode={episode.number} 
                              data-tools={episode.tags.map(t => t.toLowerCase()).join(',')} 
@@ -77,6 +80,15 @@ function parseMarkdownBold(text: string): string {
                     ))}
                 </div>
                 
+                {episodesWithTakeaways.length > initialDisplayCount && (
+                    <div class="view-more-container">
+                        <button id="view-more-btn" class="view-more-btn">
+                            View More Observations
+                            <span class="episode-count">({episodesWithTakeaways.length - initialDisplayCount} more)</span>
+                        </button>
+                    </div>
+                )}
+                
                 <!-- Empty state for when no results match filters -->
                 <div class="empty-state" id="empty-state" style="display: none;">
                     <h3>No takeaways found</h3>
@@ -86,6 +98,15 @@ function parseMarkdownBold(text: string): string {
         </div>
 
     </main>
+    
+    <!-- Hidden episode data for JavaScript -->
+    <script type="application/json" id="episodes-data" set:html={JSON.stringify(episodesWithTakeaways.map(episode => ({
+        number: episode.number,
+        title: episode.title,
+        heroImg: episode.heroImg,
+        tags: episode.tags || [],
+        takeaways: episode.takeaways || []
+    })))} />
 </MainLayout>
 
 <style>
@@ -393,6 +414,218 @@ function parseMarkdownBold(text: string): string {
         margin: 0 auto;
     }
     
+    /* View More Button */
+    .view-more-container {
+        display: flex;
+        justify-content: center;
+        margin-top: 40px;
+        padding-top: 30px;
+        border-top: 2px solid #e6f0ff;
+    }
+    
+    .view-more-btn {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border: none;
+        padding: 15px 30px;
+        border-radius: 25px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+    
+    .view-more-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+    }
+    
+    .view-more-btn:active {
+        transform: translateY(0);
+    }
+    
+    .episode-count {
+        font-size: 0.9rem;
+        opacity: 0.9;
+        font-weight: 500;
+    }
+    
+    /* Global Takeaway Card Styles for JavaScript-generated cards */
+    :global(.takeaway-card) {
+        background-color: #fff;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    :global(.takeaway-card:hover) {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    }
+
+    :global(.takeaway-card-header) {
+        height: 280px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    :global(.takeaway-card-header .header-link) {
+        display: block;
+        width: 100%;
+        height: 100%;
+        text-decoration: none;
+        color: inherit;
+        cursor: pointer;
+    }
+
+    :global(.takeaway-card-header img) {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        transition: transform 0.3s ease;
+    }
+
+    :global(.takeaway-card:hover .takeaway-card-header img) {
+        transform: scale(1.02);
+    }
+
+    :global(.hero-overlay) {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+            to bottom,
+            rgba(0, 0, 0, 0.3) 0%,
+            rgba(0, 0, 0, 0.5) 50%,
+            rgba(0, 0, 0, 0.7) 100%
+        );
+        z-index: 1;
+    }
+
+    :global(.hero-content) {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 1rem;
+        z-index: 2;
+        text-align: center;
+        background: linear-gradient(
+            to top,
+            rgba(0, 0, 0, 0.8) 0%,
+            rgba(0, 0, 0, 0.4) 70%,
+            transparent 100%
+        );
+    }
+
+    :global(.hero-title) {
+        margin: 0;
+        font-size: 1rem;
+        font-weight: 700;
+        color: white;
+        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+        line-height: 1.2;
+    }
+
+    :global(.hero-episode-number) {
+        background: var(--accent-color);
+        color: white;
+        padding: 0.25rem 0.75rem;
+        border-radius: 15px;
+        font-weight: 700;
+        font-size: 0.75rem;
+        margin-bottom: 0.5rem;
+        display: inline-block;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    :global(.takeaway-card-body) {
+        padding: 16px;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    :global(.takeaway-card-tags) {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-bottom: 12px;
+    }
+
+    :global(.takeaway-tag) {
+        background-color: #f0f0ff;
+        color: #4f46e5;
+        font-size: 0.75rem;
+        padding: 3px 8px;
+        border-radius: 12px;
+    }
+
+    :global(.takeaway-content) {
+        flex-grow: 1;
+    }
+
+    :global(.takeaway-content ul) {
+        padding-left: 5px;
+        margin: 0;
+        list-style-type: none;
+    }
+
+    :global(.takeaway-content li) {
+        margin-bottom: 12px;
+        font-size: 0.9rem;
+        line-height: 1.5;
+        position: relative;
+        padding-left: 24px;
+    }
+
+    :global(.takeaway-content li:before) {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 5px;
+        width: 10px;
+        height: 10px;
+        background-color: #7c4dff;
+        border-radius: 50%;
+        opacity: 0.8;
+    }
+
+    :global(.takeaway-content li:hover:before) {
+        background-color: #6366f1;
+        transform: scale(1.2);
+        transition: all 0.2s ease;
+    }
+
+    :global(.takeaway-card-footer) {
+        padding: 12px 16px;
+        background-color: #f8f9ff;
+        border-top: 1px solid #eee;
+        text-align: right;
+    }
+
+    :global(.takeaway-card-footer a) {
+        color: #4f46e5;
+        text-decoration: none;
+        font-size: 0.85rem;
+        font-weight: 500;
+    }
+
+    :global(.takeaway-card-footer a:hover) {
+        text-decoration: underline;
+    }
+    
     /* Mobile responsive */
     @media (max-width: 768px) {
         .filters-bar {
@@ -422,6 +655,59 @@ function parseMarkdownBold(text: string): string {
         const emptyState = document.getElementById('empty-state') as HTMLElement;
         const resetButton = document.getElementById('reset-filters-main') as HTMLElement;
         
+        // View More functionality
+        let currentDisplayCount = 9;
+        const episodesPerPage = 10;
+        
+        // Get episodes data from the script tag
+        const episodesDataElement = document.getElementById('episodes-data');
+        let allEpisodes = [];
+        let parseSuccess = false;
+        
+        if (episodesDataElement) {
+            try {
+                allEpisodes = JSON.parse(episodesDataElement.textContent);
+                parseSuccess = true;
+            } catch (error) {
+                allEpisodes = [];
+            }
+        }
+        
+        // Setup view more button if parsing was successful
+        if (parseSuccess && allEpisodes.length > 0) {
+            const takeawayCardsContainer = document.getElementById('takeaway-cards');
+            const viewMoreBtn = document.getElementById('view-more-btn');
+            
+            if (viewMoreBtn && takeawayCardsContainer) {
+                viewMoreBtn.addEventListener('click', () => {
+                    const nextBatch = allEpisodes.slice(currentDisplayCount, currentDisplayCount + episodesPerPage);
+                    
+                    nextBatch.forEach(episode => {
+                        const takeawayCard = createTakeawayCard(episode);
+                        takeawayCardsContainer.appendChild(takeawayCard);
+                    });
+                    
+                    currentDisplayCount += episodesPerPage;
+                    
+                    // Update button text or hide if all episodes are shown
+                    const remainingEpisodes = allEpisodes.length - currentDisplayCount;
+                    if (remainingEpisodes <= 0) {
+                        viewMoreBtn.style.display = 'none';
+                    } else {
+                        const countSpan = viewMoreBtn.querySelector('.episode-count');
+                        if (countSpan) {
+                            countSpan.textContent = `(${remainingEpisodes} more)`;
+                        }
+                    }
+                    
+                    // Re-run filters on new cards
+                    setTimeout(() => {
+                        filterCards();
+                    }, 100);
+                });
+            }
+        }
+        
         let activeFilters = {
             search: '',
             tool: ''
@@ -450,11 +736,68 @@ function parseMarkdownBold(text: string): string {
         // Reset button
         resetButton?.addEventListener('click', resetAllFilters);
         
+        // Create takeaway card function
+        function createTakeawayCard(episode) {
+            const card = document.createElement('div');
+            card.className = 'takeaway-card';
+            card.setAttribute('data-episode', episode.number.toString());
+            card.setAttribute('data-tools', episode.tags.map(t => t.toLowerCase()).join(','));
+            card.setAttribute('data-concepts', episode.tags.map(c => c.toLowerCase()).join(','));
+            
+            const episodeSlug = `ep${episode.number.toString().padStart(2, '0')}`;
+            
+            // Check current easter egg mode and adjust hero image path accordingly
+            const isAlternateMode = localStorage.getItem('heroImageMode') === 'alternate';
+            let heroImageSrc = episode.heroImg;
+            
+            if (isAlternateMode && heroImageSrc.includes('/images/thumbnails/')) {
+                heroImageSrc = heroImageSrc.replace('/images/thumbnails/', '/images/alt-thumbnails/');
+            } else if (!isAlternateMode && heroImageSrc.includes('/images/alt-thumbnails/')) {
+                heroImageSrc = heroImageSrc.replace('/images/alt-thumbnails/', '/images/thumbnails/');
+            }
+            
+            // Parse markdown-style bold formatting
+            function parseMarkdownBold(text) {
+                return text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+            }
+            
+            card.innerHTML = `
+                <div class="takeaway-card-header">
+                    <a href="/episodes/${episodeSlug}" class="header-link">
+                        <img src="${heroImageSrc}" alt="Episode ${episode.number} Thumbnail">
+                        <div class="hero-overlay"></div>
+                        <div class="hero-content">
+                            <div class="hero-episode-number">Episode ${episode.number}</div>
+                            <h3 class="hero-title">${episode.title}</h3>
+                        </div>
+                    </a>
+                </div>
+                <div class="takeaway-card-body">
+                    <div class="takeaway-card-tags">
+                        ${episode.tags.map(tag => `<span class="takeaway-tag">${tag}</span>`).join('')}
+                    </div>
+                    <div class="takeaway-content">
+                        <ul>
+                            ${episode.takeaways.map(takeaway => `<li>${parseMarkdownBold(takeaway)}</li>`).join('')}
+                        </ul>
+                    </div>
+                </div>
+                <div class="takeaway-card-footer">
+                    <a href="/episodes/${episodeSlug}" target="_blank">View Full Episode →</a>
+                </div>
+            `;
+            
+            return card;
+        }
+        
         // Filter cards based on active filters
         function filterCards() {
             let visibleCount = 0;
             
-            takeawayCards.forEach(card => {
+            // Get all takeaway cards (including dynamically added ones)
+            const allTakeawayCards = document.querySelectorAll('.takeaway-card');
+            
+            allTakeawayCards.forEach(card => {
                 let shouldShow = true;
                 
                 // Search filter

@@ -9,7 +9,7 @@ const { Title, Description, HeroImg, VideoID, EpisodeNumber, Date, Tags } = fron
 const youtubeUrl = VideoID ? `https://youtu.be/${VideoID}` : '#';
 ---
 
-<MainLayout title={Title} description={Description}>
+<MainLayout title={Title} description={Description} ogImage={HeroImg}>
     <main class="container">
         <div class="episode-content">
             <!-- VIDEO CONTAINER - YouTube embed with thumbnail -->

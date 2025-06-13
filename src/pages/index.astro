@@ -6,6 +6,10 @@ import { getAllEpisodes, getFeaturedEpisode } from '../utils/episodes';
 // Get all episodes and featured episode
 const allEpisodes = await getAllEpisodes();
 const featuredEpisode = await getFeaturedEpisode();
+
+// Episodes to display (excluding the featured episode)
+const episodesToDisplay = allEpisodes.slice(1);
+const initialDisplayCount = 9;
 ---
 
 <MainLayout title="AI Tools Lab" description="Exploring the landscape of AI tools and technologies">
@@ -55,17 +59,36 @@ const featuredEpisode = await getFeaturedEpisode();
         
         <!-- All Episodes Section -->
         <section class="all-episodes">
-            
-            <div class="episodes-grid">
-                {allEpisodes.slice(1).map((episode) => (
+            <div class="episodes-grid" id="episodes-grid">
+                {episodesToDisplay.slice(0, initialDisplayCount).map((episode) => (
                     <EpisodeCard 
                         episode={episode} 
                         showFeaturedBadge={false}
                     />
                 ))}
             </div>
+            
+            {episodesToDisplay.length > initialDisplayCount && (
+                <div class="view-more-container">
+                    <button id="view-more-btn" class="view-more-btn">
+                        View More Episodes
+                        <span class="episode-count">({episodesToDisplay.length - initialDisplayCount} more)</span>
+                    </button>
+                </div>
+            )}
         </section>
     </main>
+    
+    <!-- Hidden episode data for JavaScript -->
+    <script type="application/json" id="episodes-data" set:html={JSON.stringify(episodesToDisplay.map(episode => ({
+        number: episode.number,
+        title: episode.title,
+        description: episode.description,
+        heroImg: episode.heroImg,
+        date: episode.date,
+        tags: episode.tags || [],
+        participants: episode.participants || []
+    })))} />
 </MainLayout>
 
 <style>
@@ -296,6 +319,208 @@ const featuredEpisode = await getFeaturedEpisode();
         margin-top: 30px;
     }
     
+    .view-more-container {
+        display: flex;
+        justify-content: center;
+        margin-top: 40px;
+        padding-top: 30px;
+        border-top: 2px solid #e6f0ff;
+    }
+    
+    .view-more-btn {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border: none;
+        padding: 15px 30px;
+        border-radius: 25px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+    
+    .view-more-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+    }
+    
+    .view-more-btn:active {
+        transform: translateY(0);
+    }
+    
+    .episode-count {
+        font-size: 0.9rem;
+        opacity: 0.9;
+        font-weight: 500;
+    }
+    
+    /* Global Episode Card Styles for JavaScript-generated cards */
+    :global(.episode-card) {
+        background: white;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    :global(.episode-card:hover) {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    :global(.episode-card a) {
+        text-decoration: none;
+        color: inherit;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+
+    :global(.episode-thumbnail) {
+        position: relative;
+        overflow: hidden;
+        height: 200px;
+    }
+
+    :global(.episode-thumbnail img) {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        transition: transform 0.3s ease;
+    }
+
+    :global(.episode-card:hover .episode-thumbnail img) {
+        transform: scale(1.02);
+    }
+
+    :global(.hero-overlay) {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+            to bottom,
+            rgba(0, 0, 0, 0.3) 0%,
+            rgba(0, 0, 0, 0.5) 50%,
+            rgba(0, 0, 0, 0.7) 100%
+        );
+        z-index: 1;
+    }
+
+    :global(.hero-content) {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 1rem;
+        z-index: 2;
+        text-align: center;
+        background: linear-gradient(
+            to top,
+            rgba(0, 0, 0, 0.8) 0%,
+            rgba(0, 0, 0, 0.4) 70%,
+            transparent 100%
+        );
+    }
+
+    :global(.hero-title) {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: white;
+        margin: 0;
+        line-height: 1.2;
+        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+    }
+
+    :global(.play-button-overlay) {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: rgba(0, 102, 204, 0.8);
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0.9;
+        transition: all 0.3s ease;
+        z-index: 3;
+    }
+
+    :global(.episode-card:hover .play-button-overlay) {
+        background-color: rgba(0, 102, 204, 1);
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.1);
+    }
+
+    :global(.episode-content) {
+        padding: 20px;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    :global(.episode-description) {
+        color: #666;
+        line-height: 1.6;
+        margin-bottom: 15px;
+        font-size: 1.05rem;
+        flex-grow: 1;
+    }
+
+    :global(.episode-meta) {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        gap: 10px;
+        margin-top: auto;
+    }
+
+    :global(.episode-date) {
+        color: #888;
+        font-size: 1rem;
+    }
+
+    :global(.episode-tags) {
+        display: flex;
+        gap: 6px;
+        flex-wrap: wrap;
+    }
+
+    :global(.tag) {
+        background-color: #f0f0ff;
+        color: #4f46e5;
+        font-size: 0.85rem;
+        padding: 3px 8px;
+        border-radius: 12px;
+        white-space: nowrap;
+    }
+
+    :global(.episode-number-overlay) {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        background: var(--accent-color);
+        color: white;
+        padding: 0.4rem 0.8rem;
+        border-radius: 15px;
+        font-weight: 700;
+        font-size: 0.85rem;
+        box-shadow: 0 2px 8px rgba(0, 102, 204, 0.3);
+        z-index: 4;
+    }
+    
     @media (max-width: 768px) {
         .featured-episode-container {
             flex-direction: column;
@@ -326,3 +551,110 @@ const featuredEpisode = await getFeaturedEpisode();
         }
     }
 </style>
+
+<script>
+    // Wait for DOM to be fully loaded
+    document.addEventListener('DOMContentLoaded', function() {
+        // Episode pagination functionality
+        let currentDisplayCount = 9;
+        const episodesPerPage = 10;
+        
+        // Get episodes data from the script tag
+        const episodesDataElement = document.getElementById('episodes-data');
+        
+        if (!episodesDataElement) {
+            return;
+        }
+        
+        let allEpisodes = [];
+        let parseSuccess = false;
+        try {
+            allEpisodes = JSON.parse(episodesDataElement.textContent);
+            parseSuccess = true;
+        } catch (error) {
+            allEpisodes = [];
+        }
+        
+        // Only proceed if parsing was successful
+        if (parseSuccess && allEpisodes.length > 0) {
+            const episodesGrid = document.getElementById('episodes-grid');
+            const viewMoreBtn = document.getElementById('view-more-btn');
+            
+            if (viewMoreBtn) {
+            viewMoreBtn.addEventListener('click', () => {
+                const nextBatch = allEpisodes.slice(currentDisplayCount, currentDisplayCount + episodesPerPage);
+                
+                nextBatch.forEach(episode => {
+                    const episodeCard = createEpisodeCard(episode);
+                    episodesGrid.appendChild(episodeCard);
+                });
+                
+                currentDisplayCount += episodesPerPage;
+                
+                // Update button text or hide if all episodes are shown
+                const remainingEpisodes = allEpisodes.length - currentDisplayCount;
+                if (remainingEpisodes <= 0) {
+                    viewMoreBtn.style.display = 'none';
+                } else {
+                    const countSpan = viewMoreBtn.querySelector('.episode-count');
+                    countSpan.textContent = `(${remainingEpisodes} more)`;
+                }
+            });
+        }
+        
+        function createEpisodeCard(episode) {
+            const card = document.createElement('div');
+            card.className = 'episode-card';
+            
+            const episodeSlug = `ep${episode.number.toString().padStart(2, '0')}`;
+            const formattedDate = new Date(episode.date).toLocaleDateString('en-US', { 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            });
+            
+            // Check current easter egg mode and adjust hero image path accordingly
+            const isAlternateMode = localStorage.getItem('heroImageMode') === 'alternate';
+            let heroImageSrc = episode.heroImg;
+            
+            if (isAlternateMode && heroImageSrc.includes('/images/thumbnails/')) {
+                heroImageSrc = heroImageSrc.replace('/images/thumbnails/', '/images/alt-thumbnails/');
+            } else if (!isAlternateMode && heroImageSrc.includes('/images/alt-thumbnails/')) {
+                heroImageSrc = heroImageSrc.replace('/images/alt-thumbnails/', '/images/thumbnails/');
+            }
+            
+            card.innerHTML = `
+                <a href="/episodes/${episodeSlug}">
+                    <div class="episode-thumbnail">
+                        <img src="${heroImageSrc}" alt="Episode ${episode.number} Thumbnail" loading="lazy">
+                        <div class="episode-number-overlay">Episode ${episode.number}</div>
+                        <div class="hero-overlay"></div>
+                        <div class="hero-content">
+                            <h3 class="hero-title">${episode.title}</h3>
+                        </div>
+                        <div class="play-button-overlay">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="#ffffff">
+                                <path d="M8 5v14l11-7z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="episode-content">
+                        <p class="episode-description">${episode.description}</p>
+                        <div class="episode-meta">
+                            <span class="episode-date">${formattedDate}</span>
+                            <div class="episode-tags">
+                                ${episode.tags && episode.tags.length > 0 ? 
+                                    episode.tags.slice(0, 3).map(tag => `<span class="tag">${tag}</span>`).join('') : 
+                                    ''
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            `;
+            
+            return card;
+        }
+    } // Close the conditional block
+    }); // Close the DOMContentLoaded event listener
+</script>

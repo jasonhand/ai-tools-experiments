@@ -1,0 +1,686 @@
+{
+  "metadata": {
+    "version": "2.0",
+    "created": "2025-01-13",
+    "description": "AI Tools Lab Quiz Dataset - Episode Takeaways to Titles Matching",
+    "totalQuestions": 45,
+    "questionTypes": ["multiple-choice"]
+  },
+  "questions": [
+    {
+      "id": 1,
+      "episode": 1,
+      "type": "multiple-choice",
+      "question": "Which episode discusses how a specific Python library provides 'a very easy way to get a Huggingface Space locally' and emphasizes creating virtual environments?",
+      "options": [
+        "Building Quick Web Interfaces for Machine Learning Models with Gradio",
+        "Exploring Warp Terminal and Cursor for Productivity", 
+        "Automatic1111 and Local Text-to-Image Generation",
+        "Using Claude Code for Automated HTML Updates and Styling"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Episode 1 focuses on Gradio and emphasizes that 'Gradio is a very easy way to get a Huggingface Space locally' and the importance of creating virtual environments.",
+      "tools": ["Gradio", "Huggingface", "Python"]
+    },
+    {
+      "id": 2,
+      "episode": 2,
+      "type": "multiple-choice", 
+      "question": "Which episode covers tools that offer 'a more intuitive terminal experience' and help 'streamline the coding process with AI assistance'?",
+      "options": [
+        "Building Quick Web Interfaces for Machine Learning Models with Gradio",
+        "Exploring Warp Terminal and Cursor for Productivity",
+        "Building a Secure Feedback Form with Datadog Logs with Claude Code", 
+        "Using Cursor and Claude to Solve Record Search Bugs"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Episode 2 explores Warp Terminal which 'offers a more intuitive terminal experience' and Cursor which 'streamlines the coding process with AI assistance'.",
+      "tools": ["Warp", "Cursor", "Terminal"]
+    },
+    {
+      "id": 3,
+      "episode": 3,
+      "type": "multiple-choice",
+      "question": "Which episode discusses a web UI for Stable Diffusion that 'provides local image generation' with privacy benefits but slower performance?",
+      "options": [
+        "Automatic1111 and Local Text-to-Image Generation",
+        "AI Tools in Action: Exploring Sora Image Generation and Lovable App Builder",
+        "Building a Lissajous Animation Using Gemini 2.5 Pro",
+        "Exploring Bolt: Rapid App Development with AI-Powered Templates"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Episode 3 covers Automatic1111 which 'provides a web UI for Stable Diffusion image generation models' and discusses how 'local image generation is slower but offers privacy, offline access, and cost savings'.",
+      "tools": ["Automatic1111", "Stable Diffusion", "Image Generation"]
+    },
+    {
+      "id": 4,
+      "episode": 4,
+      "type": "multiple-choice",
+      "question": "Which episode demonstrates how 'Claude Code can effectively help build functional websites' and discusses using 'Datadog in creative ways, such as capturing form submissions as logs'?",
+      "options": [
+        "Using Claude Code for Automated HTML Updates and Styling",
+        "Building a Secure Feedback Form with Datadog Logs with Claude Code",
+        "Using Cursor and Claude to Fix CSS Layout Issues",
+        "From GTC to Website Building with AI Tools"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Episode 4 shows how 'Claude Code can effectively help build functional websites and solve complex integration challenges' and how 'Datadog can be used in creative ways, such as capturing form submissions as logs'.",
+      "tools": ["Claude Code", "Datadog", "Netlify", "GitHub Pages"]
+    },
+    {
+      "id": 5,
+      "episode": 5,
+      "type": "multiple-choice",
+      "question": "Which episode shows how 'Claude Code can efficiently update HTML/CSS without requiring manual coding' and makes 'website maintenance conversational rather than technical'?",
+      "options": [
+        "Using Claude Code for Automated HTML Updates and Styling",
+        "Building a Secure Feedback Form with Datadog Logs with Claude Code",
+        "Using Cursor and Claude to Fix CSS Layout Issues",
+        "Enhancing CSS Editing with LLMs: Using Puppeteer for Visual Context"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Episode 5 demonstrates how 'Claude Code can efficiently update HTML/CSS without requiring manual coding' and how 'website maintenance becomes conversational rather than technical when using AI'.",
+      "tools": ["Claude Code", "HTML", "CSS", "Web Development"]
+    },
+    {
+      "id": 6,
+      "episode": 6,
+      "type": "multiple-choice",
+      "question": "Which episode demonstrates how 'Cursor with Claude can quickly identify and fix complex bugs' in a Vinyl Viewer application?",
+      "options": [
+        "Using Cursor and Claude to Solve Record Search Bugs",
+        "Using Cursor and Claude to Fix CSS Layout Issues",
+        "Exploring Warp Terminal and Cursor for Productivity",
+        "Maximizing AI with Cursor: Building MCP Servers for Seamless Workflow"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Episode 6 shows how 'Cursor with Claude can quickly identify and fix complex bugs in web applications', specifically the Vinyl Viewer bug where 'the click handler used the original data array instead of the filtered array'.",
+      "tools": ["Cursor", "Claude", "Debugging", "JavaScript"]
+    },
+    {
+      "id": 7,
+      "episode": 7,
+      "type": "multiple-choice",
+      "question": "Which episode emphasizes that 'fixing one CSS issue may create other problems' due to 'z-index conflicts' and element dependencies?",
+      "options": [
+        "Using Cursor and Claude to Fix CSS Layout Issues",
+        "Enhancing CSS Editing with LLMs: Using Puppeteer for Visual Context",
+        "Using Claude Code for Automated HTML Updates and Styling",
+        "Using Cursor and Claude to Solve Record Search Bugs"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Episode 7 teaches that 'when fixing one CSS issue, be mindful of how it may affect other elements (z-index conflicts)' and that 'CSS fixes often require multiple iterations to fully resolve all related issues'.",
+      "tools": ["Cursor", "Claude", "CSS", "Z-index"]
+    },
+    {
+      "id": 8,
+      "episode": 9,
+      "type": "multiple-choice",
+      "question": "Which episode discusses GTC attendance growth to '25,000 people' and introduces the concept of 'wallet attacks' in AI deployment?",
+      "options": [
+        "From GTC to Website Building with AI Tools",
+        "The State of AI 2025: Exploring Developer Tools, Models, and Industry Trends",
+        "First Look at Windsurf & Model Context Protocol (MCP)",
+        "Exploring Llama 4, OpenRouter, and Model Comparison Tools"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Episode 9 covers GTC where 'the AI industry is shifting from curiosity to practical implementation, with GTC attendance growing to over 25,000 people' and discusses 'wallet attacks' as an emerging concern.",
+      "tools": ["Claude Code", "AI Industry", "GTC", "Security"]
+    },
+    {
+      "id": 9,
+      "episode": 10,
+      "type": "multiple-choice",
+      "question": "Which episode introduces the 'Cascade model' and discusses how 'Model Context Protocol (MCP) is an emerging standard for connecting AI tools'?",
+      "options": [
+        "First Look at Windsurf & Model Context Protocol (MCP)",
+        "Maximizing AI with Cursor: Building MCP Servers for Seamless Workflow",
+        "Enhancing CSS Editing with LLMs: Using Puppeteer for Visual Context",
+        "YOLO Coding: Migrating from Static HTML to Astro with AI Tools"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Episode 10 introduces 'Windsurf offers a free tier with the Cascade model' and explains that 'Model Context Protocol (MCP) is an emerging standard for connecting AI tools with external services'.",
+      "tools": ["Windsurf", "MCP", "Cascade", "AI Tools"]
+    },
+    {
+      "id": 10,
+      "episode": 11,
+      "type": "multiple-choice",
+      "question": "Which episode discusses 'Llama 4 features a massive 10+ million token context window' and explores model comparison tools?",
+      "options": [
+        "Exploring Llama 4, OpenRouter, and Model Comparison Tools",
+        "Building a Lissajous Animation Using Gemini 2.5 Pro",
+        "The State of AI 2025: Exploring Developer Tools, Models, and Industry Trends",
+        "Claude 3.7 Sonnet Plugins: AI Integration with Gmail, Drive and Calendar"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Episode 11 covers how 'Llama 4 features a massive 10+ million token context window, potentially revolutionizing how we work with large documents' and discusses 'tools like OpenRouter and LM Arena'.",
+      "tools": ["Llama 4", "OpenRouter", "LM Arena", "Context Windows"]
+    },
+    {
+      "id": 11,
+      "episode": 12,
+      "type": "multiple-choice",
+      "question": "Which episode explains how 'Cursor Rules and project requirements documents (PRDs) are becoming essential' and discusses 'Firebase Studio'?",
+      "options": [
+        "Cursor Rules, Firebase Studio, and the Evolving IDE Landscape",
+        "First Look at Windsurf & Model Context Protocol (MCP)",
+        "Maximizing AI with Cursor: Building MCP Servers for Seamless Workflow",
+        "Exploring Warp Terminal and Cursor for Productivity"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Episode 12 teaches that 'Cursor Rules and project requirements documents (PRDs) are becoming essential for maintaining context in AI-assisted development' and introduces 'Firebase Studio integrates with Google's Gemini model'.",
+      "tools": ["Cursor Rules", "Firebase Studio", "Gemini", "PRD"]
+    },
+    {
+      "id": 12,
+      "episode": 13,
+      "type": "multiple-choice",
+      "question": "Which episode covers a tool that 'provides a template-based approach to rapidly build web and mobile applications' with 'screenshot-based programming'?",
+      "options": [
+        "Exploring Bolt: Rapid App Development with AI-Powered Templates",
+        "AI Tools in Action: Exploring Sora Image Generation and Lovable App Builder",
+        "Building client-side URL-based state apps using Claude 4 and Lovable",
+        "From GTC to Website Building with AI Tools"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Episode 13 shows how 'Bolt provides a template-based approach to rapidly build web and mobile applications' and features 'screenshot-based programming allows for quickly recreating interfaces from images'.",
+      "tools": ["Bolt", "React", "Next.js", "Expo", "Templates"]
+    },
+    {
+      "id": 13,
+      "episode": 14,
+      "type": "multiple-choice",
+      "question": "Which episode demonstrates 'Claude 3.7 Sonnet integrates with Gmail, Google Drive, and Calendar' and can 'analyze massive email volumes (3.5+ million emails)'?",
+      "options": [
+        "Claude 3.7 Sonnet Plugins: AI Integration with Gmail, Drive and Calendar",
+        "The State of AI 2025: Exploring Developer Tools, Models, and Industry Trends",
+        "Building a Secure Feedback Form with Datadog Logs with Claude Code",
+        "Automating Content Transformation with N8N and Generative AI"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Episode 14 shows how 'Claude 3.7 Sonnet integrates with Gmail, Google Drive, and Calendar through simple OAuth authentication' and 'can analyze massive email volumes (3.5+ million emails)'.",
+      "tools": ["Claude 3.7 Sonnet", "Gmail", "Google Drive", "Calendar", "OAuth"]
+    },
+    {
+      "id": 14,
+      "episode": 15,
+      "type": "multiple-choice",
+      "question": "Which episode explores how 'Sora can now create images with professional-looking fonts' and discusses 'Lovable as a full-stack development tool'?",
+      "options": [
+        "AI Tools in Action: Exploring Sora Image Generation and Lovable App Builder",
+        "Exploring Bolt: Rapid App Development with AI-Powered Templates",
+        "Building client-side URL-based state apps using Claude 4 and Lovable",
+        "Automatic1111 and Local Text-to-Image Generation"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Episode 15 shows how 'Sora can now create images with professional-looking fonts, proper kerning, and layout' and explores 'Lovable is a full-stack development tool similar to Bolt'.",
+      "tools": ["Sora", "Lovable", "Image Generation", "Supabase"]
+    },
+    {
+      "id": 15,
+      "episode": 16,
+      "type": "multiple-choice",
+      "question": "Which episode demonstrates 'using visual context through screenshots helps LLMs make better CSS editing decisions' with Puppeteer integration?",
+      "options": [
+        "Enhancing CSS Editing with LLMs: Using Puppeteer for Visual Context",
+        "Using Cursor and Claude to Fix CSS Layout Issues",
+        "YOLO Coding: Migrating from Static HTML to Astro with AI Tools",
+        "Maximizing AI with Cursor: Building MCP Servers for Seamless Workflow"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Episode 16 shows how 'using visual context through screenshots helps LLMs make better CSS editing decisions than relying on text alone' and how 'Puppeteer integration with LLMs creates a virtuous feedback cycle'.",
+      "tools": ["Puppeteer", "MCP", "CSS", "Gemini 2.5 Pro"]
+    },
+    {
+      "id": 16,
+      "episode": 17,
+      "type": "multiple-choice",
+      "question": "Which episode reveals that 'ChatGPT remains the dominant AI model with Claude gaining rapid popularity' and discusses 'local model deployment is more common than expected (46%)'?",
+      "options": [
+        "The State of AI 2025: Exploring Developer Tools, Models, and Industry Trends",
+        "Exploring Llama 4, OpenRouter, and Model Comparison Tools",
+        "From GTC to Website Building with AI Tools",
+        "Claude 3.7 Sonnet Plugins: AI Integration with Gmail, Drive and Calendar"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Episode 17 analyzes how 'ChatGPT remains the dominant AI model with Claude gaining rapid popularity' and finds that 'local model deployment is more common than expected (46% of respondents)'.",
+      "tools": ["ChatGPT", "Claude", "DORA Research", "AI Models"]
+    },
+    {
+      "id": 17,
+      "episode": 20,
+      "type": "multiple-choice",
+      "question": "Which episode discusses 'AI YOLO Mode' for website migrations and 'combining different AI models (like Gemini 2.5 Pro for multimodal tasks and Claude Sonnet 3.7 for web searches)'?",
+      "options": [
+        "YOLO Coding: Migrating from Static HTML to Astro with AI Tools",
+        "Enhancing CSS Editing with LLMs: Using Puppeteer for Visual Context",
+        "Building a Lissajous Animation Using Gemini 2.5 Pro",
+        "Maximizing AI with Cursor: Building MCP Servers for Seamless Workflow"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Episode 20 explores 'AI YOLO Mode can significantly accelerate website migrations' and shows 'combining different AI models (like Gemini 2.5 Pro for multimodal tasks and Claude Sonnet 3.7 for web searches)'.",
+      "tools": ["Astro", "Gemini 2.5 Pro", "Claude Sonnet 3.7", "Puppeteer", "MCP"]
+    },
+    {
+      "id": 18,
+      "episode": 24,
+      "type": "multiple-choice",
+      "question": "Which episode focuses on 'efficiently summarizing large reports' and using 'Claude to help create visual aids such as infographics'?",
+      "options": [
+        "Streamlining AI Report Analysis: Figma AI 2025 Insights",
+        "The State of AI 2025: Exploring Developer Tools, Models, and Industry Trends",
+        "Automating Content Transformation with N8N and Generative AI",
+        "Claude 3.7 Sonnet Plugins: AI Integration with Gmail, Drive and Calendar"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Episode 24 teaches how 'efficiently summarizing large reports can save time and reveal essential insights' and shows how 'tools like Claude can help create visual aids such as infographics'.",
+      "tools": ["Claude", "Figma", "Report Analysis", "Data Visualization"]
+    },
+    {
+      "id": 19,
+      "episode": 26,
+      "type": "multiple-choice",
+      "question": "Which episode demonstrates 'N8N automation can significantly streamline workflow processes' and using 'Airtable for tracking and managing data from interviews'?",
+      "options": [
+        "Automating Content Transformation with N8N and Generative AI",
+        "Streamlining AI Report Analysis: Figma AI 2025 Insights",
+        "Maximizing AI with Cursor: Building MCP Servers for Seamless Workflow",
+        "First Look at Windsurf & Model Context Protocol (MCP)"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Episode 26 shows how 'N8N automation can significantly streamline workflow processes in content transformation' and demonstrates 'using Airtable for tracking and managing data from interviews'.",
+      "tools": ["N8N", "Airtable", "Automation", "Content Transformation"]
+    },
+    {
+      "id": 20,
+      "episode": 27,
+      "type": "multiple-choice",
+      "question": "Which episode encourages to 'embrace new technologies like terminal-based editing tools' and shows how 'Claude Code facilitates complex project completion'?",
+      "options": [
+        "Exploring Coding Efficiency: Utilizing Tmux and Claude Code for AI-Powered Ray Tracing",
+        "Claude Code findings with Rust and TypeScript through Ray Tracing projects",
+        "Exploring Warp Terminal and Cursor for Productivity",
+        "YOLO Coding: Migrating from Static HTML to Astro with AI Tools"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Episode 27 teaches to 'embrace new technologies like terminal-based editing tools that increase productivity' and shows how 'Claude Code facilitates complex project completion through effective use of AI'.",
+      "tools": ["Tmux", "Claude Code", "Ray Tracing", "Terminal"]
+    },
+    {
+      "id": 21,
+      "episode": 28,
+      "type": "multiple-choice",
+      "question": "Which episode explains how 'eBPF allows deep interaction with OS kernels' and shows how 'Datadog utilizes eBPF for enhancing system observability'?",
+      "options": [
+        "Exploring eBPF with AI Tools: Insights and Applications",
+        "Building a Secure Feedback Form with Datadog Logs with Claude Code",
+        "Exploring Coding Efficiency: Utilizing Tmux and Claude Code for AI-Powered Ray Tracing",
+        "The State of AI 2025: Exploring Developer Tools, Models, and Industry Trends"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Episode 28 teaches how 'eBPF allows deep interaction with OS kernels, providing significant control over hardware resources' and shows how 'Datadog utilizes eBPF for enhancing system observability'.",
+      "tools": ["eBPF", "Datadog", "ChatGPT", "System Observability"]
+    },
+    {
+      "id": 22,
+      "episode": 29,
+      "type": "multiple-choice",
+      "question": "Which episode showcases 'Gemini 2.5 Pro features a million token context window' and demonstrates 'real-time code generation capabilities through interactive mathematical visualizations'?",
+      "options": [
+        "Building a Lissajous Animation Using Gemini 2.5 Pro",
+        "Enhancing CSS Editing with LLMs: Using Puppeteer for Visual Context",
+        "Exploring Llama 4, OpenRouter, and Model Comparison Tools",
+        "YOLO Coding: Migrating from Static HTML to Astro with AI Tools"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Episode 29 demonstrates how 'Gemini 2.5 Pro features a million token context window, enabling better handling of large projects' and shows 'real-time code generation capabilities are showcased through interactive mathematical visualizations'.",
+      "tools": ["Gemini 2.5 Pro", "Lissajous", "Mathematics", "Animation"]
+    },
+    {
+      "id": 23,
+      "episode": 30,
+      "type": "multiple-choice",
+      "question": "Which episode teaches to 'start with raw AI tools to understand their capabilities' and shows how to 'use MCP servers like Memory, Context 7, and Taskmaster'?",
+      "options": [
+        "Maximizing AI with Cursor: Building MCP Servers for Seamless Workflow",
+        "First Look at Windsurf & Model Context Protocol (MCP)",
+        "Enhancing CSS Editing with LLMs: Using Puppeteer for Visual Context",
+        "YOLO Coding: Migrating from Static HTML to Astro with AI Tools"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Episode 30 advises to 'start with raw AI tools to understand their capabilities before adding extensions or plugins' and demonstrates how to 'use MCP servers like Memory, Context 7, and Taskmaster to solve specific workflow problems'.",
+      "tools": ["Cursor", "MCP", "Memory", "Context 7", "Taskmaster"]
+    },
+    {
+      "id": 24,
+      "episode": 31,
+      "type": "multiple-choice",
+      "question": "Which episode shows how 'using AI like Claude and Lovable can act as a notebook or second brain' and discusses how 'free plans offer enough functionality to spark creativity through limitations'?",
+      "options": [
+        "Building client-side URL-based state apps using Claude 4 and Lovable",
+        "AI Tools in Action: Exploring Sora Image Generation and Lovable App Builder",
+        "Exploring Bolt: Rapid App Development with AI-Powered Templates",
+        "Using Claude Code for Automated HTML Updates and Styling"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Episode 31 demonstrates how 'using AI like Claude and Lovable can act as a notebook or second brain for capturing fleeting ideas' and shows how 'free plans available in these apps offer enough functionality to spark creativity through limitations'.",
+      "tools": ["Claude 4", "Lovable", "URL State", "Prototyping"]
+    },
+    {
+      "id": 25,
+      "episode": 32,
+      "type": "multiple-choice",
+      "question": "Which episode reveals that 'generative coding assistants like Claude Code can produce surprisingly correct, compiler-validated architecture' but also 'invent highly creative bugs'?",
+      "options": [
+        "Claude Code findings with Rust and TypeScript through Ray Tracing projects",
+        "Exploring Coding Efficiency: Utilizing Tmux and Claude Code for AI-Powered Ray Tracing",
+        "Using Claude Code for Automated HTML Updates and Styling",
+        "Building a Secure Feedback Form with Datadog Logs with Claude Code"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Episode 32 finds that 'generative coding assistants like Claude Code can produce surprisingly correct, compiler-validated architecture when given clear conversational guidance' but 'AI tools also invent highly creative bugs—unsafe globals, mutex bottlenecks, missing epsilon offsets'.",
+      "tools": ["Claude Code", "Rust", "TypeScript", "Ray Tracing"]
+    },
+    {
+      "id": 26,
+      "episode": 1,
+      "type": "multiple-choice",
+      "question": "Which episode emphasizes the importance of not trying to 'run your project in the Gradio repo by mistake' when setting up ML interfaces?",
+      "options": [
+        "Building Quick Web Interfaces for Machine Learning Models with Gradio",
+        "Automatic1111 and Local Text-to-Image Generation",
+        "AI Tools in Action: Exploring Sora Image Generation and Lovable App Builder",
+        "Exploring eBPF with AI Tools: Insights and Applications"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Episode 1 specifically warns 'do not try to run your project in the Gradio repo by mistake' when working with Gradio for ML model interfaces.",
+      "tools": ["Gradio", "Machine Learning", "Setup"]
+    },
+    {
+      "id": 27,
+      "episode": 2,
+      "type": "multiple-choice",
+      "question": "Which episode highlights tools that are 'great for both beginners and experienced developers' and help with 'learning new programming concepts through AI explanations'?",
+      "options": [
+        "Exploring Warp Terminal and Cursor for Productivity",
+        "First Look at Windsurf & Model Context Protocol (MCP)",
+        "Using Cursor and Claude to Solve Record Search Bugs",
+        "Maximizing AI with Cursor: Building MCP Servers for Seamless Workflow"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Episode 2 shows that 'Warp is great for both beginners and experienced developers' and 'Cursor is useful for learning new programming concepts through AI explanations'.",
+      "tools": ["Warp", "Cursor", "AI Learning"]
+    },
+    {
+      "id": 28,
+      "episode": 3,
+      "type": "multiple-choice",
+      "question": "Which episode discusses how 'older models like SD 1.5 have limitations but are faster than newer ones' and covers 'prompt engineering with positive and negative prompts'?",
+      "options": [
+        "Automatic1111 and Local Text-to-Image Generation",
+        "AI Tools in Action: Exploring Sora Image Generation and Lovable App Builder",
+        "Building a Lissajous Animation Using Gemini 2.5 Pro",
+        "Streamlining AI Report Analysis: Figma AI 2025 Insights"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Episode 3 explains that 'older models like SD 1.5 have limitations but are faster than newer ones' and teaches 'prompt engineering with positive and negative prompts can improve generation results'.",
+      "tools": ["Stable Diffusion", "SD 1.5", "Prompt Engineering"]
+    },
+    {
+      "id": 29,
+      "episode": 4,
+      "type": "multiple-choice",
+      "question": "Which episode compares platforms showing that 'GitHub Pages has CORS limitations for API calls, while Netlify offers better support for dynamic functionality'?",
+      "options": [
+        "Building a Secure Feedback Form with Datadog Logs with Claude Code",
+        "From GTC to Website Building with AI Tools",
+        "YOLO Coding: Migrating from Static HTML to Astro with AI Tools",
+        "Using Claude Code for Automated HTML Updates and Styling"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Episode 4 compares hosting platforms, showing that 'GitHub Pages has CORS limitations for API calls, while Netlify offers better support for dynamic functionality'.",
+      "tools": ["GitHub Pages", "Netlify", "CORS", "API"]
+    },
+    {
+      "id": 30,
+      "episode": 5,
+      "type": "multiple-choice",
+      "question": "Which episode demonstrates that 'adding proper navigation and chapter markers enhances content accessibility' when updating websites with AI?",
+      "options": [
+        "Using Claude Code for Automated HTML Updates and Styling",
+        "Building a Secure Feedback Form with Datadog Logs with Claude Code",
+        "Enhancing CSS Editing with LLMs: Using Puppeteer for Visual Context",
+        "YOLO Coding: Migrating from Static HTML to Astro with AI Tools"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Episode 5 shows how 'adding proper navigation and chapter markers enhances content accessibility' and that 'Claude can read and understand complex HTML structures to make targeted changes'.",
+      "tools": ["Claude Code", "Navigation", "Accessibility"]
+    },
+    {
+      "id": 31,
+      "episode": 6,
+      "type": "multiple-choice",
+      "question": "Which episode shows that 'Cursor provides a more integrated experience than standard chat interfaces for coding tasks' when debugging applications?",
+      "options": [
+        "Using Cursor and Claude to Solve Record Search Bugs",
+        "Using Cursor and Claude to Fix CSS Layout Issues",
+        "Exploring Warp Terminal and Cursor for Productivity",
+        "Maximizing AI with Cursor: Building MCP Servers for Seamless Workflow"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Episode 6 demonstrates that 'Cursor provides a more integrated experience than standard chat interfaces for coding tasks' and shows how 'AI assistants can help debug code even on projects that haven't been maintained for months'.",
+      "tools": ["Cursor", "Claude", "Debugging"]
+    },
+    {
+      "id": 32,
+      "episode": 8,
+      "type": "multiple-choice",
+      "question": "Which episode specifically teaches that 'testing after each change is crucial to catch unintended side effects' when working with CSS?",
+      "options": [
+        "Using Cursor and Claude to Fix CSS Layout Issues",
+        "Enhancing CSS Editing with LLMs: Using Puppeteer for Visual Context",
+        "Using Claude Code for Automated HTML Updates and Styling",
+        "YOLO Coding: Migrating from Static HTML to Astro with AI Tools"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Episode 8 emphasizes that 'testing after each change is crucial to catch unintended side effects' and that 'CSS debugging often requires multiple iterations to resolve all related issues'.",
+      "tools": ["Cursor", "Claude", "CSS", "Testing"]
+    },
+    {
+      "id": 33,
+      "episode": 10,
+      "type": "multiple-choice",
+      "question": "Which episode explains that 'creating a detailed Project Requirements Document (PRD) before coding leads to higher quality AI output'?",
+      "options": [
+        "First Look at Windsurf & Model Context Protocol (MCP)",
+        "Cursor Rules, Firebase Studio, and the Evolving IDE Landscape",
+        "Maximizing AI with Cursor: Building MCP Servers for Seamless Workflow",
+        "The State of AI 2025: Exploring Developer Tools, Models, and Industry Trends"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Episode 10 teaches that 'creating a detailed Project Requirements Document (PRD) before coding leads to higher quality AI output' and discusses how 'AI models tend to have an attention span limit of around 30-45 minutes'.",
+      "tools": ["Windsurf", "PRD", "Project Planning"]
+    },
+    {
+      "id": 34,
+      "episode": 11,
+      "type": "multiple-choice",
+      "question": "Which episode reveals that 'despite large context windows, RAG (Retrieval Augmented Generation) remains valuable for cost efficiency'?",
+      "options": [
+        "Exploring Llama 4, OpenRouter, and Model Comparison Tools",
+        "Building a Lissajous Animation Using Gemini 2.5 Pro",
+        "Claude 3.7 Sonnet Plugins: AI Integration with Gmail, Drive and Calendar",
+        "The State of AI 2025: Exploring Developer Tools, Models, and Industry Trends"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Episode 11 explains that 'despite large context windows, RAG (Retrieval Augmented Generation) remains valuable for cost efficiency and performance optimization'.",
+      "tools": ["Llama 4", "RAG", "Context Windows"]
+    },
+    {
+      "id": 35,
+      "episode": 12,
+      "type": "multiple-choice",
+      "question": "Which episode discusses how 'major cloud providers (Google, Microsoft, Amazon) are each developing their own AI-powered development environments'?",
+      "options": [
+        "Cursor Rules, Firebase Studio, and the Evolving IDE Landscape",
+        "The State of AI 2025: Exploring Developer Tools, Models, and Industry Trends",
+        "First Look at Windsurf & Model Context Protocol (MCP)",
+        "From GTC to Website Building with AI Tools"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Episode 12 analyzes how 'major cloud providers (Google, Microsoft, Amazon) are each developing their own AI-powered development environments' and discusses 'API key management and security'.",
+      "tools": ["Firebase Studio", "Cloud Providers", "AI IDEs"]
+    },
+    {
+      "id": 36,
+      "episode": 13,
+      "type": "multiple-choice",
+      "question": "Which episode shows that a tool 'works with multiple frameworks including React, Next.js, and Expo' and offers 'both hosted and open-source versions'?",
+      "options": [
+        "Exploring Bolt: Rapid App Development with AI-Powered Templates",
+        "AI Tools in Action: Exploring Sora Image Generation and Lovable App Builder",
+        "Building client-side URL-based state apps using Claude 4 and Lovable",
+        "From GTC to Website Building with AI Tools"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Episode 13 shows that 'the tool works with multiple frameworks including React, Next.js, and Expo' and 'Bolt offers both hosted and open-source versions for different use cases'.",
+      "tools": ["Bolt", "React", "Next.js", "Expo"]
+    },
+    {
+      "id": 37,
+      "episode": 14,
+      "type": "multiple-choice",
+      "question": "Which episode demonstrates 'the system generates different insights on subsequent runs, showing varied approaches to inbox management'?",
+      "options": [
+        "Claude 3.7 Sonnet Plugins: AI Integration with Gmail, Drive and Calendar",
+        "Automating Content Transformation with N8N and Generative AI",
+        "Streamlining AI Report Analysis: Figma AI 2025 Insights",
+        "The State of AI 2025: Exploring Developer Tools, Models, and Industry Trends"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Episode 14 shows how 'the system generates different insights on subsequent runs, showing varied approaches to inbox management' and provides 'customized email filter recommendations with ready-to-use filter language'.",
+      "tools": ["Claude 3.7 Sonnet", "Gmail", "Email Management"]
+    },
+    {
+      "id": 38,
+      "episode": 15,
+      "type": "multiple-choice",
+      "question": "Which episode notes that 'the free tier of Lovable offers only five interactions per day' but highlights Supabase integration?",
+      "options": [
+        "AI Tools in Action: Exploring Sora Image Generation and Lovable App Builder",
+        "Building client-side URL-based state apps using Claude 4 and Lovable",
+        "Exploring Bolt: Rapid App Development with AI-Powered Templates",
+        "From GTC to Website Building with AI Tools"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Episode 15 reveals that 'the free tier of Lovable offers only five interactions per day' and 'Supabase is highlighted as a valuable database solution that integrates well with app-building tools'.",
+      "tools": ["Lovable", "Supabase", "App Building"]
+    },
+    {
+      "id": 39,
+      "episode": 16,
+      "type": "multiple-choice",
+      "question": "Which episode demonstrates that 'working in a test branch provides a safe environment for experimenting with AI-suggested CSS changes'?",
+      "options": [
+        "Enhancing CSS Editing with LLMs: Using Puppeteer for Visual Context",
+        "Using Cursor and Claude to Fix CSS Layout Issues",
+        "YOLO Coding: Migrating from Static HTML to Astro with AI Tools",
+        "Maximizing AI with Cursor: Building MCP Servers for Seamless Workflow"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Episode 16 shows that 'working in a test branch provides a safe environment for experimenting with AI-suggested CSS changes' and that 'the MCP (Model Control Protocol) server is essential'.",
+      "tools": ["Puppeteer", "MCP", "Git Branches", "CSS"]
+    },
+    {
+      "id": 40,
+      "episode": 17,
+      "type": "multiple-choice",
+      "question": "Which episode finds that 'according to DORA research, while generative AI provides individual productivity gains, it may actually have negative impacts on software delivery at organizational levels'?",
+      "options": [
+        "The State of AI 2025: Exploring Developer Tools, Models, and Industry Trends",
+        "From GTC to Website Building with AI Tools",
+        "Exploring Llama 4, OpenRouter, and Model Comparison Tools",
+        "Cursor Rules, Firebase Studio, and the Evolving IDE Landscape"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Episode 17 cites 'DORA research, while generative AI provides individual productivity gains, it may actually have negative impacts on software delivery at organizational levels, suggesting challenges in team integration'.",
+      "tools": ["DORA Research", "AI Impact", "Team Integration"]
+    },
+    {
+      "id": 41,
+      "episode": 20,
+      "type": "multiple-choice",
+      "question": "Which episode warns that 'AI models struggle with large files (like CSS) and special formats (like Base64), requiring workarounds'?",
+      "options": [
+        "YOLO Coding: Migrating from Static HTML to Astro with AI Tools",
+        "Enhancing CSS Editing with LLMs: Using Puppeteer for Visual Context",
+        "Using Cursor and Claude to Fix CSS Layout Issues",
+        "Claude Code findings with Rust and TypeScript through Ray Tracing projects"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Episode 20 identifies that 'AI models struggle with large files (like CSS) and special formats (like Base64), requiring workarounds or alternative approaches' during website migrations.",
+      "tools": ["AI Models", "CSS", "Base64", "File Limitations"]
+    },
+    {
+      "id": 42,
+      "episode": 27,
+      "type": "multiple-choice",
+      "question": "Which episode emphasizes that 'using detailed project logs can assist in identifying errors and improving workflow' in complex projects?",
+      "options": [
+        "Exploring Coding Efficiency: Utilizing Tmux and Claude Code for AI-Powered Ray Tracing",
+        "Claude Code findings with Rust and TypeScript through Ray Tracing projects",
+        "Maximizing AI with Cursor: Building MCP Servers for Seamless Workflow",
+        "YOLO Coding: Migrating from Static HTML to Astro with AI Tools"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Episode 27 teaches that 'using detailed project logs can assist in identifying errors and improving workflow' and emphasizes 'the utility of test coverage checks helps maintain code reliability during development'.",
+      "tools": ["Project Logs", "Error Tracking", "Test Coverage"]
+    },
+    {
+      "id": 43,
+      "episode": 28,
+      "type": "multiple-choice",
+      "question": "Which episode concludes that 'learning through hands-on experimentation fosters deeper understanding than theoretical study alone'?",
+      "options": [
+        "Exploring eBPF with AI Tools: Insights and Applications",
+        "Building a Lissajous Animation Using Gemini 2.5 Pro",
+        "Exploring Coding Efficiency: Utilizing Tmux and Claude Code for AI-Powered Ray Tracing",
+        "Claude Code findings with Rust and TypeScript through Ray Tracing projects"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Episode 28 teaches that 'learning through hands-on experimentation fosters deeper understanding than theoretical study alone' while exploring eBPF and system-level programming.",
+      "tools": ["eBPF", "Hands-on Learning", "Experimentation"]
+    },
+    {
+      "id": 44,
+      "episode": 30,
+      "type": "multiple-choice",
+      "question": "Which episode recommends to 'apply zero-trust principles to AI development - always verify outputs and pit different LLMs against each other'?",
+      "options": [
+        "Maximizing AI with Cursor: Building MCP Servers for Seamless Workflow",
+        "The State of AI 2025: Exploring Developer Tools, Models, and Industry Trends",
+        "First Look at Windsurf & Model Context Protocol (MCP)",
+        "Claude Code findings with Rust and TypeScript through Ray Tracing projects"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Episode 30 advises to 'apply zero-trust principles to AI development - always verify outputs and pit different LLMs against each other' and recommends 'building engineering journals that automatically capture Git commits, AI chats, and terminal commands'.",
+      "tools": ["Zero-trust", "AI Verification", "Engineering Journals"]
+    },
+    {
+      "id": 45,
+      "episode": 32,
+      "type": "multiple-choice",
+      "question": "Which episode reveals that 'for rote tasks (type definitions, data mapping, API clients, refactors) Claude saves hours, especially in TypeScript and Astro projects'?",
+      "options": [
+        "Claude Code findings with Rust and TypeScript through Ray Tracing projects",
+        "Using Claude Code for Automated HTML Updates and Styling",
+        "YOLO Coding: Migrating from Static HTML to Astro with AI Tools",
+        "Building a Secure Feedback Form with Datadog Logs with Claude Code"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Episode 32 finds that 'for rote tasks (type definitions, data mapping, API clients, refactors) Claude saves hours, especially in TypeScript and Astro projects' while noting challenges with 'complex build or tooling changes'.",
+      "tools": ["Claude Code", "TypeScript", "Astro", "Type Definitions"]
+    }
+  ]
+}

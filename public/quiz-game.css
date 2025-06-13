@@ -9,42 +9,99 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     min-height: 100vh;
+    height: 100vh;
     color: #333;
-    overflow-x: visible;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    padding-bottom: 85px; /* Account for smaller footer height + marquee lights clearance */
 }
 
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 20px;
-    min-height: 100vh;
+    padding: 10px;
+    padding-bottom: 30px; /* Extra padding to ensure marquee lights are visible */
+    height: calc(100vh - 85px); /* Subtract footer height + clearance */
     display: flex;
     flex-direction: column;
-    overflow: visible;
+    overflow: hidden;
+    box-sizing: border-box;
 }
 
-/* Header Styles */
+/* Header Styles - Hidden by default */
 .header {
+    display: none;
+}
+
+/* Footer Styles */
+.footer {
     background: rgba(255, 255, 255, 0.95);
     border-radius: 15px;
-    padding: 20px;
-    margin-bottom: 20px;
+    padding: 15px;
+    margin-top: 10px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(10px);
     position: relative;
     z-index: 1;
-    overflow: visible;
+    flex-shrink: 0;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.footer-nav {
+    position: relative;
+    z-index: 20;
+}
+
+.footer-title {
+    text-align: center;
+    color: #4a5568;
+    margin: 0;
+    font-size: 1.8rem;
+    font-weight: 700;
+    flex: 1;
 }
 
 /* Marquee Light Container */
 .marquee-lights {
     position: absolute;
-    top: -25px;
-    left: -25px;
-    right: -25px;
-    bottom: -25px;
+    top: 5px;
+    left: 5px;
+    right: 5px;
+    bottom: 5px;
     pointer-events: none;
     z-index: 10;
+    overflow: visible;
+}
+
+/* Start Screen positioning for marquee lights - removed conflicting display rule */
+#start-screen {
+    position: relative;
+}
+
+/* Game Screen simple layout - removed conflicting display rule */
+
+
+/* Game Stats Footer */
+.game-stats-mobile {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    padding: 15px;
+    margin-top: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    position: relative;
+    z-index: 1;
+    flex-shrink: 0;
 }
 
 /* Top Lights */
@@ -64,7 +121,7 @@ body {
     width: 16px;
     height: 16px;
     border-radius: 50%;
-    top: 2px;
+    top: -3px;
     box-shadow: 0 0 10px currentColor, inset 0 0 5px rgba(255, 255, 255, 0.3);
     border: 2px solid rgba(255, 255, 255, 0.2);
 }
@@ -86,7 +143,7 @@ body {
     width: 16px;
     height: 16px;
     border-radius: 50%;
-    bottom: 2px;
+    bottom: -3px;
     box-shadow: 0 0 10px currentColor, inset 0 0 5px rgba(255, 255, 255, 0.3);
     border: 2px solid rgba(255, 255, 255, 0.2);
 }
@@ -108,7 +165,7 @@ body {
     width: 16px;
     height: 16px;
     border-radius: 50%;
-    left: 2px;
+    left: -3px;
     box-shadow: 0 0 10px currentColor, inset 0 0 5px rgba(255, 255, 255, 0.3);
     border: 2px solid rgba(255, 255, 255, 0.2);
 }
@@ -130,7 +187,7 @@ body {
     width: 16px;
     height: 16px;
     border-radius: 50%;
-    right: 2px;
+    right: -3px;
     box-shadow: 0 0 10px currentColor, inset 0 0 5px rgba(255, 255, 255, 0.3);
     border: 2px solid rgba(255, 255, 255, 0.2);
 }
@@ -146,43 +203,121 @@ body {
 .light-cyan { color: #54a0ff; background: #54a0ff; }
 
 /* Individual Light Animations for Chasing Effect - Evenly Spaced Around Perimeter */
-/* Top Lights (11 lights) - Left to Right */
-.lights-top li:nth-child(1) { animation: lightChase 3.2s infinite ease-in-out; animation-delay: 0s; }
-.lights-top li:nth-child(2) { animation: lightChase 3.2s infinite ease-in-out; animation-delay: 0.1s; }
-.lights-top li:nth-child(3) { animation: lightChase 3.2s infinite ease-in-out; animation-delay: 0.2s; }
-.lights-top li:nth-child(4) { animation: lightChase 3.2s infinite ease-in-out; animation-delay: 0.3s; }
-.lights-top li:nth-child(5) { animation: lightChase 3.2s infinite ease-in-out; animation-delay: 0.4s; }
-.lights-top li:nth-child(6) { animation: lightChase 3.2s infinite ease-in-out; animation-delay: 0.5s; }
-.lights-top li:nth-child(7) { animation: lightChase 3.2s infinite ease-in-out; animation-delay: 0.6s; }
-.lights-top li:nth-child(8) { animation: lightChase 3.2s infinite ease-in-out; animation-delay: 0.7s; }
-.lights-top li:nth-child(9) { animation: lightChase 3.2s infinite ease-in-out; animation-delay: 0.8s; }
-.lights-top li:nth-child(10) { animation: lightChase 3.2s infinite ease-in-out; animation-delay: 0.9s; }
-.lights-top li:nth-child(11) { animation: lightChase 3.2s infinite ease-in-out; animation-delay: 1.0s; }
+/* Top Lights (39 lights) - Left to Right */
+.lights-top li:nth-child(1) { animation: lightChase 5s infinite ease-in-out; animation-delay: 0s; }
+.lights-top li:nth-child(2) { animation: lightChase 5s infinite ease-in-out; animation-delay: 0.05s; }
+.lights-top li:nth-child(3) { animation: lightChase 5s infinite ease-in-out; animation-delay: 0.1s; }
+.lights-top li:nth-child(4) { animation: lightChase 5s infinite ease-in-out; animation-delay: 0.15s; }
+.lights-top li:nth-child(5) { animation: lightChase 5s infinite ease-in-out; animation-delay: 0.2s; }
+.lights-top li:nth-child(6) { animation: lightChase 5s infinite ease-in-out; animation-delay: 0.25s; }
+.lights-top li:nth-child(7) { animation: lightChase 5s infinite ease-in-out; animation-delay: 0.3s; }
+.lights-top li:nth-child(8) { animation: lightChase 5s infinite ease-in-out; animation-delay: 0.35s; }
+.lights-top li:nth-child(9) { animation: lightChase 5s infinite ease-in-out; animation-delay: 0.4s; }
+.lights-top li:nth-child(10) { animation: lightChase 5s infinite ease-in-out; animation-delay: 0.45s; }
+.lights-top li:nth-child(11) { animation: lightChase 5s infinite ease-in-out; animation-delay: 0.5s; }
+.lights-top li:nth-child(12) { animation: lightChase 5s infinite ease-in-out; animation-delay: 0.55s; }
+.lights-top li:nth-child(13) { animation: lightChase 5s infinite ease-in-out; animation-delay: 0.6s; }
+.lights-top li:nth-child(14) { animation: lightChase 5s infinite ease-in-out; animation-delay: 0.65s; }
+.lights-top li:nth-child(15) { animation: lightChase 5s infinite ease-in-out; animation-delay: 0.7s; }
+.lights-top li:nth-child(16) { animation: lightChase 5s infinite ease-in-out; animation-delay: 0.75s; }
+.lights-top li:nth-child(17) { animation: lightChase 5s infinite ease-in-out; animation-delay: 0.8s; }
+.lights-top li:nth-child(18) { animation: lightChase 5s infinite ease-in-out; animation-delay: 0.85s; }
+.lights-top li:nth-child(19) { animation: lightChase 5s infinite ease-in-out; animation-delay: 0.9s; }
+.lights-top li:nth-child(20) { animation: lightChase 5s infinite ease-in-out; animation-delay: 0.95s; }
+.lights-top li:nth-child(21) { animation: lightChase 5s infinite ease-in-out; animation-delay: 1.0s; }
+.lights-top li:nth-child(22) { animation: lightChase 5s infinite ease-in-out; animation-delay: 1.05s; }
+.lights-top li:nth-child(23) { animation: lightChase 5s infinite ease-in-out; animation-delay: 1.1s; }
+.lights-top li:nth-child(24) { animation: lightChase 5s infinite ease-in-out; animation-delay: 1.15s; }
+.lights-top li:nth-child(25) { animation: lightChase 5s infinite ease-in-out; animation-delay: 1.2s; }
+.lights-top li:nth-child(26) { animation: lightChase 5s infinite ease-in-out; animation-delay: 1.25s; }
+.lights-top li:nth-child(27) { animation: lightChase 5s infinite ease-in-out; animation-delay: 1.3s; }
+.lights-top li:nth-child(28) { animation: lightChase 5s infinite ease-in-out; animation-delay: 1.35s; }
+.lights-top li:nth-child(29) { animation: lightChase 5s infinite ease-in-out; animation-delay: 1.4s; }
+.lights-top li:nth-child(30) { animation: lightChase 5s infinite ease-in-out; animation-delay: 1.45s; }
+.lights-top li:nth-child(31) { animation: lightChase 5s infinite ease-in-out; animation-delay: 1.5s; }
+.lights-top li:nth-child(32) { animation: lightChase 5s infinite ease-in-out; animation-delay: 1.55s; }
+.lights-top li:nth-child(33) { animation: lightChase 5s infinite ease-in-out; animation-delay: 1.6s; }
+.lights-top li:nth-child(34) { animation: lightChase 5s infinite ease-in-out; animation-delay: 1.65s; }
+.lights-top li:nth-child(35) { animation: lightChase 5s infinite ease-in-out; animation-delay: 1.7s; }
+.lights-top li:nth-child(36) { animation: lightChase 5s infinite ease-in-out; animation-delay: 1.75s; }
+.lights-top li:nth-child(37) { animation: lightChase 5s infinite ease-in-out; animation-delay: 1.8s; }
+.lights-top li:nth-child(38) { animation: lightChase 5s infinite ease-in-out; animation-delay: 1.85s; }
+.lights-top li:nth-child(39) { animation: lightChase 5s infinite ease-in-out; animation-delay: 1.9s; }
 
-/* Right Lights (4 lights) - Top to Bottom */
-.lights-right li:nth-child(1) { animation: lightChase 3.2s infinite ease-in-out; animation-delay: 1.1s; }
-.lights-right li:nth-child(2) { animation: lightChase 3.2s infinite ease-in-out; animation-delay: 1.2s; }
-.lights-right li:nth-child(3) { animation: lightChase 3.2s infinite ease-in-out; animation-delay: 1.3s; }
-.lights-right li:nth-child(4) { animation: lightChase 3.2s infinite ease-in-out; animation-delay: 1.4s; }
+/* Right Lights (15 lights) - Top to Bottom */
+.lights-right li:nth-child(1) { animation: lightChase 5s infinite ease-in-out; animation-delay: 1.95s; }
+.lights-right li:nth-child(2) { animation: lightChase 5s infinite ease-in-out; animation-delay: 2.0s; }
+.lights-right li:nth-child(3) { animation: lightChase 5s infinite ease-in-out; animation-delay: 2.05s; }
+.lights-right li:nth-child(4) { animation: lightChase 5s infinite ease-in-out; animation-delay: 2.1s; }
+.lights-right li:nth-child(5) { animation: lightChase 5s infinite ease-in-out; animation-delay: 2.15s; }
+.lights-right li:nth-child(6) { animation: lightChase 5s infinite ease-in-out; animation-delay: 2.2s; }
+.lights-right li:nth-child(7) { animation: lightChase 5s infinite ease-in-out; animation-delay: 2.25s; }
+.lights-right li:nth-child(8) { animation: lightChase 5s infinite ease-in-out; animation-delay: 2.3s; }
+.lights-right li:nth-child(9) { animation: lightChase 5s infinite ease-in-out; animation-delay: 2.35s; }
+.lights-right li:nth-child(10) { animation: lightChase 5s infinite ease-in-out; animation-delay: 2.4s; }
+.lights-right li:nth-child(11) { animation: lightChase 5s infinite ease-in-out; animation-delay: 2.45s; }
+.lights-right li:nth-child(12) { animation: lightChase 5s infinite ease-in-out; animation-delay: 2.5s; }
+.lights-right li:nth-child(13) { animation: lightChase 5s infinite ease-in-out; animation-delay: 2.55s; }
+.lights-right li:nth-child(14) { animation: lightChase 5s infinite ease-in-out; animation-delay: 2.6s; }
+.lights-right li:nth-child(15) { animation: lightChase 5s infinite ease-in-out; animation-delay: 2.65s; }
 
-/* Bottom Lights (11 lights) - Right to Left */
-.lights-bottom li:nth-child(1) { animation: lightChase 3.2s infinite ease-in-out; animation-delay: 1.5s; }
-.lights-bottom li:nth-child(2) { animation: lightChase 3.2s infinite ease-in-out; animation-delay: 1.6s; }
-.lights-bottom li:nth-child(3) { animation: lightChase 3.2s infinite ease-in-out; animation-delay: 1.7s; }
-.lights-bottom li:nth-child(4) { animation: lightChase 3.2s infinite ease-in-out; animation-delay: 1.8s; }
-.lights-bottom li:nth-child(5) { animation: lightChase 3.2s infinite ease-in-out; animation-delay: 1.9s; }
-.lights-bottom li:nth-child(6) { animation: lightChase 3.2s infinite ease-in-out; animation-delay: 2.0s; }
-.lights-bottom li:nth-child(7) { animation: lightChase 3.2s infinite ease-in-out; animation-delay: 2.1s; }
-.lights-bottom li:nth-child(8) { animation: lightChase 3.2s infinite ease-in-out; animation-delay: 2.2s; }
-.lights-bottom li:nth-child(9) { animation: lightChase 3.2s infinite ease-in-out; animation-delay: 2.3s; }
-.lights-bottom li:nth-child(10) { animation: lightChase 3.2s infinite ease-in-out; animation-delay: 2.4s; }
-.lights-bottom li:nth-child(11) { animation: lightChase 3.2s infinite ease-in-out; animation-delay: 2.5s; }
+/* Bottom Lights (39 lights) - Right to Left */
+.lights-bottom li:nth-child(1) { animation: lightChase 5s infinite ease-in-out; animation-delay: 2.7s; }
+.lights-bottom li:nth-child(2) { animation: lightChase 5s infinite ease-in-out; animation-delay: 2.75s; }
+.lights-bottom li:nth-child(3) { animation: lightChase 5s infinite ease-in-out; animation-delay: 2.8s; }
+.lights-bottom li:nth-child(4) { animation: lightChase 5s infinite ease-in-out; animation-delay: 2.85s; }
+.lights-bottom li:nth-child(5) { animation: lightChase 5s infinite ease-in-out; animation-delay: 2.9s; }
+.lights-bottom li:nth-child(6) { animation: lightChase 5s infinite ease-in-out; animation-delay: 2.95s; }
+.lights-bottom li:nth-child(7) { animation: lightChase 5s infinite ease-in-out; animation-delay: 3.0s; }
+.lights-bottom li:nth-child(8) { animation: lightChase 5s infinite ease-in-out; animation-delay: 3.05s; }
+.lights-bottom li:nth-child(9) { animation: lightChase 5s infinite ease-in-out; animation-delay: 3.1s; }
+.lights-bottom li:nth-child(10) { animation: lightChase 5s infinite ease-in-out; animation-delay: 3.15s; }
+.lights-bottom li:nth-child(11) { animation: lightChase 5s infinite ease-in-out; animation-delay: 3.2s; }
+.lights-bottom li:nth-child(12) { animation: lightChase 5s infinite ease-in-out; animation-delay: 3.25s; }
+.lights-bottom li:nth-child(13) { animation: lightChase 5s infinite ease-in-out; animation-delay: 3.3s; }
+.lights-bottom li:nth-child(14) { animation: lightChase 5s infinite ease-in-out; animation-delay: 3.35s; }
+.lights-bottom li:nth-child(15) { animation: lightChase 5s infinite ease-in-out; animation-delay: 3.4s; }
+.lights-bottom li:nth-child(16) { animation: lightChase 5s infinite ease-in-out; animation-delay: 3.45s; }
+.lights-bottom li:nth-child(17) { animation: lightChase 5s infinite ease-in-out; animation-delay: 3.5s; }
+.lights-bottom li:nth-child(18) { animation: lightChase 5s infinite ease-in-out; animation-delay: 3.55s; }
+.lights-bottom li:nth-child(19) { animation: lightChase 5s infinite ease-in-out; animation-delay: 3.6s; }
+.lights-bottom li:nth-child(20) { animation: lightChase 5s infinite ease-in-out; animation-delay: 3.65s; }
+.lights-bottom li:nth-child(21) { animation: lightChase 5s infinite ease-in-out; animation-delay: 3.7s; }
+.lights-bottom li:nth-child(22) { animation: lightChase 5s infinite ease-in-out; animation-delay: 3.75s; }
+.lights-bottom li:nth-child(23) { animation: lightChase 5s infinite ease-in-out; animation-delay: 3.8s; }
+.lights-bottom li:nth-child(24) { animation: lightChase 5s infinite ease-in-out; animation-delay: 3.85s; }
+.lights-bottom li:nth-child(25) { animation: lightChase 5s infinite ease-in-out; animation-delay: 3.9s; }
+.lights-bottom li:nth-child(26) { animation: lightChase 5s infinite ease-in-out; animation-delay: 3.95s; }
+.lights-bottom li:nth-child(27) { animation: lightChase 5s infinite ease-in-out; animation-delay: 4.0s; }
+.lights-bottom li:nth-child(28) { animation: lightChase 5s infinite ease-in-out; animation-delay: 4.05s; }
+.lights-bottom li:nth-child(29) { animation: lightChase 5s infinite ease-in-out; animation-delay: 4.1s; }
+.lights-bottom li:nth-child(30) { animation: lightChase 5s infinite ease-in-out; animation-delay: 4.15s; }
+.lights-bottom li:nth-child(31) { animation: lightChase 5s infinite ease-in-out; animation-delay: 4.2s; }
+.lights-bottom li:nth-child(32) { animation: lightChase 5s infinite ease-in-out; animation-delay: 4.25s; }
+.lights-bottom li:nth-child(33) { animation: lightChase 5s infinite ease-in-out; animation-delay: 4.3s; }
+.lights-bottom li:nth-child(34) { animation: lightChase 5s infinite ease-in-out; animation-delay: 4.35s; }
+.lights-bottom li:nth-child(35) { animation: lightChase 5s infinite ease-in-out; animation-delay: 4.4s; }
+.lights-bottom li:nth-child(36) { animation: lightChase 5s infinite ease-in-out; animation-delay: 4.45s; }
+.lights-bottom li:nth-child(37) { animation: lightChase 5s infinite ease-in-out; animation-delay: 4.5s; }
+.lights-bottom li:nth-child(38) { animation: lightChase 5s infinite ease-in-out; animation-delay: 4.55s; }
+.lights-bottom li:nth-child(39) { animation: lightChase 5s infinite ease-in-out; animation-delay: 4.6s; }
 
-/* Left Lights (4 lights) - Bottom to Top */
-.lights-left li:nth-child(1) { animation: lightChase 3.2s infinite ease-in-out; animation-delay: 2.6s; }
-.lights-left li:nth-child(2) { animation: lightChase 3.2s infinite ease-in-out; animation-delay: 2.7s; }
-.lights-left li:nth-child(3) { animation: lightChase 3.2s infinite ease-in-out; animation-delay: 2.8s; }
-.lights-left li:nth-child(4) { animation: lightChase 3.2s infinite ease-in-out; animation-delay: 2.9s; }
+/* Left Lights (15 lights) - Bottom to Top */
+.lights-left li:nth-child(1) { animation: lightChase 5s infinite ease-in-out; animation-delay: 4.65s; }
+.lights-left li:nth-child(2) { animation: lightChase 5s infinite ease-in-out; animation-delay: 4.7s; }
+.lights-left li:nth-child(3) { animation: lightChase 5s infinite ease-in-out; animation-delay: 4.75s; }
+.lights-left li:nth-child(4) { animation: lightChase 5s infinite ease-in-out; animation-delay: 4.8s; }
+.lights-left li:nth-child(5) { animation: lightChase 5s infinite ease-in-out; animation-delay: 4.85s; }
+.lights-left li:nth-child(6) { animation: lightChase 5s infinite ease-in-out; animation-delay: 4.9s; }
+.lights-left li:nth-child(7) { animation: lightChase 5s infinite ease-in-out; animation-delay: 4.95s; }
+.lights-left li:nth-child(8) { animation: lightChase 5s infinite ease-in-out; animation-delay: 0s; }
+.lights-left li:nth-child(9) { animation: lightChase 5s infinite ease-in-out; animation-delay: 0.05s; }
+.lights-left li:nth-child(10) { animation: lightChase 5s infinite ease-in-out; animation-delay: 0.1s; }
+.lights-left li:nth-child(11) { animation: lightChase 5s infinite ease-in-out; animation-delay: 0.15s; }
+.lights-left li:nth-child(12) { animation: lightChase 5s infinite ease-in-out; animation-delay: 0.2s; }
+.lights-left li:nth-child(13) { animation: lightChase 5s infinite ease-in-out; animation-delay: 0.25s; }
+.lights-left li:nth-child(14) { animation: lightChase 5s infinite ease-in-out; animation-delay: 0.3s; }
+.lights-left li:nth-child(15) { animation: lightChase 5s infinite ease-in-out; animation-delay: 0.35s; }
 
 @keyframes lightChase {
     0%, 90% { 
@@ -199,14 +334,6 @@ body {
 
 
 
-.header-nav {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    z-index: 20;
-}
-
-.header h1,
 .game-stats {
     position: relative;
     z-index: 10;
@@ -242,9 +369,10 @@ body {
 }
 
 .home-logo {
-    width: 24px;
-    height: 24px;
+    width: 20px;
+    height: 20px;
     object-fit: contain;
+    filter: brightness(1.1);
 }
 
 .home-text {
@@ -252,13 +380,7 @@ body {
     letter-spacing: 0.3px;
 }
 
-.header h1 {
-    text-align: center;
-    color: #4a5568;
-    margin-bottom: 15px;
-    font-size: 2.2rem;
-    font-weight: 700;
-}
+
 
 .game-stats {
     display: flex;
@@ -267,14 +389,96 @@ body {
     gap: 20px;
 }
 
+/* Global Game Stats Footer */
+.game-stats-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(90deg, 
+        #ff4757 0%,      /* red */
+        #ff6348 12.5%,   /* orange */
+        #feca57 25%,     /* yellow */
+        #48ca61 37.5%,   /* green */
+        #0abde3 50%,     /* blue */
+        #9c88ff 62.5%,   /* purple */
+        #ff9ff3 75%,     /* pink */
+        #54a0ff 87.5%,   /* cyan */
+        #ff4757 100%     /* red (loop) */
+    );
+    border-top: 2px solid rgba(255, 255, 255, 0.3);
+    padding: 11px 20px;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.footer-nav-left,
+.footer-nav-right {
+    flex: 0 0 auto;
+}
+
+.footer-stats {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex: 1;
+}
+
+.footer-nav-btn {
+    background: rgba(255, 255, 255, 0.9);
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 8px;
+    padding: 10px 16px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.footer-nav-btn:hover {
+    background: rgba(255, 255, 255, 1);
+    border-color: rgba(255, 255, 255, 0.8);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Specific styling for home button */
+#footer-home-btn {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+#footer-home-btn:hover {
+    background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+
 .stat {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 10px;
-    background: rgba(102, 126, 234, 0.1);
+    padding: 8px;
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.6);
     border-radius: 10px;
     min-width: 100px;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .stat-label {
@@ -289,20 +493,23 @@ body {
     color: #4a5568;
 }
 
-/* Screen Management */
+/* Screen Management - Ensure consistent visibility across all devices */
 .screen {
-    display: none;
+    display: none !important;
     flex: 1;
     background: rgba(255, 255, 255, 0.95);
     border-radius: 15px;
-    padding: 30px;
+    padding: 20px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(10px);
+    overflow: hidden;
+    min-height: 0;
 }
 
 .screen.active {
-    display: flex;
+    display: flex !important;
     flex-direction: column;
+    overflow: hidden;
 }
 
 /* Start Screen */
@@ -313,22 +520,22 @@ body {
 }
 
 .welcome-content h2 {
-    font-size: 2.5rem;
-    margin-bottom: 20px;
+    font-size: 2rem;
+    margin-bottom: 15px;
     color: #4a5568;
 }
 
 .welcome-content p {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     color: #666;
-    margin-bottom: 40px;
-    line-height: 1.6;
+    margin-bottom: 25px;
+    line-height: 1.5;
 }
 
 .game-options {
     display: grid;
-    gap: 20px;
-    margin-bottom: 40px;
+    gap: 15px;
+    margin-bottom: 25px;
     text-align: left;
 }
 
@@ -404,11 +611,12 @@ body {
 /* Game Screen */
 .progress-bar {
     width: 100%;
-    height: 8px;
+    height: 6px;
     background: #e2e8f0;
     border-radius: 4px;
-    margin-bottom: 30px;
+    margin-bottom: 15px;
     overflow: hidden;
+    flex-shrink: 0;
 }
 
 .progress-fill {
@@ -426,11 +634,17 @@ body {
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 12px;
     position: relative;
     overflow: hidden;
     border-radius: 15px;
     z-index: 2;
+    min-height: 0;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 20px;
+    margin: 10px 0;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
 }
 
 /* Liquid timer filling effect - realistic water */
@@ -1474,9 +1688,29 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     position: relative;
     z-index: 5;
+    flex-shrink: 0;
+}
+
+/* Center the main question content while keeping meta at top */
+.question-content {
+    align-items: stretch;
+}
+
+.question-text {
+    flex: 0 0 auto;
+    margin-bottom: auto;
+}
+
+.answer-options {
+    margin: auto 0;
+}
+
+.question-tools {
+    flex: 0 0 auto;
+    margin-top: auto;
 }
 
 .episode-tag, .question-type {
@@ -1497,34 +1731,41 @@ body {
 }
 
 .question-text {
-    font-size: 1.4rem;
-    line-height: 1.6;
+    font-size: 1.2rem;
+    line-height: 1.4;
     color: #2d3748;
-    margin-bottom: 30px;
+    margin-bottom: 15px;
     text-align: center;
     position: relative;
     z-index: 5;
+    flex-shrink: 0;
 }
 
 .answer-options {
     display: grid;
-    gap: 15px;
+    gap: 8px;
     max-width: 800px;
     margin: 0 auto;
+    padding-top: 20px;
     position: relative;
     z-index: 5;
+    flex: 0 1 auto;
+    overflow-y: auto;
+    min-height: 0;
+    max-height: 35vh;
 }
 
 .answer-option {
-    padding: 20px;
+    padding: 12px 15px;
     border: 2px solid #e2e8f0;
-    border-radius: 12px;
+    border-radius: 10px;
     cursor: pointer;
     transition: all 0.3s;
     background: white;
     text-align: left;
-    font-size: 1.1rem;
-    line-height: 1.5;
+    font-size: 1rem;
+    line-height: 1.3;
+    flex-shrink: 0;
 }
 
 .answer-option:hover {
@@ -1572,11 +1813,13 @@ body {
 .question-tools {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 8px;
     justify-content: center;
-    margin-top: 20px;
+    margin-top: 15px;
     position: relative;
-    z-index: 5;
+    z-index: 15;
+    flex-shrink: 0;
+    padding: 10px 0;
 }
 
 .tool-tag {
@@ -1586,6 +1829,73 @@ body {
     border-radius: 20px;
     font-size: 0.85rem;
     font-weight: 500;
+}
+
+/* Hint System Styles */
+.hint-button {
+    padding: 12px 20px;
+    background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+    color: #2d3748;
+    border: none;
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 10px rgba(255, 215, 0, 0.3);
+    position: relative;
+    z-index: 15;
+    margin: 0 auto;
+    display: block;
+}
+
+.hint-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+    background: linear-gradient(135deg, #ffed4e 0%, #ffd700 100%);
+}
+
+.hint-button:active {
+    transform: translateY(0);
+}
+
+.hint-used-message {
+    padding: 8px 16px;
+    background: rgba(102, 126, 234, 0.1);
+    color: #667eea;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-align: center;
+    position: relative;
+    z-index: 5;
+}
+
+/* Episode Hint Styles */
+.episode-hint-container {
+    background: rgba(255, 215, 0, 0.1);
+    border: 2px solid rgba(255, 215, 0, 0.3);
+    border-radius: 15px;
+    padding: 15px;
+    margin-top: 10px;
+    position: relative;
+    z-index: 5;
+}
+
+.episode-hint-item {
+    margin-bottom: 8px;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    color: #2d3748;
+}
+
+.episode-hint-item:last-child {
+    margin-bottom: 0;
+}
+
+.episode-hint-item strong {
+    color: #b8860b;
+    font-weight: 600;
 }
 
 /* Results Screen */
@@ -1822,22 +2132,358 @@ body {
     margin: 20px 0;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
+/* Game Stats Footer (shown on all devices) */
+.game-stats-mobile {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    background: rgba(255, 255, 255, 0.98);
+    border-radius: 20px;
+    padding: 12px 20px;
+    margin-top: 15px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    flex-shrink: 0;
+    border: 1px solid rgba(102, 126, 234, 0.15);
+    position: relative;
+    z-index: 10;
+}
+
+.game-stats-mobile .stat {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 10px;
+    background: rgba(102, 126, 234, 0.08);
+    border-radius: 12px;
+    min-width: auto;
+    flex: 1;
+    justify-content: center;
+    border: 1px solid rgba(102, 126, 234, 0.1);
+}
+
+.game-stats-mobile .stat-label {
+    font-size: 0.75rem;
+    color: #667eea;
+    margin-bottom: 0;
+    font-weight: 600;
+}
+
+.game-stats-mobile .stat-value {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #4a5568;
+}
+
+/* Home Button in Mobile Footer */
+.home-btn-mobile {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    background: rgba(138, 43, 226, 0.1);
+    border: 1px solid rgba(138, 43, 226, 0.2);
+    border-radius: 12px;
+    text-decoration: none;
+    color: #8a2be2;
+    font-weight: 600;
+    font-size: 0.8rem;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.home-btn-mobile:hover {
+    background: rgba(138, 43, 226, 0.2);
+    border-color: rgba(138, 43, 226, 0.4);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(138, 43, 226, 0.3);
+    text-decoration: none;
+    color: #8a2be2;
+}
+
+.home-logo-mobile {
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
+}
+
+.home-text-mobile {
+    font-weight: 600;
+    letter-spacing: 0.3px;
+}
+
+/* iPad Optimizations */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .container {
+        padding: 8px;
+        height: 100vh;
+        max-height: 100vh;
+        overflow: hidden;
+    }
+    
+    /* Ensure marquee lights are visible and sized appropriately on iPad */
+    .marquee-lights {
+        top: 3px;
+        left: 3px;
+        right: 3px;
+        bottom: 3px;
+    }
+    
+    .lights-top li,
+    .lights-bottom li,
+    .lights-left li,
+    .lights-right li {
+        width: 14px;
+        height: 14px;
+        border: 1.5px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    .header {
+        display: none; /* Hide entire header on iPad */
+    }
+    
+    .footer-title {
+        font-size: 1.4rem;
+    }
+    
+    .footer-content {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+    
+    .game-stats {
+        display: none; /* Hide header stats on iPad */
+    }
+    
+    .game-stats-mobile {
+        display: flex; /* Show mobile stats footer on iPad */
+        gap: 10px;
+        padding: 12px 18px;
+        margin-top: 15px;
+        border-radius: 18px;
+    }
+    
+    .game-stats-mobile .stat {
+        padding: 8px 12px;
+        gap: 6px;
+    }
+    
+    .game-stats-mobile .stat-label {
+        font-size: 0.8rem;
+    }
+    
+    .game-stats-mobile .stat-value {
+        font-size: 1rem;
+        font-weight: 700;
+    }
+    
+    .home-btn-mobile {
+        padding: 8px 14px;
+        gap: 6px;
+        font-size: 0.85rem;
+    }
+    
+    .home-logo-mobile {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .home-text-mobile {
+        display: inline; /* Show text on iPad */
+    }
+    
+    .stat {
+        padding: 8px;
+        min-width: 80px;
+    }
+    
+    .stat-value {
+        font-size: 1.3rem;
+    }
+    
+    .screen {
+        padding: 15px;
+        min-height: 0;
+        overflow: hidden;
+        max-height: calc(100vh - 140px);
+    }
+    
+    .welcome-content h2 {
+        font-size: 1.8rem;
+        margin-bottom: 12px;
+    }
+    
+    .welcome-content p {
+        font-size: 1rem;
+        margin-bottom: 20px;
+        line-height: 1.4;
+    }
+    
+    .question-content {
+        gap: 12px;
+        min-height: 0;
+        overflow: hidden;
+        align-items: stretch;
+    }
+    
+    .question-text {
+        font-size: 1.1rem;
+        line-height: 1.3;
+        margin-bottom: 12px;
+    }
+    
+    .answer-options {
+        gap: 6px;
+        overflow-y: auto;
+        max-height: 30vh;
+        flex: 0 1 auto;
+        min-height: 0;
+        padding-top: 15px;
+    }
+    
+    .answer-option {
+        padding: 10px 12px;
+        font-size: 0.95rem;
+        line-height: 1.3;
+    }
+    
+    .question-meta {
+        margin-bottom: 8px;
+    }
+    
+    .episode-tag, .question-type {
+        padding: 4px 10px;
+        font-size: 0.8rem;
+    }
+    
+    .question-tools {
+        margin-top: 8px;
+        gap: 6px;
+    }
+    
+    .hint-button {
+        padding: 10px 16px;
+        font-size: 0.9rem;
+    }
+    
+    .episode-hint-container {
+        padding: 12px;
+        margin-top: 8px;
+    }
+    
+    .episode-hint-item {
+        font-size: 0.9rem;
+        margin-bottom: 6px;
+    }
+    
+    .progress-bar {
+        height: 5px;
+        margin-bottom: 12px;
+    }
+    
+    .final-stats {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 15px;
+        margin-bottom: 25px;
+    }
+    
+    .stat-card {
+        padding: 20px;
+    }
+    
+    .stat-card .stat-number {
+        font-size: 2rem;
+    }
+    
+    .results-content h2 {
+        font-size: 2rem;
+        margin-bottom: 25px;
+    }
+    
+    .results-content {
+        overflow-y: auto;
+        max-height: 100%;
+    }
+    
+    .modal-content {
+        padding: 25px;
+        max-width: 500px;
+    }
+    
+    .feedback-result {
+        font-size: 1.6rem;
+    }
+    
+    .feedback-explanation {
+        margin: 15px 0;
+        padding: 15px;
+    }
+    
+    .leaderboard-content h2 {
+        font-size: 2rem;
+        margin-bottom: 20px;
+    }
+    
+    .leaderboard-table th,
+    .leaderboard-table td {
+        padding: 12px 10px;
+        font-size: 0.9rem;
+    }
+    
+    .name-entry {
+        margin-bottom: 20px;
+    }
+    
+    .name-entry input {
+        padding: 10px;
+        font-size: 0.95rem;
+    }
+    
+    .btn {
+        padding: 12px 25px;
+        font-size: 1rem;
+    }
+}
+
+/* iPhone Marquee Light Optimization */
+@media (max-width: 767px) {
+    /* Hide every other bulb on top and bottom for iPhone */
+    .lights-top li:nth-child(2n) {
+        display: none;
+    }
+    
+    .lights-bottom li:nth-child(2n) {
+        display: none;
+    }
+    
+    /* Keep all side lights visible on iPhone */
+    .lights-left li,
+    .lights-right li {
+        display: block;
+    }
+}
+
+/* Mobile Responsive Design */
+@media (max-width: 767px) {
     .container {
         padding: 10px;
     }
     
-    .header h1 {
-        font-size: 1.8rem;
-        margin-top: 10px;
+    .header {
+        display: none; /* Hide header on mobile too */
     }
     
-    .header-nav {
-        position: relative;
-        top: auto;
-        left: auto;
-        margin-bottom: 15px;
+    .footer-title {
+        font-size: 1.6rem;
+    }
+    
+    .footer-content {
+        flex-direction: column;
+        gap: 8px;
         text-align: center;
     }
     
@@ -1857,13 +2503,47 @@ body {
     }
     
     .game-stats {
-        flex-direction: column;
-        gap: 10px;
+        display: none; /* Hide header stats on mobile */
     }
     
-    .stat {
+    .game-stats-mobile {
+        display: flex; /* Show mobile stats on mobile */
+        flex-direction: row; /* Keep horizontal layout on mobile */
+        gap: 6px;
+        padding: 10px 12px;
+        margin-top: 12px;
+        border-radius: 16px;
+    }
+    
+    .game-stats-mobile .stat {
         min-width: auto;
-        width: 100%;
+        flex: 1;
+        padding: 6px 4px;
+        gap: 3px;
+    }
+    
+    .game-stats-mobile .stat-label {
+        font-size: 0.7rem;
+    }
+    
+    .game-stats-mobile .stat-value {
+        font-size: 0.8rem;
+        font-weight: 600;
+    }
+    
+    .home-btn-mobile {
+        padding: 6px 8px;
+        gap: 4px;
+        font-size: 0.7rem;
+    }
+    
+    .home-logo-mobile {
+        width: 16px;
+        height: 16px;
+    }
+    
+    .home-text-mobile {
+        display: none; /* Hide text on very small screens */
     }
     
     .welcome-content h2 {

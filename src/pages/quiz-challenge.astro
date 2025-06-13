@@ -10,68 +10,12 @@ const description = "Test your knowledge of AI tools and development practices";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{title}</title>
     <meta name="description" content={description}>
-    <link rel="stylesheet" href="/quiz-game.css">
+    <link rel="stylesheet" href="/quiz-game.css?v=2024-01-15-hide-header">
 </head>
 <body>
     <div class="container">
-        <!-- Header -->
+        <!-- Header Stats (visible on desktop, hidden on mobile/tablet) -->
         <header class="header">
-            <!-- Marquee Lights -->
-            <div class="marquee-lights">
-                <!-- Top Lights (12 lights evenly spaced) -->
-                <ul class="lights-top">
-                    <li class="light-red" style="left: 8.33%;"></li>
-                    <li class="light-orange" style="left: 16.67%;"></li>
-                    <li class="light-yellow" style="left: 25%;"></li>
-                    <li class="light-green" style="left: 33.33%;"></li>
-                    <li class="light-blue" style="left: 41.67%;"></li>
-                    <li class="light-purple" style="left: 50%;"></li>
-                    <li class="light-pink" style="left: 58.33%;"></li>
-                    <li class="light-cyan" style="left: 66.67%;"></li>
-                    <li class="light-red" style="left: 75%;"></li>
-                    <li class="light-orange" style="left: 83.33%;"></li>
-                    <li class="light-yellow" style="left: 91.67%;"></li>
-                </ul>
-                
-                <!-- Right Lights (4 lights evenly spaced) -->
-                <ul class="lights-right">
-                    <li class="light-green" style="top: 20%;"></li>
-                    <li class="light-blue" style="top: 40%;"></li>
-                    <li class="light-purple" style="top: 60%;"></li>
-                    <li class="light-pink" style="top: 80%;"></li>
-                </ul>
-                
-                <!-- Bottom Lights (12 lights evenly spaced, right to left) -->
-                <ul class="lights-bottom">
-                    <li class="light-cyan" style="left: 91.67%;"></li>
-                    <li class="light-red" style="left: 83.33%;"></li>
-                    <li class="light-orange" style="left: 75%;"></li>
-                    <li class="light-yellow" style="left: 66.67%;"></li>
-                    <li class="light-green" style="left: 58.33%;"></li>
-                    <li class="light-blue" style="left: 50%;"></li>
-                    <li class="light-purple" style="left: 41.67%;"></li>
-                    <li class="light-pink" style="left: 33.33%;"></li>
-                    <li class="light-cyan" style="left: 25%;"></li>
-                    <li class="light-red" style="left: 16.67%;"></li>
-                    <li class="light-orange" style="left: 8.33%;"></li>
-                </ul>
-                
-                <!-- Left Lights (4 lights evenly spaced, bottom to top) -->
-                <ul class="lights-left">
-                    <li class="light-yellow" style="top: 80%;"></li>
-                    <li class="light-green" style="top: 60%;"></li>
-                    <li class="light-blue" style="top: 40%;"></li>
-                    <li class="light-purple" style="top: 20%;"></li>
-                </ul>
-            </div>
-            
-            <div class="header-nav">
-                <a href="/" class="home-btn" title="Back to AI Tools Lab">
-                    <img src="/images/ai-tools-lab-logo.png" alt="AI Tools Lab Logo" class="home-logo">
-                    <span class="home-text">AI Tools Lab</span>
-                </a>
-            </div>
-            <h1>AI Tools Lab Quiz Challenge</h1>
             <div class="game-stats">
                 <div class="stat">
                     <span class="stat-label">Score:</span>
@@ -90,6 +34,133 @@ const description = "Test your knowledge of AI tools and development practices";
 
         <!-- Start Screen -->
         <div id="start-screen" class="screen active">
+            <!-- Marquee Lights Container -->
+            <div class="marquee-lights">
+                <!-- Top Lights -->
+                <ul class="lights-top">
+                    <li class="light-red" style="left: 2.5%;"></li>
+                    <li class="light-orange" style="left: 5%;"></li>
+                    <li class="light-yellow" style="left: 7.5%;"></li>
+                    <li class="light-green" style="left: 10%;"></li>
+                    <li class="light-blue" style="left: 12.5%;"></li>
+                    <li class="light-purple" style="left: 15%;"></li>
+                    <li class="light-pink" style="left: 17.5%;"></li>
+                    <li class="light-cyan" style="left: 20%;"></li>
+                    <li class="light-red" style="left: 22.5%;"></li>
+                    <li class="light-orange" style="left: 25%;"></li>
+                    <li class="light-yellow" style="left: 27.5%;"></li>
+                    <li class="light-green" style="left: 30%;"></li>
+                    <li class="light-blue" style="left: 32.5%;"></li>
+                    <li class="light-purple" style="left: 35%;"></li>
+                    <li class="light-pink" style="left: 37.5%;"></li>
+                    <li class="light-cyan" style="left: 40%;"></li>
+                    <li class="light-red" style="left: 42.5%;"></li>
+                    <li class="light-orange" style="left: 45%;"></li>
+                    <li class="light-yellow" style="left: 47.5%;"></li>
+                    <li class="light-green" style="left: 50%;"></li>
+                    <li class="light-blue" style="left: 52.5%;"></li>
+                    <li class="light-purple" style="left: 55%;"></li>
+                    <li class="light-pink" style="left: 57.5%;"></li>
+                    <li class="light-cyan" style="left: 60%;"></li>
+                    <li class="light-red" style="left: 62.5%;"></li>
+                    <li class="light-orange" style="left: 65%;"></li>
+                    <li class="light-yellow" style="left: 67.5%;"></li>
+                    <li class="light-green" style="left: 70%;"></li>
+                    <li class="light-blue" style="left: 72.5%;"></li>
+                    <li class="light-purple" style="left: 75%;"></li>
+                    <li class="light-pink" style="left: 77.5%;"></li>
+                    <li class="light-cyan" style="left: 80%;"></li>
+                    <li class="light-red" style="left: 82.5%;"></li>
+                    <li class="light-orange" style="left: 85%;"></li>
+                    <li class="light-yellow" style="left: 87.5%;"></li>
+                    <li class="light-green" style="left: 90%;"></li>
+                    <li class="light-blue" style="left: 92.5%;"></li>
+                    <li class="light-purple" style="left: 95%;"></li>
+                    <li class="light-pink" style="left: 97.5%;"></li>
+                </ul>
+
+                <!-- Right Lights -->
+                <ul class="lights-right">
+                    <li class="light-cyan" style="top: 6.67%;"></li>
+                    <li class="light-red" style="top: 13.33%;"></li>
+                    <li class="light-orange" style="top: 20%;"></li>
+                    <li class="light-yellow" style="top: 26.67%;"></li>
+                    <li class="light-green" style="top: 33.33%;"></li>
+                    <li class="light-blue" style="top: 40%;"></li>
+                    <li class="light-purple" style="top: 46.67%;"></li>
+                    <li class="light-pink" style="top: 53.33%;"></li>
+                    <li class="light-cyan" style="top: 60%;"></li>
+                    <li class="light-red" style="top: 66.67%;"></li>
+                    <li class="light-orange" style="top: 73.33%;"></li>
+                    <li class="light-yellow" style="top: 80%;"></li>
+                    <li class="light-green" style="top: 86.67%;"></li>
+                    <li class="light-blue" style="top: 93.33%;"></li>
+                    <li class="light-purple" style="top: 100%;"></li>
+                </ul>
+
+                <!-- Bottom Lights -->
+                <ul class="lights-bottom">
+                    <li class="light-cyan" style="right: 2.5%;"></li>
+                    <li class="light-pink" style="right: 5%;"></li>
+                    <li class="light-purple" style="right: 7.5%;"></li>
+                    <li class="light-blue" style="right: 10%;"></li>
+                    <li class="light-green" style="right: 12.5%;"></li>
+                    <li class="light-yellow" style="right: 15%;"></li>
+                    <li class="light-orange" style="right: 17.5%;"></li>
+                    <li class="light-red" style="right: 20%;"></li>
+                    <li class="light-cyan" style="right: 22.5%;"></li>
+                    <li class="light-pink" style="right: 25%;"></li>
+                    <li class="light-purple" style="right: 27.5%;"></li>
+                    <li class="light-blue" style="right: 30%;"></li>
+                    <li class="light-green" style="right: 32.5%;"></li>
+                    <li class="light-yellow" style="right: 35%;"></li>
+                    <li class="light-orange" style="right: 37.5%;"></li>
+                    <li class="light-red" style="right: 40%;"></li>
+                    <li class="light-cyan" style="right: 42.5%;"></li>
+                    <li class="light-pink" style="right: 45%;"></li>
+                    <li class="light-purple" style="right: 47.5%;"></li>
+                    <li class="light-blue" style="right: 50%;"></li>
+                    <li class="light-green" style="right: 52.5%;"></li>
+                    <li class="light-yellow" style="right: 55%;"></li>
+                    <li class="light-orange" style="right: 57.5%;"></li>
+                    <li class="light-red" style="right: 60%;"></li>
+                    <li class="light-cyan" style="right: 62.5%;"></li>
+                    <li class="light-pink" style="right: 65%;"></li>
+                    <li class="light-purple" style="right: 67.5%;"></li>
+                    <li class="light-blue" style="right: 70%;"></li>
+                    <li class="light-green" style="right: 72.5%;"></li>
+                    <li class="light-yellow" style="right: 75%;"></li>
+                    <li class="light-orange" style="right: 77.5%;"></li>
+                    <li class="light-red" style="right: 80%;"></li>
+                    <li class="light-cyan" style="right: 82.5%;"></li>
+                    <li class="light-pink" style="right: 85%;"></li>
+                    <li class="light-purple" style="right: 87.5%;"></li>
+                    <li class="light-blue" style="right: 90%;"></li>
+                    <li class="light-green" style="right: 92.5%;"></li>
+                    <li class="light-yellow" style="right: 95%;"></li>
+                    <li class="light-orange" style="right: 97.5%;"></li>
+                </ul>
+
+                <!-- Left Lights -->
+                <ul class="lights-left">
+                    <li class="light-orange" style="bottom: 6.67%;"></li>
+                    <li class="light-yellow" style="bottom: 13.33%;"></li>
+                    <li class="light-green" style="bottom: 20%;"></li>
+                    <li class="light-blue" style="bottom: 26.67%;"></li>
+                    <li class="light-purple" style="bottom: 33.33%;"></li>
+                    <li class="light-pink" style="bottom: 40%;"></li>
+                    <li class="light-cyan" style="bottom: 46.67%;"></li>
+                    <li class="light-red" style="bottom: 53.33%;"></li>
+                    <li class="light-orange" style="bottom: 60%;"></li>
+                    <li class="light-yellow" style="bottom: 66.67%;"></li>
+                    <li class="light-green" style="bottom: 73.33%;"></li>
+                    <li class="light-blue" style="bottom: 80%;"></li>
+                    <li class="light-purple" style="bottom: 86.67%;"></li>
+                    <li class="light-pink" style="bottom: 93.33%;"></li>
+                    <li class="light-cyan" style="bottom: 100%;"></li>
+                </ul>
+            </div>
+
             <div class="welcome-content">
                 <h2>Test Your AI Tools Knowledge!</h2>
                 <p>Challenge yourself with 5 multiple choice questions based on key takeaways from AI Tools Lab episodes. You'll have 30 seconds per question.</p>
@@ -111,38 +182,285 @@ const description = "Test your knowledge of AI tools and development practices";
 
         <!-- Game Screen -->
         <div id="game-screen" class="screen">
+            <!-- Marquee Lights Container -->
+            <div class="marquee-lights">
+                <!-- Top Lights -->
+                <ul class="lights-top">
+                    <li class="light-red" style="left: 2.5%;"></li>
+                    <li class="light-orange" style="left: 5%;"></li>
+                    <li class="light-yellow" style="left: 7.5%;"></li>
+                    <li class="light-green" style="left: 10%;"></li>
+                    <li class="light-blue" style="left: 12.5%;"></li>
+                    <li class="light-purple" style="left: 15%;"></li>
+                    <li class="light-pink" style="left: 17.5%;"></li>
+                    <li class="light-cyan" style="left: 20%;"></li>
+                    <li class="light-red" style="left: 22.5%;"></li>
+                    <li class="light-orange" style="left: 25%;"></li>
+                    <li class="light-yellow" style="left: 27.5%;"></li>
+                    <li class="light-green" style="left: 30%;"></li>
+                    <li class="light-blue" style="left: 32.5%;"></li>
+                    <li class="light-purple" style="left: 35%;"></li>
+                    <li class="light-pink" style="left: 37.5%;"></li>
+                    <li class="light-cyan" style="left: 40%;"></li>
+                    <li class="light-red" style="left: 42.5%;"></li>
+                    <li class="light-orange" style="left: 45%;"></li>
+                    <li class="light-yellow" style="left: 47.5%;"></li>
+                    <li class="light-green" style="left: 50%;"></li>
+                    <li class="light-blue" style="left: 52.5%;"></li>
+                    <li class="light-purple" style="left: 55%;"></li>
+                    <li class="light-pink" style="left: 57.5%;"></li>
+                    <li class="light-cyan" style="left: 60%;"></li>
+                    <li class="light-red" style="left: 62.5%;"></li>
+                    <li class="light-orange" style="left: 65%;"></li>
+                    <li class="light-yellow" style="left: 67.5%;"></li>
+                    <li class="light-green" style="left: 70%;"></li>
+                    <li class="light-blue" style="left: 72.5%;"></li>
+                    <li class="light-purple" style="left: 75%;"></li>
+                    <li class="light-pink" style="left: 77.5%;"></li>
+                    <li class="light-cyan" style="left: 80%;"></li>
+                    <li class="light-red" style="left: 82.5%;"></li>
+                    <li class="light-orange" style="left: 85%;"></li>
+                    <li class="light-yellow" style="left: 87.5%;"></li>
+                    <li class="light-green" style="left: 90%;"></li>
+                    <li class="light-blue" style="left: 92.5%;"></li>
+                    <li class="light-purple" style="left: 95%;"></li>
+                    <li class="light-pink" style="left: 97.5%;"></li>
+                </ul>
+
+                <!-- Right Lights -->
+                <ul class="lights-right">
+                    <li class="light-cyan" style="top: 6.67%;"></li>
+                    <li class="light-red" style="top: 13.33%;"></li>
+                    <li class="light-orange" style="top: 20%;"></li>
+                    <li class="light-yellow" style="top: 26.67%;"></li>
+                    <li class="light-green" style="top: 33.33%;"></li>
+                    <li class="light-blue" style="top: 40%;"></li>
+                    <li class="light-purple" style="top: 46.67%;"></li>
+                    <li class="light-pink" style="top: 53.33%;"></li>
+                    <li class="light-cyan" style="top: 60%;"></li>
+                    <li class="light-red" style="top: 66.67%;"></li>
+                    <li class="light-orange" style="top: 73.33%;"></li>
+                    <li class="light-yellow" style="top: 80%;"></li>
+                    <li class="light-green" style="top: 86.67%;"></li>
+                    <li class="light-blue" style="top: 93.33%;"></li>
+                    <li class="light-purple" style="top: 100%;"></li>
+                </ul>
+
+                <!-- Bottom Lights -->
+                <ul class="lights-bottom">
+                    <li class="light-cyan" style="right: 2.5%;"></li>
+                    <li class="light-pink" style="right: 5%;"></li>
+                    <li class="light-purple" style="right: 7.5%;"></li>
+                    <li class="light-blue" style="right: 10%;"></li>
+                    <li class="light-green" style="right: 12.5%;"></li>
+                    <li class="light-yellow" style="right: 15%;"></li>
+                    <li class="light-orange" style="right: 17.5%;"></li>
+                    <li class="light-red" style="right: 20%;"></li>
+                    <li class="light-cyan" style="right: 22.5%;"></li>
+                    <li class="light-pink" style="right: 25%;"></li>
+                    <li class="light-purple" style="right: 27.5%;"></li>
+                    <li class="light-blue" style="right: 30%;"></li>
+                    <li class="light-green" style="right: 32.5%;"></li>
+                    <li class="light-yellow" style="right: 35%;"></li>
+                    <li class="light-orange" style="right: 37.5%;"></li>
+                    <li class="light-red" style="right: 40%;"></li>
+                    <li class="light-cyan" style="right: 42.5%;"></li>
+                    <li class="light-pink" style="right: 45%;"></li>
+                    <li class="light-purple" style="right: 47.5%;"></li>
+                    <li class="light-blue" style="right: 50%;"></li>
+                    <li class="light-green" style="right: 52.5%;"></li>
+                    <li class="light-yellow" style="right: 55%;"></li>
+                    <li class="light-orange" style="right: 57.5%;"></li>
+                    <li class="light-red" style="right: 60%;"></li>
+                    <li class="light-cyan" style="right: 62.5%;"></li>
+                    <li class="light-pink" style="right: 65%;"></li>
+                    <li class="light-purple" style="right: 67.5%;"></li>
+                    <li class="light-blue" style="right: 70%;"></li>
+                    <li class="light-green" style="right: 72.5%;"></li>
+                    <li class="light-yellow" style="right: 75%;"></li>
+                    <li class="light-orange" style="right: 77.5%;"></li>
+                    <li class="light-red" style="right: 80%;"></li>
+                    <li class="light-cyan" style="right: 82.5%;"></li>
+                    <li class="light-pink" style="right: 85%;"></li>
+                    <li class="light-purple" style="right: 87.5%;"></li>
+                    <li class="light-blue" style="right: 90%;"></li>
+                    <li class="light-green" style="right: 92.5%;"></li>
+                    <li class="light-yellow" style="right: 95%;"></li>
+                    <li class="light-orange" style="right: 97.5%;"></li>
+                </ul>
+
+                <!-- Left Lights -->
+                <ul class="lights-left">
+                    <li class="light-orange" style="bottom: 6.67%;"></li>
+                    <li class="light-yellow" style="bottom: 13.33%;"></li>
+                    <li class="light-green" style="bottom: 20%;"></li>
+                    <li class="light-blue" style="bottom: 26.67%;"></li>
+                    <li class="light-purple" style="bottom: 33.33%;"></li>
+                    <li class="light-pink" style="bottom: 40%;"></li>
+                    <li class="light-cyan" style="bottom: 46.67%;"></li>
+                    <li class="light-red" style="bottom: 53.33%;"></li>
+                    <li class="light-orange" style="bottom: 60%;"></li>
+                    <li class="light-yellow" style="bottom: 66.67%;"></li>
+                    <li class="light-green" style="bottom: 73.33%;"></li>
+                    <li class="light-blue" style="bottom: 80%;"></li>
+                    <li class="light-purple" style="bottom: 86.67%;"></li>
+                    <li class="light-pink" style="bottom: 93.33%;"></li>
+                    <li class="light-cyan" style="bottom: 100%;"></li>
+                </ul>
+            </div>
+
             <div class="progress-bar">
                 <div class="progress-fill" id="progress-fill"></div>
             </div>
             
-            <div class="timer-display">
-                <div class="timer-circle">
-                    <span id="timer-countdown">30</span>
-                </div>
-            </div>
-            
+            <!-- Question Container with Liquid Timer Animation -->
             <div class="question-content">
                 <div class="question-meta">
                     <span class="episode-tag" id="episode-tag">Episode 1</span>
                     <span class="question-type" id="question-type">Multiple Choice</span>
                 </div>
-                
                 <h3 id="question-text" class="question-text">
                     Loading question...
                 </h3>
-                
                 <div id="answer-options" class="answer-options">
                     <!-- Answer options will be populated here -->
                 </div>
+                <div class="question-tools" id="question-tools">
+                    <!-- Hint button will be shown here -->
+                </div>
             </div>
             
-            <div class="question-tools" id="question-tools">
-                <!-- Related tools will be shown here -->
-            </div>
         </div>
 
         <!-- Results Screen -->
         <div id="results-screen" class="screen">
+            <!-- Marquee Lights Container -->
+            <div class="marquee-lights">
+                <!-- Top Lights -->
+                <ul class="lights-top">
+                    <li class="light-red" style="left: 2.5%;"></li>
+                    <li class="light-orange" style="left: 5%;"></li>
+                    <li class="light-yellow" style="left: 7.5%;"></li>
+                    <li class="light-green" style="left: 10%;"></li>
+                    <li class="light-blue" style="left: 12.5%;"></li>
+                    <li class="light-purple" style="left: 15%;"></li>
+                    <li class="light-pink" style="left: 17.5%;"></li>
+                    <li class="light-cyan" style="left: 20%;"></li>
+                    <li class="light-red" style="left: 22.5%;"></li>
+                    <li class="light-orange" style="left: 25%;"></li>
+                    <li class="light-yellow" style="left: 27.5%;"></li>
+                    <li class="light-green" style="left: 30%;"></li>
+                    <li class="light-blue" style="left: 32.5%;"></li>
+                    <li class="light-purple" style="left: 35%;"></li>
+                    <li class="light-pink" style="left: 37.5%;"></li>
+                    <li class="light-cyan" style="left: 40%;"></li>
+                    <li class="light-red" style="left: 42.5%;"></li>
+                    <li class="light-orange" style="left: 45%;"></li>
+                    <li class="light-yellow" style="left: 47.5%;"></li>
+                    <li class="light-green" style="left: 50%;"></li>
+                    <li class="light-blue" style="left: 52.5%;"></li>
+                    <li class="light-purple" style="left: 55%;"></li>
+                    <li class="light-pink" style="left: 57.5%;"></li>
+                    <li class="light-cyan" style="left: 60%;"></li>
+                    <li class="light-red" style="left: 62.5%;"></li>
+                    <li class="light-orange" style="left: 65%;"></li>
+                    <li class="light-yellow" style="left: 67.5%;"></li>
+                    <li class="light-green" style="left: 70%;"></li>
+                    <li class="light-blue" style="left: 72.5%;"></li>
+                    <li class="light-purple" style="left: 75%;"></li>
+                    <li class="light-pink" style="left: 77.5%;"></li>
+                    <li class="light-cyan" style="left: 80%;"></li>
+                    <li class="light-red" style="left: 82.5%;"></li>
+                    <li class="light-orange" style="left: 85%;"></li>
+                    <li class="light-yellow" style="left: 87.5%;"></li>
+                    <li class="light-green" style="left: 90%;"></li>
+                    <li class="light-blue" style="left: 92.5%;"></li>
+                    <li class="light-purple" style="left: 95%;"></li>
+                    <li class="light-pink" style="left: 97.5%;"></li>
+                </ul>
+
+                <!-- Right Lights -->
+                <ul class="lights-right">
+                    <li class="light-cyan" style="top: 6.67%;"></li>
+                    <li class="light-red" style="top: 13.33%;"></li>
+                    <li class="light-orange" style="top: 20%;"></li>
+                    <li class="light-yellow" style="top: 26.67%;"></li>
+                    <li class="light-green" style="top: 33.33%;"></li>
+                    <li class="light-blue" style="top: 40%;"></li>
+                    <li class="light-purple" style="top: 46.67%;"></li>
+                    <li class="light-pink" style="top: 53.33%;"></li>
+                    <li class="light-cyan" style="top: 60%;"></li>
+                    <li class="light-red" style="top: 66.67%;"></li>
+                    <li class="light-orange" style="top: 73.33%;"></li>
+                    <li class="light-yellow" style="top: 80%;"></li>
+                    <li class="light-green" style="top: 86.67%;"></li>
+                    <li class="light-blue" style="top: 93.33%;"></li>
+                    <li class="light-purple" style="top: 100%;"></li>
+                </ul>
+
+                <!-- Bottom Lights -->
+                <ul class="lights-bottom">
+                    <li class="light-cyan" style="right: 2.5%;"></li>
+                    <li class="light-pink" style="right: 5%;"></li>
+                    <li class="light-purple" style="right: 7.5%;"></li>
+                    <li class="light-blue" style="right: 10%;"></li>
+                    <li class="light-green" style="right: 12.5%;"></li>
+                    <li class="light-yellow" style="right: 15%;"></li>
+                    <li class="light-orange" style="right: 17.5%;"></li>
+                    <li class="light-red" style="right: 20%;"></li>
+                    <li class="light-cyan" style="right: 22.5%;"></li>
+                    <li class="light-pink" style="right: 25%;"></li>
+                    <li class="light-purple" style="right: 27.5%;"></li>
+                    <li class="light-blue" style="right: 30%;"></li>
+                    <li class="light-green" style="right: 32.5%;"></li>
+                    <li class="light-yellow" style="right: 35%;"></li>
+                    <li class="light-orange" style="right: 37.5%;"></li>
+                    <li class="light-red" style="right: 40%;"></li>
+                    <li class="light-cyan" style="right: 42.5%;"></li>
+                    <li class="light-pink" style="right: 45%;"></li>
+                    <li class="light-purple" style="right: 47.5%;"></li>
+                    <li class="light-blue" style="right: 50%;"></li>
+                    <li class="light-green" style="right: 52.5%;"></li>
+                    <li class="light-yellow" style="right: 55%;"></li>
+                    <li class="light-orange" style="right: 57.5%;"></li>
+                    <li class="light-red" style="right: 60%;"></li>
+                    <li class="light-cyan" style="right: 62.5%;"></li>
+                    <li class="light-pink" style="right: 65%;"></li>
+                    <li class="light-purple" style="right: 67.5%;"></li>
+                    <li class="light-blue" style="right: 70%;"></li>
+                    <li class="light-green" style="right: 72.5%;"></li>
+                    <li class="light-yellow" style="right: 75%;"></li>
+                    <li class="light-orange" style="right: 77.5%;"></li>
+                    <li class="light-red" style="right: 80%;"></li>
+                    <li class="light-cyan" style="right: 82.5%;"></li>
+                    <li class="light-pink" style="right: 85%;"></li>
+                    <li class="light-purple" style="right: 87.5%;"></li>
+                    <li class="light-blue" style="right: 90%;"></li>
+                    <li class="light-green" style="right: 92.5%;"></li>
+                    <li class="light-yellow" style="right: 95%;"></li>
+                    <li class="light-orange" style="right: 97.5%;"></li>
+                </ul>
+
+                <!-- Left Lights -->
+                <ul class="lights-left">
+                    <li class="light-orange" style="bottom: 6.67%;"></li>
+                    <li class="light-yellow" style="bottom: 13.33%;"></li>
+                    <li class="light-green" style="bottom: 20%;"></li>
+                    <li class="light-blue" style="bottom: 26.67%;"></li>
+                    <li class="light-purple" style="bottom: 33.33%;"></li>
+                    <li class="light-pink" style="bottom: 40%;"></li>
+                    <li class="light-cyan" style="bottom: 46.67%;"></li>
+                    <li class="light-red" style="bottom: 53.33%;"></li>
+                    <li class="light-orange" style="bottom: 60%;"></li>
+                    <li class="light-yellow" style="bottom: 66.67%;"></li>
+                    <li class="light-green" style="bottom: 73.33%;"></li>
+                    <li class="light-blue" style="bottom: 80%;"></li>
+                    <li class="light-purple" style="bottom: 86.67%;"></li>
+                    <li class="light-pink" style="bottom: 93.33%;"></li>
+                    <li class="light-cyan" style="bottom: 100%;"></li>
+                </ul>
+            </div>
+
             <div class="results-content">
                 <h2>Quiz Complete!</h2>
                 
@@ -179,6 +497,133 @@ const description = "Test your knowledge of AI tools and development practices";
 
         <!-- Leaderboard Screen -->
         <div id="leaderboard-screen" class="screen">
+            <!-- Marquee Lights Container -->
+            <div class="marquee-lights">
+                <!-- Top Lights -->
+                <ul class="lights-top">
+                    <li class="light-red" style="left: 2.5%;"></li>
+                    <li class="light-orange" style="left: 5%;"></li>
+                    <li class="light-yellow" style="left: 7.5%;"></li>
+                    <li class="light-green" style="left: 10%;"></li>
+                    <li class="light-blue" style="left: 12.5%;"></li>
+                    <li class="light-purple" style="left: 15%;"></li>
+                    <li class="light-pink" style="left: 17.5%;"></li>
+                    <li class="light-cyan" style="left: 20%;"></li>
+                    <li class="light-red" style="left: 22.5%;"></li>
+                    <li class="light-orange" style="left: 25%;"></li>
+                    <li class="light-yellow" style="left: 27.5%;"></li>
+                    <li class="light-green" style="left: 30%;"></li>
+                    <li class="light-blue" style="left: 32.5%;"></li>
+                    <li class="light-purple" style="left: 35%;"></li>
+                    <li class="light-pink" style="left: 37.5%;"></li>
+                    <li class="light-cyan" style="left: 40%;"></li>
+                    <li class="light-red" style="left: 42.5%;"></li>
+                    <li class="light-orange" style="left: 45%;"></li>
+                    <li class="light-yellow" style="left: 47.5%;"></li>
+                    <li class="light-green" style="left: 50%;"></li>
+                    <li class="light-blue" style="left: 52.5%;"></li>
+                    <li class="light-purple" style="left: 55%;"></li>
+                    <li class="light-pink" style="left: 57.5%;"></li>
+                    <li class="light-cyan" style="left: 60%;"></li>
+                    <li class="light-red" style="left: 62.5%;"></li>
+                    <li class="light-orange" style="left: 65%;"></li>
+                    <li class="light-yellow" style="left: 67.5%;"></li>
+                    <li class="light-green" style="left: 70%;"></li>
+                    <li class="light-blue" style="left: 72.5%;"></li>
+                    <li class="light-purple" style="left: 75%;"></li>
+                    <li class="light-pink" style="left: 77.5%;"></li>
+                    <li class="light-cyan" style="left: 80%;"></li>
+                    <li class="light-red" style="left: 82.5%;"></li>
+                    <li class="light-orange" style="left: 85%;"></li>
+                    <li class="light-yellow" style="left: 87.5%;"></li>
+                    <li class="light-green" style="left: 90%;"></li>
+                    <li class="light-blue" style="left: 92.5%;"></li>
+                    <li class="light-purple" style="left: 95%;"></li>
+                    <li class="light-pink" style="left: 97.5%;"></li>
+                </ul>
+
+                <!-- Right Lights -->
+                <ul class="lights-right">
+                    <li class="light-cyan" style="top: 6.67%;"></li>
+                    <li class="light-red" style="top: 13.33%;"></li>
+                    <li class="light-orange" style="top: 20%;"></li>
+                    <li class="light-yellow" style="top: 26.67%;"></li>
+                    <li class="light-green" style="top: 33.33%;"></li>
+                    <li class="light-blue" style="top: 40%;"></li>
+                    <li class="light-purple" style="top: 46.67%;"></li>
+                    <li class="light-pink" style="top: 53.33%;"></li>
+                    <li class="light-cyan" style="top: 60%;"></li>
+                    <li class="light-red" style="top: 66.67%;"></li>
+                    <li class="light-orange" style="top: 73.33%;"></li>
+                    <li class="light-yellow" style="top: 80%;"></li>
+                    <li class="light-green" style="top: 86.67%;"></li>
+                    <li class="light-blue" style="top: 93.33%;"></li>
+                    <li class="light-purple" style="top: 100%;"></li>
+                </ul>
+
+                <!-- Bottom Lights -->
+                <ul class="lights-bottom">
+                    <li class="light-cyan" style="right: 2.5%;"></li>
+                    <li class="light-pink" style="right: 5%;"></li>
+                    <li class="light-purple" style="right: 7.5%;"></li>
+                    <li class="light-blue" style="right: 10%;"></li>
+                    <li class="light-green" style="right: 12.5%;"></li>
+                    <li class="light-yellow" style="right: 15%;"></li>
+                    <li class="light-orange" style="right: 17.5%;"></li>
+                    <li class="light-red" style="right: 20%;"></li>
+                    <li class="light-cyan" style="right: 22.5%;"></li>
+                    <li class="light-pink" style="right: 25%;"></li>
+                    <li class="light-purple" style="right: 27.5%;"></li>
+                    <li class="light-blue" style="right: 30%;"></li>
+                    <li class="light-green" style="right: 32.5%;"></li>
+                    <li class="light-yellow" style="right: 35%;"></li>
+                    <li class="light-orange" style="right: 37.5%;"></li>
+                    <li class="light-red" style="right: 40%;"></li>
+                    <li class="light-cyan" style="right: 42.5%;"></li>
+                    <li class="light-pink" style="right: 45%;"></li>
+                    <li class="light-purple" style="right: 47.5%;"></li>
+                    <li class="light-blue" style="right: 50%;"></li>
+                    <li class="light-green" style="right: 52.5%;"></li>
+                    <li class="light-yellow" style="right: 55%;"></li>
+                    <li class="light-orange" style="right: 57.5%;"></li>
+                    <li class="light-red" style="right: 60%;"></li>
+                    <li class="light-cyan" style="right: 62.5%;"></li>
+                    <li class="light-pink" style="right: 65%;"></li>
+                    <li class="light-purple" style="right: 67.5%;"></li>
+                    <li class="light-blue" style="right: 70%;"></li>
+                    <li class="light-green" style="right: 72.5%;"></li>
+                    <li class="light-yellow" style="right: 75%;"></li>
+                    <li class="light-orange" style="right: 77.5%;"></li>
+                    <li class="light-red" style="right: 80%;"></li>
+                    <li class="light-cyan" style="right: 82.5%;"></li>
+                    <li class="light-pink" style="right: 85%;"></li>
+                    <li class="light-purple" style="right: 87.5%;"></li>
+                    <li class="light-blue" style="right: 90%;"></li>
+                    <li class="light-green" style="right: 92.5%;"></li>
+                    <li class="light-yellow" style="right: 95%;"></li>
+                    <li class="light-orange" style="right: 97.5%;"></li>
+                </ul>
+
+                <!-- Left Lights -->
+                <ul class="lights-left">
+                    <li class="light-orange" style="bottom: 6.67%;"></li>
+                    <li class="light-yellow" style="bottom: 13.33%;"></li>
+                    <li class="light-green" style="bottom: 20%;"></li>
+                    <li class="light-blue" style="bottom: 26.67%;"></li>
+                    <li class="light-purple" style="bottom: 33.33%;"></li>
+                    <li class="light-pink" style="bottom: 40%;"></li>
+                    <li class="light-cyan" style="bottom: 46.67%;"></li>
+                    <li class="light-red" style="bottom: 53.33%;"></li>
+                    <li class="light-orange" style="bottom: 60%;"></li>
+                    <li class="light-yellow" style="bottom: 66.67%;"></li>
+                    <li class="light-green" style="bottom: 73.33%;"></li>
+                    <li class="light-blue" style="bottom: 80%;"></li>
+                    <li class="light-purple" style="bottom: 86.67%;"></li>
+                    <li class="light-pink" style="bottom: 93.33%;"></li>
+                    <li class="light-cyan" style="bottom: 100%;"></li>
+                </ul>
+            </div>
+
             <div class="leaderboard-content">
                 <h2>Leaderboard</h2>
                 
@@ -227,6 +672,37 @@ const description = "Test your knowledge of AI tools and development practices";
                 </div>
                 <button id="next-question" class="btn btn-primary">Next Question</button>
             </div>
+        </div>
+    </div>
+
+    <!-- Global Game Stats Footer -->
+    <div id="game-stats-footer" class="game-stats-footer">
+        <div class="footer-nav-left">
+            <button id="footer-home-btn" class="footer-nav-btn" title="Return to AI Tools Lab">
+                <img src="/images/ai-tools-lab-logo.png" alt="AI Tools Lab" class="home-logo">
+                Home
+            </button>
+        </div>
+        
+        <div class="footer-stats">
+            <div class="stat">
+                <span class="stat-label">Score:</span>
+                <span id="footer-score" class="stat-value">0</span>
+            </div>
+            <div class="stat">
+                <span class="stat-label">Question:</span>
+                <span id="footer-question-counter" class="stat-value">1/5</span>
+            </div>
+            <div class="stat">
+                <span class="stat-label">Time:</span>
+                <span id="footer-timer" class="stat-value">30</span>
+            </div>
+        </div>
+        
+        <div class="footer-nav-right">
+            <button id="footer-restart-btn" class="footer-nav-btn" title="Start a new quiz">
+                🔄 New Game
+            </button>
         </div>
     </div>
     

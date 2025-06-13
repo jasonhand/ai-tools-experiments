@@ -13,14 +13,17 @@ class QuizGame {
         this.gameStartTime = null;
         this.questionStartTime = null;
         this.answered = false;
+        this.hintUsed = false; // Track if the one-time hint has been used
+        this.hintPenalty = 0; // Track hint penalty for current question
         
         this.initializeEventListeners();
         this.loadQuizData();
+        this.initializeFooterStats();
     }
 
     async loadQuizData() {
         try {
-            const response = await fetch('quiz-dataset.json');
+            const response = await fetch('quiz_dataset.json');
             const data = await response.json();
             this.allQuestions = data.questions;
             console.log(`Loaded ${this.allQuestions.length} questions`);
@@ -63,6 +66,17 @@ class QuizGame {
         
         // Feedback modal
         document.getElementById('next-question').addEventListener('click', () => this.nextQuestion());
+        
+        // Hint button
+        document.addEventListener('click', (e) => {
+            if (e.target.id === 'hint-button') {
+                this.useHint();
+            }
+        });
+        
+        // Footer navigation buttons
+        document.getElementById('footer-home-btn').addEventListener('click', () => this.goToHomePage());
+        document.getElementById('footer-restart-btn').addEventListener('click', () => this.restartGame());
     }
 
     startGame() {
@@ -130,6 +144,20 @@ class QuizGame {
         this.correctAnswers = 0;
         this.answered = false;
         this.timeLeft = 30;
+        this.hintUsed = false; // Reset hint for new game
+        
+        // Initialize footer stats
+        this.initializeFooterStats();
+    }
+    
+    initializeFooterStats() {
+        const footerScore = document.getElementById('footer-score');
+        const footerCounter = document.getElementById('footer-question-counter');
+        const footerTimer = document.getElementById('footer-timer');
+        
+        if (footerScore) footerScore.textContent = '0';
+        if (footerCounter) footerCounter.textContent = '1/5';
+        if (footerTimer) footerTimer.textContent = '30';
     }
 
     selectQuestions() {
@@ -175,8 +203,8 @@ class QuizGame {
         document.getElementById('question-type').textContent = 'Multiple Choice';
         document.getElementById('question-text').textContent = question.question;
         
-        // Display tools
-        this.displayTools(question.tools, 'question-tools');
+        // Hide episode context by default and show hint button
+        this.setupHintSystem(question);
         
         // Clear previous answers and display multiple choice options
         document.getElementById('answer-options').innerHTML = '';
@@ -245,6 +273,12 @@ class QuizGame {
         // Standard difficulty multiplier
         points = Math.floor(points * 1.2);
         
+        // Apply hint penalty if hint was used for this question
+        if (this.hintPenalty) {
+            points = Math.max(0, points - this.hintPenalty);
+            this.hintPenalty = 0; // Reset penalty after applying
+        }
+        
         return points;
     }
 
@@ -277,6 +311,80 @@ class QuizGame {
         });
     }
 
+    displayEpisodeHint(question, containerId) {
+        const container = document.getElementById(containerId);
+        container.innerHTML = '';
+        
+        // Extract episode title from the question text
+        const episodeTitle = this.extractEpisodeTitle(question.question);
+        
+        // Create hint container
+        const hintContainer = document.createElement('div');
+        hintContainer.className = 'episode-hint-container';
+        
+        // Episode title hint
+        if (episodeTitle) {
+            const titleHint = document.createElement('div');
+            titleHint.className = 'episode-hint-item';
+            titleHint.innerHTML = `<strong>Episode:</strong> ${episodeTitle}`;
+            hintContainer.appendChild(titleHint);
+        }
+        
+        // Extract mentioned tools from question and answers
+        const mentionedTools = this.extractMentionedTools(question);
+        if (mentionedTools.length > 0) {
+            const toolsHint = document.createElement('div');
+            toolsHint.className = 'episode-hint-item';
+            toolsHint.innerHTML = `<strong>Key Tools:</strong> ${mentionedTools.join(', ')}`;
+            hintContainer.appendChild(toolsHint);
+        }
+        
+        // Question type hint
+        const typeHint = document.createElement('div');
+        typeHint.className = 'episode-hint-item';
+        typeHint.innerHTML = `<strong>Focus:</strong> ${question.question.includes('best describes the focus') ? 'Episode Overview' : 'Key Takeaway'}`;
+        hintContainer.appendChild(typeHint);
+        
+        container.appendChild(hintContainer);
+    }
+
+    extractEpisodeTitle(questionText) {
+        // Look for episode title in quotes
+        const titleMatch = questionText.match(/titled ['"]([^'"]+)['"]/);
+        if (titleMatch) {
+            return titleMatch[1];
+        }
+        
+        // Look for episode number
+        const episodeMatch = questionText.match(/Episode (\d+)/);
+        if (episodeMatch) {
+            return `Episode ${episodeMatch[1]}`;
+        }
+        
+        return null;
+    }
+
+    extractMentionedTools(question) {
+        const toolKeywords = [
+            'Claude', 'Cursor', 'Lovable', 'N8N', 'Warp', 'Gemini', 'Bolt', 
+            'MCP', 'Puppeteer', 'Gmail', 'Google Drive', 'Calendar', 'OAuth',
+            'Automatic1111', 'Stable Diffusion', 'eBPF', 'Tmux', 'Helix',
+            'Gradio', 'Rust', 'TypeScript', 'Sora', 'Netlify'
+        ];
+        
+        const allText = [
+            question.question,
+            ...question.options
+        ].join(' ').toLowerCase();
+        
+        const foundTools = toolKeywords.filter(tool => 
+            allText.includes(tool.toLowerCase())
+        );
+        
+        // Remove duplicates and return
+        return [...new Set(foundTools)];
+    }
+
     nextQuestion() {
         document.getElementById('feedback-modal').classList.remove('active');
         this.currentQuestion++;
@@ -288,10 +396,20 @@ class QuizGame {
         
         // Start the liquid filling animation
         const questionContainer = document.querySelector('.question-content');
-        questionContainer.classList.add('timer-active');
-        
-        // Create bubble elements
-        this.createBubbles(questionContainer);
+        if (questionContainer) {
+            questionContainer.classList.remove('timer-active', 'timer-warning');
+            
+            // Force reflow to reset animations
+            questionContainer.offsetHeight;
+            
+            // Start the liquid animation
+            setTimeout(() => {
+                questionContainer.classList.add('timer-active');
+                
+                // Create bubble elements
+                this.createBubbles(questionContainer);
+            }, 100);
+        }
         
         this.updateTimerDisplay();
         
@@ -299,7 +417,7 @@ class QuizGame {
             this.timeLeft--;
             this.updateTimerDisplay();
             
-            if (this.timeLeft <= 5) {
+            if (this.timeLeft <= 5 && questionContainer) {
                 questionContainer.classList.add('timer-warning');
             }
             
@@ -362,6 +480,18 @@ class QuizGame {
         if (timerElement) {
             timerElement.textContent = this.timeLeft;
         }
+        
+        // Update mobile timer (if it exists)
+        const mobileTimer = document.getElementById('timer-mobile');
+        if (mobileTimer) {
+            mobileTimer.textContent = this.timeLeft;
+        }
+        
+        // Update footer timer
+        const footerTimer = document.getElementById('footer-timer');
+        if (footerTimer) {
+            footerTimer.textContent = this.timeLeft;
+        }
     }
 
     timeUp() {
@@ -377,9 +507,22 @@ class QuizGame {
     }
 
     updateGameStats() {
+        // Update header stats
         document.getElementById('current-score').textContent = this.score;
         document.getElementById('question-counter').textContent = 
             `${this.currentQuestion + 1}/5`;
+        
+        // Update mobile stats (if they exist)
+        const mobileScore = document.getElementById('current-score-mobile');
+        const mobileCounter = document.getElementById('question-counter-mobile');
+        if (mobileScore) mobileScore.textContent = this.score;
+        if (mobileCounter) mobileCounter.textContent = `${this.currentQuestion + 1}/5`;
+        
+        // Update footer stats
+        const footerScore = document.getElementById('footer-score');
+        const footerCounter = document.getElementById('footer-question-counter');
+        if (footerScore) footerScore.textContent = this.score;
+        if (footerCounter) footerCounter.textContent = `${this.currentQuestion + 1}/5`;
     }
 
     updateProgressBar() {
@@ -600,6 +743,66 @@ class QuizGame {
 
     showError(message) {
         alert(message); // Simple error handling for now
+    }
+
+    setupHintSystem(question) {
+        const container = document.getElementById('question-tools');
+        container.innerHTML = '';
+        
+        if (!this.hintUsed) {
+            // Show hint button at the top of the container
+            const hintButton = document.createElement('button');
+            hintButton.id = 'hint-button';
+            hintButton.className = 'hint-button';
+            hintButton.innerHTML = '💡 Use Hint (1 remaining)';
+            hintButton.title = 'Reveal episode context and key information';
+            container.appendChild(hintButton);
+        } else {
+            // Hint already used, show message
+            const hintMessage = document.createElement('div');
+            hintMessage.className = 'hint-used-message';
+            hintMessage.textContent = 'Hint already used this game';
+            container.appendChild(hintMessage);
+        }
+        
+        // Store question data for when hint is used
+        this.currentQuestionData = question;
+    }
+
+    useHint() {
+        if (this.hintUsed || this.answered) return;
+        
+        this.hintUsed = true;
+        
+        // Show episode context information
+        this.displayEpisodeHint(this.currentQuestionData, 'question-tools');
+        
+        // Add a small score penalty for using hint
+        this.hintPenalty = 25;
+    }
+    
+    goToHomePage() {
+        // Navigate to the main site index
+        window.location.href = '/';
+    }
+    
+    restartGame() {
+        // Reset to start screen for a new game
+        this.resetGameState();
+        this.showStartScreen();
+        
+        // Clear the name input
+        const nameInput = document.getElementById('player-name-start');
+        if (nameInput) {
+            nameInput.value = '';
+            nameInput.focus();
+        }
+        
+        // Hide any open modals
+        const modal = document.getElementById('feedback-modal');
+        if (modal) {
+            modal.classList.remove('active');
+        }
     }
 }
 
