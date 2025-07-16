@@ -215,7 +215,6 @@
             <nav>
                 <ul>
                     <li><a class='active' href='/'>Home</a></li>
-                    <li><a href='/articles'>Articles</a></li>
                     <li><a href='/observations'>Observations</a></li>
                     <li><a href='/about'>About</a></li>
                 </ul>
@@ -223,56 +222,13 @@
         </div>
     </header>
     
-    <div class="filter-container">
-        <div class="container">
-            <div class="episodes-filters">
-                <div class="filter-group index-filter-group">
-                    <div class="tag-buttons">
-                        <button class="tag-filter active" data-tag="all">All Tags</button>
-                        <button class="tag-filter" data-tag="ebpf">eBPF</button>
-                        <button class="tag-filter" data-tag="chatgpt">ChatGPT</button>
-                        <button class="tag-filter" data-tag="github-copilot">GitHub Copilot</button>
-                        <button class="tag-filter" data-tag="system-monitoring">System Monitoring</button>
-                        <button class="tag-filter" data-tag="tmux">Tmux</button>
-                        <button class="tag-filter" data-tag="claude-code">Claude Code</button>
-                        <button class="tag-filter" data-tag="terminal">Terminal</button>
-                        <button class="tag-filter" data-tag="helix">Helix</button>
-                        <button class="tag-filter" data-tag="stateofai">State of AI</button>
-                        <button class="tag-filter" data-tag="notebooklm">Notebook LM</button>
-                        <button class="tag-filter" data-tag="web-dev">Web Development</button>
-                        <button class="tag-filter" data-tag="ml-models">ML Models</button>
-                        <button class="tag-filter" data-tag="productivity">Productivity</button>
-                        <button class="tag-filter" data-tag="image-gen">Image Generation</button>
-                        <button class="tag-filter" data-tag="cursor">Cursor</button>
-                        <button class="tag-filter" data-tag="claude">Claude</button>
-                        <button class="tag-filter" data-tag="debugging">Debugging</button>
-                        <button class="tag-filter" data-tag="firebase">Firebase</button>
-                        <button class="tag-filter" data-tag="bolt">Bolt</button>
-                        <button class="tag-filter" data-tag="lovable">Lovable</button>
-                        <button class="tag-filter" data-tag="sora">Sora</button>
-                        <button class="tag-filter" data-tag="ai-development">AI Development</button>
-                        <button class="tag-filter" data-tag="puppeteer">Puppeteer</button>
-                        <button class="tag-filter" data-tag="mcp">MCP</button>
-                        <button class="tag-filter" data-tag="gemini">Gemini</button>
-                        <button class="tag-filter" data-tag="css">CSS</button>
-                        <button class="tag-filter" data-tag="astro">Astro</button>
-                        <button class="tag-filter" data-tag="n8n">N8N</button>
-                        <button class="tag-filter" data-tag="automation">Automation</button>
-                        <button class="tag-filter" data-tag="airtable">Airtable</button>
-                        <button class="tag-filter" data-tag="workflow">Workflow</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    
     <main class="container">
         <section id="featured-episode">
             <h2>Newest Episode</h2>
             <div class="featured-episode-container">
                 <div class="featured-episode-video">
-                    <a href='/episodes/ep30'>
-                        <img src="../images/thumbnails/ep30.png" alt="Maximizing AI with Cursor: Building MCP Servers for Seamless Workflow">
+                    <a href='/pages/ep28'>
+                        <img src="../images/thumbnails/ep28.png" alt="Exploring eBPF with AI Tools: Insights and Applications">
                         <div class="play-button-overlay">
                             <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="#ffffff">
                                 <path d="M8 5v14l11-7z"/>
@@ -281,16 +237,16 @@
                     </a>
                 </div>
                 <div class="featured-episode-content">
-                    <h3>Latest Episode: Maximizing AI with Cursor</h3>
-                    <h4>Building MCP Servers for Seamless Workflow</h4>
-                    <p>Whitney Lee shares her journey from a weekend of "vibe coding" with Cursor to building her own MCP server. She explores how AI tooling can support—not replace—human thinking, demonstrating the creation of an automated engineering journal system that captures Git commits, AI chats, and terminal commands.</p>
+                    <h3>Latest Episode: Exploring eBPF with AI Tools</h3>
+                    <h4>Insights and Applications</h4>
+                    <p>Scott Mabe takes us deep into the world of eBPF and demonstrates how generative AI tools can write programs to monitor system files like the shadow file, highlighting how AI assistance makes complex technologies more accessible.</p>
                     <div class="featured-episode-meta">
-                        <span class="recording-date">May 23, 2025</span>
+                        <span class="recording-date">May 8, 2025</span>
                         <div class="featured-episode-tags">
-                            <span class="tag">MCP</span>
-                            <span class="tag">Cursor</span>
-                            <span class="tag">AI Workflow</span>
-                            <span class="tag">Automation</span>
+                            <span class="tag">eBPF</span>
+                            <span class="tag">ChatGPT</span>
+                            <span class="tag">GitHub Copilot</span>
+                            <span class="tag">System Monitoring</span>
                         </div>
                     </div>
                 </div>
@@ -298,45 +254,20 @@
         </section>
         
         <section id="recordings">
-            <div class="episodes-intro">
-                <h2>All Episodes</h2>
-                <p>Browse through our complete collection of AI tools explorations and experiments. Use the tags above to filter episodes by topic.</p>
+                    <div class="episodes-intro">
+            <h2>All Videos</h2>
+                <p>Browse through our complete collection of AI tools explorations and experiments.</p>
             </div>
             
             <div class="recording-grid">
-                <div class="recording-card" data-category="exploration" data-tags="mcp,cursor,ai-workflow,automation">
-                    <a href='/episodes/ep30'>
-                        <div class="video-container">
-                            <img src="../images/thumbnails/ep30.png" alt="Recording 30 Thumbnail">
-                            <span class="featured-badge">Newest</span>
-                        </div>
-                        <div class="recording-card-content">
-                            <h3>Maximizing AI with Cursor: Building MCP Servers for Seamless Workflow</h3>
-                            <p>Whitney Lee shares her journey from experimenting with Cursor to building an MCP server that automates engineering journal creation. Learn how she integrated AI tools to enhance development workflows while maintaining human insight and learning.</p>
-                            <div class="recording-meta">
-                                <span class="recording-date">May 23, 2025</span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="recording-card" data-category="exploration" data-tags="gemini,ai-development,coding,visualization">
-                    <a href='/episodes/ep29'>
-                        <div class="video-container">
-                            <img src="../images/thumbnails/ep29.png" alt="Recording 29 Thumbnail">
-                        </div>
-                        <div class="recording-card-content">
-                            <h3>Exploring Gemini 2.5 Pro: A New AI Frontier</h3>
-                            <p>Jason Hand and Ryan MacLean explore the capabilities of Gemini 2.5 Pro, demonstrating its impressive features through hands-on examples including creating interactive mathematical visualizations and discussing its enhanced context handling capabilities.</p>
-                            <div class="recording-meta">
-                                <span class="recording-date">May 13, 2025</span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
+
+
+
                 <div class="recording-card" data-category="exploration" data-tags="ebpf,chatgpt,github-copilot,system-monitoring">
-                    <a href='/episodes/ep28'>
+                    <a href='/pages/ep28'>
                         <div class="video-container">
                             <img src="../images/thumbnails/ep28.png" alt="Recording 28 Thumbnail">
+                            <span class="featured-badge">Newest</span>
                         </div>
                         <div class="recording-card-content">
                             <h3>Exploring eBPF with AI Tools: Insights and Applications</h3>
@@ -347,50 +278,11 @@
                         </div>
                     </a>
                 </div>
-                <div class="recording-card" data-category="exploration" data-tags="tmux,claude-code,terminal,helix">
-                    <a href='/episodes/ep27'>
-                        <div class="video-container">
-                            <img src="../images/thumbnails/ep27.png" alt="Recording 27 Thumbnail">
-                        </div>
-                        <div class="recording-card-content">
-                            <h3>Exploring Coding Efficiency: Utilizing Tmux and Claude Code for AI-Powered Ray Tracing</h3>
-                            <p>Scott Gerring demonstrates his terminal-based development environment using Tmux, Helix, and Claude Code to create a ray tracer project with minimal human intervention, while ensuring code quality through test coverage checks.</p>
-                            <div class="recording-meta">
-                                <span class="recording-date">May 8, 2025</span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="recording-card" data-category="exploration" data-tags="n8n,automation,airtable,workflow">
-                    <a href='/episodes/ep26'>
-                        <div class="video-container">
-                            <img src="../images/thumbnails/ep26.png" alt="Recording 26 Thumbnail">
-                        </div>
-                        <div class="recording-card-content">
-                            <h3>Automating Content Transformation with N8N and Generative AI</h3>
-                            <p>Jason Hand demonstrates how to automate content creation workflows using N8N, generating follow-up questions from interviews, processing responses with AI, and automatically creating blog posts and images.</p>
-                            <div class="recording-meta">
-                                <span class="recording-date">May 7, 2025</span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="recording-card" data-category="exploration" data-tags="claude,stateofai,productivity">
-                    <a href='/episodes/ep24'>
-                        <div class="video-container">
-                            <img src="../images/thumbnails/ep24.png" alt="Recording 24 Thumbnail">
-                        </div>
-                        <div class="recording-card-content">
-                            <h3>Streamlining AI Report Analysis: Figma AI 2025 Insights</h3>
-                            <p>Learn how to efficiently analyze AI industry reports using Claude Desktop, create infographics from the data, and compare findings across multiple reports for a comprehensive view of AI trends.</p>
-                            <div class="recording-meta">
-                                <span class="recording-date">May 7, 2025</span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
+
+
+
                 <div class="recording-card" data-category="exploration" data-tags="puppeteer,mcp,gemini,claude,astro">
-                    <a href='/episodes/ep20'>
+                    <a href='/pages/ep20'>
                         <div class="video-container">
                             <img src="../images/thumbnails/ep20.png" alt="Recording 20 Thumbnail">
                         </div>
@@ -404,7 +296,7 @@
                     </a>
                 </div>
                 <div class="recording-card" data-category="exploration" data-tags="stateofai,notebooklm,claude,chatgpt">
-                    <a href='/episodes/ep17'>
+                    <a href='/pages/ep17'>
                         <div class="video-container">
                             <img src="../images/thumbnails/ep17.png" alt="Recording 17 Thumbnail">
                         </div>
@@ -418,7 +310,7 @@
                     </a>
                 </div>
                 <div class="recording-card" data-category="exploration" data-tags="puppeteer,mcp,gemini,css">
-                    <a href='/episodes/ep16'>
+                    <a href='/pages/ep16'>
                         <div class="video-container">
                             <img src="../images/thumbnails/ep16.png" alt="Recording 16 Thumbnail">
                         </div>
@@ -432,7 +324,7 @@
                     </a>
                 </div>
                 <div class="recording-card" data-category="exploration" data-tags="lovable,sora,image-gen,ai-development">
-                    <a href='/episodes/ep15'>
+                    <a href='/pages/ep15'>
                         <div class="video-container">
                             <img src="../images/thumbnails/ep15.png" alt="Recording 15 Thumbnail">
                         </div>
@@ -446,7 +338,7 @@
                     </a>
                 </div>
                 <div class="recording-card" data-category="exploration" data-tags="claude,plugins,productivity">
-                    <a href='/episodes/ep14'>
+                    <a href='/pages/ep14'>
                         <div class="video-container">
                             <img src="../images/thumbnails/ep14.png" alt="Recording 14 Thumbnail">
                         </div>
@@ -460,7 +352,7 @@
                     </a>
                 </div>
                 <div class="recording-card" data-category="exploration" data-tags="bolt,ai-development">
-                    <a href='/episodes/ep13'>
+                    <a href='/pages/ep13'>
                         <div class="video-container">
                             <img src="../images/thumbnails/ep13.png" alt="Recording 13 Thumbnail">
                         </div>
@@ -474,7 +366,7 @@
                     </a>
                 </div>
                 <div class="recording-card" data-category="exploration" data-tags="cursor,ml-models,productivity,firebase">
-                    <a href='/episodes/ep12'>
+                    <a href='/pages/ep12'>
                         <div class="video-container">
                             <img src="../images/thumbnails/ep12.png" alt="Recording 12 Thumbnail">
                         </div>
@@ -488,7 +380,7 @@
                     </a>
                 </div>
                 <div class="recording-card" data-category="exploration" data-tags="cursor,ml-models,productivity">
-                    <a href='/episodes/ep11'>
+                    <a href='/pages/ep11'>
                         <div class="video-container">
                             <img src="../images/thumbnails/ep11.png" alt="Recording 11 Thumbnail">
                         </div>
@@ -502,7 +394,7 @@
                     </a>
                 </div>
                 <div class="recording-card" data-category="guide" data-tags="web-dev">
-                    <a href='/episodes/ep10'>
+                    <a href='/pages/ep10'>
                         <div class="video-container">
                             <img src="../images/thumbnails/ep10.png" alt="Recording 10 Thumbnail">
                         </div>
@@ -516,7 +408,7 @@
                     </a>
                 </div>
                 <div class="recording-card" data-category="exploration" data-tags="web-dev">
-                    <a href='/episodes/ep09'>
+                    <a href='/pages/ep09'>
                         <div class="video-container">
                             <img src="../images/thumbnails/ep09.png" alt="Recording 9 Thumbnail">
                         </div>
@@ -530,7 +422,7 @@
                     </a>
                 </div>
                 <div class="recording-card" data-category="coding" data-tags="cursor,claude,debugging,web-dev">
-                    <a href='/episodes/ep08'>
+                    <a href='/pages/ep08'>
                         <div class="video-container">
                             <img src="../images/thumbnails/ep08.png" alt="Recording 8 Thumbnail">
                         </div>
@@ -544,7 +436,7 @@
                     </a>
                 </div>
                 <div class="recording-card" data-category="coding" data-tags="cursor,claude,debugging">
-                    <a href='/episodes/ep07'>
+                    <a href='/pages/ep07'>
                         <div class="video-container">
                             <img src="../images/thumbnails/ep07.png" alt="Recording 7 Thumbnail">
                         </div>
@@ -558,7 +450,7 @@
                     </a>
                 </div>
                 <div class="recording-card" data-category="demo" data-tags="web-dev,claude">
-                    <a href='/episodes/ep06'>
+                    <a href='/pages/ep06'>
                         <div class="video-container">
                             <img src="../images/thumbnails/ep06.png" alt="Recording 6 Thumbnail">
                         </div>
@@ -572,7 +464,7 @@
                     </a>
                 </div>
                 <div class="recording-card" data-category="demo" data-tags="web-dev,claude">
-                    <a href='/episodes/ep05'>
+                    <a href='/pages/ep05'>
                         <div class="video-container">
                             <img src="../images/thumbnails/ep05.png" alt="Recording 5 Thumbnail">
                         </div>
@@ -586,7 +478,7 @@
                     </a>
                 </div>
                 <div class="recording-card" data-category="tutorial" data-tags="web-dev,claude">
-                    <a href='/episodes/ep04'>
+                    <a href='/pages/ep04'>
                         <div class="video-container">
                             <img src="../images/thumbnails/ep04.png" alt="Recording 4 Thumbnail">
                         </div>
@@ -600,7 +492,7 @@
                     </a>
                 </div>
                 <div class="recording-card" data-category="guide" data-tags="image-gen">
-                    <a href='/episodes/ep03'>
+                    <a href='/pages/ep03'>
                         <div class="video-container">
                             <img src="../images/thumbnails/ep03.png" alt="Recording 3 Thumbnail">
                         </div>
@@ -614,7 +506,7 @@
                     </a>
                 </div>
                 <div class="recording-card" data-category="exploration" data-tags="productivity,cursor">
-                    <a href='/episodes/ep02'>
+                    <a href='/pages/ep02'>
                         <div class="video-container">
                             <img src="../images/thumbnails/ep02.png" alt="Recording 2 Thumbnail">
                         </div>
@@ -628,7 +520,7 @@
                     </a>
                 </div>
                 <div class="recording-card" data-category="tutorial" data-tags="web-dev,ml-models">
-                    <a href='/episodes/ep01'>
+                    <a href='/pages/ep01'>
                         <div class="video-container">
                             <img src="../images/thumbnails/ep01.png" alt="Recording 1 Thumbnail">
                         </div>
@@ -658,7 +550,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-logo">
-                    <img src="../images/ai-tools-lab-logo.png" alt="AI Tools Lab Logo" class="footer-logo-img">
+                    
                     <div>
                         <h2>AI Tools Lab</h2>
                         <p>Exploring the landscape of AI tools and technologies</p>
@@ -668,7 +560,6 @@
                     <h3>Quick Links</h3>
                     <ul>
                         <li><a href='/'>Home</a></li>
-                        <li><a href='/resources'>Resources</a></li>
                         <li><a href='/observations'>Observations</a></li>
                         <li><a href='/about'>About</a></li>
                     </ul>
@@ -691,3 +582,4 @@
     <script src="../script.js"></script>
 </body>
 </html>
+

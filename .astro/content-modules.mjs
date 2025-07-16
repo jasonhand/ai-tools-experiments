@@ -25,5 +25,10 @@ export default new Map([
 ["src/content/episodes/ep29.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fepisodes%2Fep29.mdx&astroContentModuleFlag=true")],
 ["src/content/episodes/ep30.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fepisodes%2Fep30.mdx&astroContentModuleFlag=true")],
 ["src/content/episodes/ep31.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fepisodes%2Fep31.mdx&astroContentModuleFlag=true")],
-["src/content/episodes/ep32.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fepisodes%2Fep32.mdx&astroContentModuleFlag=true")]]);
+["src/content/episodes/ep32.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fepisodes%2Fep32.mdx&astroContentModuleFlag=true")],
+["src/content/episodes/ep33.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fepisodes%2Fep33.mdx&astroContentModuleFlag=true")],
+["src/content/episodes/ep34.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fepisodes%2Fep34.mdx&astroContentModuleFlag=true")],
+["src/content/episodes/ep35.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fepisodes%2Fep35.mdx&astroContentModuleFlag=true")],
+["src/content/episodes/ep36.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fepisodes%2Fep36.mdx&astroContentModuleFlag=true")],
+["src/content/episodes/ep37.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fepisodes%2Fep37.mdx&astroContentModuleFlag=true")]]);
 		

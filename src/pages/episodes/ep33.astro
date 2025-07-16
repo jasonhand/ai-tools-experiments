@@ -1,0 +1,12 @@
+---
+import { getEntry } from 'astro:content';
+import ContentCollectionEpisodeLayout from '../../layouts/ContentCollectionEpisodeLayout.astro';
+
+const episode = await getEntry('episodes', 'ep33');
+
+if (!episode) {
+  throw new Error('Episode 33 not found');
+}
+---
+
+<ContentCollectionEpisodeLayout episode={episode} /> 

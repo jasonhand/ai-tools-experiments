@@ -1,0 +1,75 @@
+---
+title: "Building Remote MCP Servers with AWS Lambda and Serverless Architecture"
+description: "James Eastham demonstrates how to build and deploy remote MCP servers using AWS Lambda, showing how serverless architecture provides the perfect environment for conversational AI interfaces with proper observability and security."
+heroImg: "../images/thumbnails/ep34.png"
+videoId: "6kJM55AYyCg"
+episodeNumber: 34
+date: "2025-01-15T00:00:00.000Z"
+author: "jasonhand24@gmail.com"
+participants: ["Jason Hand", "James Eastham"]
+tags: ["mcp-servers", "aws-lambda", "serverless", "observability", "ai-integration"]
+
+takeaways:
+  - text: "Serverless architecture is ideal for remote MCP servers due to unpredictable workloads and infinite scalability"
+    tools: ["AWS Lambda", "Serverless", "MCP Servers"]
+  - text: "Lambda Web Adapter enables running any web application on Lambda without traditional Lambda handlers"
+    tools: ["AWS Lambda", "Lambda Web Adapter", "Express.js"]
+  - text: "Remote MCP servers can act as API gateways, proxying requests to downstream microservices"
+    tools: ["MCP Servers", "API Gateway", "Microservices"]
+  - text: "Datadog Lambda instrumentation provides automatic observability without code changes"
+    tools: ["Datadog", "AWS Lambda", "Observability"]
+  - text: "MCP servers require proper authentication and security considerations despite conversational interfaces"
+    tools: ["MCP Servers", "Authentication", "Security"]
+  - text: "Cost considerations include double-paying for compute when proxying between serverless functions"
+    tools: ["AWS Lambda", "Cost Optimization", "Serverless"]
+
+resources:
+  - name: "AWS MCP Server Samples"
+    url: "https://github.com/aws-samples/serverless-mcp-servers"
+    description: "AWS sample implementations for running MCP servers on serverless platforms"
+  - name: "Lambda Web Adapter"
+    url: "https://github.com/awslabs/aws-lambda-web-adapter"
+    description: "GitHub repository for the Lambda Web Adapter that enables running web apps on Lambda"
+  - name: "MCP Remote Package"
+    url: "https://github.com/modelcontextprotocol/js-remote"
+    description: "JavaScript package for connecting to remote MCP servers"
+  - name: "Datadog Lambda Instrumentation"
+    url: "https://docs.datadoghq.com/serverless/installation/nodejs/"
+    description: "Documentation for instrumenting AWS Lambda functions with Datadog"
+
+jumpTo:
+  - title: "Introduction to remote MCP servers and serverless architecture"
+    url: "https://youtu.be/6kJM55AYyCg?t=0"
+    timestamp: "00:00:00"
+  - title: "James explains the serverless e-commerce sample application"
+    url: "https://youtu.be/6kJM55AYyCg?t=120"
+    timestamp: "00:02:00"
+  - title: "Configuring Claude Desktop with remote MCP server integration"
+    url: "https://youtu.be/6kJM55AYyCg?t=180"
+    timestamp: "00:03:00"
+  - title: "Demonstrating conversational interface with product queries"
+    url: "https://youtu.be/6kJM55AYyCg?t=300"
+    timestamp: "00:05:00"
+  - title: "Exploring the Express.js MCP server implementation"
+    url: "https://youtu.be/6kJM55AYyCg?t=540"
+    timestamp: "00:09:00"
+  - title: "Understanding the MCP server as API gateway pattern"
+    url: "https://youtu.be/6kJM55AYyCg?t=780"
+    timestamp: "00:13:00"
+  - title: "Cost and performance considerations for serverless MCP servers"
+    url: "https://youtu.be/6kJM55AYyCg?t=900"
+    timestamp: "00:15:00"
+  - title: "Datadog observability and tracing demonstration"
+    url: "https://youtu.be/6kJM55AYyCg?t=1020"
+    timestamp: "00:17:00"
+  - title: "Lambda Web Adapter explanation and benefits"
+    url: "https://youtu.be/6kJM55AYyCg?t=1320"
+    timestamp: "00:22:00"
+  - title: "Final demonstration of order creation through conversational interface"
+    url: "https://youtu.be/6kJM55AYyCg?t=1500"
+    timestamp: "00:25:00"
+
+summary: "James Eastham demonstrates the power of remote MCP servers in serverless environments, showing how AWS Lambda provides the perfect platform for conversational AI interfaces. He walks through building a complete e-commerce application with MCP integration, from Express.js implementation to Claude Desktop configuration. The episode covers practical considerations including cost optimization, security authentication, and observability with Datadog tracing. Perfect for developers interested in building conversational interfaces that integrate with existing microservices architectures and understanding the trade-offs between traditional APIs and MCP-based solutions."
+---
+
+James Eastham demonstrates the power of remote MCP servers in serverless environments, showing how AWS Lambda provides the perfect platform for conversational AI interfaces. He walks through building a complete e-commerce application with MCP integration, from Express.js implementation to Claude Desktop configuration. The episode covers practical considerations including cost optimization, security authentication, and observability with Datadog tracing. Perfect for developers interested in building conversational interfaces that integrate with existing microservices architectures and understanding the trade-offs between traditional APIs and MCP-based solutions. 

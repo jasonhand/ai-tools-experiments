@@ -2,6 +2,10 @@
 
 ![image](https://github.com/user-attachments/assets/9e985980-4722-48d7-9cca-9caf4d3948d3)
 
+## 📊 Monitoring
+
+Get free monitoring for this project with [Datadog](https://www.datadoghq.com/dg/monitor/free-trial-b/?utm_source=jhand_demo)
+
 # What is This? 
 
 ~30-40 minute recorded technical demonstrations of hands-on (early or first) experiences with AI-related tooling for developers.
