@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Understanding Technical Debt in the AI Era: Balancing Speed, Cost, and Quality</title>
+    <meta name="description" content="In this episode, Jason Hand explores the concept of technical debt in the context of generative AI development. He presents a simplified visual model to understand how technical debt arises from imbalances between speed, cost, and quality considerations. The discussion covers how startups, enterprises, and bootstrapped projects each face different technical debt challenges based on their priorities. Jason demonstrates a custom web application built with Claude to visualize technical debt concepts, showing how AI tools can be used to create educational resources for complex topics. The episode emphasizes the importance of considering maintainability and scalability as additional factors in modern cloud development, and how rapid AI-assisted development requires careful consideration of long-term technical debt implications.">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Understanding Technical Debt in the AI Era: Balancing Speed, Cost, and Quality">
+    <meta property="og:description" content="In this episode, Jason Hand explores the concept of technical debt in the context of generative AI development. He presents a simplified visual model to understand how technical debt arises from imbalances between speed, cost, and quality considerations. The discussion covers how startups, enterprises, and bootstrapped projects each face different technical debt challenges based on their priorities. Jason demonstrates a custom web application built with Claude to visualize technical debt concepts, showing how AI tools can be used to create educational resources for complex topics. The episode emphasizes the importance of considering maintainability and scalability as additional factors in modern cloud development, and how rapid AI-assisted development requires careful consideration of long-term technical debt implications.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://aitoolslab.com/pages/ep38.html">
+    <meta property="og:image" content="../images/ai-tools-lab-logo.png">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="../images/ai-tools-lab-logo.png" type="image/png">
+    <link rel="shortcut icon" href="../images/ai-tools-lab-logo.png" type="image/png">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Revalia&display=swap" rel="stylesheet">
+    
+    <!-- Datadog RUM -->
+    <script
+        src="https://www.datadoghq-browser-agent.com/us1/v4/datadog-rum.js"
+        type="text/javascript">
+    </script>
+    <script>
+        window.DD_RUM && window.DD_RUM.init({
+          clientToken: 'pub0faaa2dd80abac8a43536a42ad1de2ad',
+          applicationId: '6ef0b8bc-0ec9-4e52-a362-28042addf0ed',
+          site: 'datadoghq.com',
+          service: 'ai-tools-lab',
+          sessionSampleRate: 100,
+          sessionReplaySampleRate: 20,
+          defaultPrivacyLevel: 'mask-user-input',
+        });
+    </script>
+</head>
+<body>
+    <header class="site-header">
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="container">
+            <div class="logo">
+                <img src="../images/ai-tools-lab-logo.png" alt="AI Tools Lab Logo" class="site-logo">
+                <a href='/pages/' style='font-size: 3rem;'>AI Tools Lab</a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href='/pages/'>Home</a></li>
+                    <li><a href='/pages/resources'>Resources</a></li>
+                    <li><a href='/pages/observations'>Observations</a></li>
+                    <li><a href='/pages/about'>About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main class="container">
+        <div class="episode-content">
+            <!-- VIDEO CONTAINER - YouTube embed with thumbnail -->
+            <div class="video-container">
+                <a href="https://www.youtube.com/watch?v=7KmzcxivxQ0" target="_blank">
+                    <img src="../images/thumbnails/ep38-placeholder.png" alt="Episode 38 Thumbnail">
+                    <span class="play-icon"></span>
+                </a>
+            </div>
+            
+            <!-- TITLE SECTION -->
+            <h1>Understanding Technical Debt in the AI Era: Balancing Speed, Cost, and Quality</h1>
+            
+            <!-- SUMMARY SECTION - Brief overview of episode content -->
+            <p>In this episode, Jason Hand explores the concept of technical debt in the context of generative AI development. He presents a simplified visual model to understand how technical debt arises from imbalances between speed, cost, and quality considerations. The discussion covers how startups, enterprises, and bootstrapped projects each face different technical debt challenges based on their priorities. Jason demonstrates a custom web application built with Claude to visualize technical debt concepts, showing how AI tools can be used to create educational resources for complex topics. The episode emphasizes the importance of considering maintainability and scalability as additional factors in modern cloud development, and how rapid AI-assisted development requires careful consideration of long-term technical debt implications.</p>
+            
+            <!-- CHAPTER MARKERS SECTION - Timestamps and topics for easy navigation -->
+            <h2>Jump To</h2>
+            <ul class="chapter-markers">
+                <li><a href="https://www.youtube.com/watch?v=7KmzcxivxQ0&t=0" target="_blank">🕒</a> Introduction to Technical Debt</li>
+                <li><a href="https://www.youtube.com/watch?v=7KmzcxivxQ0&t=60" target="_blank">🕒</a> Wikipedia Definition and Context</li>
+                <li><a href="https://www.youtube.com/watch?v=7KmzcxivxQ0&t=120" target="_blank">🕒</a> Top Causes of Technical Debt</li>
+                <li><a href="https://www.youtube.com/watch?v=7KmzcxivxQ0&t=180" target="_blank">🕒</a> Visual Model: Speed, Cost, and Quality</li>
+                <li><a href="https://www.youtube.com/watch?v=7KmzcxivxQ0&t=300" target="_blank">🕒</a> Startup Example: High Speed Priority</li>
+                <li><a href="https://www.youtube.com/watch?v=7KmzcxivxQ0&t=420" target="_blank">🕒</a> Enterprise Example: Quality Focus</li>
+                <li><a href="https://www.youtube.com/watch?v=7KmzcxivxQ0&t=480" target="_blank">🕒</a> Bootstrapped Budget Example</li>
+                <li><a href="https://www.youtube.com/watch?v=7KmzcxivxQ0&t=540" target="_blank">🕒</a> Maintainability and Scalability Factors</li>
+                <li><a href="https://www.youtube.com/watch?v=7KmzcxivxQ0&t=600" target="_blank">🕒</a> Personal Reflection on Rapid Development</li>
+                <li><a href="https://www.youtube.com/watch?v=7KmzcxivxQ0&t=660" target="_blank">🕒</a> Using Claude to Build Visualization Tool</li>
+            </ul>
+            
+            <!-- RESOURCES SECTION - Links and tools mentioned in the episode -->
+            <h2>Resources</h2>
+            <ul>
+                <li><a href="https://en.wikipedia.org/wiki/Technical_debt">Technical Debt - Wikipedia</a></li>
+                <li><a href="https://claude.ai/">Claude AI Assistant</a></li>
+                <li><a href="https://pages.github.com/">GitHub Pages</a></li>
+                <li><a href="https://github.com/jasonhand">Jason's GitHub Repository</a></li>
+            </ul>
+            
+            <!-- KEY TAKEAWAYS SECTION - Main learning points from the episode -->
+            <h2>Key Takeaways</h2>
+            <ul class="takeaways">
+                <li>Technical debt arises from imbalances between speed, cost, and quality considerations in software development.</li>
+                <li>Different organization types (startups, enterprises, bootstrapped) face unique technical debt challenges based on their priorities.</li>
+                <li>Maintainability and scalability are additional crucial factors to consider in modern cloud development.</li>
+                <li>AI tools like Claude can be used to create educational visualizations for complex technical concepts.</li>
+                <li>Rapid AI-assisted development requires careful consideration of long-term technical debt implications.</li>
+                <li>Visual learning approaches can help better understand abstract software engineering concepts.</li>
+                <li>GitHub Pages provides an easy platform for hosting educational web applications.</li>
+            </ul>
+            
+            <!-- TRANSCRIPT SECTION - Full conversation text with timestamps -->
+            <h2>Full Transcript</h2>
+            <div class="transcript-navigation">
+                <button class="transcript-control" onclick="document.querySelector('.transcript').scrollTop = 0">Top</button>
+                <span>Scroll or use controls to navigate</span>
+                <button class="transcript-control" onclick="document.querySelector('.transcript').scrollTop = document.querySelector('.transcript').scrollHeight">Bottom</button>
+            </div>
+            
+                       
+            <div class="transcript">
+                <pre>
+[00:00:00] **Jason Hand:** Hi everyone. Thanks for being here. I thought we'd take a little time to talk about a subject that I feel is very important but probably doesn't get enough attention, and that's on the subject of technical debt. I believe that in this new era of gen ai, as we all find new methods of creating software and building systems, that there are a lot of things that we need to consider and that we need to learn about and share.
+
+With others. And I think technical debt is one of those topics that we certainly need to make sure that we are talking about and sharing with other people. So that's what we're gonna take today's time to discuss. Now, for those of you who are not familiar with technical debt here, I've got the Wikipedia definition on the screen.
+
+For us to go through technical debt quite simply is just another way of describing some of the implied costs, or as it says here in the Wikipedia entry. The implied cost of additional work in the future resulting from [00:01:00] choosing an expedient solution over a more robust one. Now, I'm going to, I think, just add a little bit more color to this in that it's not always simply about expedient solutions.
+
+Over a more robust one. I believe that there's actually a little bit more to that and especially when it comes to gen AI and some of the things that we have available to us and a lot of the techniques and tools and just, a new things that we have to think about. And so while this version of technical debt I think is great, I think one of the other things that most of us want to get to when we start talking about technical debt is what are the causes of technical.
+
+Debt and therefore, how can we avoid that? So if we pull up Google here and just say, what are the top causes of technical debt? And we'll see what the results are for that. We can see here, it's gonna give us some AI generated explanation of what the top causes are. It says that the top de tight deadlines and rushed development is a top cause.
+
+Poor code, quality and architectural design is a caused, [00:02:00] again, here you can see is referring to rushed development, lack of code reviews, or in other words, bad code quality. Insufficient testing, which I would also put under code quality, lack of documentation. Again, probably a code quality type of thing.
+
+And then down here they've got a few other sort of larger ideas around technical debt related to lack of documentation, knowledge gaps, security vulnerabilities. Insufficient testing, all of this kind of stuff that maybe you're familiar with and you've talked about and had discussions about.
+
+But what I would like to, I think get you to think about in terms of these things is what is, if these are the causes of technical debt, if insufficient testing is the cause of technical debt, if. Lack of documentation or security vulnerabilities are the cause of technical debt. What is the cause of those things?
+
+And so what I wanna spend the rest of today talking about [00:03:00] is two things. First of all, let's actually talk about technical debt. I've put together a little visual demonstration. I'm a visual person. For me, that is the easiest way for me to understand. Most topics. And so I put together this, what I call a disposable web app to help visualize and understand technical debt maybe in a different way that might make more sense for me and then maybe even for some other people too.
+
+Technical debt is just what I like to think about it in terms of what are the top causes and what are causing these things? What's causing insufficient testing? What's causing security vulnerabilities? I often will boil it down to. Three different areas, and that's gonna be speed, cost, and safety, or safety or quality.
+
+You can put those together now. Those three areas I typically think of as barriers that oftentimes we are forced towards and or maybe some sort of horizon line that we're often forced towards, or bounding box that we're forced towards. And if we [00:04:00] keep it in real simple terms of just those three areas, speed, cost, and safety slash quality.
+
+We can start to see how we can get out of balance and start to create technical debt. Now, obviously this is a very simplistic model in terms of what software development is like these days and things have changed quite a bit and you can make a very good argument that there are many more correlations or contributing factors to technical debt.
+
+And you're absolutely right. But when it comes to these three I think they. Probably best encapsulate a lot of the other things that people usually bring up when we're talking about technical debt. So stay with me here when we're talking about speed, priority, cost optimization, safety and quality, and then how that affects technical debt.
+
+Okay, so now let's just use a little bit of a hypothetical situation here. Let's say that you are a startup. Now most startups are [00:05:00] very much focused on high velocity. They want to be able to build very quickly. They need to get feedback from their users. They need to then develop new solutions and take that feedback from their customers.
+
+And. And, just get to market very quickly. So they have a lot of focus and priority on speed. And so you'll see oftentimes they will prioritize on rapid delivery and possibly take shortcuts because they're able to be risky and take those types of shortcuts. They need to take those types of shortcuts in order to be agile, in order to be able to get ahead of the pack.
+
+Another area that you'll see startups often make changes that don't align with something that's maintainable with technical debt is that they'll oftentimes use minimal resources and cut corners as opposed to maybe having a high investment in using high-end premium tools. And oftentimes you'll see them [00:06:00] cut corners, like I said, and try to save where they can. Again, that's just the part, that's just the life and the DNA of a startup. And then on, when it comes to safety and quality, you might see that they've also got some different standards when it comes to quality control of their software.
+
+Maybe they're not doing extensive testing and have robust designs. Maybe they're maybe just down here somewhere where there's. Their quality practices, they're just the bare minimum. They're not necessarily taking shortcuts, but they're somewhere in here. Okay. And when you can see how that adjusts the technical debt numbers here as somebody decides to spend a little bit more time.
+
+Being a little bit more balanced with their delivery pace as to maybe being a little bit slow with their delivery pay pace and being thorough. So that's the life of a startup, right? And on the other side of the spectrum is the enterprise, where they're gonna be a little bit more balanced in their delivery pace.
+
+It's not super slow. Not necessarily always thorough. They're somewhere in here. And then cost optimizations, they're not necessarily cutting corners and trying to save pennies wherever they can. They're somewhere [00:07:00] more in the middle, more moderate, and then when it, but when it comes to safety and quality, they are being a lot more extensive and putting in.
+
+Some more robust designs. However, this extreme focus on safety and quality, it comes with some trade-offs, and there will be some technical debt that comes along with that. The system's gonna become unmaintainable unless these developers can find ways to find a little bit more balance between what they're doing between speed, cost optimizations and safety.
+
+And then one more example here would be a bootstrapped budget where, again, it's a little bit more balanced here and moderate in their pace of delivery, but they are cutting corners and really saving wherever they can. Like I said, it's a bootstrapped situation, so cost is a big concern.
+
+They are just following best practices when it comes to quality, however that, high focus on cop cost optimizations. Is going to cause some sort of imbalance in [00:08:00] their technical debt. At some point there's gonna be some sort of interest that they're gonna have to pay.
+
+That's really just the super simplified model that I wanted to share with everybody when it comes to technical debt. Now, there's two other things that I think personally we do need to think about in the cloud. Development worlds these days, and that's maintainability and scalability.
+
+Those are, I think, are two other areas. I'll let you read that, where now it's not just about cost. It's not just about speed. It's not just about safety. And those three, if you boil it down, I think now we also have to think about maintainability and scalability as two other vectors in the technical debt space.
+
+And although I don't have those here in my model I do think that is something that we should consider as we start to, think about technical debt and how it is playing a role in some of these new web applications that we're building. And at the pace in which we are building things, I think [00:09:00] it's super important for us to consider that.
+
+So those are the main things that I wanted to share with you today, really just to get you thinking, because it's something I've been thinking about lately. I took some time off and haven't written any applications, any web apps, any disposable web apps for over a week. During that time, I actually got to thinking about how quickly and rapidly I'm building things and what are the possible negative downsides to building quickly.
+
+And of course, technical debt pops upright, at the top of all of our concerns. I'm obviously building things very quickly, very rapidly. I have began, as I mentioned in a previous episode, instrumenting most of my applications for both understanding how the application is working and how I can improve it and that kind of thing, but also just understanding the usage and that type of stuff.
+
+So I'm starting to think in those types of ways, but I'm now also starting to think, in some of these projects that are actually. Beginning to take shape [00:10:00] and need a little bit more than just a vibe coding hour or so. Technical debt is something that really has to be considered, and for me, it comes back to really thinking about and considering.
+
+How quickly do I need to do something? What are my costs associated with it? And do I need to either consider cutting costs here and there, or also the safety and security stuff. Those are just more concerns too. But before we go. I wanted to show you one more thing, really just how I created this visualization because it's something that I've been doing here a lot lately.
+
+Like I mentioned, I am a visual learner and oftentimes when I learn about a subject or read about something hear, about something, whatever the case may be. I will often go, you know what a lot of us will do, go on to the internet and try to search for it. But lately I've had a lot of fun actually just turning to a variety of different LLM tools.
+
+The one I used in this particular case is Claude. One [00:11:00] morning I was just thinking about technical debt, like I said, and I hopped into Claude and I asked it to build me a visual interactive web application that I could host on GitHub pages. That would help me. Describe and understand more about technical debt.
+
+I just wanted to share that, I guess as a little bit of a tip on something I've figured out lately that's really been helping me with a number of things. I won't go into some of the other apps. I invite you to go check out my repo and go poke around in there because there's quite of a few of them that I've.
+
+Done similar things where it's a topic that I'm just not super familiar with, but rather than going and spending a whole bunch of time reading Wikipedia and Googling things I, I take a new approach where I have a conversation with an LLM. To learn a little bit more about it and then I ask it to build me a web app to help me visualize and educate myself on that.
+
+And then I host it as a GitHub pages in my GitHub account and it works great. And yeah, I just wanted to share that with you. [00:12:00] So that's pretty much all I've got for today. Just wanted to talk about technical debt. 'cause I think it's super important. I don't think a lot of us are thinking about it.
+
+I think also that we can get hung up in all of the different causes that we hear about that's causing. Technical debt, but in my mind it's actually so much more simpler than that. It just has to do with making adjustments on the spectrum between speed and cost and security. And then also now we have to think about maintainability and scalability are two others too.
+
+And then, the gen AI stuff is also starting to introduce maybe new vectors of concern when it comes to technical debt too. So I am. Not done thinking about this. I think this is something we have to continue talking about and thinking about to make sure that we're building safe and secure and maintainable and scalable systems.
+
+And that's all I'll say about that today. So thanks for sticking around and we'll see you at the next one. Bye.
+
+<!-- Format for transcript entries:
+<span class="transcript-timestamp">[00:00:00]</span> <span class="transcript-speaker">Speaker Name:</span> Text of what was said
+
+<span class="transcript-timestamp">[00:00:30]</span> <span class="transcript-speaker">Other Speaker:</span> Response or continuation
+-->
+                </pre>
+            </div>
+        </div>
+    </main>
+    
+    <!-- EPISODE NAVIGATION SECTION - Links to previous and next episodes -->
+    <div class="episode-navigation">
+        <div class="container">
+            <h2>Episode Navigation</h2>
+            <div class="episode-nav-links">
+                <div class="nav-item">
+                    <span class="nav-direction">Previous Episode:</span>
+                    <div class="recording-card">
+                        <h3>Episode 37</h3>
+                        <div class="video-container">
+                            <a href='/pages/ep37'>
+                                <img src="../images/thumbnails/ep37.png" alt="Episode 37 Thumbnail">
+                                <span class="play-icon"></span>
+                            </a>
+                        </div>
+                        <a class='btn' href='/pages/ep37'>Watch Episode</a>
+                    </div>
+                </div>
+                <div class="nav-item">
+                    <span class="nav-direction">Latest Episode:</span>
+                    <div class="recording-card">
+                        <h3>You are watching the latest episode</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    
+                    <div>
+                        <h2>AI Tools Lab</h2>
+                        <p>Exploring the landscape of AI tools and technologies</p>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href='/pages/'>Home</a></li>
+                        <li><a href='/pages/resources'>Resources</a></li>
+                        <li><a href='/pages/observations'>Observations</a></li>
+                        <li><a href='/pages/about'>About</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 AI Tools Lab. All rights reserved. <span id="easter-egg" class="easter-egg">π</span></p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Easter Egg Modal -->
+    <div id="easter-egg-modal" class="easter-egg-modal">
+        <div class="easter-egg-modal-content">
+            <span class="easter-egg-close">&times;</span>
+            <p>Sandy?</p>
+        </div>
+    </div>
+    
+    <script src="../script.js"></script>
+</body>
+</html>
