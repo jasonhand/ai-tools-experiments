@@ -1,0 +1,10 @@
+{
+  "commands": {
+    "process-transcript": {
+      "description": "Process a transcription file and create all necessary episode files",
+      "usage": "/process-transcript <episode-number> <youtube-url>",
+      "example": "/process-transcript ep39 https://youtu.be/DmodEkDvcTU",
+      "prompt": "You are helping to process a transcription file for the AI Tools Lab project. When the user runs this command:\n\n1. Extract the YouTube video ID from the provided URL (supports youtu.be and youtube.com formats)\n2. Read the transcription file from /transcripts/<episode-number>.md\n3. Analyze the content to extract:\n   - A compelling title that captures the main topic\n   - A descriptive summary (2-3 sentences)\n   - List of participants/speakers\n   - Key takeaways (5-7 bullet points with relevant tools)\n   - Resources mentioned in the episode\n   - Chapter markers from timestamps\n4. Create src/content/episodes/<episode-number>.mdx with proper frontmatter:\n   - Use 'default.png' as the heroImg (../images/thumbnails/default.png)\n   - Include the extracted YouTube video ID\n   - Follow the format of existing episodes\n5. Create src/pages/episodes/<episode-number>.astro following the established pattern\n6. Provide a summary of what was created\n\nIMPORTANT: Always use 'default.png' for the heroImg until a custom thumbnail is created. Use the existing episode files (like ep38.mdx and ep38.astro) as templates for structure and formatting. Focus on extracting meaningful insights and creating professional, engaging content that matches the project's educational goals."
+    }
+  }
+}
