@@ -77,6 +77,10 @@ const getYouTubeEmbedUrl = (videoId: string) => {
     <div class="episode-container">
       <!-- Main Content -->
       <div class="episode-content">
+        <!-- Episode Summary -->
+        {data.summary && (
+          <p>{data.summary}</p>
+        )}
         <Content />
       </div>
 

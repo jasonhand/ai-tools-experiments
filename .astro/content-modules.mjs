@@ -32,6 +32,8 @@ export default new Map([
 ["src/content/episodes/ep36.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fepisodes%2Fep36.mdx&astroContentModuleFlag=true")],
 ["src/content/episodes/ep37.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fepisodes%2Fep37.mdx&astroContentModuleFlag=true")],
 ["src/content/episodes/ep38.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fepisodes%2Fep38.mdx&astroContentModuleFlag=true")],
+["src/content/episodes/ep39.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fepisodes%2Fep39.mdx&astroContentModuleFlag=true")],
 ["src/content/episodes/ep40.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fepisodes%2Fep40.mdx&astroContentModuleFlag=true")],
-["src/content/episodes/ep39.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fepisodes%2Fep39.mdx&astroContentModuleFlag=true")]]);
+["src/content/episodes/ep41.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fepisodes%2Fep41.mdx&astroContentModuleFlag=true")],
+["src/content/episodes/ep42.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fepisodes%2Fep42.mdx&astroContentModuleFlag=true")]]);
 		
