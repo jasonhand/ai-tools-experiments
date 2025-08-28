@@ -110,6 +110,35 @@ The site aims to help developers navigate the AI era through discussions, demos,
 - Avoid sharing API keys or credentials
 - Respect attribution and licensing for external resources
 
+## Episode Content Schema Requirements
+
+When creating episode content files (`src/content/episodes/epXX.mdx`), ensure all data follows the Astro content schema defined in `src/content/config.ts`:
+
+### Resource Types
+Resources must use one of these valid type values:
+- `tool` - Software tools and applications
+- `documentation` - Official docs, guides, manuals
+- `article` - Blog posts, news articles, reports
+- `video` - Video content and tutorials
+- `repository` - Code repositories and GitHub projects
+- `platform` - Services, platforms, and websites
+
+### URL Requirements
+- All URLs must be valid, complete URLs (not `#` or empty)
+- Use placeholder URLs like `https://example.com` for unavailable resources rather than invalid URLs
+
+### Takeaway Categories (Optional)
+- `technical` - Technical insights and findings
+- `strategic` - Business and strategic considerations
+- `workflow` - Process and workflow improvements
+- `productivity` - Productivity gains and optimizations
+- `accessibility` - Accessibility and usability insights
+
+### Priority Levels (Optional)
+- `high` - Critical insights
+- `medium` - Important insights
+- `low` - Nice-to-know insights
+
 ## LLM Usage in This Project
 
 AI Tools Lab itself leverages LLMs (Large Language Models) like Claude for several aspects of the project workflow:
