@@ -1,0 +1,96 @@
+---
+title: "Building AI-Powered Transcript Processing with AWS Step Functions and Bedrock"
+description: "Jason demonstrates building an automated transcript processing workflow using AWS Step Functions integrated with Amazon Bedrock's Claude Sonnet 4. The discussion covers the challenges of working with limited documentation, model parameter configurations, JSON formatting requirements, and comparisons to other workflow automation tools like N8N."
+heroImg: "../images/thumbnails/ep45.png"
+videoId: "dZwFURXzvrk"
+episodeNumber: 45
+date: "2025-09-08T00:00:00.000Z"
+author: "jasonhand24@gmail.com"
+participants: ["Jason Hand", "Ryan MacLean"]
+tags: ["aws-step-functions", "amazon-bedrock", "claude-sonnet-4", "transcript-processing", "workflow-automation", "serverless", "json-formatting", "jsonata", "ai-integration", "aws-eventbridge", "s3-storage", "n8n-comparison", "proof-of-concept", "state-machines"]
+
+takeaways:
+  - text: "AWS Step Functions provide a visual workflow builder similar to no-code/low-code tools, allowing you to create serverless state machines for automating complex processes"
+    category: "workflow"
+    tools: ["AWS Step Functions", "State Machines", "Visual Workflow Builder"]
+  - text: "Limited documentation exists for AWS Bedrock + Step Functions integration, requiring experimentation and digging to find proper model parameter formats and configurations"
+    category: "technical"
+    tools: ["AWS Bedrock", "Documentation", "Integration Challenges"]
+  - text: "Each AI model requires unique parameter configurations - what works for one model may not work for another, making documentation crucial for implementation"
+    category: "technical"
+    tools: ["Claude Sonnet 4", "Model Parameters", "API Configuration"]
+  - text: "JSON formatting challenges are inevitable when working with transcript data, requiring custom tools to properly escape and format text for API consumption"
+    category: "workflow"
+    tools: ["JSON Formatting", "Text Processing", "API Integration"]
+  - text: "Step Functions excel as proof-of-concept tools for serverless automation but may need architectural changes as projects scale and require more sophisticated operations"
+    category: "strategic"
+    tools: ["Serverless Architecture", "Scaling Considerations", "Proof of Concept"]
+  - text: "AWS ecosystem integration is a major advantage with native hooks into EventBridge, S3, and other AWS services for seamless workflow automation"
+    category: "workflow"
+    tools: ["AWS EventBridge", "AWS S3", "AWS Lambda"]
+
+resources:
+  - name: "AWS Step Functions"
+    url: "https://aws.amazon.com/step-functions/"
+    description: "Serverless workflow orchestration service for building state machines"
+    type: "platform"
+  - name: "Amazon Bedrock"
+    url: "https://aws.amazon.com/bedrock/"
+    description: "AWS's managed service for accessing foundation models including Claude Sonnet 4"
+    type: "platform"
+  - name: "Claude Sonnet 4"
+    url: "https://www.anthropic.com/claude"
+    description: "Anthropic's latest language model used for transcript processing"
+    type: "tool"
+  - name: "JSONata"
+    url: "https://jsonata.org/"
+    description: "JSON query and transformation language used in Step Functions"
+    type: "tool"
+  - name: "N8N"
+    url: "https://n8n.io/"
+    description: "Workflow automation platform compared to Step Functions for building agentic workflows"
+    type: "tool"
+  - name: "AWS EventBridge"
+    url: "https://aws.amazon.com/eventbridge/"
+    description: "Event-driven serverless service for triggering workflows"
+    type: "platform"
+  - name: "AWS S3"
+    url: "https://aws.amazon.com/s3/"
+    description: "Object storage service used for storing processed markdown files"
+    type: "platform"
+  - name: "AWS Lambda"
+    url: "https://aws.amazon.com/lambda/"
+    description: "Serverless compute service mentioned as an alternative to Step Functions"
+    type: "platform"
+  - name: "Amazon States Language Documentation"
+    url: "https://docs.aws.amazon.com/step-functions/latest/dg/concepts-amazon-states-language.html#example-amazon-states-language-specification"
+    description: "Official documentation for defining Step Functions workflows using Amazon States Language"
+    type: "documentation"
+  - name: "Transcript to JSON Converter"
+    url: "https://jasonhand.github.io/transcription_2_JSON/"
+    description: "Custom tool for converting transcript text into properly formatted JSON for Step Functions input"
+    type: "tool"
+  - name: "Passing Data Between States with Variables"
+    url: "https://docs.aws.amazon.com/step-functions/latest/dg/workflow-variables.html"
+    description: "AWS documentation on how to pass data between state variables in Step Functions workflows"
+    type: "documentation"
+
+jumpTo:
+  - title: "Introduction to AWS Step Functions"
+    url: "https://youtu.be/dZwFURXzvrk?t=0"
+    timestamp: "00:00:00"
+  - title: "Documentation and Integration Challenges"
+    url: "https://youtu.be/dZwFURXzvrk?t=150"
+    timestamp: "00:02:30"
+  - title: "Transcript Processing Workflow Demo"
+    url: "https://youtu.be/dZwFURXzvrk?t=360"
+    timestamp: "00:06:00"
+  - title: "JSON Formatting and Tool Development"
+    url: "https://youtu.be/dZwFURXzvrk?t=540"
+    timestamp: "00:09:00"
+  - title: "Comparison with N8N and Future Scaling"
+    url: "https://youtu.be/dZwFURXzvrk?t=810"
+    timestamp: "00:13:30"
+
+summary: "Jason demonstrates building an automated transcript processing workflow using AWS Step Functions integrated with Amazon Bedrock's Claude Sonnet 4 model. The episode begins with Jason explaining Step Functions as visual workflow builders similar to no-code tools, allowing creation of serverless state machines for complex process automation. He shares challenges encountered during implementation, particularly the limited documentation available for integrating Bedrock with Step Functions, requiring extensive experimentation to find proper model parameter formats. The demonstration shows the complete workflow from transcript input through Claude Sonnet 4 processing to generate summaries and key takeaways, followed by storage in S3 buckets. Jason highlights the JSON formatting challenges when working with transcript data, demonstrating a custom tool he built to properly escape and format text for API consumption. The discussion includes comparisons with N8N workflow automation, noting that while Step Functions lack some agentic capabilities, they excel as proof-of-concept tools with strong AWS ecosystem integration through EventBridge, S3, and other services. The episode concludes with considerations about scaling and architectural decisions as the project grows beyond proof-of-concept phase."
+---

@@ -1,0 +1,8 @@
+---
+import ContentCollectionEpisodeLayout from '../../layouts/ContentCollectionEpisodeLayout.astro';
+import { getEntry } from 'astro:content';
+
+const episode = await getEntry('episodes', 'ep45');
+---
+
+<ContentCollectionEpisodeLayout episode={episode} />
