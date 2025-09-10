@@ -1,0 +1,85 @@
+---
+title: "Building Semantic Search with Google Cloud Vertex AI Text Embeddings"
+description: "Gio Peralto demonstrates building semantic search for movies using Google Cloud's text-embedding-005 model from Vertex AI, comparing it to traditional regex search and exploring the relationship between semantic search and RAG (Retrieval Augmented Generation)."
+heroImg: "../images/thumbnails/ep47.png"
+videoId: "aAIukwWKhk0"
+episodeNumber: 47
+date: "2025-01-15T00:00:00.000Z"
+author: "jasonhand24@gmail.com"
+participants: ["Jason Hand", "Gio Peralto"]
+tags: ["semantic-search", "vertex-ai", "embeddings", "google-cloud", "vector-search", "rag", "mongodb"]
+
+takeaways:
+  - text: "Semantic search uses vector embeddings to find content based on meaning rather than exact text matches"
+    tools: ["Vertex AI", "Text Embeddings", "Vector Search"]
+  - text: "Google Cloud's text-embedding-005 model provides 768-dimensional embeddings for semantic search"
+    tools: ["Vertex AI", "text-embedding-005", "Google Cloud"]
+  - text: "Semantic search can be a subset of RAG, enhancing the retrieval process with better intent understanding"
+    tools: ["RAG", "Semantic Search", "Vector Embeddings"]
+  - text: "Vector dimensionality affects search quality - industry standard is moving towards 1536 dimensions"
+    tools: ["Vector Embeddings", "OpenAI", "Vertex AI"]
+  - text: "Embedding models must match between data preparation and query time for accurate results"
+    tools: ["Vector Embeddings", "MongoDB Atlas", "Text Embeddings"]
+  - text: "Search scope affects results - including titles, characters, and plot summaries can improve relevance"
+    tools: ["Semantic Search", "Content Discovery", "Vector Search"]
+
+resources:
+  - name: "Google Cloud Vertex AI"
+    url: "https://cloud.google.com/vertex-ai"
+    description: "Google's machine learning platform offering pre-trained and custom ML models"
+    type: "platform"
+  - name: "Vertex AI Model Garden"
+    url: "https://cloud.google.com/model-garden"
+    description: "Collection of foundation models and tools for AI development"
+    type: "platform"
+  - name: "text-embedding-005 Model"
+    url: "https://cloud.google.com/vertex-ai/generative-ai/docs/embeddings/get-text-embeddings"
+    description: "Google's latest text embedding model with 768-dimensional vectors"
+    type: "documentation"
+  - name: "MongoDB Atlas Vector Search"
+    url: "https://www.mongodb.com/products/platform/atlas-vector-search"
+    description: "Vector search capabilities in MongoDB Atlas for semantic search"
+    type: "platform"
+  - name: "Flask Framework"
+    url: "https://flask.palletsprojects.com/"
+    description: "Lightweight Python web framework used for the API backend"
+    type: "tool"
+  - name: "Vite"
+    url: "https://vitejs.dev/"
+    description: "Fast build tool and development server for modern web projects"
+    type: "tool"
+
+jumpTo:
+  - title: "Introduction to semantic search and vector embeddings"
+    url: "https://youtu.be/aAIukwWKhk0?t=0"
+    timestamp: "00:00:00"
+  - title: "Benefits of semantic search over traditional regex search"
+    url: "https://youtu.be/aAIukwWKhk0?t=90"
+    timestamp: "00:01:30"
+  - title: "How vector embeddings work with 768-dimensional space"
+    url: "https://youtu.be/aAIukwWKhk0?t=180"
+    timestamp: "00:03:00"
+  - title: "Code demonstration of Vertex AI text-embedding-005 model"
+    url: "https://youtu.be/aAIukwWKhk0?t=240"
+    timestamp: "00:04:00"
+  - title: "Difference between semantic search and RAG"
+    url: "https://youtu.be/aAIukwWKhk0?t=330"
+    timestamp: "00:05:30"
+  - title: "AIMDB application demo with movie search"
+    url: "https://youtu.be/aAIukwWKhk0?t=420"
+    timestamp: "00:07:00"
+  - title: "MongoDB Atlas data structure with embeddings"
+    url: "https://youtu.be/aAIukwWKhk0?t=480"
+    timestamp: "00:08:00"
+  - title: "Hercules movie search demonstration and similar content discovery"
+    url: "https://youtu.be/aAIukwWKhk0?t=540"
+    timestamp: "00:09:00"
+  - title: "Limitations and trade-offs in semantic search accuracy"
+    url: "https://youtu.be/aAIukwWKhk0?t=660"
+    timestamp: "00:11:00"
+  - title: "Comparison with IMDB search results"
+    url: "https://youtu.be/aAIukwWKhk0?t=780"
+    timestamp: "00:13:00"
+
+summary: "Gio Peralto takes us on a deep dive into semantic search using Google Cloud's Vertex AI text-embedding-005 model. Through his AIMDB application (a clever play on IMDB), he demonstrates how vector embeddings can revolutionize content discovery by understanding meaning rather than just matching text. The episode explores the technical implementation with 768-dimensional vectors, compares semantic search to traditional regex approaches, and discusses how it fits into the broader RAG ecosystem. Gio shows both the power and limitations of semantic search through real movie recommendations, highlighting important considerations like embedding model consistency and search scope optimization."
+---
