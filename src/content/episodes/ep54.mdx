@@ -1,0 +1,89 @@
+---
+title: "Automating Security Detection Rules with Claude Code Agents"
+description: "Tara demonstrates how she uses Claude Code agents and slash commands to automate the creation, validation, and testing of custom Cloud SIEM detection rules, including end-to-end workflows with Terraform deployment and AWS testing."
+videoId: "sbwYAnbf7NU"
+heroImg: "/images/thumbnails/ep54.png"
+episodeNumber: 54
+date: "2025-01-23"
+author: "Tara Schofield"
+participants:
+  - Jason Hand
+  - Tara Schofield
+tags:
+  - claude-code
+  - security
+  - automation
+  - siem
+  - terraform
+  - aws
+  - agents
+summary: "In this episode, Tara showcases her sophisticated workflow for managing Datadog Cloud SIEM detection rules using Claude Code. She demonstrates how specialized sub-agents handle different aspects of the workflow: a detection rule writer that creates custom rules from natural language prompts, a validator that checks both query and Terraform syntax, and a tester that deploys test infrastructure in AWS to verify the rules actually work. The entire process, which includes writing Terraform modules, deploying to Datadog, creating test environments, and validating signals, is orchestrated through slash commands and takes about 10 minutes to complete end-to-end."
+takeaways:
+  - text: "Specialized sub-agents can orchestrate complex multi-step workflows, from writing detection rules to deploying infrastructure and running tests"
+    category: "workflow"
+    priority: "high"
+  - text: "LLMs have significantly improved at infrastructure as code, with Sonnet 4.5 showing high success rates (90%+) with Terraform syntax"
+    category: "technical"
+    priority: "high"
+  - text: "AI automation enables focusing on the 'idea' rather than the 'task' - defining what you want rather than how to implement it"
+    category: "productivity"
+    priority: "high"
+  - text: "End-to-end testing automation (creating test infrastructure, emulating attacks, verifying detection) provides confidence in security rules"
+    category: "workflow"
+    priority: "medium"
+  - text: "Pointing AI agents to official documentation (API docs, Terraform provider docs) improves code quality and accuracy"
+    category: "technical"
+    priority: "medium"
+resources:
+  - name: "Datadog Cloud SIEM"
+    url: "https://www.datadoghq.com/product/cloud-siem/"
+    type: "platform"
+    description: "Security information and event management platform for threat detection and investigation"
+  - name: "Claude Code"
+    url: "https://claude.com/product/claude-code"
+    type: "tool"
+    description: "Anthropic's AI assistant for software development with agent capabilities"
+  - name: "Terraform"
+    url: "https://www.terraform.io/"
+    type: "tool"
+    description: "Infrastructure as code tool for building, changing, and versioning infrastructure"
+  - name: "AWS Secrets Manager"
+    url: "https://aws.amazon.com/secrets-manager/"
+    type: "platform"
+    description: "Service for managing, retrieving, and rotating secrets throughout their lifecycle"
+jumpTo:
+  - title: "Introduction to Cloud SIEM Detection Rules"
+    url: "https://youtu.be/sbwYAnbf7NU?t=0"
+    timestamp: "00:00:00"
+  - title: "The Problem: Customizing Rules for Ephemeral Environments"
+    url: "https://youtu.be/sbwYAnbf7NU?t=89"
+    timestamp: "00:01:29"
+  - title: "The Solution: Claude Code Orchestrated Workflow"
+    url: "https://youtu.be/sbwYAnbf7NU?t=133"
+    timestamp: "00:02:13"
+  - title: "Demo: Detection Rule Writer Agent"
+    url: "https://youtu.be/sbwYAnbf7NU?t=208"
+    timestamp: "00:03:28"
+  - title: "Terraform Module Generation"
+    url: "https://youtu.be/sbwYAnbf7NU?t=258"
+    timestamp: "00:04:18"
+  - title: "Detection Rule Validator Agent"
+    url: "https://youtu.be/sbwYAnbf7NU?t=297"
+    timestamp: "00:04:57"
+  - title: "LLM Performance with Infrastructure as Code"
+    url: "https://youtu.be/sbwYAnbf7NU?t=340"
+    timestamp: "00:05:40"
+  - title: "Detection Rule Tester Agent"
+    url: "https://youtu.be/sbwYAnbf7NU?t=440"
+    timestamp: "00:07:20"
+  - title: "End-to-End Test Execution and Verification"
+    url: "https://youtu.be/sbwYAnbf7NU?t=488"
+    timestamp: "00:08:08"
+  - title: "Unlocking New Capabilities"
+    url: "https://youtu.be/sbwYAnbf7NU?t=548"
+    timestamp: "00:09:08"
+  - title: "Future Enhancements: CloudTrail Log Analyzer"
+    url: "https://youtu.be/sbwYAnbf7NU?t=614"
+    timestamp: "00:10:14"
+---
+
