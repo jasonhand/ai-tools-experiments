@@ -1,0 +1,108 @@
+---
+title: "Automating Claude Code Instruction Optimization with Hooks"
+description: "Learn how to use Claude Code hooks to automatically optimize verbose instruction files for agents and slash commands, preventing infinite loops while maintaining token efficiency and clarity through intelligent post-tool-use automation."
+heroImg: "../images/thumbnails/ep56.png"
+videoId: "V_8sPopQI_s"
+episodeNumber: 56
+date: "2025-10-27"
+author: "Jason Hand"
+participants:
+  - Jason Hand
+  - Tara Schofield
+tags:
+  - claude-code
+  - hooks
+  - automation
+  - optimization
+  - markdown
+  - agents
+  - slash-commands
+  - workflow
+
+takeaways:
+  - text: "Claude Code hooks can match lifecycle events like session end or specific tool uses, enabling automated workflows that trigger after Claude performs certain actions"
+    tools: ["Claude Code"]
+    category: "technical"
+    priority: "high"
+  - text: "Post-tool-use hooks can automatically lint and optimize markdown instruction files immediately after Claude creates or edits them, solving the problem of overly verbose agent instructions"
+    tools: ["Claude Code", "Shell Scripts"]
+    category: "workflow"
+    priority: "high"
+  - text: "Infinite loops are a major risk with hooks - if a hook edits a file that triggers the same hook, it will run forever, requiring cooldown mechanisms and state management"
+    tools: ["Claude Code"]
+    category: "technical"
+    priority: "high"
+  - text: "Implementing a cooldown period with archived versions prevents infinite loops by checking timestamps and avoiding re-optimization within a specified timeframe (e.g., 5 minutes)"
+    tools: ["Claude Code", "Shell Scripts"]
+    category: "technical"
+    priority: "medium"
+  - text: "Maintaining multiple archived versions of files enables version comparison, rollback capabilities, and analysis of how optimization agents modify content over time"
+    tools: ["Claude Code"]
+    category: "workflow"
+    priority: "medium"
+  - text: "Hooks can execute shell scripts, Python scripts, or other programs, making them powerful for running linters, formatters, tests, or custom automation workflows"
+    tools: ["Claude Code", "Shell Scripts", "Python"]
+    category: "technical"
+    priority: "medium"
+  - text: "Specialized optimizer sub-agents can be created for different file types (slash commands, skills, agents) to apply appropriate optimization rules based on file location and purpose"
+    tools: ["Claude Code"]
+    category: "workflow"
+    priority: "medium"
+  - text: "Using markdown files for state management provides a simple, database-free way to track information like cooldown periods and file versions without adding infrastructure complexity"
+    category: "technical"
+    priority: "low"
+
+resources:
+  - name: "Claude Code Hooks Documentation"
+    url: "https://docs.claude.com/en/docs/claude-code/hooks"
+    description: "Official documentation for configuring and using Claude Code hooks"
+    type: "documentation"
+  - name: "Claude Code"
+    url: "https://claude.ai/code"
+    description: "Anthropic's AI coding assistant CLI tool"
+    type: "tool"
+  - name: "Claude Code GitHub Repository"
+    url: "https://github.com/anthropics/claude-code"
+    description: "Official Claude Code repository with examples and documentation"
+    type: "repository"
+
+jumpTo:
+  - title: "Introduction to Claude Code hooks problem"
+    url: "https://youtu.be/V_8sPopQI_s?t=0"
+    timestamp: "00:00:00"
+  - title: "The problem with verbose instruction files"
+    url: "https://youtu.be/V_8sPopQI_s?t=59"
+    timestamp: "00:00:59"
+  - title: "Overview of hook configuration and matchers"
+    url: "https://youtu.be/V_8sPopQI_s?t=131"
+    timestamp: "00:02:11"
+  - title: "Post-tool-use hook for Write and Edit tools"
+    url: "https://youtu.be/V_8sPopQI_s?t=165"
+    timestamp: "00:02:45"
+  - title: "Markdown file detection and script execution"
+    url: "https://youtu.be/V_8sPopQI_s?t=219"
+    timestamp: "00:03:39"
+  - title: "Specialized optimizer agents for different file types"
+    url: "https://youtu.be/V_8sPopQI_s?t=263"
+    timestamp: "00:04:23"
+  - title: "Infinite loop risks with hooks"
+    url: "https://youtu.be/V_8sPopQI_s?t=367"
+    timestamp: "00:06:07"
+  - title: "Archive directory and cooldown period solution"
+    url: "https://youtu.be/V_8sPopQI_s?t=452"
+    timestamp: "00:07:32"
+  - title: "Using markdown files for state management"
+    url: "https://youtu.be/V_8sPopQI_s?t=516"
+    timestamp: "00:08:36"
+  - title: "Benefits of maintaining multiple versions"
+    url: "https://youtu.be/V_8sPopQI_s?t=556"
+    timestamp: "00:09:16"
+  - title: "Live demo of hook optimization in action"
+    url: "https://youtu.be/V_8sPopQI_s?t=600"
+    timestamp: "00:10:00"
+  - title: "Results and optimization report"
+    url: "https://youtu.be/V_8sPopQI_s?t=619"
+    timestamp: "00:10:19"
+
+summary: "Tara Schofield tackles a frustrating problem that many Claude Code users face - when Claude creates instruction files for agents and slash commands, it tends to be excessively verbose with redundant examples and unnecessary detail. This episode demonstrates an elegant solution using Claude Code hooks to automatically optimize these files immediately after creation. Tara walks through her hook configuration that monitors the Write and Edit tools, detecting when markdown instruction files are modified and automatically triggering specialized optimizer sub-agents. The discussion covers critical lessons about avoiding infinite loops (where the optimization hook triggers itself repeatedly), implementing cooldown periods with archived file versions, and using simple markdown-based state management instead of databases. The demo shows the complete workflow: Claude creates a new agent file from a template (211 lines), the post-tool-use hook automatically fires, the optimizer agent analyzes and streamlines the content, and provides a report on the optimization performed - all without manual intervention. This automation prevents the frustration of constantly prompting Claude to 'make it more concise' and demonstrates the power of hooks for maintaining consistency and quality in Claude Code projects. The episode also discusses broader patterns like using hooks for linting TypeScript files, running tests, or executing any automated workflow triggered by Claude's tool usage."
+---

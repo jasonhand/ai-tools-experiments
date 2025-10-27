@@ -1,0 +1,129 @@
+---
+title: "Building Reusable Knowledge Packages for Cloud SIEM Detection with Claude Skills"
+description: "Exploring Claude Skills, a new feature that enables packaging specialized knowledge into reusable, token-efficient components. Learn how to create skills for writing Cloud SIEM detection rules across AWS, Azure, and GCP, and understand when to use skills versus sub-agents or slash commands."
+heroImg: "../images/thumbnails/ep55.png"
+videoId: "oQ-KW7FzfCc"
+episodeNumber: 55
+date: "2025-10-27"
+author: "Jason Hand"
+participants:
+  - Jason Hand
+  - Tara Schofield
+tags:
+  - claude-skills
+  - claude-code
+  - cloud-siem
+  - detection-rules
+  - aws
+  - azure
+  - gcp
+  - context-engineering
+  - cybersecurity
+
+takeaways:
+  - text: "Claude Skills are packaged, reusable knowledge bundles that can be shared across all agents and slash commands in a project without needing to explicitly invoke them"
+    tools: ["Claude Code", "Claude Skills"]
+    category: "technical"
+    priority: "high"
+  - text: "Skills are extremely token-efficient because only the frontmatter (description) is loaded initially, with the full content loaded only when Claude contextually determines it needs the skill"
+    tools: ["Claude Code", "Claude Skills"]
+    category: "technical"
+    priority: "high"
+  - text: "Skills are ideal for specialized niche knowledge that needs to be reused across multiple parts of a project, like Cloud SIEM rule syntax or API-specific patterns"
+    tools: ["Claude Skills", "Cloud SIEM"]
+    category: "workflow"
+    priority: "high"
+  - text: "Anthropic recommends keeping skill files short and focused, trusting Claude's intelligence and only documenting the niche, specialized information"
+    tools: ["Claude Code", "Claude Skills"]
+    category: "workflow"
+    priority: "medium"
+  - text: "Skills can be built by querying APIs to extract patterns from existing rules and examples, as demonstrated with Datadog's Cloud SIEM rules"
+    tools: ["Datadog", "Cloud SIEM", "Claude Skills"]
+    category: "technical"
+    priority: "medium"
+  - text: "Skills reduce maintenance overhead by centralizing specialized knowledge instead of duplicating instructions across multiple sub-agents"
+    tools: ["Claude Skills", "Claude Code"]
+    category: "workflow"
+    priority: "medium"
+  - text: "The skill system improved Cloud SIEM rule generation from 6-7/10 to highly accurate complex rules by providing structured CloudTrail attribute knowledge and example patterns"
+    tools: ["Claude Skills", "AWS CloudTrail", "Cloud SIEM"]
+    category: "productivity"
+    priority: "high"
+
+resources:
+  - name: "Claude Code Skills Documentation"
+    url: "https://docs.claude.com/en/docs/claude-code/skills"
+    description: "Official documentation for creating and using Claude Skills"
+    type: "documentation"
+  - name: "Datadog Cloud SIEM"
+    url: "https://www.datadoghq.com/product/cloud-siem/"
+    description: "Cloud-native SIEM platform for threat detection"
+    type: "platform"
+  - name: "AWS CloudTrail"
+    url: "https://aws.amazon.com/cloudtrail/"
+    description: "AWS service for logging API calls and events"
+    type: "platform"
+  - name: "Azure Monitor"
+    url: "https://azure.microsoft.com/en-us/products/monitor/"
+    description: "Azure's monitoring and logging service"
+    type: "platform"
+  - name: "Google Cloud Logging"
+    url: "https://cloud.google.com/logging"
+    description: "Google Cloud's logging and monitoring service"
+    type: "platform"
+
+jumpTo:
+  - title: "Introduction to Claude Skills"
+    url: "https://youtu.be/oQ-KW7FzfCc?t=0"
+    timestamp: "00:00:00"
+  - title: "Understanding skills vs sub-agents vs slash commands"
+    url: "https://youtu.be/oQ-KW7FzfCc?t=25"
+    timestamp: "00:00:25"
+  - title: "Use case: Cloud SIEM detection rules"
+    url: "https://youtu.be/oQ-KW7FzfCc?t=41"
+    timestamp: "00:00:41"
+  - title: "Initial Claude performance with Cloud SIEM rules"
+    url: "https://youtu.be/oQ-KW7FzfCc?t=74"
+    timestamp: "00:01:14"
+  - title: "Why skills are perfect for this use case"
+    url: "https://youtu.be/oQ-KW7FzfCc?t=103"
+    timestamp: "00:01:43"
+  - title: "Exploring the SKILL.md file structure"
+    url: "https://youtu.be/oQ-KW7FzfCc?t=125"
+    timestamp: "00:02:05"
+  - title: "Anthropic's best practices for writing skills"
+    url: "https://youtu.be/oQ-KW7FzfCc?t=150"
+    timestamp: "00:02:30"
+  - title: "Building skills by querying the Datadog API"
+    url: "https://youtu.be/oQ-KW7FzfCc?t=182"
+    timestamp: "00:03:02"
+  - title: "Token efficiency and context engineering"
+    url: "https://youtu.be/oQ-KW7FzfCc?t=195"
+    timestamp: "00:03:15"
+  - title: "How frontmatter loading works"
+    url: "https://youtu.be/oQ-KW7FzfCc?t=235"
+    timestamp: "00:03:55"
+  - title: "Example of contextual skill activation"
+    url: "https://youtu.be/oQ-KW7FzfCc?t=258"
+    timestamp: "00:04:18"
+  - title: "Skills reduce mental load and maintenance"
+    url: "https://youtu.be/oQ-KW7FzfCc?t=366"
+    timestamp: "00:06:06"
+  - title: "Sharing skills across all project components"
+    url: "https://youtu.be/oQ-KW7FzfCc?t=403"
+    timestamp: "00:06:43"
+  - title: "Pattern of simple hacks solving complex problems"
+    url: "https://youtu.be/oQ-KW7FzfCc?t=449"
+    timestamp: "00:07:29"
+  - title: "Identifying when to use skills"
+    url: "https://youtu.be/oQ-KW7FzfCc?t=467"
+    timestamp: "00:07:47"
+  - title: "Key indicators: specialized knowledge and reusability"
+    url: "https://youtu.be/oQ-KW7FzfCc?t=484"
+    timestamp: "00:08:04"
+  - title: "Closing thoughts"
+    url: "https://youtu.be/oQ-KW7FzfCc?t=509"
+    timestamp: "00:08:29"
+
+summary: "In this episode, Tara Schofield shares how to use Claude Skills, a recently launched feature that enables developers to package specialized knowledge into reusable, token-efficient components. Taraa shares a real-world cybersecurity use case where skills dramatically improved Claude's ability to write complex Cloud SIEM detection rules for AWS CloudTrail, Azure, and GCP logs. Skills work by loading only a brief description (frontmatter) initially, then contextually loading the full knowledge package when Claude determines it's needed—making them extremely efficient for context management. Unlike sub-agents that consume significant context or slash commands that require explicit invocation, skills are automatically shared across all agents and commands in a project. The episode demonstrates how to structure a SKILL.md file following Anthropic's best practices of keeping content focused and concise, and shows how entire skill packages can be built by querying APIs like Datadog to extract patterns from existing rules. The key insight is that skills are perfect for specialized niche knowledge that needs reusability across multiple project components, significantly reducing maintenance overhead while improving output quality. The conversation includes practical examples of skill activation, discusses the mental load reduction from centralizing knowledge, and identifies the two key indicators for when to create a skill: specialized domain knowledge and cross-project reusability."
+---
