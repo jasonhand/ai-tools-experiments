@@ -1,0 +1,111 @@
+---
+title: "Real-Time Telemetry in Development: Using MCP and Datadog for AI-Assisted Coding"
+description: "Whitney explores how real-time telemetry data through the Datadog MCP server helps inform development choices when working with Claude Code. The discussion demonstrates instrumenting code with OpenTelemetry, using telemetry to debug AI agent assumptions, and building auto-instrumentation agents for maintaining clean, efficient codebases."
+heroImg: "/images/thumbnails/ep59.png"
+videoId: "41z_6J0CbEc"
+episodeNumber: 59
+date: "2025-11-10"
+author: "Jason Hand"
+participants:
+  - Jason Hand
+  - Whitney Lee
+tags:
+  - telemetry
+  - opentelemetry
+  - datadog
+  - mcp-server
+  - claude-code
+  - instrumentation
+  - debugging
+  - observability
+
+takeaways:
+  - text: "Real-time telemetry data through MCP servers can help inform development choices and catch AI agent bad assumptions before they lead to suboptimal solutions"
+    tools: ["Datadog", "MCP Server", "Claude Code"]
+  - text: "Instrumenting code during development (not just production) enables time-travel debugging - comparing what data looked like weeks ago versus now to identify root causes"
+    tools: ["OpenTelemetry", "Datadog"]
+  - text: "Heavily instrumenting even small helper functions provides complete visibility for AI agents, though this requires auto-instrumentation tooling to remain practical"
+    tools: ["OpenTelemetry", "Auto-instrumentation Agents"]
+  - text: "Correlated logs, metrics, and traces enable AI agents to understand the full system flow from a single trace ID without relying solely on static code analysis"
+    tools: ["OpenTelemetry", "Datadog MCP Server"]
+  - text: "Using telemetry to validate AI agent proposals prevents bloated code - ensuring agents use existing functionality rather than duplicating logic"
+    tools: ["Claude Code", "Datadog MCP Server"]
+
+resources:
+  - name: "Datadog MCP Server"
+    url: "https://docs.datadoghq.com/bits_ai/mcp_server/"
+    description: "MCP server for integrating Datadog telemetry data with AI coding assistants"
+    type: "tool"
+  - name: "OpenTelemetry"
+    url: "https://opentelemetry.io"
+    description: "Open source observability framework for cloud-native software"
+    type: "platform"
+  - name: "OpenTelemetry Weaver"
+    url: "https://github.com/open-telemetry/weaver"
+    description: "Tool for managing semantic conventions and auto-instrumentation standards"
+    type: "tool"
+  - name: "Claude Code"
+    url: "https://claude.ai/code"
+    description: "Anthropic's AI coding assistant"
+    type: "tool"
+  - name: "Wispr Flow"
+    url: "https://www.wispr.ai"
+    description: "Voice-to-text tool for hands-free AI interaction"
+    type: "tool"
+  - name: "Datadog Documentation"
+    url: "https://docs.datadoghq.com"
+    description: "Official Datadog documentation for observability platform"
+    type: "documentation"
+
+jumpTo:
+  - title: "Introduction and Commit Story demo"
+    url: "https://youtu.be/41z_6J0CbEc?t=0"
+    timestamp: "00:00:00"
+  - title: "How the journal generation system works"
+    url: "https://youtu.be/41z_6J0CbEc?t=143"
+    timestamp: "00:02:23"
+  - title: "Exploring trace IDs and telemetry instrumentation"
+    url: "https://youtu.be/41z_6J0CbEc?t=193"
+    timestamp: "00:03:13"
+  - title: "Requesting system diagram from Claude Code"
+    url: "https://youtu.be/41z_6J0CbEc?t=258"
+    timestamp: "00:04:18"
+  - title: "Debugging timeout issue with telemetry data"
+    url: "https://youtu.be/41z_6J0CbEc?t=342"
+    timestamp: "00:05:42"
+  - title: "Time-travel debugging - comparing past vs present"
+    url: "https://youtu.be/41z_6J0CbEc?t=424"
+    timestamp: "00:07:04"
+  - title: "Claude Code's complete system understanding"
+    url: "https://youtu.be/41z_6J0CbEc?t=488"
+    timestamp: "00:08:08"
+  - title: "Using telemetry to find existing functionality"
+    url: "https://youtu.be/41z_6J0CbEc?t=580"
+    timestamp: "00:09:40"
+  - title: "Challenge of keeping codebases clean with AI"
+    url: "https://youtu.be/41z_6J0CbEc?t=697"
+    timestamp: "00:11:37"
+  - title: "Telemetry as a time machine for debugging"
+    url: "https://youtu.be/41z_6J0CbEc?t=748"
+    timestamp: "00:12:28"
+  - title: "Example of heavily instrumented helper function"
+    url: "https://youtu.be/41z_6J0CbEc?t=787"
+    timestamp: "00:13:07"
+  - title: "Auto-instrumentation agent workflow"
+    url: "https://youtu.be/41z_6J0CbEc?t=892"
+    timestamp: "00:14:52"
+  - title: "OpenTelemetry Weaver and semantic conventions"
+    url: "https://youtu.be/41z_6J0CbEc?t=921"
+    timestamp: "00:15:21"
+  - title: "Agent steps: correlation and validation"
+    url: "https://youtu.be/41z_6J0CbEc?t=1048"
+    timestamp: "00:17:28"
+  - title: "Black boxes in software development"
+    url: "https://youtu.be/41z_6J0CbEc?t=1119"
+    timestamp: "00:18:39"
+  - title: "Using telemetry to inform development choices"
+    url: "https://youtu.be/41z_6J0CbEc?t=1155"
+    timestamp: "00:19:15"
+
+summary: "Whitney demonstrates an innovative approach to AI-assisted development by integrating real-time telemetry data through the Datadog MCP server with Claude Code. The session showcases Commit Story, a demo application that automatically generates journal entries from Git commits and Claude Code conversations. The key innovation is using OpenTelemetry instrumentation throughout development (not just production) to give AI agents accurate, real-world data about system behavior. Whitney shares compelling debugging scenarios where telemetry data helped identify root causes when Claude Code made incorrect assumptions - like comparing data flow from three weeks ago to current behavior to discover a bypassed filter function. The demo includes viewing a heavily instrumented helper function where instrumentation code significantly outweighs business logic, highlighting the need for auto-instrumentation tooling. Whitney is building an auto-instrumentation agent that uses OpenTelemetry Weaver for semantic conventions, automatically adds instrumentation to code changes, ensures proper correlation between logs/metrics/traces, and validates instrumentation by checking data appears in Datadog. The conversation explores how telemetry helps maintain clean, efficient codebases by preventing AI agents from duplicating existing functionality, and how having complete visibility into system behavior enables more informed development decisions about data handling, filtering strategies, and resource allocation."
+---
