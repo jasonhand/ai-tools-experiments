@@ -1,0 +1,152 @@
+---
+title: "Lessons about Cursor 2 and the new Composer 1 model from a ZFS Array Recovery"
+description: "A firsthand account of using Cursor 2.0's new Composer 1 agent, parallel model execution, and git work trees, featuring a cautionary tale of ZFS array repair using Claude Sonnet 4.5 after an accidental data wipe and successful recovery."
+heroImg: "/images/thumbnails/ep60.png"
+videoId: "8meMhGzVqMY"
+episodeNumber: 60
+date: "2025-11-10"
+author: "Jason Hand"
+participants:
+  - Jason Hand
+  - Ryan MacLean
+tags:
+  - cursor
+  - composer-agent
+  - claude-sonnet
+  - ide
+  - multi-agent
+  - git-worktrees
+  - zfs
+  - raid-recovery
+  - automation
+
+takeaways:
+  - text: "Cursor 2.0 introduces a new Agents view allowing up to three models to run in parallel, enabling model comparison and distributed task execution across git work trees"
+    category: "technical"
+    priority: "high"
+    tools: ["Cursor", "Git Work Trees"]
+  - text: "Composer 1 is Cursor's new default model optimized for speed, but may have smaller training corpus for specialized domains like ZFS administration"
+    category: "technical"
+    priority: "medium"
+    tools: ["Composer 1", "Cursor"]
+  - text: "Cloud mode sessions in Cursor enable task resumption across different locations and are well-suited for maintenance tasks like documentation, security checks, and Dependabot PRs"
+    category: "workflow"
+    priority: "medium"
+    tools: ["Cursor Cloud"]
+  - text: "The CLI interface provides a standardized interaction model common across coding tools, useful for automation workflows, JSON output, and integration with tools like N8N or Node-RED"
+    category: "technical"
+    priority: "medium"
+    tools: ["Cursor CLI", "N8N", "Node-RED"]
+  - text: "When Composer 1 accidentally recreated a ZFS volume instead of adding a mount point, switching to Claude Sonnet 4.5 enabled successful recovery through header repair and block-by-block verification"
+    category: "technical"
+    priority: "high"
+    tools: ["Claude Sonnet 4.5", "ZFS", "Cursor"]
+  - text: "Cursor's auto-continue feature reduces friction by continuing work autonomously without requiring repeated 'please continue' prompts, iterating through 10-11 repair steps independently"
+    category: "productivity"
+    priority: "medium"
+    tools: ["Cursor"]
+  - text: "Git work trees isolate experimental work in separate clones, reducing risk when making significant changes and avoiding the 'too many changes to push' problem"
+    category: "workflow"
+    priority: "medium"
+    tools: ["Git Work Trees", "Cursor"]
+  - text: "Always test AI-assisted maintenance on tertiary devices with verified backups - recovery may be possible but prevention is better than cure"
+    category: "strategic"
+    priority: "high"
+  - text: "The 2.0 upgrade may cause loss of chat history stored in SQLite databases, but recovery tools exist on GitHub for critical session retrieval"
+    category: "technical"
+    priority: "low"
+    tools: ["Cursor", "SQLite"]
+  - text: "Edge case domains like FPGA code (Verilog/VHDL), legacy languages (Smalltalk, OCaml), and hardware-level operations may have limited training data but next-word prediction can still provide value"
+    category: "technical"
+    priority: "medium"
+
+resources:
+  - name: "Cursor 2.0 Announcement"
+    url: "https://cursor.com/blog/2-0"
+    description: "Official Cursor IDE website with details about version 2.0 features"
+    type: "platform"
+  - name: "Git Work Trees Documentation"
+    url: "https://git-scm.com/docs/git-worktree"
+    description: "Official Git documentation on work trees for parallel branch work"
+    type: "documentation"
+  - name: "ZFS Documentation"
+    url: "https://openzfs.org"
+    description: "Open source ZFS file system and volume manager documentation"
+    type: "documentation"
+
+jumpTo:
+  - title: "Introduction to Cursor 2.0 and Composer 1"
+    url: "https://youtu.be/8meMhGzVqMY?t=0"
+    timestamp: "00:00:00"
+  - title: "The ZFS array wipe story begins"
+    url: "https://youtu.be/8meMhGzVqMY?t=36"
+    timestamp: "00:00:36"
+  - title: "New Agents view and parallel model execution"
+    url: "https://youtu.be/8meMhGzVqMY?t=56"
+    timestamp: "00:00:56"
+  - title: "Git work trees explained"
+    url: "https://youtu.be/8meMhGzVqMY?t=92"
+    timestamp: "00:01:32"
+  - title: "Cloud mode and web interface use cases"
+    url: "https://youtu.be/8meMhGzVqMY?t=123"
+    timestamp: "00:02:03"
+  - title: "CLI interface overview"
+    url: "https://youtu.be/8meMhGzVqMY?t=236"
+    timestamp: "00:03:56"
+  - title: "Composer 1 model details"
+    url: "https://youtu.be/8meMhGzVqMY?t=312"
+    timestamp: "00:05:12"
+  - title: "The ZFS mount point request gone wrong"
+    url: "https://youtu.be/8meMhGzVqMY?t=339"
+    timestamp: "00:05:39"
+  - title: "Recovery process - headers and block verification"
+    url: "https://youtu.be/8meMhGzVqMY?t=392"
+    timestamp: "00:06:32"
+  - title: "Multiple model selection and agent modes"
+    url: "https://youtu.be/8meMhGzVqMY?t=487"
+    timestamp: "00:08:07"
+  - title: "Cloud sessions and parallel execution limits"
+    url: "https://youtu.be/8meMhGzVqMY?t=516"
+    timestamp: "00:08:36"
+  - title: "Chat history loss in upgrade and recovery"
+    url: "https://youtu.be/8meMhGzVqMY?t=536"
+    timestamp: "00:08:56"
+  - title: "Comparing three model outputs simultaneously"
+    url: "https://youtu.be/8meMhGzVqMY?t=550"
+    timestamp: "00:09:10"
+  - title: "Cloud vs work tree sessions"
+    url: "https://youtu.be/8meMhGzVqMY?t=618"
+    timestamp: "00:10:18"
+  - title: "Web interface showing same session"
+    url: "https://youtu.be/8meMhGzVqMY?t=645"
+    timestamp: "00:10:45"
+  - title: "Cursor's auto-continue feature"
+    url: "https://youtu.be/8meMhGzVqMY?t=682"
+    timestamp: "00:11:22"
+  - title: "Watching the AI work through recovery iterations"
+    url: "https://youtu.be/8meMhGzVqMY?t=702"
+    timestamp: "00:11:42"
+  - title: "YOLO mode - recovering without full backup"
+    url: "https://youtu.be/8meMhGzVqMY?t=732"
+    timestamp: "00:12:12"
+  - title: "Sub-agents and synchronous tasks comparison"
+    url: "https://youtu.be/8meMhGzVqMY?t=770"
+    timestamp: "00:12:50"
+  - title: "Final thoughts on Composer 1 vs Sonnet 4.5"
+    url: "https://youtu.be/8meMhGzVqMY?t=785"
+    timestamp: "00:13:05"
+  - title: "Hardware-level operations and bit manipulation"
+    url: "https://youtu.be/8meMhGzVqMY?t=838"
+    timestamp: "00:13:58"
+  - title: "Internal LLMs for proprietary languages"
+    url: "https://youtu.be/8meMhGzVqMY?t=901"
+    timestamp: "00:15:01"
+  - title: "FPGA code and circuit description experiments"
+    url: "https://youtu.be/8meMhGzVqMY?t=939"
+    timestamp: "00:15:39"
+  - title: "Edge cases - Arduino and Raspberry Pi"
+    url: "https://youtu.be/8meMhGzVqMY?t=959"
+    timestamp: "00:15:59"
+
+summary: "This episode features a hands-on exploration of Cursor 2.0's major updates, including the new Composer 1 agent, parallel model execution, and git work tree integration. Ryan MacLean shares a cautionary tale of using Composer 1 for ZFS RAID maintenance, where a simple request to create a mount point accidentally resulted in the array being erased and a new volume created. After switching to Claude Sonnet 4.5, he successfully recovered the array through header repair and block-by-block verification, losing only 40GB of backed-up data. The recovery process took 20 hours to complete but only 30 minutes to plan, showcasing Cursor's auto-continue feature that autonomously iterates through complex problem-solving. The discussion covers Cursor's new Agents view that allows running three models simultaneously for comparison, the cloud mode for resuming tasks across locations, the CLI for automation workflows, and git work trees for risk-free experimentation. Ryan MacLean compares their journey through VS Code, Cursor, Windsurf, and Claude Code, noting that Cursor 2.0 has implemented features like sub-agents that were previously exclusive to other tools. The episode concludes with reflections on edge cases where training data is limited - including FPGA code, legacy languages like Smalltalk and OCaml, and hardware-level operations - and how next-word prediction can still provide value even in domains with sparse corpus coverage. Key lesson: always test AI-assisted system maintenance on tertiary devices with verified backups."
+---
